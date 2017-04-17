@@ -1,0 +1,254 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project DefaultTargets="Build" ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">Android</Platform>
+    <ProjectGuid>{C3EB7FDD-25E8-4E01-B013-75979505668E}</ProjectGuid>
+    <ProjectTypeGuids>{EFBA0AD7-5A72-4C68-AF49-83D382785DCF};{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}</ProjectTypeGuids>
+    <OutputType>Library</OutputType>
+    <RootNamespace>DT.Samples.Agora.OneToOne.Droid</RootNamespace>
+    <AssemblyName>DT.Samples.Agora.OneToOne.Android</AssemblyName>
+    <TargetFrameworkVersion>v5.1</TargetFrameworkVersion>
+    <AndroidApplication>True</AndroidApplication>
+    <AndroidResgenFile>Resources\Resource.designer.cs</AndroidResgenFile>
+    <AndroidResgenClass>Resource</AndroidResgenClass>
+    <AndroidManifest>Properties\AndroidManifest.xml</AndroidManifest>
+    <MonoAndroidResourcePrefix>Resources</MonoAndroidResourcePrefix>
+    <MonoAndroidAssetsPrefix>Assets</MonoAndroidAssetsPrefix>
+    <AndroidUseLatestPlatformSdk>false</AndroidUseLatestPlatformSdk>
+    <AndroidTlsProvider></AndroidTlsProvider>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Staging|Android' ">
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>pdbonly</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>bin\Staging</OutputPath>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+    <AndroidManagedSymbols>true</AndroidManagedSymbols>
+    <AndroidUseSharedRuntime>false</AndroidUseSharedRuntime>
+    <AndroidSupportedAbis>armeabi-v7a</AndroidSupportedAbis>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|Android' ">
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>pdbonly</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>bin\Release</OutputPath>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+    <AndroidManagedSymbols>true</AndroidManagedSymbols>
+    <AndroidUseSharedRuntime>false</AndroidUseSharedRuntime>
+    <AndroidSupportedAbis>armeabi-v7a</AndroidSupportedAbis>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Store|Android' ">
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>pdbonly</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>bin\Store</OutputPath>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+    <AndroidManagedSymbols>true</AndroidManagedSymbols>
+    <AndroidUseSharedRuntime>false</AndroidUseSharedRuntime>
+    <AndroidSupportedAbis>armeabi-v7a</AndroidSupportedAbis>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|Android' ">
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>bin\Debug</OutputPath>
+    <DefineConstants>DEBUG;</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+    <AndroidLinkMode>None</AndroidLinkMode>
+    <AndroidSupportedAbis>arm64-v8a;armeabi;armeabi-v7a;x86</AndroidSupportedAbis>
+    <EmbedAssembliesIntoApk>true</EmbedAssembliesIntoApk>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="System" />
+    <Reference Include="System.Xml" />
+    <Reference Include="System.Core" />
+    <Reference Include="Mono.Android" />
+    <Reference Include="Mono.Android.Export" />
+    <Reference Include="Plugin.Settings.Abstractions">
+      <HintPath>..\..\packages\Xam.Plugins.Settings.2.5.4\lib\MonoAndroid10\Plugin.Settings.Abstractions.dll</HintPath>
+    </Reference>
+    <Reference Include="Plugin.Settings">
+      <HintPath>..\..\packages\Xam.Plugins.Settings.2.5.4\lib\MonoAndroid10\Plugin.Settings.dll</HintPath>
+    </Reference>
+    <Reference Include="Xamarin.Android.Support.v4">
+      <HintPath>..\..\packages\Xamarin.Android.Support.v4.23.4.0.1\lib\MonoAndroid403\Xamarin.Android.Support.v4.dll</HintPath>
+    </Reference>
+    <Reference Include="Xamarin.Android.Support.Vector.Drawable">
+      <HintPath>..\..\packages\Xamarin.Android.Support.Vector.Drawable.23.4.0.1\lib\MonoAndroid403\Xamarin.Android.Support.Vector.Drawable.dll</HintPath>
+    </Reference>
+    <Reference Include="Xamarin.Android.Support.Animated.Vector.Drawable">
+      <HintPath>..\..\packages\Xamarin.Android.Support.Animated.Vector.Drawable.23.4.0.1\lib\MonoAndroid403\Xamarin.Android.Support.Animated.Vector.Drawable.dll</HintPath>
+    </Reference>
+    <Reference Include="Xamarin.Android.Support.v7.AppCompat">
+      <HintPath>..\..\packages\Xamarin.Android.Support.v7.AppCompat.23.4.0.1\lib\MonoAndroid403\Xamarin.Android.Support.v7.AppCompat.dll</HintPath>
+    </Reference>
+    <Reference Include="Xamarin.Android.Support.v7.RecyclerView">
+      <HintPath>..\..\packages\Xamarin.Android.Support.v7.RecyclerView.23.4.0.1\lib\MonoAndroid403\Xamarin.Android.Support.v7.RecyclerView.dll</HintPath>
+    </Reference>
+    <Reference Include="Xamarin.Android.Support.Design">
+      <HintPath>..\..\packages\Xamarin.Android.Support.Design.23.4.0.1\lib\MonoAndroid43\Xamarin.Android.Support.Design.dll</HintPath>
+    </Reference>
+    <Reference Include="Xamarin.Agora.Full.Android">
+      <HintPath>..\..\packages\Xamarin.Agora.Full.Android.1.9.1.1-beta1\lib\MonoAndroid\Xamarin.Agora.Full.Android.dll</HintPath>
+    </Reference>
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="Resources\Resource.designer.cs" />
+    <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="AgoraQualityHandler.cs" />
+    <Compile Include="SettingsActivity.cs" />
+    <Compile Include="RoomActivity.cs" />
+    <Compile Include="JoinActivity.cs" />
+    <Compile Include="SplashActivity.cs" />
+    <Compile Include="AgoraRtcHandler.cs" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\AboutResources.txt" />
+    <None Include="Properties\AndroidManifest.xml" />
+    <None Include="Assets\AboutAssets.txt" />
+    <None Include="packages.config" />
+  </ItemGroup>
+  <ItemGroup>
+    <AndroidResource Include="Resources\layout\Room.axml" />
+    <AndroidResource Include="Resources\values\Strings.xml" />
+    <AndroidResource Include="Resources\values\colors.xml" />
+    <AndroidResource Include="Resources\values\dimens.xml" />
+    <AndroidResource Include="Resources\values\styles.xml" />
+    <AndroidResource Include="Resources\layout\Join.axml" />
+    <AndroidResource Include="Resources\layout\Settings.axml" />
+    <AndroidResource Include="Resources\menu\top_menu.axml" />
+    <AndroidResource Include="Resources\drawable\splash_screen.xml" />
+    <AndroidResource Include="Resources\drawable-hdpi\ic_logo_dt.png" />
+    <AndroidResource Include="Resources\drawable-mdpi\ic_logo_dt.png" />
+    <AndroidResource Include="Resources\drawable-xhdpi\ic_logo_dt.png" />
+    <AndroidResource Include="Resources\drawable-xxhdpi\ic_logo_dt.png" />
+    <AndroidResource Include="Resources\drawable-xxxhdpi\ic_logo_dt.png" />
+    <AndroidResource Include="Resources\drawable\green_button.xml" />
+    <AndroidResource Include="Resources\drawable-hdpi\ic_settings_main.png" />
+    <AndroidResource Include="Resources\drawable-mdpi\ic_settings_main.png" />
+    <AndroidResource Include="Resources\drawable-xhdpi\ic_settings_main.png" />
+    <AndroidResource Include="Resources\drawable-xxhdpi\ic_settings_main.png" />
+    <AndroidResource Include="Resources\drawable-xxxhdpi\ic_settings_main.png" />
+    <AndroidResource Include="Resources\drawable\rounded_video_shape.xml" />
+    <AndroidResource Include="Resources\drawable-hdpi\ic_switch_camera_call.png" />
+    <AndroidResource Include="Resources\drawable-mdpi\ic_switch_camera_call.png" />
+    <AndroidResource Include="Resources\drawable-xhdpi\ic_switch_camera_call.png" />
+    <AndroidResource Include="Resources\drawable-xxhdpi\ic_switch_camera_call.png" />
+    <AndroidResource Include="Resources\drawable-xxxhdpi\ic_switch_camera_call.png" />
+    <AndroidResource Include="Resources\drawable\rounded_shadow_shape.xml" />
+    <AndroidResource Include="Resources\drawable-hdpi\ic_dots_menu_call.png" />
+    <AndroidResource Include="Resources\drawable-mdpi\ic_dots_menu_call.png" />
+    <AndroidResource Include="Resources\drawable-xhdpi\ic_dots_menu_call.png" />
+    <AndroidResource Include="Resources\drawable-xxhdpi\ic_dots_menu_call.png" />
+    <AndroidResource Include="Resources\drawable-xxxhdpi\ic_dots_menu_call.png" />
+    <AndroidResource Include="Resources\drawable-hdpi\ic_end_call.png" />
+    <AndroidResource Include="Resources\drawable-mdpi\ic_end_call.png" />
+    <AndroidResource Include="Resources\drawable-xhdpi\ic_end_call.png" />
+    <AndroidResource Include="Resources\drawable-xxhdpi\ic_end_call.png" />
+    <AndroidResource Include="Resources\drawable-xxxhdpi\ic_end_call.png" />
+    <AndroidResource Include="Resources\drawable-hdpi\ic_mic_active_call.png" />
+    <AndroidResource Include="Resources\drawable-mdpi\ic_mic_active_call.png" />
+    <AndroidResource Include="Resources\drawable-xhdpi\ic_mic_active_call.png" />
+    <AndroidResource Include="Resources\drawable-xxhdpi\ic_mic_active_call.png" />
+    <AndroidResource Include="Resources\drawable-xxxhdpi\ic_mic_active_call.png" />
+    <AndroidResource Include="Resources\drawable-hdpi\ic_cam_active_call.png" />
+    <AndroidResource Include="Resources\drawable-mdpi\ic_cam_active_call.png" />
+    <AndroidResource Include="Resources\drawable-xhdpi\ic_cam_active_call.png" />
+    <AndroidResource Include="Resources\drawable-xxhdpi\ic_cam_active_call.png" />
+    <AndroidResource Include="Resources\drawable-xxxhdpi\ic_cam_active_call.png" />
+    <AndroidResource Include="Resources\drawable-hdpi\ic_mic_inactive_call.png" />
+    <AndroidResource Include="Resources\drawable-mdpi\ic_mic_inactive_call.png" />
+    <AndroidResource Include="Resources\drawable-xhdpi\ic_mic_inactive_call.png" />
+    <AndroidResource Include="Resources\drawable-xxhdpi\ic_mic_inactive_call.png" />
+    <AndroidResource Include="Resources\drawable-xxxhdpi\ic_mic_inactive_call.png" />
+    <AndroidResource Include="Resources\drawable-hdpi\ic_mic_muted_call.png" />
+    <AndroidResource Include="Resources\drawable-mdpi\ic_mic_muted_call.png" />
+    <AndroidResource Include="Resources\drawable-xhdpi\ic_mic_muted_call.png" />
+    <AndroidResource Include="Resources\drawable-xxhdpi\ic_mic_muted_call.png" />
+    <AndroidResource Include="Resources\drawable-xxxhdpi\ic_mic_muted_call.png" />
+    <AndroidResource Include="Resources\drawable\rounded_video_shape_opaque.xml" />
+    <AndroidResource Include="Resources\drawable-hdpi\ic_cam_disabled_call.png" />
+    <AndroidResource Include="Resources\drawable-mdpi\ic_cam_disabled_call.png" />
+    <AndroidResource Include="Resources\drawable-xhdpi\ic_cam_disabled_call.png" />
+    <AndroidResource Include="Resources\drawable-xxhdpi\ic_cam_disabled_call.png" />
+    <AndroidResource Include="Resources\drawable-xxxhdpi\ic_cam_disabled_call.png" />
+    <AndroidResource Include="Resources\drawable-hdpi\ic_share_main.png" />
+    <AndroidResource Include="Resources\drawable-mdpi\ic_share_main.png" />
+    <AndroidResource Include="Resources\drawable-xhdpi\ic_share_main.png" />
+    <AndroidResource Include="Resources\drawable-xxhdpi\ic_share_main.png" />
+    <AndroidResource Include="Resources\drawable-xxxhdpi\ic_share_main.png" />
+    <AndroidResource Include="Resources\drawable-hdpi\ic_connection_4.png" />
+    <AndroidResource Include="Resources\drawable-mdpi\ic_connection_4.png" />
+    <AndroidResource Include="Resources\drawable-xhdpi\ic_connection_4.png" />
+    <AndroidResource Include="Resources\drawable-xxhdpi\ic_connection_4.png" />
+    <AndroidResource Include="Resources\drawable-xxxhdpi\ic_connection_4.png" />
+    <AndroidResource Include="Resources\drawable-hdpi\ic_logo_agora.png" />
+    <AndroidResource Include="Resources\drawable-mdpi\ic_logo_agora.png" />
+    <AndroidResource Include="Resources\drawable-xhdpi\ic_logo_agora.png" />
+    <AndroidResource Include="Resources\drawable-xxhdpi\ic_logo_agora.png" />
+    <AndroidResource Include="Resources\drawable-xxxhdpi\ic_logo_agora.png" />
+    <AndroidResource Include="Resources\drawable-hdpi\ic_connection_0.png" />
+    <AndroidResource Include="Resources\drawable-mdpi\ic_connection_0.png" />
+    <AndroidResource Include="Resources\drawable-xhdpi\ic_connection_0.png" />
+    <AndroidResource Include="Resources\drawable-xxhdpi\ic_connection_0.png" />
+    <AndroidResource Include="Resources\drawable-xxxhdpi\ic_connection_0.png" />
+    <AndroidResource Include="Resources\drawable-hdpi\ic_connection_1.png" />
+    <AndroidResource Include="Resources\drawable-mdpi\ic_connection_1.png" />
+    <AndroidResource Include="Resources\drawable-xhdpi\ic_connection_1.png" />
+    <AndroidResource Include="Resources\drawable-xxhdpi\ic_connection_1.png" />
+    <AndroidResource Include="Resources\drawable-xxxhdpi\ic_connection_1.png" />
+    <AndroidResource Include="Resources\drawable-hdpi\ic_connection_2.png" />
+    <AndroidResource Include="Resources\drawable-mdpi\ic_connection_2.png" />
+    <AndroidResource Include="Resources\drawable-xhdpi\ic_connection_2.png" />
+    <AndroidResource Include="Resources\drawable-xxhdpi\ic_connection_2.png" />
+    <AndroidResource Include="Resources\drawable-xxxhdpi\ic_connection_2.png" />
+    <AndroidResource Include="Resources\drawable-hdpi\ic_connection_3.png" />
+    <AndroidResource Include="Resources\drawable-mdpi\ic_connection_3.png" />
+    <AndroidResource Include="Resources\drawable-xhdpi\ic_connection_3.png" />
+    <AndroidResource Include="Resources\drawable-xxhdpi\ic_connection_3.png" />
+    <AndroidResource Include="Resources\drawable-xxxhdpi\ic_connection_3.png" />
+    <AndroidResource Include="Resources\drawable-hdpi\ic_connection_5.png" />
+    <AndroidResource Include="Resources\drawable-mdpi\ic_connection_5.png" />
+    <AndroidResource Include="Resources\drawable-xhdpi\ic_connection_5.png" />
+    <AndroidResource Include="Resources\drawable-xxhdpi\ic_connection_5.png" />
+    <AndroidResource Include="Resources\drawable-xxxhdpi\ic_connection_5.png" />
+    <AndroidResource Include="Resources\mipmap-hdpi\app_icon.png" />
+    <AndroidResource Include="Resources\mipmap-mdpi\app_icon.png" />
+    <AndroidResource Include="Resources\mipmap-xhdpi\app_icon.png" />
+    <AndroidResource Include="Resources\mipmap-xxhdpi\app_icon.png" />
+    <AndroidResource Include="Resources\mipmap-xxxhdpi\app_icon.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Folder Include="Resources\drawable\" />
+    <Folder Include="Resources\menu\" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\..\DT.Samples.Agora.Shared\DT.Samples.Agora.Shared.csproj">
+      <Project>{2DDB7277-5ACB-4DE9-BFC7-29C5DEDA4217}</Project>
+      <Name>DT.Samples.Agora.Shared</Name>
+    </ProjectReference>
+  </ItemGroup>
+  <Import Project="$(MSBuildExtensionsPath)\Xamarin\Android\Xamarin.Android.CSharp.targets" />
+  <ProjectExtensions>
+    <MonoDevelop>
+      <Properties>
+        <Policies>
+          <TextStylePolicy inheritsSet="null" scope="application/xml" />
+          <XmlFormattingPolicy inheritsSet="Mono" inheritsScope="application/xml" scope="application/xml">
+            <DefaultFormat AttributesInNewLine="True" AlignAttributes="True" AlignAttributeValues="True" />
+          </XmlFormattingPolicy>
+          <TextStylePolicy inheritsSet="null" scope="application/config+xml" />
+          <XmlFormattingPolicy inheritsSet="null" scope="application/config+xml" />
+          <TextStylePolicy inheritsSet="null" scope="application/android+xml" />
+          <XmlFormattingPolicy inheritsSet="null" scope="application/android+xml" />
+        </Policies>
+      </Properties>
+    </MonoDevelop>
+  </ProjectExtensions>
+  <Import Project="..\..\packages\Xamarin.Android.Support.Vector.Drawable.23.4.0.1\build\Xamarin.Android.Support.Vector.Drawable.targets" Condition="Exists('..\..\packages\Xamarin.Android.Support.Vector.Drawable.23.4.0.1\build\Xamarin.Android.Support.Vector.Drawable.targets')" />
+</Project>

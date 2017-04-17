@@ -1,0 +1,94 @@
+﻿<!DOCTYPE HTML>
+<html>
+
+<head>
+    <title>Agora Video Call</title>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width,initial-scale=1">
+    <!--[if lte IE 8]><script src="assets/js/html5shiv.js"></script><![endif]-->
+    <link rel="stylesheet" href="css/bundle.css?v=1.9.0">
+    <!--[if lte IE 9]><link rel="stylesheet" href="assets/css/ie9.css" /><![endif]-->
+    <!--[if lte IE 8]><link rel="stylesheet" href="assets/css/ie8.css" /><![endif]-->
+    <link rel="shortcut icon" href="images/favicon.ico">
+    <link rel="bookmark" href="images/favicon.ico">
+</head>
+
+<body class="is-loading">
+    <!-- Wrapper -->
+    <div id="wrapper">
+        <!-- Main -->
+        <section id="main">
+            <header><img id="logo" src="images/logo.png" alt="Logo">
+                <p class="head-text">Agora Video Call<span class="version">v1.9.0 </span></p>
+                <p class="head-text-bottom">Powering Real-Time Communications</p>
+                <a href="AgoraWebAgentSetup-1.9.0.exe">Download AgoraWebAgent for Windows</a>
+                <a href="AgoraWebAgent-1.9.0.pkg">Download AgoraWebAgent for Mac</a>
+            </header>
+            <main id="main-content">
+                <p class="enter-prompt">Enter a conference room name</p>
+                <p class="main-description-text">If you are the first person to specify this name, the room will be created and you will be placed in it.
+                    If it has already been created you will join the conference in progress.</p>
+                <div id="form-content">
+                    <form action="meeting.html" method="GET">
+                        <div class="form-group row">
+                            <div class="col-sm-6 col-sm-offset-3 col-md-6 col-md-offset-3 col-xlg-2 col-xlg-offset-5"></div>
+                        </div>
+                        <div class="form-group row">
+                            <div class="col-sm-6 col-sm-offset-3 col-md-6 col-md-offset-3 col-xlg-2 col-xlg-offset-5"><input id="room-name" type="text" class="form-control" placeholder="Enter room name here"></div>
+                        </div>
+                        <div class="form-group row">
+                            <div style="height:56px" class="col-sm-6 col-sm-offset-3 col-md-6 col-md-offset-3 col-xlg-2 col-xlg-offset-5"><select class="selectpicker form-control" id="js_select_mode"><option value="communication">Communication</option><option value="live-broadcasting">Live Broadcasting</option></select></div>
+                        </div>
+                        <div class="form-group row">
+                            <div class="col-sm-6 col-sm-offset-3 col-md-6 col-md-offset-3 col-xlg-2 col-xlg-offset-5"><button class="btn btn-warning join-button" id="join-meeting"><span class="fa fa-sign-in">&nbsp;&nbsp;Join</span></button></div>
+                        </div>
+                        <hr>
+                        <div class="form-group row">
+                            <div class="col-sm-6 col-sm-offset-3 col-md-6 col-md-offset-3 col-xlg-2 col-xlg-offset-5"><button id="options-button" type="button" class="btn btn-default" data-toggle="modal" data-target="#videoOptionsModal"><span class="fa fa-gear">&nbsp; Video Options</span></button></div>
+                        </div>
+                    </form>
+                </div>
+            </main>
+        </section>
+        <!-- Footer -->
+        <footer id="footer">
+            <ul class="copyright">
+                <li><a href="http://www.agora.io/en/blog/download/">Agora.io</a></li>
+                <li>&copy; Copyright Agora.io 沪ICP备14053584号</li>
+            </ul>
+        </footer>
+    </div>
+    <!-- Modal -->
+    <div class="modal fade" id="videoOptionsModal" role="dialog">
+        <div class="modal-dialog modal-sm">
+            <div class="modal-content">
+                <div class="modal-body">
+                    <form role="form" action="#">
+                        <div class="form-group"><label for="resolution">Resolution</label><select class="selectpicker form-control" id="resolution"><option value="120p">160x120</option><option value="240p">320x240</option><!--<option value="360p">640x360</option>--><option value="480p" selected="selected">640x480</option><option value="720p">1280x720</option><option value="1080p">1920x1080 (Test Only)</option></select></div>
+                        <div
+                            class="form-group"><label for="maxFrameRate">Max Frame Rate</label><select class="selectpicker form-control" id="maxFrameRate"><option value="15" selected="selected">15</option><!--<option value="24">24</option>--><option value="30">30</option></select></div>
+                        <div
+                            class="form-group" style="display:none"><label>Max Rate</label>
+                            <div id="choose-max-rate" class="form-control" data-slider-id="maxRateSlider"></div>
+                        </div>
+                    </form>
+                </div>
+                <div class="modal-footer"><button type="button" class="btn btn-default" data-dismiss="modal">Confirm</button></div>
+            </div>
+        </div>
+    </div>
+    <!-- Scripts -->
+    <!--[if lte IE 8]><script src="assets/js/respond.min.js"></script><![endif]-->
+    <script src="js/vendor-bundle.js?v=1.9.0"></script>
+    <script src="js/index.js?v=1.9.0"></script>
+    <script>
+        if ('addEventListener' in window) {
+            window.addEventListener('load', function () {
+                document.body.className = document.body.className.replace(/\bis-loading\b/, '');
+            });
+            document.body.className += (navigator.userAgent.match(/(MSIE|rv:11\.0)/) ? ' is-ie' : '');
+        }
+    </script>
+</body>
+
+</html>

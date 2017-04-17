@@ -1,0 +1,114 @@
+<!DOCTYPE HTML>
+<html>
+
+<head>
+    <title>Agora Video Call - Meeting</title>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width,initial-scale=1">
+    <!--[if lte IE 8]><script src="assets/js/ie/html5shiv.js"></script><![endif]-->
+    <link rel="stylesheet" href="css/bundle.css?v=1.9.0">
+    <!--[if lte IE 8]><link rel="stylesheet" href="assets/css/ie8.css" /><![endif]-->
+    <!--[if lte IE 9]><link rel="stylesheet" href="assets/css/ie9.css" /><![endif]-->
+    <link rel="shortcut icon" href="images/favicon.ico">
+    <link rel="bookmark" href="images/favicon.ico">
+    <!-- vertex shader -->
+    <script id="2d-vertex-shader" type="x-shader/x-vertex">attribute vec2 a_position; attribute vec2 a_texCoord; uniform vec2 u_resolution; varying vec2 v_texCoord; void main()
+        { // convert the rectangle from pixels to 0.0 to 1.0 vec2 zeroToOne = a_position / u_resolution; // convert from
+        0->1 to 0->2 vec2 zeroToTwo = zeroToOne * 2.0; // convert from 0->2 to -1->+1 (clipspace) vec2 clipSpace = zeroToTwo
+        - 1.0; gl_Position = vec4(clipSpace * vec2(1, -1), 0, 1); // pass the texCoord to the fragment shader // The GPU
+        will interpolate this value between points. v_texCoord = a_texCoord; }</script>
+    <!-- fragment shader -->
+    <script id="2d-fragment-shader" type="x-shader/x-fragment">precision mediump float; // our texture uniform sampler2D u_image; // the texCoords passed in from the vertex shader.
+        varying vec2 v_texCoord; void main() { gl_FragColor = texture2D(u_image, v_texCoord); }</script>
+    <script id="2d-yuv-shader"
+        type="x-shader/x-fragment">precision mediump float; uniform sampler2D Ytex; uniform sampler2D Utex,Vtex; varying vec2 v_texCoord; void main(void)
+        { float nx,ny,r,g,b,y,u,v; mediump vec4 txl,ux,vx; nx=v_texCoord[0]; ny=v_texCoord[1]; y=texture2D(Ytex,vec2(nx,ny)).r;
+        u=texture2D(Utex,vec2(nx,ny)).r; v=texture2D(Vtex,vec2(nx,ny)).r; //" y = v;\n"+ y=1.1643*(y-0.0625); u=u-0.5; v=v-0.5;
+        r=y+1.5958*v; g=y-0.39173*u-0.81290*v; b=y+2.017*u; gl_FragColor=vec4(r,g,b,1.0); }</script>
+</head>
+
+<body class="is-loading">
+    <div id="wrapper">
+        <div class="room-name-title" id="room-name-meeting"></div>
+        <div class="main-container">
+            <div id="whiteboard-container"></div>
+            <div id="video-container-parent">
+                <div id="video-container" class="video-container">
+                    <div id="video-container-multiple"></div>
+                    <div class="toolbar">
+                        <ul>
+                            <li>
+                                <a class="switch-audio-button" href="#"><img src="images/btn_voice@2x.png" alt="Voice"></a>
+                            </li>
+                            <li>
+                                <a class="mute-button" href="#"><img src="images/btn_mute@2x.png" alt="Mute"></a>
+                            </li>
+                            <li style="display: none">
+                                <a class="fullscreen-button" style="display: none" href="#"><img style="display: none" src="images/btn_maximize@2x.png" alt="Fullscreen"></a>
+                            </li>
+                            <li style="display: none">
+                                <a class="expension-button" style="display: none" href="#"><img style="display: none" src="images/btn_expansion.png" alt="Switch"></a>
+                            </li>
+                            <li style="display: none">
+                                <a class="record-video-button" href="#"><img src="images/btn_record@2x.png" alt="Record"></a>
+                            </li>
+                            <li>
+                                <a class="end-call-button" href="#"><img src="images/btn_endcall@2x.png" alt="End"></a>
+                            </li>
+                            <li>
+                                <a class="escreen-sharing-button" href="#"><img src="images/btn_screen_sharing@2x.png" alt="sharing"></a>
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+            <div class="video-side-bar">
+                <div class="video-operation-bar"><span class="video-operation-btn list-switch-audio-btn"></span> <span class="video-operation-btn list-hang-up-btn"></span>                    <span class="video-operation-btn list-close-btn"></span></div>
+            </div>
+            <div class="info"></div>
+        </div>
+        <div class="share-screen-list" id="js_ShareScreenList">
+            <ul></ul>
+        </div>
+        <div class="arrow-box" id="js_ShareScreenListArrow"><i class="arrow"></i></div>
+        <!--
+            <div class="room-info" style="z-index: 2;">
+                <a href="#" class="btn btn-info" data-toggle="modal" data-target="#roomInfoModal"><span class="fa fa-info"></span></button>
+            </div>
+             -->
+        <!-- Footer -->
+        <footer id="footer">
+            <ul class="copyright">
+                <li><a>Agora.io</a></li>
+                <li>Copyright &copy; Agora.io 沪ICP备14053584号</li>
+            </ul>
+        </footer>
+    </div>
+    <div id="roomInfoModal" class="modal fade" tabindex="-1" role="dialog">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-body">
+                    <p>No remote stream yet&hellip;, :(</p>
+                </div>
+                <div class="modal-footer"><button type="button" class="btn btn-default" data-dismiss="modal">Close</button></div>
+            </div>
+            <!-- /.modal-content -->
+        </div>
+        <!-- /.modal-dialog -->
+    </div>
+    <!-- /.modal -->
+    <!--[if lte IE 8]><script src="assets/js/ie/respond.min.js"></script><![endif]-->
+    <script src="js/vendor-bundle.js?v=1.9.0"></script>
+    <script src="js/AgoraRtcAgentSDK-1.9.0.js"></script>
+    <script src="js/meeting.js?v=1.9.0"></script>
+    <script>
+        if ('addEventListener' in window) {
+            window.addEventListener('load', function () {
+                document.body.className = document.body.className.replace(/\bis-loading\b/, '');
+            });
+            document.body.className += (navigator.userAgent.match(/(MSIE|rv:11\.0)/) ? ' is-ie' : '');
+        }
+    </script>
+</body>
+
+</html>

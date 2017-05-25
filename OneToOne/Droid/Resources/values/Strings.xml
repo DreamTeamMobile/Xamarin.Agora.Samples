@@ -1,13 +1,13 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <resources>
 	<string
-		name="app_name">Xamarin Agora</string>
+		name="app_name">Agora Xamarin Sample</string>
 	<string
 		name="splash_greetings">Brought to you by</string>
 	<string
 		name="powered_by">powered by agora</string>
 	<string
-		name="share_app">Hey check out Xamarin Agora sample app at: https://drmtm.us/xamarin-agora-droid-sample</string>
+		name="share_app">Hey check out Xamarin Agora sample app at: https://drmtm.us/xamarin-agora-sample</string>
 	<string
 		name="join_description">Enter room name to join</string>
 	<string

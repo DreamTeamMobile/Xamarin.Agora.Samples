@@ -1,7 +1,8 @@
 (function($) {
     $(function() {
         var maxRateSlider = createSlider();
-
+        var vendorKey = "";
+    
         $("#videoOptionsModal").on("hide.bs.modal", function() {
             var resolution = $("#resolution").val() || '480p';
             var maxFrameRate = $("#maxFrameRate").val() || 15;
@@ -20,7 +21,6 @@
             e.preventDefault();
             var roomName = $("#room-name").val(),
                 secret = $.trim($("#secretKey").val()),
-                vendorKey = "",
                 type = $('#js_encryptionType').val(),
                 mode = $('#js_select_mode').val();
 

@@ -1,4 +1,5 @@
 ﻿using Android.App;
+using Android.Content.PM;
 using Android.OS;
 using Android.Util;
 using Android.Views;
@@ -10,7 +11,7 @@ using DT.Xamarin.Agora.Video;
 
 namespace DT.Samples.Agora.OneToOne.Droid
 {
-	[Activity(Label = "Room", Theme = "@style/DT.Theme.Room")]
+	[Activity(Label = "Room", ScreenOrientation = ScreenOrientation.Portrait, Theme = "@style/DT.Theme.Room")]
 	public class RoomActivity : Activity
 	{
 		protected const int MaxLocalVideoDimension = 150;

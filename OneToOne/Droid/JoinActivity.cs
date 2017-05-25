@@ -17,7 +17,7 @@ using DT.Xamarin.Agora;
 
 namespace DT.Samples.Agora.OneToOne.Droid
 {
-	[Activity(Label = "@string/app_name")]
+	[Activity(Label = "@string/app_name", ScreenOrientation = ScreenOrientation.Portrait)]
 	public class JoinActivity : AppCompatActivity
 	{
 		protected const int REQUEST_ID = 0;

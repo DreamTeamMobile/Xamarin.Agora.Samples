@@ -142,5 +142,37 @@ Global
 		$0.DotNetNamingPolicy = $11
 		$11.DirectoryNamespaceAssociation = None
 		$11.ResourceNamePolicy = FileFormatDefault
+		$0.TextStylePolicy = $12
+		$12.inheritsSet = VisualStudio
+		$12.inheritsScope = text/plain
+		$12.scope = text/x-csharp
+		$12.TabsToSpaces = False
+		$0.TextStylePolicy = $13
+		$13.inheritsSet = VisualStudio
+		$13.inheritsScope = text/plain
+		$13.scope = text/plain
+		$13.TabsToSpaces = False
+		$0.TextStylePolicy = $14
+		$14.inheritsSet = null
+		$14.scope = application/xml
+		$0.XmlFormattingPolicy = $15
+		$15.inheritsSet = Mono
+		$15.inheritsScope = application/xml
+		$15.scope = application/xml
+		$0.TextStylePolicy = $16
+		$16.inheritsSet = null
+		$16.scope = application/config+xml
+		$0.XmlFormattingPolicy = $17
+		$17.inheritsSet = null
+		$17.scope = application/config+xml
+		$0.TextStylePolicy = $18
+		$18.inheritsSet = null
+		$18.scope = application/android+xml
+		$0.XmlFormattingPolicy = $19
+		$19.inheritsSet = null
+		$19.scope = application/android+xml
+		$0.TextStylePolicy = $20
+		$20.inheritsSet = null
+		$20.scope = application/json
 	EndGlobalSection
 EndGlobal

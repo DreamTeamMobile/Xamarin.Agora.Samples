@@ -166,13 +166,13 @@
     <Reference Include="System.Core" />
     <Reference Include="Xamarin.iOS" />
     <Reference Include="Plugin.Settings.Abstractions">
-      <HintPath>..\..\packages\Xam.Plugins.Settings.2.5.4\lib\Xamarin.iOS10\Plugin.Settings.Abstractions.dll</HintPath>
+      <HintPath>..\..\packages\Xam.Plugins.Settings.2.5.8\lib\Xamarin.iOS10\Plugin.Settings.Abstractions.dll</HintPath>
     </Reference>
     <Reference Include="Plugin.Settings">
-      <HintPath>..\..\packages\Xam.Plugins.Settings.2.5.4\lib\Xamarin.iOS10\Plugin.Settings.dll</HintPath>
+      <HintPath>..\..\packages\Xam.Plugins.Settings.2.5.8\lib\Xamarin.iOS10\Plugin.Settings.dll</HintPath>
     </Reference>
-    <Reference Include="Xamarin.Agora.Full.iOS">
-      <HintPath>..\..\packages\Xamarin.Agora.Full.iOS.1.9.1.1-beta1\lib\Xamarin.iOS10\Xamarin.Agora.Full.iOS.dll</HintPath>
+    <Reference Include="Xamarin.Agora.FullWithCrypto.iOS">
+      <HintPath>..\..\packages\Xamarin.Agora.FullWithCrypto.iOS.1.10.0.1\lib\Xamarin.iOS10\Xamarin.Agora.FullWithCrypto.iOS.dll</HintPath>
     </Reference>
   </ItemGroup>
   <ItemGroup>

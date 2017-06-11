@@ -6,7 +6,8 @@ using System.Runtime.CompilerServices;
 [assembly: AssemblyConfiguration("")]
 [assembly: AssemblyCompany("")]
 [assembly: AssemblyProduct("")]
-[assembly: AssemblyCopyright("(c) DreamTeam Mobile")]
+[assembly: AssemblyCopyright("(c) DreamTeam Mobile, LLC")]
 [assembly: AssemblyTrademark("")]
 [assembly: AssemblyCulture("")]
+
 [assembly: AssemblyVersion("1.0.*")]

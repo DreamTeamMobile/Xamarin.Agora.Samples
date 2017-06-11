@@ -7,8 +7,6 @@
 	<string
 		name="powered_by">powered by agora</string>
 	<string
-		name="share_app">Hey check out Xamarin Agora sample app at: https://drmtm.us/xamarin-agora-sample</string>
-	<string
 		name="join_description">Enter room name to join</string>
 	<string
 		name="profile_prompt">Choose Video Profile</string>

@@ -105,7 +105,7 @@ namespace DT.Samples.Agora.OneToOne.Droid
 		{
 			Intent sendIntent = new Intent();
 			sendIntent.SetAction(Intent.ActionSend);
-			sendIntent.PutExtra(Intent.ExtraText, GetString(Resource.String.share_app));
+			sendIntent.PutExtra(Intent.ExtraText, AgoraTestConstants.ShareString);
 			sendIntent.SetType("text/plain");
 			StartActivity(sendIntent);
 		}

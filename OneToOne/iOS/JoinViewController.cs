@@ -77,7 +77,7 @@ namespace DT.Samples.Agora.OneToOne.iOS
 		void ShareButtonCliked(object sender, EventArgs e)
 		{
 			var activityController = new UIActivityViewController(new NSObject[] {
-				UIActivity.FromObject( "Hey check out Xamarin Agora sample app at: https://drmtm.us/xamarin-agora-sample" ),
+				UIActivity.FromObject(AgoraTestConstants.ShareString),
 			}, null);
 			var topController = UIApplication.SharedApplication.KeyWindow.RootViewController;
 			while (topController.PresentedViewController != null)

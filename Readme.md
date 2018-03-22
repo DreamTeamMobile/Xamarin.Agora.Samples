@@ -2,8 +2,11 @@ Agora.io Full SDK Cross-Platfrom samples
 ========================================
 
 This repository contains samples of using Xamarin Agora.io FULL SDK Nuget packages
+
 [Xamarin.Agora.Full.Android](https://www.nuget.org/packages/Xamarin.Agora.Full.Android/) [![NuGet Badge](https://buildstats.info/nuget/Xamarin.Agora.Full.Android)](https://www.nuget.org/packages/Xamarin.Agora.Full.Android/)
+
 [Xamarin.Agora.Full.iOS](https://www.nuget.org/packages/Xamarin.Agora.Full.iOS/) [![NuGet Badge](https://buildstats.info/nuget/Xamarin.Agora.Full.iOS)](https://www.nuget.org/packages/Xamarin.Agora.Full.iOS/), 
+
 also contains simple samples for Agora WebRTC and WebAgent SDK
 
 

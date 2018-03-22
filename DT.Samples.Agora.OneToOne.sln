@@ -146,12 +146,10 @@ Global
 		$12.inheritsSet = VisualStudio
 		$12.inheritsScope = text/plain
 		$12.scope = text/x-csharp
-		$12.TabsToSpaces = False
 		$0.TextStylePolicy = $13
 		$13.inheritsSet = VisualStudio
 		$13.inheritsScope = text/plain
 		$13.scope = text/plain
-		$13.TabsToSpaces = False
 		$0.TextStylePolicy = $14
 		$14.inheritsSet = null
 		$14.scope = application/xml
@@ -172,7 +170,8 @@ Global
 		$19.inheritsSet = null
 		$19.scope = application/android+xml
 		$0.TextStylePolicy = $20
-		$20.inheritsSet = null
+		$20.inheritsSet = VisualStudio
 		$20.scope = application/json
+		$20.inheritsScope = text/plain
 	EndGlobalSection
 EndGlobal

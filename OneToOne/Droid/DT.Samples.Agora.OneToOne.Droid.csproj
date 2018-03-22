@@ -88,13 +88,13 @@
       <HintPath>..\..\packages\Xamarin.Android.Support.Design.23.4.0.1\lib\MonoAndroid43\Xamarin.Android.Support.Design.dll</HintPath>
     </Reference>
     <Reference Include="Plugin.Settings.Abstractions">
-      <HintPath>..\..\packages\Xam.Plugins.Settings.2.5.8\lib\MonoAndroid10\Plugin.Settings.Abstractions.dll</HintPath>
+      <HintPath>..\..\packages\Xam.Plugins.Settings.3.1.1\lib\MonoAndroid10\Plugin.Settings.Abstractions.dll</HintPath>
     </Reference>
     <Reference Include="Plugin.Settings">
-      <HintPath>..\..\packages\Xam.Plugins.Settings.2.5.8\lib\MonoAndroid10\Plugin.Settings.dll</HintPath>
+      <HintPath>..\..\packages\Xam.Plugins.Settings.3.1.1\lib\MonoAndroid10\Plugin.Settings.dll</HintPath>
     </Reference>
     <Reference Include="Xamarin.Agora.Full.Android">
-      <HintPath>..\..\packages\Xamarin.Agora.Full.Android.1.10.1.1\lib\MonoAndroid\Xamarin.Agora.Full.Android.dll</HintPath>
+      <HintPath>..\..\packages\Xamarin.Agora.Full.Android.2.1.1\lib\MonoAndroid\Xamarin.Agora.Full.Android.dll</HintPath>
     </Reference>
   </ItemGroup>
   <ItemGroup>
@@ -239,7 +239,7 @@
       <Properties>
         <Policies>
           <TextStylePolicy inheritsSet="null" scope="application/xml" />
-          <XmlFormattingPolicy inheritsSet="Mono" inheritsScope="application/xml" scope="application/xml">
+          <XmlFormattingPolicy scope="application/xml">
             <DefaultFormat AttributesInNewLine="True" AlignAttributes="True" AlignAttributeValues="True" />
           </XmlFormattingPolicy>
           <TextStylePolicy inheritsSet="null" scope="application/config+xml" />

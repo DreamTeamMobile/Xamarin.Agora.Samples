@@ -121,14 +121,14 @@
     <DefineConstants></DefineConstants>
     <ErrorReport>prompt</ErrorReport>
     <WarningLevel>4</WarningLevel>
-    <CodesignKey>iPhone Distribution</CodesignKey>
+    <CodesignKey>iPhone Distribution: DreamTeam Mobile LLC (XG4TSA83W3)</CodesignKey>
     <MtouchFloat32>true</MtouchFloat32>
     <CodesignEntitlements>Entitlements.plist</CodesignEntitlements>
     <MtouchLink>SdkOnly</MtouchLink>
     <MtouchArch>ARMv7, ARM64</MtouchArch>
     <MtouchHttpClientHandler>HttpClientHandler</MtouchHttpClientHandler>
     <MtouchTlsProvider>Default</MtouchTlsProvider>
-    <CodesignProvision></CodesignProvision>
+    <CodesignProvision>Agora One To One Adhoc</CodesignProvision>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Store|iPhoneSimulator' ">
     <DebugType>pdbonly</DebugType>
@@ -166,13 +166,13 @@
     <Reference Include="System.Core" />
     <Reference Include="Xamarin.iOS" />
     <Reference Include="Plugin.Settings.Abstractions">
-      <HintPath>..\..\packages\Xam.Plugins.Settings.2.5.8\lib\Xamarin.iOS10\Plugin.Settings.Abstractions.dll</HintPath>
+      <HintPath>..\..\packages\Xam.Plugins.Settings.3.1.1\lib\Xamarin.iOS10\Plugin.Settings.Abstractions.dll</HintPath>
     </Reference>
     <Reference Include="Plugin.Settings">
-      <HintPath>..\..\packages\Xam.Plugins.Settings.2.5.8\lib\Xamarin.iOS10\Plugin.Settings.dll</HintPath>
+      <HintPath>..\..\packages\Xam.Plugins.Settings.3.1.1\lib\Xamarin.iOS10\Plugin.Settings.dll</HintPath>
     </Reference>
-    <Reference Include="Xamarin.Agora.FullWithCrypto.iOS">
-      <HintPath>..\..\packages\Xamarin.Agora.FullWithCrypto.iOS.1.10.0.1\lib\Xamarin.iOS10\Xamarin.Agora.FullWithCrypto.iOS.dll</HintPath>
+    <Reference Include="Xamarin.Agora.Full.iOS">
+      <HintPath>..\..\packages\Xamarin.Agora.Full.iOS.2.1.1\lib\Xamarin.iOS10\Xamarin.Agora.Full.iOS.dll</HintPath>
     </Reference>
   </ItemGroup>
   <ItemGroup>
@@ -210,17 +210,6 @@
     <ImageAsset Include="Assets.xcassets\btn_voice.imageset\Contents.json" />
     <ImageAsset Include="Assets.xcassets\btn_voice.imageset\btn_voice.pdf" />
     <ImageAsset Include="Assets.xcassets\btn_video.imageset\btn_video.pdf" />
-    <ImageAsset Include="Assets.xcassets\AppIcon.appiconset\29x29.png" />
-    <ImageAsset Include="Assets.xcassets\AppIcon.appiconset\512.png" />
-    <ImageAsset Include="Assets.xcassets\AppIcon.appiconset\1024.png" />
-    <ImageAsset Include="Assets.xcassets\AppIcon.appiconset\58x58.png" />
-    <ImageAsset Include="Assets.xcassets\AppIcon.appiconset\87x87.png" />
-    <ImageAsset Include="Assets.xcassets\AppIcon.appiconset\80x80.png" />
-    <ImageAsset Include="Assets.xcassets\AppIcon.appiconset\120x120.png" />
-    <ImageAsset Include="Assets.xcassets\AppIcon.appiconset\180x180.png" />
-    <ImageAsset Include="Assets.xcassets\AppIcon.appiconset\76x76.png" />
-    <ImageAsset Include="Assets.xcassets\AppIcon.appiconset\152x152.png" />
-    <ImageAsset Include="Assets.xcassets\AppIcon.appiconset\167x167.png" />
     <ImageAsset Include="Assets.xcassets\ic_logo_dt.imageset\Contents.json" />
     <ImageAsset Include="Assets.xcassets\ic_logo_dt.imageset\icLogoDt.pdf" />
     <ImageAsset Include="Assets.xcassets\ic_logo_agora.imageset\Contents.json" />
@@ -261,6 +250,21 @@
     <ImageAsset Include="Assets.xcassets\ic_reverse_cam.imageset\icReverseCamCall.pdf" />
     <ImageAsset Include="Assets.xcassets\ic_share.imageset\icShareMain.pdf" />
     <ImageAsset Include="Assets.xcassets\ic_settings.imageset\icSettMain.pdf" />
+    <ImageAsset Include="Assets.xcassets\AppIcon.appiconset\Icon-App-29x29%401x.png" />
+    <ImageAsset Include="Assets.xcassets\AppIcon.appiconset\Icon-App-29x29%402x.png" />
+    <ImageAsset Include="Assets.xcassets\AppIcon.appiconset\Icon-App-29x29%403x.png" />
+    <ImageAsset Include="Assets.xcassets\AppIcon.appiconset\Icon-App-40x40%402x.png" />
+    <ImageAsset Include="Assets.xcassets\AppIcon.appiconset\Icon-App-40x40%403x.png" />
+    <ImageAsset Include="Assets.xcassets\AppIcon.appiconset\Icon-App-57x57%401x.png" />
+    <ImageAsset Include="Assets.xcassets\AppIcon.appiconset\Icon-App-57x57%402x.png" />
+    <ImageAsset Include="Assets.xcassets\AppIcon.appiconset\Icon-App-60x60%402x.png" />
+    <ImageAsset Include="Assets.xcassets\AppIcon.appiconset\Icon-App-60x60%403x.png" />
+    <ImageAsset Include="Assets.xcassets\AppIcon.appiconset\Icon-App-40x40%401x.png" />
+    <ImageAsset Include="Assets.xcassets\AppIcon.appiconset\Icon-App-72x72%401x.png" />
+    <ImageAsset Include="Assets.xcassets\AppIcon.appiconset\Icon-App-72x72%402x.png" />
+    <ImageAsset Include="Assets.xcassets\AppIcon.appiconset\Icon-App-76x76%401x.png" />
+    <ImageAsset Include="Assets.xcassets\AppIcon.appiconset\Icon-App-76x76%402x.png" />
+    <ImageAsset Include="Assets.xcassets\AppIcon.appiconset\Icon-App-83.5x83.5%402x.png" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="Resources\" />
@@ -330,7 +334,6 @@
     <Compile Include="NSDataExtensions.cs" />
     <Compile Include="Theme.cs" />
     <Compile Include="PickerModel.cs" />
-    <Compile Include="Extensions.cs" />
     <Compile Include="AgoraRtcQualityDelegate.cs" />
   </ItemGroup>
   <ItemGroup>

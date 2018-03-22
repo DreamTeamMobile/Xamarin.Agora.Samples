@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <resources>
 	<string
-		name="app_name">Agora Xamarin Sample</string>
+		name="app_name">Video calls from DT Mobile</string>
 	<string
 		name="splash_greetings">Brought to you by</string>
 	<string
@@ -55,5 +55,5 @@
 		<item>1280x720 30fps</item>
 		<item>960x720 15fps</item>
 		<item>960x720 30fps</item>
-	</string-array>   
+	</string-array>
 </resources>

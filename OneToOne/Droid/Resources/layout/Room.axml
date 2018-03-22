@@ -96,4 +96,16 @@
             android:scaleType="centerInside"
             android:src="@drawable/ic_end_call" />
     </RelativeLayout>
+    <RelativeLayout
+        android:background="@android:color/white"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentBottom="true">
+        <TextView
+            android:id="@+id/debug_data"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textSize="12sp" />
+    </RelativeLayout>
 </RelativeLayout>

@@ -1,0 +1,62 @@
+Agora.io Full SDK Cross-Platfrom samples
+========================================
+
+This repository contains samples of using Xamarin Agora.io FULL SDK Nuget packages ([Android](https://www.nuget.org/packages/Xamarin.Agora.Full.Android/) | [iOS](https://www.nuget.org/packages/Xamarin.Agora.Full.iOS/)), 
+also contains simple samples for Agora WebRTC and WebAgent SDK
+
+
+Running samples
+-------------
+
+1. Run app on any 2 devices
+
+1. Enter same room name on both devices 
+
+1. Click Join button
+
+
+Quick Start
+-----------
+
+
+1. Prepare Agora App ID, you can follow [Obtaining an App ID instructions](https://docs.agora.io/en/user_guide/Component_and_Others/Dynamic_Key_User_Guide.html#get-app-id) to get your App ID.
+
+1. Replace the following empty string with the corresponding App ID:
+
+   * For Android/iOS app
+    [Public/DT.Samples.Agora.Shared/AgoraTestConstants.cs](Public/DT.Samples.Agora.Shared/AgoraTestConstants.cs)
+    
+        
+        public const string AgoraAPI = "";
+        
+    
+   * For WebAgent app
+    [Web/agent/js/index.js](Web/agent/js/index.js)
+    
+        
+        vendorKey = ""
+        
+
+   * For WebAgent app
+    [Web/agent/js/index.js](Web/agent/js/index.js)
+    
+        
+        vendorKey = ""
+        
+
+What's Inside
+-------------
+
+
+In this repository you can find OneToOne Communication apps for Android, iOS and Web
+
+
+* **Xamarin Android and iOS** apps in one solution /Public/DT.Samples.Agora.OneToOne.sln
+
+* **Agora WebAgent** usage example in /Web/agent
+
+* **Agora WebRTC** usage example in /Web/webrtc
+ 
+
+
+

@@ -1,6 +1,6 @@
 // WARNING
 //
-// This file has been generated automatically by Xamarin Studio to store outlets and
+// This file has been generated automatically by Visual Studio to store outlets and
 // actions made in the UI designer. If it is removed, they will be lost.
 // Manual changes to this file may not be handled correctly.
 //
@@ -20,6 +20,9 @@ namespace DT.Samples.Agora.OneToOne.iOS
 
 		[Outlet]
 		UIKit.UIView ContainerView { get; set; }
+
+		[Outlet]
+		UIKit.UILabel DebugData { get; set; }
 
 		[Outlet]
 		UIKit.UIButton EndCallButton { get; set; }
@@ -68,11 +71,6 @@ namespace DT.Samples.Agora.OneToOne.iOS
 		
 		void ReleaseDesignerOutlets ()
 		{
-			if (MutedView != null) {
-				MutedView.Dispose ();
-				MutedView = null;
-			}
-
 			if (BackgroundDoubleTap != null) {
 				BackgroundDoubleTap.Dispose ();
 				BackgroundDoubleTap = null;
@@ -108,6 +106,11 @@ namespace DT.Samples.Agora.OneToOne.iOS
 				LocalView = null;
 			}
 
+			if (MutedView != null) {
+				MutedView.Dispose ();
+				MutedView = null;
+			}
+
 			if (RoomNameLabel != null) {
 				RoomNameLabel.Dispose ();
 				RoomNameLabel = null;
@@ -126,6 +129,11 @@ namespace DT.Samples.Agora.OneToOne.iOS
 			if (ToggleCamButton != null) {
 				ToggleCamButton.Dispose ();
 				ToggleCamButton = null;
+			}
+
+			if (DebugData != null) {
+				DebugData.Dispose ();
+				DebugData = null;
 			}
 		}
 	}

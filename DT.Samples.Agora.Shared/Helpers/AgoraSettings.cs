@@ -51,11 +51,11 @@ namespace DT.Samples.Agora.Shared.Helpers
         {
             get
             {
-                return AppSettings.GetValueOrDefault<int>(ProfileKey, ProfileDefault);
+                return AppSettings.GetValueOrDefault(ProfileKey, ProfileDefault);
             }
             set
             {
-                AppSettings.AddOrUpdateValue<int>(ProfileKey, value);
+                AppSettings.AddOrUpdateValue(ProfileKey, value);
                 OnPropertyChanged();
             }
         }
@@ -64,11 +64,11 @@ namespace DT.Samples.Agora.Shared.Helpers
         {
             get
             {
-                return AppSettings.GetValueOrDefault<bool>(UseMySettingsKey, UseMySettingsDefault);
+                return AppSettings.GetValueOrDefault(UseMySettingsKey, UseMySettingsDefault);
             }
             set
             {
-                AppSettings.AddOrUpdateValue<bool>(UseMySettingsKey, value);
+                AppSettings.AddOrUpdateValue(UseMySettingsKey, value);
                 OnPropertyChanged();
             }
         }
@@ -77,11 +77,11 @@ namespace DT.Samples.Agora.Shared.Helpers
         {
             get
             {
-                return AppSettings.GetValueOrDefault<string>(RoomNameKey, RoomNameDefault);
+                return AppSettings.GetValueOrDefault(RoomNameKey, RoomNameDefault);
             }
             set
             {
-                AppSettings.AddOrUpdateValue<string>(RoomNameKey, value);
+                AppSettings.AddOrUpdateValue(RoomNameKey, value);
                 OnPropertyChanged();
             }
         }
@@ -90,11 +90,11 @@ namespace DT.Samples.Agora.Shared.Helpers
         {
             get
             {
-                return AppSettings.GetValueOrDefault<string>(EncryptionPhraseKey, EncryptionPhraseDefault);
+                return AppSettings.GetValueOrDefault(EncryptionPhraseKey, EncryptionPhraseDefault);
             }
             set
             {
-                AppSettings.AddOrUpdateValue<string>(EncryptionPhraseKey, value);
+                AppSettings.AddOrUpdateValue(EncryptionPhraseKey, value);
                 OnPropertyChanged();
             }
         }
@@ -103,11 +103,11 @@ namespace DT.Samples.Agora.Shared.Helpers
         {
             get
             {
-                return (EncryptionType)AppSettings.GetValueOrDefault<int>(EncryptionTypeKey, EncryptionTypeDefault);
+                return (EncryptionType)AppSettings.GetValueOrDefault(EncryptionTypeKey, EncryptionTypeDefault);
             }
             set
             {
-                AppSettings.AddOrUpdateValue<int>(EncryptionTypeKey, (int)value);
+                AppSettings.AddOrUpdateValue(EncryptionTypeKey, (int)value);
                 OnPropertyChanged();
             }
         }

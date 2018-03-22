@@ -36,10 +36,12 @@
 	<key>NSMicrophoneUsageDescription</key>
 	<string>use microphone to start video call</string>
 	<key>CFBundleName</key>
-	<string>Agora Xamarin Sample</string>
+	<string>Video calls from DT Mobile</string>
 	<key>UIStatusBarStyle</key>
 	<string>UIStatusBarStyleLightContent</string>
 	<key>UIViewControllerBasedStatusBarAppearance</key>
+	<true/>
+	<key>UIRequiresFullScreen</key>
 	<true/>
 </dict>
 </plist>

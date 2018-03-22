@@ -9,61 +9,67 @@ using System.CodeDom.Compiler;
 
 namespace DT.Samples.Agora.OneToOne.iOS
 {
-	[Register ("SettingsViewController")]
-	partial class SettingsViewController
-	{
-		[Outlet]
-		UIKit.UILabel MaxBitrateValue { get; set; }
+    [Register("SettingsViewController")]
+    partial class SettingsViewController
+    {
+        [Outlet]
+        UIKit.UILabel MaxBitrateValue { get; set; }
 
-		[Outlet]
-		UIKit.UILabel MaxFrameRateValue { get; set; }
+        [Outlet]
+        UIKit.UILabel MaxFrameRateValue { get; set; }
 
-		[Outlet]
-		UIKit.UILabel ProfileNameValue { get; set; }
+        [Outlet]
+        UIKit.UILabel ProfileNameValue { get; set; }
 
-		[Outlet]
-		UIKit.UIPickerView ProfilePicker { get; set; }
+        [Outlet]
+        UIKit.UIPickerView ProfilePicker { get; set; }
 
-		[Outlet]
-		UIKit.UILabel ResolutionValue { get; set; }
+        [Outlet]
+        UIKit.UILabel ResolutionValue { get; set; }
 
-		[Outlet]
-		UIKit.UISwitch UseSettingsSwitch { get; set; }
+        [Outlet]
+        UIKit.UISwitch UseSettingsSwitch { get; set; }
 
-		[Action ("UseSettingsChanged:")]
-		partial void UseSettingsChanged (NSObject sender);
-		
-		void ReleaseDesignerOutlets ()
-		{
-			if (ProfileNameValue != null) {
-				ProfileNameValue.Dispose ();
-				ProfileNameValue = null;
-			}
+        [Action("UseSettingsChanged:")]
+        partial void UseSettingsChanged(NSObject sender);
 
-			if (ResolutionValue != null) {
-				ResolutionValue.Dispose ();
-				ResolutionValue = null;
-			}
+        void ReleaseDesignerOutlets()
+        {
+            if (ProfileNameValue != null)
+            {
+                ProfileNameValue.Dispose();
+                ProfileNameValue = null;
+            }
 
-			if (MaxBitrateValue != null) {
-				MaxBitrateValue.Dispose ();
-				MaxBitrateValue = null;
-			}
+            if (ResolutionValue != null)
+            {
+                ResolutionValue.Dispose();
+                ResolutionValue = null;
+            }
 
-			if (MaxFrameRateValue != null) {
-				MaxFrameRateValue.Dispose ();
-				MaxFrameRateValue = null;
-			}
+            if (MaxBitrateValue != null)
+            {
+                MaxBitrateValue.Dispose();
+                MaxBitrateValue = null;
+            }
 
-			if (ProfilePicker != null) {
-				ProfilePicker.Dispose ();
-				ProfilePicker = null;
-			}
+            if (MaxFrameRateValue != null)
+            {
+                MaxFrameRateValue.Dispose();
+                MaxFrameRateValue = null;
+            }
 
-			if (UseSettingsSwitch != null) {
-				UseSettingsSwitch.Dispose ();
-				UseSettingsSwitch = null;
-			}
-		}
-	}
+            if (ProfilePicker != null)
+            {
+                ProfilePicker.Dispose();
+                ProfilePicker = null;
+            }
+
+            if (UseSettingsSwitch != null)
+            {
+                UseSettingsSwitch.Dispose();
+                UseSettingsSwitch = null;
+            }
+        }
+    }
 }

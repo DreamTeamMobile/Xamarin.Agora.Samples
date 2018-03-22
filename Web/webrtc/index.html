@@ -1,92 +1,231 @@
-﻿<!DOCTYPE HTML>
+<!DOCTYPE html>
 <html>
-
 <head>
-    <title>Agora Video Call</title>
-    <meta charset="utf-8">
-    <meta name="viewport" content="width=device-width,initial-scale=1">
-    <!--[if lte IE 8]><script src="assets/js/html5shiv.js"></script><![endif]-->
-    <link rel="stylesheet" href="css/bundle.css?v=1.8.0">
-    <!--[if lte IE 9]><link rel="stylesheet" href="assets/css/ie9.css" /><![endif]-->
-    <!--[if lte IE 8]><link rel="stylesheet" href="assets/css/ie8.css" /><![endif]-->
-    <link rel="shortcut icon" href="images/favicon.ico">
-    <link rel="bookmark" href="images/favicon.ico">
+<title>Agora Web Sample</title>
+<link rel="stylesheet" href="vendor/bootstrap.min.css">
+<script src="AgoraRTCSDK-2.1.0.js"></script>
+<script src="vendor/jquery.js"></script>
 </head>
 
-<body class="is-loading">
-    <!-- Wrapper -->
-    <div id="wrapper">
-        <!-- Main -->
-        <section id="main">
-            <header><img id="logo" src="images/logo.png" alt="Logo">
-                <p class="head-text">Agora Video Call<span class="version">v1.8.0 </span></p>
-                <p class="head-text-bottom">Powering Real-Time Communications</p>
-            </header>
-            <main id="main-content">
-                <p class="enter-prompt">Enter a conference room name</p>
-                <p class="main-description-text">If you are the first person to specify this name, the room will be created and you will be placed in it.
-                    If it has already been created you will join the conference in progress.</p>
-                <div id="form-content">
-                    <form action="meeting.html" method="GET">
-                        <div class="form-group row">
-                            <div class="col-sm-6 col-sm-offset-3 col-md-6 col-md-offset-3 col-xlg-2 col-xlg-offset-5"></div>
-                        </div>
-                        <div class="form-group row">
-                            <div class="col-sm-6 col-sm-offset-3 col-md-6 col-md-offset-3 col-xlg-2 col-xlg-offset-5"><input id="room-name" type="text" class="form-control" placeholder="Enter room name here"></div>
-                        </div>
-                        <div class="form-group row">
-                            <div style="height:56px" class="col-sm-6 col-sm-offset-3 col-md-6 col-md-offset-3 col-xlg-2 col-xlg-offset-5"><select class="selectpicker form-control" id="js_select_mode"><option value="communication">Communication</option><option value="live-broadcasting">Live Broadcasting</option></select></div>
-                        </div>
-                        <div class="form-group row">
-                            <div class="col-sm-6 col-sm-offset-3 col-md-6 col-md-offset-3 col-xlg-2 col-xlg-offset-5"><button class="btn btn-warning join-button" id="join-meeting"><span class="fa fa-sign-in">&nbsp;&nbsp;Join</span></button></div>
-                        </div>
-                        <hr>
-                        <div class="form-group row">
-                            <div class="col-sm-6 col-sm-offset-3 col-md-6 col-md-offset-3 col-xlg-2 col-xlg-offset-5"><button id="options-button" type="button" class="btn btn-default" data-toggle="modal" data-target="#videoOptionsModal"><span class="fa fa-gear">&nbsp; Video Options</span></button></div>
-                        </div>
-                    </form>
-                </div>
-            </main>
-        </section>
-        <!-- Footer -->
-        <footer id="footer">
-            <ul class="copyright">
-                <li><a href="http://www.agora.io/en/blog/download/">Agora.io</a></li>
-                <li>&copy; Copyright Agora.io 沪ICP备14053584号</li>
-            </ul>
-        </footer>
-    </div>
-    <!-- Modal -->
-    <div class="modal fade" id="videoOptionsModal" role="dialog">
-        <div class="modal-dialog modal-sm">
-            <div class="modal-content">
-                <div class="modal-body">
-                    <form role="form" action="#">
-                        <div class="form-group"><label for="resolution">Resolution</label><select class="selectpicker form-control" id="resolution"><option value="120p">160x120</option><option value="240p">320x240</option><!--<option value="360p">640x360</option>--><option value="480p" selected="selected">640x480</option><option value="720p">1280x720</option><option value="1080p">1920x1080 (Test Only)</option></select></div>
-                        <div
-                            class="form-group"><label for="maxFrameRate">Max Frame Rate</label><select class="selectpicker form-control" id="maxFrameRate"><option value="15" selected="selected">15</option><!--<option value="24">24</option>--><option value="30">30</option></select></div>
-                        <div
-                            class="form-group" style="display:none"><label>Max Rate</label>
-                            <div id="choose-max-rate" class="form-control" data-slider-id="maxRateSlider"></div>
-                        </div>
-                    </form>
-                </div>
-                <div class="modal-footer"><button type="button" class="btn btn-default" data-dismiss="modal">Confirm</button></div>
-            </div>
-        </div>
-    </div>
-    <!-- Scripts -->
-    <!--[if lte IE 8]><script src="assets/js/respond.min.js"></script><![endif]-->
-    <script src="js/vendor-bundle.js?v=1.8.0"></script>
-    <script src="js/index.js?v=1.8.0"></script>
-    <script>
-        if ('addEventListener' in window) {
-            window.addEventListener('load', function () {
-                document.body.className = document.body.className.replace(/\bis-loading\b/, '');
-            });
-            document.body.className += (navigator.userAgent.match(/(MSIE|rv:11\.0)/) ? ' is-ie' : '');
-        }
-    </script>
-</body>
+<body>
+<div id="div_device" class="panel panel-default" style="display:none">
+<div class="select">
+<label for="audioSource">Audio source: </label><select id="audioSource"></select>
+</div>
+<div class="select">
+<label for="videoSource">Video source: </label><select id="videoSource"></select>
+</div>
+</div>
+<div id="debugdata">
+</div>
+<div id="div_join" class="panel panel-default">
+<div class="panel-body">
+Channel: <input id="channel" type="text" value="demoChannel1" size="4"></input>
+Video: <input id="video" type="checkbox" checked></input>
+<button id="join" class="btn btn-primary" onclick="join()">Join</button>
+<button id="leave" class="btn btn-primary" onclick="leave()">Leave</button>
+<button id="publish" class="btn btn-primary" onclick="publish()">Publish</button>
+<button id="unpublish" class="btn btn-primary" onclick="unpublish()">Unpublish</button>
+</div>
+</div>
 
+    <!--style>
+    .video__box{width:910px; margin:0 auto; overflow:hidden;}
+    .video__main{ width:810px; height:607px;float:left }
+    .video__list{ width:200px; height:607px; float:left;}
+    .video__item{ width:200px; height:174px; hei background:url(/img/icon_live.png) center center no-repeat; }
+    </style>
+    <div class="video__main">
+    </div>
+    <div class="video__list">
+        <div class="video__item"></div>
+        <div id="video" class="video__item">
+            <div id="agora_local"></div>
+        </div>
+    </div-->
+
+<div id="video" style="margin:0 auto;">
+    <div id="agora_local" style="float:right;width:210px;height:147px;display:inline-block;"></div>
+</div>
+
+<script language="javascript">
+if(!AgoraRTC.checkSystemRequirements()) {
+  alert("browser is no support webRTC");
+}
+
+/* select Log type */
+// AgoraRTC.Logger.setLogLevel(AgoraRTC.Logger.NONE);
+// AgoraRTC.Logger.setLogLevel(AgoraRTC.Logger.ERROR);
+// AgoraRTC.Logger.setLogLevel(AgoraRTC.Logger.WARNING);
+// AgoraRTC.Logger.setLogLevel(AgoraRTC.Logger.INFO);  
+// AgoraRTC.Logger.setLogLevel(AgoraRTC.Logger.DEBUG);
+
+/* simulated data to proof setLogLevel() */
+AgoraRTC.Logger.error('this is error');
+AgoraRTC.Logger.warning('this is warning');
+AgoraRTC.Logger.info('this is info');
+AgoraRTC.Logger.debug('this is debug');
+
+var client, localStream, camera, microphone, localId, remoteId;
+
+var audioSelect = document.querySelector('select#audioSource');
+var videoSelect = document.querySelector('select#videoSource');
+
+function debugData()
+{
+	document.getElementById("debugdata").innerHTML = "local: "+localId+"\nremote: "+remoteId;
+}
+
+function join() {
+  document.getElementById("join").disabled = true;
+  document.getElementById("video").disabled = true;
+  var channel = document.getElementById("channel").value;
+  var vendorKey = "";
+  console.log("Init AgoraRTC client with vendor key: " + vendorKey);
+  client = AgoraRTC.createClient({mode: 'interop'});
+  client.init(vendorKey, function () {
+    console.log("AgoraRTC client initialized");
+    client.join(null, channel, null, function(uid) {
+      console.log("User " + uid + " join channel successfully");
+	  localId = uid;
+	  debugData();
+      if (document.getElementById("video").checked) {
+        camera = videoSource.value;
+        microphone = audioSource.value;
+        localStream = AgoraRTC.createStream({streamID: uid, audio: true, cameraId: camera, microphoneId: microphone, video: document.getElementById("video").checked, screen: false});
+        if (document.getElementById("video").checked) {
+          localStream.setVideoProfile('720p_3');
+        }
+        
+         // The user has granted access to the camera and mic.
+        localStream.on("accessAllowed", function() {
+          console.log("accessAllowed");
+        });
+
+        // The user has denied access to the camera and mic.
+        localStream.on("accessDenied", function() {
+          console.log("accessDenied");
+        });
+        
+        localStream.init(function() {
+          console.log("getUserMedia successfully");
+          localStream.play('agora_local');
+
+          client.publish(localStream, function (err) {
+            console.log("Publish local stream error: " + err);
+          });
+
+          client.on('stream-published', function (evt) {
+            console.log("Publish local stream successfully");
+          });
+        }, function (err) {
+          console.log("getUserMedia failed", err);
+        });
+      }
+    }, function(err) {
+      console.log("Join channel failed", err);
+    });
+  }, function (err) {
+    console.log("AgoraRTC client init failed", err);
+  });
+
+  channelKey = "";
+  client.on('error', function(err) {
+    console.log("Got error msg:", err.reason);
+    if (err.reason === 'DYNAMIC_KEY_TIMEOUT') {
+      client.renewChannelKey(channelKey, function(){
+        console.log("Renew channel key successfully");
+      }, function(err){
+        console.log("Renew channel key failed: ", err);
+      });
+    }
+  });
+
+
+  client.on('stream-added', function (evt) {
+    var stream = evt.stream;
+    console.log("New stream added: " + stream.getId());
+    console.log("Subscribe ", stream);
+    client.subscribe(stream, function (err) {
+      console.log("Subscribe stream failed", err);
+    });
+  });
+
+  client.on('stream-subscribed', function (evt) {
+    var stream = evt.stream;
+    console.log("Subscribe remote stream successfully: " + stream.getId());
+    remoteId = stream.getId();
+    debugData();
+    if ($('div#video #agora_remote'+stream.getId()).length === 0) {
+      $('div#video').append('<div id="agora_remote'+stream.getId()+'" style="float:left; width:810px;height:607px;display:inline-block;"></div>');
+    }
+    stream.play('agora_remote' + stream.getId());
+  });
+
+  client.on('stream-removed', function (evt) {
+    var stream = evt.stream;
+    stream.stop();
+    $('#agora_remote' + stream.getId()).remove();
+    console.log("Remote stream is removed " + stream.getId());
+  });
+
+  client.on('peer-leave', function (evt) {
+    var stream = evt.stream;
+    if (stream) {
+      stream.stop();
+      $('#agora_remote' + stream.getId()).remove();
+      console.log(evt.uid + " leaved from this channel");
+    }
+  });
+}
+
+function leave() {
+  document.getElementById("leave").disabled = true;
+  client.leave(function () {
+    console.log("Leavel channel successfully");
+  }, function (err) {
+    console.log("Leave channel failed");
+  });
+}
+
+function publish() {
+  document.getElementById("publish").disabled = true;
+  document.getElementById("unpublish").disabled = false;
+  client.publish(localStream, function (err) {
+    console.log("Publish local stream error: " + err);
+  });
+}
+
+function unpublish() {
+  document.getElementById("publish").disabled = false;
+  document.getElementById("unpublish").disabled = true;
+  client.unpublish(localStream, function (err) {
+    console.log("Unpublish local stream failed" + err);
+  });
+}
+
+function getDevices() {
+  AgoraRTC.getDevices(function (devices) {
+    for (var i = 0; i !== devices.length; ++i) {
+      var device = devices[i];
+      var option = document.createElement('option');
+      option.value = device.deviceId;
+      if (device.kind === 'audioinput') {
+        option.text = device.label || 'microphone ' + (audioSelect.length + 1);
+        audioSelect.appendChild(option);
+      } else if (device.kind === 'videoinput') {
+        option.text = device.label || 'camera ' + (videoSelect.length + 1);
+        videoSelect.appendChild(option);
+      } else {
+        console.log('Some other kind of source/device: ', device);
+      }
+    }
+  });
+}
+
+//audioSelect.onchange = getDevices;
+//videoSelect.onchange = getDevices;
+//getDevices();
+</script>
+</body>
 </html>

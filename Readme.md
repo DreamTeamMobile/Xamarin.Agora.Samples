@@ -35,8 +35,8 @@ Quick Start
         public const string AgoraAPI = "";
         
     
-   * For WebAgent app
-    [Web/agent/js/index.js](Web/agent/js/index.js)
+   * For WebRTC app
+    [Web/webrtc/index.html](Web/webrtc/index.html)
     
         
         vendorKey = ""

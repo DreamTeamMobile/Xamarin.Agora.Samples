@@ -13,37 +13,37 @@ Create a new Blank Native app Solution.
 
 ![create_app_1.png](/images/create_app_1.png)
 
-![create_app_2.png](/images/create_app_2.png)
+![create_app_2.png](images/create_app_2.png)
 
-![create_app_3.png](/images/create_app_3.png)
+![create_app_3.png](images/create_app_3.png)
 
-![create_app_done.png](/images/create_app_done.png)
+![create_app_done.png](images/create_app_done.png)
 
 ## Add Agora Nuget packages to Android and iOS projects
 
 For AgoraTutorial.Droid project add package [Xamarin.Agora.Full.Android](https://www.nuget.org/packages/Xamarin.Agora.Full.Android/)
 
-![add_pkg_1d.png](/images/add_pkg_1.png)
+![add_pkg_1d.png](images/add_pkg_1.png)
 
-![add_pkg_2d.png](/images/add_pkg_2d.png)
+![add_pkg_2d.png](images/add_pkg_2d.png)
 
 or AgoraTutorial.iOS project add package [Xamarin.Agora.Full.iOS](https://www.nuget.org/packages/Xamarin.Agora.Full.iOS/)
 
-![add_pkg_1.png](/images/add_pkg_1.png)
+![add_pkg_1.png](images/add_pkg_1.png)
 
-![add_pkg_2](/images/add_pkg_2.png)
+![add_pkg_2](images/add_pkg_2.png)
 
 ## File updates & create UI
 
 In  the `Info.plist` file, make sure to add the Privacy Settings for both the camera and the microphone in order for the device to access them.
 
-![plist.png](/images/plist.png)
+![plist.png](images/plist.png)
 
 Change the file name from `ViewController.cs` to `VideoCallViewController.cs` for a more relevant file name as this will be the view controller we set up for the video call. Next, add a file (`SetChannelViewController.cs`) in order to allow the user to choose which channel to join. We will go ahead and dive into the code for each of these files after we set up the storyboard.
 
-![video_ctrlr.png](/images/video_ctrlr.png)
+![video_ctrlr.png](images/video_ctrlr.png)
 
-First, download the [assets](/assets) provided in this tutorial. These assets are icons for the different buttons added throughout this tutorial. Next, open the `Main.storyboard` file and in the identity inspector, set the custom class to `VideoCallViewController` to update the storyboard VC link with the renamed cs file. Next, drag in a View component for the remote video feed. Inside the remote view, add another view which will be used for the local video feed. This view sits on the top right corner in most video chat applications. Using the same height/width & x/y values, create an image view and assign it the `cameramute.png` asset. This image will be used to overlay the remote video feed when the user pauses their video feed. Afterwards, drag an image view to the center of the local video image view and assign it the `cameraoff_mainVideo.png` image. Add another image view with the same `cameraoff_mainVideo.png` image and center it in the middle of the remote view. On the bottom of the screen, create a view which encapsulates four buttons: Pause Video, Audio Mute, Switch Camera, and Hang Up. Use the appropriate assets for each button and refer to the image above for placement. Lastly, add a segue (`exitCall`) from `VideoCallViewController` to `SetChannelViewController` which will be called to end the video call once the user has pressed the Hang Up button.
+First, download the [assets](assets) provided in this tutorial. These assets are icons for the different buttons added throughout this tutorial. Next, open the `Main.storyboard` file and in the identity inspector, set the custom class to `VideoCallViewController` to update the storyboard VC link with the renamed cs file. Next, drag in a View component for the remote video feed. Inside the remote view, add another view which will be used for the local video feed. This view sits on the top right corner in most video chat applications. Using the same height/width & x/y values, create an image view and assign it the `cameramute.png` asset. This image will be used to overlay the remote video feed when the user pauses their video feed. Afterwards, drag an image view to the center of the local video image view and assign it the `cameraoff_mainVideo.png` image. Add another image view with the same `cameraoff_mainVideo.png` image and center it in the middle of the remote view. On the bottom of the screen, create a view which encapsulates four buttons: Pause Video, Audio Mute, Switch Camera, and Hang Up. Use the appropriate assets for each button and refer to the image above for placement. Lastly, add a segue (`exitCall`) from `VideoCallViewController` to `SetChannelViewController` which will be called to end the video call once the user has pressed the Hang Up button.
 
 ![Storyboard_Setup2.png](/StoryboardSetup2.png)
 

@@ -45,7 +45,7 @@ Change the file name from `ViewController.cs` to `VideoCallViewController.cs` fo
 
 ![video_ctrlr.png](images/video_ctrlr.png)
 
-First, download the [assets](assets) provided in this tutorial. These assets are icons for the different buttons added throughout this tutorial. Next, open the `Main.storyboard` file and in the identity inspector, set the custom class to `VideoCallViewController` to update the storyboard VC link with the renamed cs file. Next, drag in a View component for the remote video feed. Inside the remote view, add another view which will be used for the local video feed. This view sits on the top right corner in most video chat applications. Using the same height/width & x/y values, create an image view and assign it the `cameramute.png` asset. This image will be used to overlay the remote video feed when the user pauses their video feed. Afterwards, drag an image view to the center of the local video image view and assign it the `cameraoff_mainVideo.png` image. Add another image view with the same `cameraoff_mainVideo.png` image and center it in the middle of the remote view. On the bottom of the screen, create a view which encapsulates four buttons: Pause Video, Audio Mute, Switch Camera, and Hang Up. Use the appropriate assets for each button and refer to the image above for placement. Lastly, add a segue (`exitCall`) from `VideoCallViewController` to `SetChannelViewController` which will be called to end the video call once the user has pressed the Hang Up button.
+First, download the [assets](assets) provided in this tutorial. These assets are icons for the different buttons added throughout this tutorial. Next, open the `Main.storyboard` file and in the identity inspector, set the custom class to `VideoCallViewController` to update the storyboard VC link with the renamed cs file. Set Storyboard Id to `VideoCallView`.  Next, drag in a View component for the remote video feed. Inside the remote view, add another view which will be used for the local video feed. This view sits on the top right corner in most video chat applications. Using the same height/width & x/y values, create an image view and assign it the `cameramute.png` asset. This image will be used to overlay the remote video feed when the user pauses their video feed. Afterwards, drag an image view to the center of the local video image view and assign it the `cameraoff_mainVideo.png` image. Add another image view with the same `cameraoff_mainVideo.png` image and center it in the middle of the remote view. On the bottom of the screen, create a view which encapsulates four buttons: Pause Video, Audio Mute, Switch Camera, and Hang Up. Use the appropriate assets for each button and refer to the image above for placement. Lastly, add a segue (`exitCall`) from `VideoCallViewController` to `SetChannelViewController` which will be called to end the video call once the user has pressed the Hang Up button.
 
 ![channel_ctrlr.png](images/channel_ctrlr.png)
 
@@ -114,8 +114,16 @@ Create a method (`SetupVideo()`) and enable video mode within the method. In thi
                 UIApplication.SharedApplication.IdleTimerDisabled = true;
             });
         }
+        
+        public override void ViewDidLoad()
+        {
+            base.ViewDidLoad();
+            InitializeAgoraEngine();
+            SetupVideo();
+            JoinChannel();
+        }
 ```
-At this time, create a method (`JoinChannel()`) to let a user join a specific channel. Call the `agoraKit.JoinChannelByToken()` function and supply `null` for the `token` and `info` parameters. For the channel name, supply any string (ex: "demoChannel1") and pass in 0 for the UID to allow Agora to chose a random UID for the channel ID. Disable the UI Application's Idle Timer and  enable the speakerphone using the Agora Kit. Users in the same channel can talk to each other, however users using different App IDs cannot call each other (even if they join the same channel). Once this method is called successfully, the SDK will trigger the callbacks. We will not be implimenting them in this tutorial, but they will be a part of our future tutorial series.
+At this time, create a method (`JoinChannel()`) to let a user join a specific channel. Call the `agoraKit.JoinChannelByToken()` function and supply `null` for the `token` and `info` parameters. For the channel name, supply any string (ex: "demoChannel1") and pass in 0 for the UID to allow Agora to chose a random UID for the channel ID. Disable the UI Application's Idle Timer and  enable the speakerphone using the Agora Kit. Users in the same channel can talk to each other, however users using different App IDs cannot call each other (even if they join the same channel). Once this method is called successfully, the SDK will trigger the callbacks. We will not be implimenting them in this tutorial, but they will be a part of our future tutorial series. Lastly, call `JoinChannel()` in the `ViewDidLoad()` method.
 
 ### Setup Local Video
 ``` c#
@@ -133,6 +141,7 @@ At this time, create a method (`JoinChannel()`) to let a user join a specific ch
             base.ViewDidLoad();
             InitializeAgoraEngine();
             SetupVideo();
+            JoinChannel();
             SetupLocalVideo();
         }
 ```
@@ -167,120 +176,141 @@ Now it's time to create the view for local video feed. Create a method (`SetupLo
             remoteVideoMutedIndicator.Hidden = !muted;
         }
 ```
-Now it's time to create the view for remote video feed. As before, within the interface builder, add a UIView to the View Controller in Main.storyboard and create an outlet to it within the corresponding View Controller. Once completed, create an extention for the ViewController which extends the `IAgoraRtcEngineDelegate`. Add the `FirstRemoteVideoDecodedOfUid()` delegate method with the parameters shown above (`AgoraRtcEngineKit engine, nuint uid, CoreGraphics.CGSize size, nint elapsed`). This callback is hit when another user is connected and the first remote video frame is received and decoded. Inside this method, show the remoteVideo if it's hidden. Next, initialize the AgoraRtcVideoCanvas object and set the object properties as we did above. Set the `Uid` property to 0 to allow Agora to chose a random UID for the stream feed. The `View` property should be set to the recently added UIView (`remoteVideo`). The `RenderMode` property should be set to `VideoRenderMode.Adaptive` to once again ensure that a  video size that's different than the display window is proportionally resized to fit the window. Then, call `agoraKit.SetupRemoteVideo(videoCanvas)` passing in the AgoraRtcVideoCanvas object that was just created. Next, implement the next `DidOfflineOfUid()` delegate method with the parameters  (`AgoraRtcEngineKit engine, nuint uid, UserOfflineReason reason`), called when another user leaves the channel.  Within that method, set the `remoteVideo` view to be hidden when a user leaves the call. Lastly, implement the last `DidVideoMuted()` delegate method (`AgoraRtcEngineKit engine, bool muted, nuint uid`), called when a remote user pauses their stream.
+Now it's time to create the view for remote video feed. As before, within the interface builder, add a UIView to the View Controller in Main.storyboard and create an outlet to it within the corresponding View Controller. Once completed, create an extention for the ViewController which extends the `IAgoraRtcEngineDelegate`. Add the `FirstRemoteVideoDecodedOfUid` delegate method with the parameters shown above (`AgoraRtcEngineKit engine, nuint uid, CoreGraphics.CGSize size, nint elapsed`). This callback is hit when another user is connected and the first remote video frame is received and decoded. Inside this method, show the remoteVideo if it's hidden. Next, initialize the AgoraRtcVideoCanvas object and set the object properties as we did above. Set the `Uid` property to 0 to allow Agora to chose a random UID for the stream feed. The `View` property should be set to the recently added UIView (`remoteVideo`). The `RenderMode` property should be set to `VideoRenderMode.Adaptive` to once again ensure that a  video size that's different than the display window is proportionally resized to fit the window. Then, call `agoraKit.SetupRemoteVideo(videoCanvas)` passing in the AgoraRtcVideoCanvas object that was just created. Next, implement the next `DidOfflineOfUid` delegate method with the parameters  (`AgoraRtcEngineKit engine, nuint uid, UserOfflineReason reason`), called when another user leaves the channel.  Within that method, set the `remoteVideo` view to be hidden when a user leaves the call. Lastly, implement the last `DidVideoMuted` delegate method (`AgoraRtcEngineKit engine, bool muted, nuint uid`), called when a remote user pauses their stream.
 
 ## Adding Other Functionality
 
 ### Adding Channel Choice
 
-In order to allow the user to choose which room they wish to join, you added a simple UI layout consisting of a text field for the channel name input and a button to start the call. Now, just add the text field and button as an outlet and action, respectively. If the text field's text property *is not* empty, call the segue `startCall` to move the user to the `VideoChatViewController` within the IBAction function for the button. If the text field's text property is empty, prompt the user to enter some text for the channel name. Lastly, add the `prepare(for segue:)` function in order to pass along the user inputted channel name to the `VideoChatViewController`.
+In order to allow the user to choose which room they wish to join, you added a simple UI layout consisting of a text field for the channel name input and a button to start the call. Open the `Main.storyboard` file and set `SetChannelViewController` as an `Initial View Controller`. Now, just add the text field and button as an outlet and action, respectively. If the text field's text property *is not* empty, show `VideoCallViewController` within the IBAction function for the button. If the text field's text property is empty, prompt the user to enter some text for the channel name. Lastly,  pass the user inputted channel name to the `VideoCallViewController`.
 
-``` swift
-@IBOutlet weak var channelName: UITextField!
-
-@IBAction func startCall(_ sender: UIButton) {
-    if (channelName.text?.isEmpty)! {
-        self.performSegue(withIdentifier: "startCall", sender: self)
-    } else {
-        print("Enter Channel Name")
-    }
-}
-
-override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-    if let viewController = segue.destination as? VideoCallViewController {
-        viewController.channel = channelName.text!
-    }
-}
+``` c#
+        partial void StartCallClick(NSObject sender)
+        {
+            if (string.IsNullOrWhiteSpace(channelNameTextField.Text))
+            {
+                channelName.Text = "Please input channel name to proceed";
+            }
+            else
+            {
+                var storyboard = UIStoryboard.FromName("Main", null);
+                var controller = storyboard.InstantiateViewController("VideoCallView");
+                VideoCallViewController.Channel = channelNameTextField.Text;
+                this.ShowViewController(controller, this);
+            }
+        }
 ```
+Update your JoinChannel method in `VideoCallViewController` to use `Channel` field recieved from channel input screen.
 
+``` c#
+        void JoinChannel()
+        {
+            agoraKit.JoinChannelByToken(null, Channel, null, 0, (sid, uid, elapsed) =>
+            {
+                agoraKit.SetEnableSpeakerphone(true);
+                UIApplication.SharedApplication.IdleTimerDisabled = true;
+            });
+        }
+```
 ### Video Chat Controls
 
 Create a view (`controlButtons`) that sits on the bottom of the remote view. This view will contain the Hang Up button, Audio Mute button, Video Pause button, and the Switch Camera button.
 
 ### Hang Up / End Call
-```swift
-@IBAction func didClickHangUpButton(_ sender: UIButton) {
-    leaveChannel()
-}
+``` c#
+        partial void HangUpButtonClick(NSObject sender)
+        {
+            LeaveChannel();
+        }
 
-func leaveChannel() {
-    agoraKit.leaveChannel(nil)
-    hideControlButtons()
-    UIApplication.shared.isIdleTimerDisabled = false
-    remoteVideo.removeFromSuperview()
-    localVideo.removeFromSuperview()
-    agoraKit = nil
-}
+        void LeaveChannel()
+        {
+            agoraKit.LeaveChannel(null);
+            HideControlButtons();
+            UIApplication.SharedApplication.IdleTimerDisabled = false;
+            remoteVideo.RemoveFromSuperview();
+            localVideo.RemoveFromSuperview();
+            agoraKit = null;
+        }
 
-func hideControlButtons() {
-    controlButtons.isHidden = true
-}
+        void HideControlButtons()
+        {
+            controlButtons.Hidden = true;
+        }
 ```
-Create a function (`leaveChannel()`) which will enables the user to leave the current video call (channel). Inside the function, call the `agoraKit.leaveChannel` passing in `nil` as the parameter. Next, hide the view (`controlButtons`) containing the bottom buttons. Afterwards, programatically remove both the local & remote video views and set the agoraKit to be `nil` to end the instance of the AgoraRtcEngineKit object. Inside the IBAction for the Hang-Up button, call the `leaveChannel()` function we just created. Lastly, create a function (`hideControlButtons()`) which hides the view which contains the different buttons.
+Create a function (`LeaveChannel()`) which will enables the user to leave the current video call (channel). Inside the method, call the `agoraKit.LeaveChannel` passing in `null` as the parameter. Next, hide the view (`controlButtons`) containing the bottom buttons. Afterwards, programatically remove both the local & remote video views and set the agoraKit to be `null` to end the instance of the AgoraRtcEngineKit object. Inside the IBAction for the Hang-Up button, call the `LeaveChannel()` method we just created. Lastly, create a function (`HideControlButtons()`) which hides the view which contains the different buttons.
 
 ### Audio Mute
-```swift
-@IBAction func didClickMuteButton(_ sender: UIButton) {
-    sender.isSelected = !sender.isSelected
-    agoraKit.muteLocalAudioStream(sender.isSelected)
-    resetHideButtonsTimer()
-}
+```c#
+        partial void MuteButtonClick(NSObject sender)
+        {
+            var button = (UIButton)sender;
+            button.Selected = !button.Selected;
+            agoraKit.MuteLocalAudioStream(button.Selected);
+        }
 ```
-Now it's time to add the mute functionality for the local audio feed. In the IBAction for the Mute button, call the `agoraKit.muteLocalAudioStream()` function passing in `sender.isSelected` as the sole parameter.
+Now it's time to add the mute functionality for the local audio feed. In the IBAction for the Mute button, call the `agoraKit.MuteLocalAudioStream()` function passing in `button.Selected` as the sole parameter.
 
 ### Video Pause
-```swift
-@IBAction func didClickVideoMuteButton(_ sender: UIButton) {
-    sender.isSelected = !sender.isSelected
-    agoraKit.muteLocalVideoStream(sender.isSelected)
-    localVideo.isHidden = sender.isSelected
-    localVideoMutedBg.isHidden = !sender.isSelected
-    localVideoMutedIndicator.isHidden = !sender.isSelected
-    resetHideButtonsTimer()
-}
+```c#
+        partial void VideoMuteButtonClick(NSObject sender)
+        {
+            var button = (UIButton)sender;
+            button.Selected = !button.Selected;
+            agoraKit.MuteLocalVideoStream(button.Selected);
+            localVideo.Hidden = button.Selected;
+            localVideoMutedBg.Hidden = !button.Selected;
+            localVideoMutedIndicator.Hidden = !button.Selected;
+        }
 ```
-Sometimes, you're sitting in your Barney PJs and you don't want to show your video feed to the rest of your co-workers. Add the ability to the IBAction for the Video button by calling `agoraKit.muteLocalVideoStream()` function passing in `sender.isSelected` as the sole parameter.
+Sometimes, you're sitting in your Barney PJs and you don't want to show your video feed to the rest of your co-workers. Add the ability to the IBAction for the Video button by calling `agoraKit.MuteLocalVideoStream()` function passing in `button.Selected` as the sole parameter.
 
 ### Switch Camera
-```swift
-@IBAction func didClickSwitchCameraButton(_ sender: UIButton) {
-    sender.isSelected = !sender.isSelected
-    agoraKit.switchCamera()
-    resetHideButtonsTimer()
-}
+```c#
+        partial void SwitchCameraButtonClick(NSObject sender)
+        {
+            var button = (UIButton)sender;
+            button.Selected = !button.Selected;
+            agoraKit.SwitchCamera();
+        }
 ```
-Next, enable the user to choose between the front and rear cameras. Inside the IBAction for the camera switch button, call the `agoraKit.switchCamera()` method to add the camera switch functionality.  
+Next, enable the user to choose between the front and rear cameras. Inside the IBAction for the camera switch button, call the `agoraKit.SwitchCamera()` method to add the camera switch functionality.  
 
 ### Hide Muted Images
-```swift
-func hideVideoMuted() {
-    remoteVideoMutedIndicator.isHidden = true
-    localVideoMutedBg.isHidden = true
-    localVideoMutedIndicator.isHidden = true
-}
+```c#
+        void HideVideoMuted()
+        {
+            remoteVideoMutedIndicator.Hidden = true;
+            localVideoMutedBg.Hidden = true;
+            localVideoMutedIndicator.Hidden = true;
+        }
 ```
-Create a function (`hideVideoMuted()`) to hide all the image views that are meant to appear when either the remote or local video feeds are paused. Call this function in the `viewDidLoad()` method to ensure the images are hidden on app startup.
+Create a function (`HideVideoMuted()`) to hide all the image views that are meant to appear when either the remote or local video feeds are paused. Call this function in the `ViewDidLoad()` method to ensure the images are hidden on app startup.
 
 ### Setup Buttons
-```swift
-func setupButtons() {
-    perform(#selector(hideControlButtons), with:nil, afterDelay:3)
-    let tapGestureRecognizer = UITapGestureRecognizer(target: self, action: #selector(VideoChatViewController.viewTapped))
-    view.addGestureRecognizer(tapGestureRecognizer)
-    view.isUserInteractionEnabled = true
-}
-
-func viewTapped() {
-    if (controlButtons.isHidden) {
-        controlButtons.isHidden = false;
-        perform(#selector(hideControlButtons), with:nil, afterDelay:3)
-    }
-}
+```c#
+        void SetupButtons()
+        {
+            var tapGestureRecognizer = new UITapGestureRecognizer(ViewTapped);
+            View.AddGestureRecognizer(tapGestureRecognizer);
+            View.UserInteractionEnabled = true;
+        }
+        
+        public override void ViewDidLoad()
+        {
+            base.ViewDidLoad();
+            InitializeAgoraEngine();
+            SetupVideo();
+            JoinChannel();
+            SetupLocalVideo();
+            HideVideoMuted();
+            SetupButtons();
+        }
 ```
-To keep the UX in mind, we will be hiding the buttons (more so the view that contains the buttons) after 3 seconds so the user's view does not get clogged. Create a function (`setupButtons`) which calls the `hideControlButtons()` function after 3 seconds. Create a tap gesture recognizer (of type: `UITabGestureRecognizer`) which performs the action of calling the `viewTapped()` function. Add the tap gesture recognizer to the view and enable user interaction for the view.
+To keep the UX in mind, we will be hiding/showing the buttons (more so the view that contains the buttons) when user clicked on View. Create a method (`SetupButtons`) and inside it create a tap gesture recognizer (of type: `UITapGestureRecognizer`) which performs the action of calling the `ViewTapped()` function. Add the tap gesture recognizer to the view and enable user interaction for the view. 
 
 
 
 
 ## Conclusion
-There you have it! It just took a few steps to get a video app up and running. If you have any questions, please feel free to reach out via [e-mail](mailto:sid.sharma@agora.io) or give me a shout on [Twitter](https://twitter.com/sidsharma_27).
+There you have it! It just took a few steps to get a video app up and running. If you have any questions, please feel free to reach out via [e-mail](mailto:videocalls@dreamteam-mobile.com).

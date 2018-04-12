@@ -35,9 +35,11 @@ or AgoraTutorial.iOS project add package [Xamarin.Agora.Full.iOS](https://www.nu
 
 ## File updates & create UI
 
-In  the `Info.plist` file, make sure to add the Privacy Settings for both the camera and the microphone in order for the device to access them.
+In  the `Info.plist` file, make sure to add the Privacy Settings for both the camera and the microphone in order for the device to access them. Also check that minimum iOS version is `9.3`. And verify in project properties that build target is `Armv7 + AMD64`, lib is NOT supported `Armv7s as a target`
 
 ![plist.png](images/plist.png)
+
+![build_ios.png](images/build_ios.png)
 
 Change the file name from `ViewController.cs` to `VideoCallViewController.cs` for a more relevant file name as this will be the view controller we set up for the video call. Next, add a file (`SetChannelViewController.cs`) in order to allow the user to choose which channel to join. We will go ahead and dive into the code for each of these files after we set up the storyboard.
 
@@ -103,58 +105,69 @@ namespace AgoraTutorial.iOS
 Create a method (`SetupVideo()`) and enable video mode within the method. In this tutorial, we are enabling video mode before entering a channel so the end user will start in video mode. If it is enabled during a call, it switches from audio to video mode. Next, set the video encoding profile to 360p and set the swapWidthAndHeight parameter to false. Passing true would result in the swapping of the width and height of the stream. Each profile includes a set of parameters such as: resolution, frame rate, bitrate, etc. When the device's camera does not support the specified resolution, the SDK automatically chooses a suitable camera resolution, but the encoder resolution still uses the one specified by SetVideoProfile. Afterwards, call `SetupVideo()` in the `ViewDidLoad()` method.
 
 ### Join Channel
-``` swift
-func joinChannel() {
-    agoraKit.joinChannel(byKey: nil, channelName: "demoChannel1", info:nil, uid:0) {[weak self] (sid, uid, elapsed) -> Void in
-        if let weakSelf = self {
-            weakSelf.agoraKit.setEnableSpeakerphone(true)
-           UIApplication.shared.isIdleTimerDisabled = true
-       }
-    }
-}
+``` c#
+        void JoinChannel()
+        {
+            agoraKit.JoinChannelByToken(null, "demoChannel1", null, 0, (sid, uid, elapsed) =>
+            {
+                agoraKit.SetEnableSpeakerphone(true);
+                UIApplication.SharedApplication.IdleTimerDisabled = true;
+            });
+        }
 ```
-At this time, create a function (`joinChannel()`) to let a user join a specific channel. Call the `agoraKit.joinChannel()` function and supply `nil` for the `byKey` and `info` parameters. For the channel name, supply any string (ex: "demoChannel1") and pass in 0 for the UID to allow Agora to chose a random UID for the channel ID. Disable the UI Application's Idle Timer and  enable the speakerphone using the Agora Kit. Users in the same channel can talk to each other, however users using different App IDs cannot call each other (even if they join the same channel). Once this method is called successfully, the SDK will trigger the callbacks. We will not be implimenting them in this tutorial, but they will be a part of our future tutorial series.
+At this time, create a method (`JoinChannel()`) to let a user join a specific channel. Call the `agoraKit.JoinChannelByToken()` function and supply `null` for the `token` and `info` parameters. For the channel name, supply any string (ex: "demoChannel1") and pass in 0 for the UID to allow Agora to chose a random UID for the channel ID. Disable the UI Application's Idle Timer and  enable the speakerphone using the Agora Kit. Users in the same channel can talk to each other, however users using different App IDs cannot call each other (even if they join the same channel). Once this method is called successfully, the SDK will trigger the callbacks. We will not be implimenting them in this tutorial, but they will be a part of our future tutorial series.
 
 ### Setup Local Video
-``` swift
-func setupLocalVideo() {
-    let videoCanvas = AgoraRtcVideoCanvas()
-    videoCanvas.uid = 0
-    videoCanvas.view = localVideo
-    videoCanvas.renderMode = .render_Fit
-    agoraKit.setupLocalVideo(videoCanvas)
-}
+``` c#
+        void SetupLocalVideo()
+        {
+            var videoCanvas = new AgoraRtcVideoCanvas();
+            videoCanvas.Uid = 0;
+            videoCanvas.View = localVideo;
+            videoCanvas.RenderMode = VideoRenderMode.Fit;
+            agoraKit.SetupLocalVideo(videoCanvas);
+        }
 
-override func viewDidLoad() {
-    super.viewDidLoad(true);
-    initializeAgoraEngine();
-    setupVideo();
-    setupLocalVideo();   
-}
+        public override void ViewDidLoad()
+        {
+            base.ViewDidLoad();
+            InitializeAgoraEngine();
+            SetupVideo();
+            SetupLocalVideo();
+        }
 ```
-Now it's time to create the view for local video feed. Create a function (`setupLocalVideo()`) to initialize the AgoraRtcVideoCanvas object, used for the video stream. There are a few object properties that need to be  properly setup. Set the `uid` property to 0 to allow Agora to chose a random UID for the stream feed. The `view` property should be set to the recently added UIView (`localVideo`). The `renderMode` property should be set to `render_Fit` to ensure that if the video size is different than that of the display window, the video is resized proportionally to fit the window. Then, call  `agoraKit.setupLocalVideo(videoCanvas)` passing in the AgoraRtcVideoCanvas object that was just created. Lastly, call `setupLocalVideo()` in the `viewDidLoad()` method.
+Now it's time to create the view for local video feed. Create a method (`SetupLocalVideo()`) to initialize the AgoraRtcVideoCanvas object, used for the video stream. There are a few object properties that need to be  properly setup. Set the `Uid` property to 0 to allow Agora to chose a random UID for the stream feed. The `View` property should be set to the recently added UIView (`localVideo`). The `RenderMode` property should be set to `VideoRenderMode.Fit` to ensure that if the video size is different than that of the display window, the video is resized proportionally to fit the window. Then, call  `agoraKit.SetupLocalVideo(videoCanvas)` passing in the AgoraRtcVideoCanvas object that was just created. Lastly, call `SetupLocalVideo()` in the `ViewDidLoad()` method.
 
 ### Delegate Methods
-``` swift
-func rtcEngine(_ engine: AgoraRtcEngineKit!, firstRemoteVideoDecodedOfUid uid:UInt, size:CGSize, elapsed:Int) {
-    if (remoteVideo.isHidden) {
-        remoteVideo.isHidden = false
-    }
-    let videoCanvas = AgoraRtcVideoCanvas()
-    videoCanvas.uid = uid
-    videoCanvas.view = remoteVideo
-    videoCanvas.renderMode = .render_Adaptive
-    agoraKit.setupRemoteVideo(videoCanvas)
-}
-func rtcEngine(_ engine: AgoraRtcEngineKit!, didOfflineOfUid uid:UInt, reason:AgoraRtcUserOfflineReason) {
-    self.remoteVideo.isHidden = true
-}
-func rtcEngine(_ engine: AgoraRtcEngineKit!, didVideoMuted muted:Bool, byUid:UInt) {
-    remoteVideo.isHidden = muted
-    remoteVideoMutedIndicator.isHidden = !muted
-}
+``` c#
+        [Export("rtcEngine:firstRemoteVideoDecodedOfUid:size:elapsed:")]
+        public void FirstRemoteVideoDecodedOfUid(AgoraRtcEngineKit engine, nuint uid, CoreGraphics.CGSize size, nint elapsed)
+        {
+            if (remoteVideo.Hidden)
+            {
+                remoteVideo.Hidden = false;
+            }
+            var videoCanvas = new AgoraRtcVideoCanvas();
+            videoCanvas.Uid = uid;
+            videoCanvas.View = remoteVideo;
+            videoCanvas.RenderMode = VideoRenderMode.Adaptive;
+            agoraKit.SetupRemoteVideo(videoCanvas);
+        }
+
+        [Export("rtcEngine:didOfflineOfUid:reason:")]
+        public void DidOfflineOfUid(AgoraRtcEngineKit engine, nuint uid, UserOfflineReason reason)
+        {
+            remoteVideo.Hidden = true;
+        }
+
+        [Export("rtcEngine:didVideoMuted:byUid:")]
+        public void DidVideoMuted(AgoraRtcEngineKit engine, bool muted, nuint uid)
+        {
+            remoteVideo.Hidden = muted;
+            remoteVideoMutedIndicator.Hidden = !muted;
+        }
 ```
-Now it's time to create the view for remote video feed. As before, within the interface builder, add a UIView to the View Controller in Main.storyboard and create an outlet to it within the corresponding View Controller. Once completed, create an extention for the ViewController which extends the `AgoraRtcEngineDelegate`. Call the `rtcEngine()` delegate method with the parameters shown above (`engine: AgoraRtcEngineKit`, `firstRemoteVideoDecodedOfUid uid: UInt`, `size: CGSize`, `elapsed: Int`). This callback is hit when another user is connected and the first remote video frame is received and decoded. Inside this function, show the remoteVideo if it's hidden. Next, initialize the AgoraRtcVideoCanvas object and set the object properties as we did above. Set the `uid` property to 0 to allow Agora to chose a random UID for the stream feed. The `view` property should be set to the recently added UIView (`remoteVideo`). The `renderMode` property should be set to `render_Fit` to once again ensure that a  video size that's different than the display window is proportionally resized to fit the window. Then, call `agoraKit.setupRemoteVideo(videoCanvas)` passing in the AgoraRtcVideoCanvas object that was just created. Next, implement the next `rtcEngine()` delegate method with the parameters  (`engine - AgoraRtcEngineKit`, `didOfflineOfUid uid - UInt`, `reason - AgoraRtcUserOfflineReason`), called when another user leaves the channel.  Within that method, set the `remoteVideo` view to be hidden when a user leaves the call. Lastly, implement the last `rtcEngine()` delegate method (`engine: AgoraRtcEngineKit`, `didVideoMuted muted: UInt`, `byUid: UInt`), called when a remote user pauses their stream.
+Now it's time to create the view for remote video feed. As before, within the interface builder, add a UIView to the View Controller in Main.storyboard and create an outlet to it within the corresponding View Controller. Once completed, create an extention for the ViewController which extends the `IAgoraRtcEngineDelegate`. Add the `FirstRemoteVideoDecodedOfUid()` delegate method with the parameters shown above (`AgoraRtcEngineKit engine, nuint uid, CoreGraphics.CGSize size, nint elapsed`). This callback is hit when another user is connected and the first remote video frame is received and decoded. Inside this method, show the remoteVideo if it's hidden. Next, initialize the AgoraRtcVideoCanvas object and set the object properties as we did above. Set the `Uid` property to 0 to allow Agora to chose a random UID for the stream feed. The `View` property should be set to the recently added UIView (`remoteVideo`). The `RenderMode` property should be set to `VideoRenderMode.Adaptive` to once again ensure that a  video size that's different than the display window is proportionally resized to fit the window. Then, call `agoraKit.SetupRemoteVideo(videoCanvas)` passing in the AgoraRtcVideoCanvas object that was just created. Next, implement the next `DidOfflineOfUid()` delegate method with the parameters  (`AgoraRtcEngineKit engine, nuint uid, UserOfflineReason reason`), called when another user leaves the channel.  Within that method, set the `remoteVideo` view to be hidden when a user leaves the call. Lastly, implement the last `DidVideoMuted()` delegate method (`AgoraRtcEngineKit engine, bool muted, nuint uid`), called when a remote user pauses their stream.
 
 ## Adding Other Functionality
 

@@ -1,4 +1,4 @@
-# Agora iOS Tutorial for Swift - 1 to 1
+# Agora Tutorial for Xamarin.iOS - 1 to 1
 
 ## Prerequisites
 - Xamarin, Visual Studio

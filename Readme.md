@@ -56,7 +56,7 @@ What's Inside
 In this repository you can find OneToOne Communication apps for Android, iOS and Web
 
 
-* **Xamarin Android and iOS** apps in one solution /Public/DT.Samples.Agora.OneToOne.sln
+* **Xamarin Android and iOS** apps in one solution /DT.Samples.Agora.OneToOne.sln
 
 * **Agora WebAgent** usage example in /Web/agent
 

@@ -11,80 +11,96 @@ If you haven't already, [create an Agora.io developer account](https://www.dashb
 ## Integrate the Agora SDK
 Create a new Blank Native app Solution.
 
-![create_app_1.png](/images/create_app_1.png)
+![create_app_1.png](images/create_app_1.png)
 
-![create_app_2.png](/images/create_app_2.png)
+![create_app_2.png](images/create_app_2.png)
 
-![create_app_3.png](/images/create_app_3.png)
+![create_app_3.png](images/create_app_3.png)
 
-![create_app_done.png](/images/create_app_done.png)
+![create_app_done.png](images/create_app_done.png)
 
 ## Add Agora Nuget packages to Android and iOS projects
 
 For AgoraTutorial.Droid project add package [Xamarin.Agora.Full.Android](https://www.nuget.org/packages/Xamarin.Agora.Full.Android/)
 
-![add_pkg_1d.png](/images/add_pkg_1.png)
+![add_pkg_1d.png](images/add_pkg_1.png)
 
-![add_pkg_2d.png](/images/add_pkg_2d.png)
+![add_pkg_2d.png](images/add_pkg_2d.png)
 
 or AgoraTutorial.iOS project add package [Xamarin.Agora.Full.iOS](https://www.nuget.org/packages/Xamarin.Agora.Full.iOS/)
 
-![add_pkg_1.png](/images/add_pkg_1.png)
+![add_pkg_1.png](images/add_pkg_1.png)
 
-![add_pkg_2](/images/add_pkg_2.png)
+![add_pkg_2](images/add_pkg_2.png)
 
 ## File updates & create UI
 
 In  the `Info.plist` file, make sure to add the Privacy Settings for both the camera and the microphone in order for the device to access them.
 
-![plist.png](/images/plist.png)
+![plist.png](images/plist.png)
 
 Change the file name from `ViewController.cs` to `VideoCallViewController.cs` for a more relevant file name as this will be the view controller we set up for the video call. Next, add a file (`SetChannelViewController.cs`) in order to allow the user to choose which channel to join. We will go ahead and dive into the code for each of these files after we set up the storyboard.
 
-![video_ctrlr.png](/images/video_ctrlr.png)
+![video_ctrlr.png](images/video_ctrlr.png)
 
-First, download the [assets](/assets) provided in this tutorial. These assets are icons for the different buttons added throughout this tutorial. Next, open the `Main.storyboard` file and in the identity inspector, set the custom class to `VideoCallViewController` to update the storyboard VC link with the renamed cs file. Next, drag in a View component for the remote video feed. Inside the remote view, add another view which will be used for the local video feed. This view sits on the top right corner in most video chat applications. Using the same height/width & x/y values, create an image view and assign it the `cameramute.png` asset. This image will be used to overlay the remote video feed when the user pauses their video feed. Afterwards, drag an image view to the center of the local video image view and assign it the `cameraoff_mainVideo.png` image. Add another image view with the same `cameraoff_mainVideo.png` image and center it in the middle of the remote view. On the bottom of the screen, create a view which encapsulates four buttons: Pause Video, Audio Mute, Switch Camera, and Hang Up. Use the appropriate assets for each button and refer to the image above for placement. Lastly, add a segue (`exitCall`) from `VideoCallViewController` to `SetChannelViewController` which will be called to end the video call once the user has pressed the Hang Up button.
+First, download the [assets](assets) provided in this tutorial. These assets are icons for the different buttons added throughout this tutorial. Next, open the `Main.storyboard` file and in the identity inspector, set the custom class to `VideoCallViewController` to update the storyboard VC link with the renamed cs file. Next, drag in a View component for the remote video feed. Inside the remote view, add another view which will be used for the local video feed. This view sits on the top right corner in most video chat applications. Using the same height/width & x/y values, create an image view and assign it the `cameramute.png` asset. This image will be used to overlay the remote video feed when the user pauses their video feed. Afterwards, drag an image view to the center of the local video image view and assign it the `cameraoff_mainVideo.png` image. Add another image view with the same `cameraoff_mainVideo.png` image and center it in the middle of the remote view. On the bottom of the screen, create a view which encapsulates four buttons: Pause Video, Audio Mute, Switch Camera, and Hang Up. Use the appropriate assets for each button and refer to the image above for placement. Lastly, add a segue (`exitCall`) from `VideoCallViewController` to `SetChannelViewController` which will be called to end the video call once the user has pressed the Hang Up button.
 
-![Storyboard_Setup2.png](/StoryboardSetup2.png)
+![channel_ctrlr.png](images/channel_ctrlr.png)
 
 Next, drag a View Controller in the `Main.storyboard` file. Add a text field for the user-inputted channel name and a button to start the video call. In the identity inspector, set the custom class to `SetChannelViewController` in order to link the storyboard VC with the file. Lastly, add a segue (`startCall`) from `SetChannelViewController` to `VideoCallViewController` which will be called to start the call once the user has entered the channel name.
 
 ## Add Agora Functionality
 
 ### Initialize Agora Native SDK
-``` swift
-import UIKit
-import AgoraRtcEngineKit
+``` c#
+using System;
+using DT.Xamarin.Agora;
+using Foundation;
+using UIKit;
 
-var agoraKit: AgoraRtcEngineKit!            
-let AppID: String = "Your-App-ID"
-var channel:String? //User inputted channel name from VC (steps come later in tutorial)
+namespace AgoraTutorial.iOS
+{
+    public partial class VideoCallViewController : UIViewController, IAgoraRtcEngineDelegate
+    {
+        private AgoraRtcEngineKit agoraKit;
+        private string AppID = "Your-App-ID";
+        private string channel = ""; //User inputted channel name from VC (steps come later in tutorial)
 
-func initializeAgoraEngine() {
-    agoraKit = AgoraRtcEngineKit.sharedEngine(withAppId: AppID, delegate: self)
-}
+        public VideoCallViewController(IntPtr handle) : base(handle)
+        {
+        }
 
-override func viewDidLoad() {   
-    super.viewDidLoad(true);
-    initializeAgoraEngine();
+        public override void ViewDidLoad()
+        {
+            base.ViewDidLoad();
+            InitializeAgoraEngine();
+        }
+
+        private void InitializeAgoraEngine()
+        {
+            agoraKit = AgoraRtcEngineKit.SharedEngineWithAppIdAndDelegate(AppID, this);
+        }
+    }
 }
 ```
-`AgoraRtcEngineKit` is the basic interface class of Agora Native SDK. The `AgoraRtcEngineKit` object enables the use of Agora Native SDK's communication functionality. Create a variable that is an `AgoraRtcEngineKit` object make it an implicitly unwrapped optional. Next, create a function (`initializeAgoraEngine()`) that will initialize the `AgoraRtcEngineKit` class as a singleton instance to initialize the service before we use it. In the method call, supply two parameters: `withAppId` and `delegate`. Provide your App ID as a String and pass in `self` for the delegate providing the current View Controller (the View Controller controlling the call). The Agora Native SDK uses delegates to inform the application on the engine runtime events (joining/leaving a channel, new participants, etc).  Call the `initializeAgoraEngine()` function inside the `viewDidLoad()` method. Lastly, add a String optional (`channel`) for the channel name that will be supplied by the user in a different View Controller that will be built later in this tutorial.
+`AgoraRtcEngineKit` is the basic interface class of Agora Native SDK. The `AgoraRtcEngineKit` object enables the use of Agora Native SDK's communication functionality. Create a variable that is an `AgoraRtcEngineKit` object make it an implicitly unwrapped optional. Next add interface (`IAgoraRtcEngineDelegate`) to your controller. Next, create a method (`InitializeAgoraEngine()`) that will initialize the `AgoraRtcEngineKit` class as a singleton instance to initialize the service before we use it. In the method call, supply two parameters: `AppId` and `delegate`. Provide your App ID as a String and pass in `self` for the delegate providing the current View Controller (the View Controller controlling the call). The Agora Native SDK uses delegates to inform the application on the engine runtime events (joining/leaving a channel, new participants, etc).  Call the `InitializeAgoraEngine()` method inside the `ViewDidLoad()` method. Lastly, add a String optional (`channel`) for the channel name that will be supplied by the user in a different View Controller that will be built later in this tutorial.
 
 ### Enable Video Mode
-``` swift
-func setupVideo() {
-    agoraKit.enableVideo()  // Enables video mode.
-    agoraKit.setVideoProfile(._VideoProfile_360P, swapWidthAndHeight: false) // Default video profile is 360P
-}
+``` c#
+        void SetupVideo()
+        {
+            agoraKit.EnableVideo();  // Enables video mode.
+            agoraKit.SetVideoProfile(VideoProfile.Portrait360P, false); // Default video profile is 360P
+        }
 
-override func viewDidLoad() {
-    super.viewDidLoad();
-    initializeAgoraEngine();
-    setupVideo();  
-}
+        public override void ViewDidLoad()
+        {
+            base.ViewDidLoad();
+            InitializeAgoraEngine();
+            SetupVideo();
+        }
 ```
-Create a function (`setupVideo()`) and enable video mode within the function. In this tutorial, we are enabling video mode before entering a channel so the end user will start in video mode. If it is enabled during a call, it switches from audio to video mode. Next, set the video encoding profile to 360p and set the swapWidthAndHeight parameter to false. Passing true would result in the swapping of the width and height of the stream. Each profile includes a set of parameters such as: resolution, frame rate, bitrate, etc. When the device's camera does not support the specified resolution, the SDK automatically chooses a suitable camera resolution, but the encoder resolution still uses the one specified by setVideoProfile. Afterwards, call `setupVideo()` in the `viewDidLoad()` method.
+Create a method (`SetupVideo()`) and enable video mode within the method. In this tutorial, we are enabling video mode before entering a channel so the end user will start in video mode. If it is enabled during a call, it switches from audio to video mode. Next, set the video encoding profile to 360p and set the swapWidthAndHeight parameter to false. Passing true would result in the swapping of the width and height of the stream. Each profile includes a set of parameters such as: resolution, frame rate, bitrate, etc. When the device's camera does not support the specified resolution, the SDK automatically chooses a suitable camera resolution, but the encoder resolution still uses the one specified by SetVideoProfile. Afterwards, call `SetupVideo()` in the `ViewDidLoad()` method.
 
 ### Join Channel
 ``` swift

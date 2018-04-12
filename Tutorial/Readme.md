@@ -17,17 +17,9 @@ Create a new Blank Native app Solution.
 
 ![create_app_3.png](images/create_app_3.png)
 
-![create_app_done.png](images/create_app_done.png)
-
 ## Add Agora Nuget packages to Android and iOS projects
 
-For AgoraTutorial.Droid project add package [Xamarin.Agora.Full.Android](https://www.nuget.org/packages/Xamarin.Agora.Full.Android/)
-
-![add_pkg_1d.png](images/add_pkg_1.png)
-
-![add_pkg_2d.png](images/add_pkg_2d.png)
-
-or AgoraTutorial.iOS project add package [Xamarin.Agora.Full.iOS](https://www.nuget.org/packages/Xamarin.Agora.Full.iOS/)
+For AgoraTutorial.iOS project add package [Xamarin.Agora.Full.iOS](https://www.nuget.org/packages/Xamarin.Agora.Full.iOS/)
 
 ![add_pkg_1.png](images/add_pkg_1.png)
 
@@ -231,6 +223,7 @@ Create a view (`controlButtons`) that sits on the bottom of the remote view. Thi
             remoteVideo.RemoveFromSuperview();
             localVideo.RemoveFromSuperview();
             agoraKit = null;
+            this.DismissViewController(true, null);
         }
 
         void HideControlButtons()

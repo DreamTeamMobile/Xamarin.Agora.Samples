@@ -2,7 +2,7 @@
 
 ## Prerequisites
 - [Xamarin iOS and Visual Studio](https://developer.xamarin.com/getting-started-ios/)
-- Some knowledge of C#
+- Basic knowledge of C#
 - Agora.io Developer Account
 
 ## Step 1. Agora.io Account
@@ -27,7 +27,7 @@ For AgoraTutorial.iOS project add package [Xamarin.Agora.Full.iOS](https://www.n
 
 ## Step 4. Privacy settings for camera and mic access
 
-In  the `Info.plist` file, make sure to add the Privacy Settings for both the camera and the microphone in order for the device to access them. Also check that minimum iOS version is `9.3`. And verify in project properties that build target is `Armv7 + AMD64`, lib is NOT supported `Armv7s as a target`
+In  the `Info.plist` file, make sure to add the Privacy Settings for both the camera and the microphone in order for the device to access them. Also check that minimum iOS version is `9.3`. And verify the project properties build target is `Armv7 + AMD64`, the library does not support `Armv7s` as a target.
 
 ![plist.png](images/plist.png)
 
@@ -44,7 +44,8 @@ Next, open the `Main.storyboard` file and in the identity inspector, set the cus
 
 ![video_ctrlr.png](images/video_ctrlr.png)
 
-Next, drag in a View component for the remote video feed. Inside the remote view, add another view which will be used for the local video feed. This view sits on the top right corner in most video chat applications. Using the same height/width & x/y values, create an image view and assign it the `cameramute.png` asset. This image will be used to overlay the remote video feed when the user pauses their video feed. Afterwards, drag an image view to the center of the local video image view and assign it the `cameraoff_mainVideo.png` image. Add another image view with the same `cameraoff_mainVideo.png` image and center it in the middle of the remote view. On the bottom of the screen, create a view which encapsulates four buttons: Pause Video, Audio Mute, Switch Camera, and Hang Up. Use the appropriate assets for each button and refer to the image above for placement. 
+Next, drag in a View component for the remote video feed. Inside the remote view, add another view which will be used for the local video feed. This view sits on the top right corner in most video chat applications. Using the same height/width & x/y values, create an image view and assign it the `cameramute.png` asset. This image will be used to overlay the remote video feed when the user pauses their video feed. Afterwards, drag an image view to the center of the local video image view and assign it the `cameraoff_mainVideo.png` image. 
+Add another image view with the same `cameraoff_mainVideo.png` image and center it in the middle of the remote view. On the bottom of the screen, create a view which encapsulates four buttons: Pause Video, Audio Mute, Switch Camera, and Hang Up. Use the appropriate assets for each button and refer to the image above for placement. 
 
 ![video_ctrlr_outlets.png](images/video_ctrlr_outlets.png)
 
@@ -66,8 +67,8 @@ namespace AgoraTutorial.iOS
     public partial class VideoCallViewController : UIViewController, IAgoraRtcEngineDelegate
     {
         private AgoraRtcEngineKit agoraKit;
-        private string AppID = "Your-App-ID";
-        private string channel = ""; //User inputted channel name from VC (steps come later in tutorial)
+        private const string AppID = "Your-App-ID";
+        private string channel = ""; //User inputs channel name (steps come later in this tutorial)
 
         public VideoCallViewController(IntPtr handle) : base(handle)
         {
@@ -103,7 +104,8 @@ namespace AgoraTutorial.iOS
             SetupVideo();
         }
 ```
-Create a method (`SetupVideo()`) and enable video mode within the method. In this tutorial, we are enabling video mode before entering a channel so the end user will start in video mode. If it is enabled during a call, it switches from audio to video mode. Next, set the video encoding profile to 360p and set the swapWidthAndHeight parameter to false. Passing true would result in the swapping of the width and height of the stream. Each profile includes a set of parameters such as: resolution, frame rate, bitrate, etc. When the device's camera does not support the specified resolution, the SDK automatically chooses a suitable camera resolution, but the encoder resolution still uses the one specified by SetVideoProfile. Afterwards, call `SetupVideo()` in the `ViewDidLoad()` method.
+Create a method (`SetupVideo()`) and enable video mode within the method. In this tutorial, we are enabling video mode before entering a channel so the end user will start in video mode. If it is enabled during a call, it switches from audio to video mode. 
+Next, set the video encoding profile to 360p and set the swapWidthAndHeight parameter to false. Passing true would result in the swapping of the width and height of the stream. Each profile includes a set of parameters such as: resolution, frame rate, bitrate, etc. When the device's camera does not support the specified resolution, the SDK automatically chooses a suitable camera resolution, but the encoder resolution still uses the one specified by SetVideoProfile. Afterwards, call `SetupVideo()` in the `ViewDidLoad()` method.
 
 ### Join Channel
 ``` c#
@@ -124,7 +126,9 @@ Create a method (`SetupVideo()`) and enable video mode within the method. In thi
             JoinChannel();
         }
 ```
-At this time, create a method (`JoinChannel()`) to let a user join a specific channel. Call the `agoraKit.JoinChannelByToken()` function and supply `null` for the `token` and `info` parameters. For the channel name, supply any string (ex: "demoChannel1") and pass in 0 for the UID to allow Agora to chose a random UID for the channel ID. Disable the UI Application's Idle Timer and  enable the speakerphone using the Agora Kit. Users in the same channel can talk to each other, however users using different App IDs cannot call each other (even if they join the same channel). Once this method is called successfully, the SDK will trigger the callbacks. We will not be implimenting them in this tutorial, but they will be a part of our future tutorial series. Lastly, call `JoinChannel()` in the `ViewDidLoad()` method.
+At this time, create a method (`JoinChannel()`) to let a user join a specific channel. Call the `agoraKit.JoinChannelByToken()` method and supply `null` for the `token` and `info` parameters. For the channel name, supply any string (ex: "demoChannel1") and pass in 0 for the UID to allow Agora to chose a random UID for the channel ID. 
+
+Disable the UI Application's Idle Timer and  enable the speakerphone using the Agora Kit. Users in the same channel can talk to each other, however users using different App IDs cannot call each other (even if they join the same channel). Once this method is called successfully, the SDK will trigger the callbacks. We will not be implementing them in this tutorial, but they will be a part of our future tutorial series. Lastly, call `JoinChannel()` in the `ViewDidLoad()` method.
 
 ### Setup Local Video
 ``` c#
@@ -179,7 +183,11 @@ Then, call  `agoraKit.SetupLocalVideo(videoCanvas)` passing in the AgoraRtcVideo
             remoteVideoMutedIndicator.Hidden = !muted;
         }
 ```
-Now it's time to create the view for remote video feed. As before, within the interface builder, add a UIView to the View Controller in Main.storyboard and create an outlet to it within the corresponding View Controller. Once completed, create an extention for the ViewController which extends the `IAgoraRtcEngineDelegate`. Add the `FirstRemoteVideoDecodedOfUid` delegate method with the parameters shown above (`AgoraRtcEngineKit engine, nuint uid, CoreGraphics.CGSize size, nint elapsed`). This callback is hit when another user is connected and the first remote video frame is received and decoded. Inside this method, show the remoteVideo if it's hidden. Next, initialize the AgoraRtcVideoCanvas object and set the object properties as we did above. Set the `Uid` property to 0 to allow Agora to chose a random UID for the stream feed. The `View` property should be set to the recently added UIView (`remoteVideo`). The `RenderMode` property should be set to `VideoRenderMode.Adaptive` to once again ensure that a  video size that's different than the display window is proportionally resized to fit the window. 
+Now it's time to create the view for remote video feed. As before, within the interface builder, add a UIView to the View Controller in Main.storyboard and create an outlet to it within the corresponding View Controller. 
+Once completed, create an extention for the ViewController which extends the `IAgoraRtcEngineDelegate`. Add the `FirstRemoteVideoDecodedOfUid` delegate method with the parameters shown above (`AgoraRtcEngineKit engine, nuint uid, CoreGraphics.CGSize size, nint elapsed`). 
+This callback is hit when another user is connected and the first remote video frame is received and decoded. Inside this method, show the remoteVideo if it's hidden. 
+
+Next, initialize the AgoraRtcVideoCanvas object and set the object properties as we did above. Set the `Uid` property to 0 to allow Agora to chose a random UID for the stream feed. The `View` property should be set to the recently added UIView (`remoteVideo`). The `RenderMode` property should be set to `VideoRenderMode.Adaptive` to once again ensure that a  video size that's different than the display window is proportionally resized to fit the window. 
 
 Then, call `agoraKit.SetupRemoteVideo(videoCanvas)` passing in the AgoraRtcVideoCanvas object that was just created. Next, implement the next `DidOfflineOfUid` delegate method with the parameters  (`AgoraRtcEngineKit engine, nuint uid, UserOfflineReason reason`), called when another user leaves the channel.  Within that method, set the `remoteVideo` view to be hidden when a user leaves the call. Lastly, implement the last `DidVideoMuted` delegate method (`AgoraRtcEngineKit engine, bool muted, nuint uid`), called when a remote user pauses their stream.
 
@@ -244,7 +252,7 @@ Create a view (`controlButtons`) that sits on the bottom of the remote view. Thi
             controlButtons.Hidden = true;
         }
 ```
-Create a function (`LeaveChannel()`) which will enables the user to leave the current video call (channel). Inside the method, call the `agoraKit.LeaveChannel` passing in `null` as the parameter. Next, hide the view (`controlButtons`) containing the bottom buttons. Afterwards, programatically remove both the local & remote video views and set the agoraKit to be `null` to end the instance of the AgoraRtcEngineKit object. Inside the IBAction for the Hang-Up button, call the `LeaveChannel()` method we just created. Lastly, create a function (`HideControlButtons()`) which hides the view which contains the different buttons.
+Create a method `LeaveChannel()` which will enables the user to leave the current video call (channel). Inside the method, call the `agoraKit.LeaveChannel` passing in `null` as the parameter. Next, hide the view (`controlButtons`) containing the bottom buttons. Afterwards, programatically remove both the local & remote video views and set the agoraKit to be `null` to end the instance of the AgoraRtcEngineKit object. Inside the IBAction for the Hang-Up button, call the `LeaveChannel()` method we just created. Lastly, create a method `HideControlButtons()` which hides the view which contains the different buttons.
 
 ### Audio Mute
 ```c#
@@ -255,7 +263,7 @@ Create a function (`LeaveChannel()`) which will enables the user to leave the cu
             agoraKit.MuteLocalAudioStream(button.Selected);
         }
 ```
-Now it's time to add the mute functionality for the local audio feed. In the IBAction for the Mute button, call the `agoraKit.MuteLocalAudioStream()` function passing in `button.Selected` as the sole parameter.
+Now it's time to add the mute functionality for the local audio feed. In the IBAction for the Mute button, call the `agoraKit.MuteLocalAudioStream()` method passing in `button.Selected` as the sole parameter.
 
 ### Video Pause
 ```c#
@@ -269,7 +277,7 @@ Now it's time to add the mute functionality for the local audio feed. In the IBA
             localVideoMutedIndicator.Hidden = !button.Selected;
         }
 ```
-Sometimes, you're sitting in your Barney PJs and you don't want to show your video feed to the rest of your co-workers. Add the ability to the IBAction for the Video button by calling `agoraKit.MuteLocalVideoStream()` function passing in `button.Selected` as the sole parameter.
+Sometimes, you're sitting in your Barney PJs and you don't want to show your video feed to the rest of your co-workers. Add the ability to the IBAction for the Video button by calling `agoraKit.MuteLocalVideoStream()` method passing in `button.Selected` as the sole parameter.
 
 ### Switch Camera
 ```c#
@@ -291,7 +299,7 @@ Next, enable the user to choose between the front and rear cameras. Inside the I
             localVideoMutedIndicator.Hidden = true;
         }
 ```
-Create a function (`HideVideoMuted()`) to hide all the image views that are meant to appear when either the remote or local video feeds are paused. Call this function in the `ViewDidLoad()` method to ensure the images are hidden on app startup.
+Create a method `HideVideoMuted()` to hide all the image views that are meant to appear when either the remote or local video feeds are paused. Call this method in the `ViewDidLoad()` method to ensure the images are hidden on app startup.
 
 ### Setup Buttons
 ```c#
@@ -313,7 +321,7 @@ Create a function (`HideVideoMuted()`) to hide all the image views that are mean
             SetupButtons();
         }
 ```
-To keep the UX in mind, we will be hiding/showing the buttons (more so the view that contains the buttons) when user clicked on View. Create a method (`SetupButtons`) and inside it create a tap gesture recognizer (of type: `UITapGestureRecognizer`) which performs the action of calling the `ViewTapped()` function. Add the tap gesture recognizer to the view and enable user interaction for the view. 
+To keep the UX in mind, we will be hiding/showing the buttons (more so the view that contains the buttons) when user clicked on View. Create a method (`SetupButtons`) and inside it create a tap gesture recognizer (of type: `UITapGestureRecognizer`) which performs the action of calling the `ViewTapped()` method. Add the tap gesture recognizer to the view and enable user interaction for the view. 
 
 
 

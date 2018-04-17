@@ -35,15 +35,22 @@ In  the `Info.plist` file, make sure to add the Privacy Settings for both the ca
 
 ## 5 Adding views
 
+First, download the [assets](assets) provided in this tutorial. These assets are icons for the different buttons added throughout this tutorial.
 Rename the file from `ViewController.cs` to `VideoCallViewController.cs` for a more relevant file name as this will be the view controller we set up for the video call. Next, add a new view to the project (`SetChannelViewController.cs`) in order to allow the user to choose which channel to join. We will go ahead and dive into the code for each of these files after we set up the storyboard.
+
+![struct.png](images/struct.png)
+
+Next, open the `Main.storyboard` file and in the identity inspector, set the custom class to `VideoCallViewController` to update the storyboard VC link with the renamed cs file. Set Storyboard Id to `VideoCallView`. 
 
 ![video_ctrlr.png](images/video_ctrlr.png)
 
-First, download the [assets](assets) provided in this tutorial. These assets are icons for the different buttons added throughout this tutorial. Next, open the `Main.storyboard` file and in the identity inspector, set the custom class to `VideoCallViewController` to update the storyboard VC link with the renamed cs file. Set Storyboard Id to `VideoCallView`.  Next, drag in a View component for the remote video feed. Inside the remote view, add another view which will be used for the local video feed. This view sits on the top right corner in most video chat applications. Using the same height/width & x/y values, create an image view and assign it the `cameramute.png` asset. This image will be used to overlay the remote video feed when the user pauses their video feed. Afterwards, drag an image view to the center of the local video image view and assign it the `cameraoff_mainVideo.png` image. Add another image view with the same `cameraoff_mainVideo.png` image and center it in the middle of the remote view. On the bottom of the screen, create a view which encapsulates four buttons: Pause Video, Audio Mute, Switch Camera, and Hang Up. Use the appropriate assets for each button and refer to the image above for placement. Lastly, add a segue (`exitCall`) from `VideoCallViewController` to `SetChannelViewController` which will be called to end the video call once the user has pressed the Hang Up button.
+Next, drag in a View component for the remote video feed. Inside the remote view, add another view which will be used for the local video feed. This view sits on the top right corner in most video chat applications. Using the same height/width & x/y values, create an image view and assign it the `cameramute.png` asset. This image will be used to overlay the remote video feed when the user pauses their video feed. Afterwards, drag an image view to the center of the local video image view and assign it the `cameraoff_mainVideo.png` image. Add another image view with the same `cameraoff_mainVideo.png` image and center it in the middle of the remote view. On the bottom of the screen, create a view which encapsulates four buttons: Pause Video, Audio Mute, Switch Camera, and Hang Up. Use the appropriate assets for each button and refer to the image above for placement. 
 
-![channel_ctrlr.png](images/channel_ctrlr.png)
+![video_ctrlr_outlets.png](images/video_ctrlr_outlets.png)
 
 Next, drag a View Controller in the `Main.storyboard` file. Add a text field for the user-inputted channel name and a button to start the video call. In the identity inspector, set the custom class to `SetChannelViewController` in order to link the storyboard VC with the file.
+
+![channel_ctrlr.png](images/channel_ctrlr.png)
 
 ## 6 Add Agora Functionality
 
@@ -139,7 +146,9 @@ At this time, create a method (`JoinChannel()`) to let a user join a specific ch
             SetupLocalVideo();
         }
 ```
-Now it's time to create the view for local video feed. Create a method (`SetupLocalVideo()`) to initialize the AgoraRtcVideoCanvas object, used for the video stream. There are a few object properties that need to be  properly setup. Set the `Uid` property to 0 to allow Agora to chose a random UID for the stream feed. The `View` property should be set to the recently added UIView (`localVideo`). The `RenderMode` property should be set to `VideoRenderMode.Fit` to ensure that if the video size is different than that of the display window, the video is resized proportionally to fit the window. Then, call  `agoraKit.SetupLocalVideo(videoCanvas)` passing in the AgoraRtcVideoCanvas object that was just created. Lastly, call `SetupLocalVideo()` in the `ViewDidLoad()` method.
+Now it's time to create the view for local video feed. Create a method (`SetupLocalVideo()`) to initialize the AgoraRtcVideoCanvas object, used for the video stream. There are a few object properties that need to be  properly setup. Set the `Uid` property to 0 to allow Agora to chose a random UID for the stream feed. The `View` property should be set to the recently added UIView (`localVideo`). The `RenderMode` property should be set to `VideoRenderMode.Fit` to ensure that if the video size is different than that of the display window, the video is resized proportionally to fit the window. 
+
+Then, call  `agoraKit.SetupLocalVideo(videoCanvas)` passing in the AgoraRtcVideoCanvas object that was just created. Lastly, call `SetupLocalVideo()` in the `ViewDidLoad()` method.
 
 ### 6.5 Delegate Methods
 ``` c#
@@ -170,7 +179,9 @@ Now it's time to create the view for local video feed. Create a method (`SetupLo
             remoteVideoMutedIndicator.Hidden = !muted;
         }
 ```
-Now it's time to create the view for remote video feed. As before, within the interface builder, add a UIView to the View Controller in Main.storyboard and create an outlet to it within the corresponding View Controller. Once completed, create an extention for the ViewController which extends the `IAgoraRtcEngineDelegate`. Add the `FirstRemoteVideoDecodedOfUid` delegate method with the parameters shown above (`AgoraRtcEngineKit engine, nuint uid, CoreGraphics.CGSize size, nint elapsed`). This callback is hit when another user is connected and the first remote video frame is received and decoded. Inside this method, show the remoteVideo if it's hidden. Next, initialize the AgoraRtcVideoCanvas object and set the object properties as we did above. Set the `Uid` property to 0 to allow Agora to chose a random UID for the stream feed. The `View` property should be set to the recently added UIView (`remoteVideo`). The `RenderMode` property should be set to `VideoRenderMode.Adaptive` to once again ensure that a  video size that's different than the display window is proportionally resized to fit the window. Then, call `agoraKit.SetupRemoteVideo(videoCanvas)` passing in the AgoraRtcVideoCanvas object that was just created. Next, implement the next `DidOfflineOfUid` delegate method with the parameters  (`AgoraRtcEngineKit engine, nuint uid, UserOfflineReason reason`), called when another user leaves the channel.  Within that method, set the `remoteVideo` view to be hidden when a user leaves the call. Lastly, implement the last `DidVideoMuted` delegate method (`AgoraRtcEngineKit engine, bool muted, nuint uid`), called when a remote user pauses their stream.
+Now it's time to create the view for remote video feed. As before, within the interface builder, add a UIView to the View Controller in Main.storyboard and create an outlet to it within the corresponding View Controller. Once completed, create an extention for the ViewController which extends the `IAgoraRtcEngineDelegate`. Add the `FirstRemoteVideoDecodedOfUid` delegate method with the parameters shown above (`AgoraRtcEngineKit engine, nuint uid, CoreGraphics.CGSize size, nint elapsed`). This callback is hit when another user is connected and the first remote video frame is received and decoded. Inside this method, show the remoteVideo if it's hidden. Next, initialize the AgoraRtcVideoCanvas object and set the object properties as we did above. Set the `Uid` property to 0 to allow Agora to chose a random UID for the stream feed. The `View` property should be set to the recently added UIView (`remoteVideo`). The `RenderMode` property should be set to `VideoRenderMode.Adaptive` to once again ensure that a  video size that's different than the display window is proportionally resized to fit the window. 
+
+Then, call `agoraKit.SetupRemoteVideo(videoCanvas)` passing in the AgoraRtcVideoCanvas object that was just created. Next, implement the next `DidOfflineOfUid` delegate method with the parameters  (`AgoraRtcEngineKit engine, nuint uid, UserOfflineReason reason`), called when another user leaves the channel.  Within that method, set the `remoteVideo` view to be hidden when a user leaves the call. Lastly, implement the last `DidVideoMuted` delegate method (`AgoraRtcEngineKit engine, bool muted, nuint uid`), called when a remote user pauses their stream.
 
 ## 7 Adding Other Functionality
 

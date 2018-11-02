@@ -4,6 +4,7 @@ using System.Linq;
 
 using Foundation;
 using UIKit;
+using Xamarin.Agora.Full.Forms;
 
 namespace DT.Samples.Agora.Cross.iOS
 {
@@ -22,7 +23,7 @@ namespace DT.Samples.Agora.Cross.iOS
         //
         public override bool FinishedLaunching(UIApplication app, NSDictionary options)
         {
-            Xamarin.Agora.Full.Forms.AgoraServiceIos.Init();
+            AgoraServiceIos.Init();
             global::Xamarin.Forms.Forms.Init();
             LoadApplication(new App());
 

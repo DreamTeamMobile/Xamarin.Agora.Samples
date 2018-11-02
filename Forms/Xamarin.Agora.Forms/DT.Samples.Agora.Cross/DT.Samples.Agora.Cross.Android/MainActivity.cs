@@ -7,6 +7,7 @@ using Android.Views;
 using Android.Widget;
 using Android.OS;
 using Plugin.Permissions;
+using Xamarin.Agora.Full.Forms;
 
 namespace DT.Samples.Agora.Cross.Droid
 {
@@ -17,7 +18,7 @@ namespace DT.Samples.Agora.Cross.Droid
         {
             TabLayoutResource = Resource.Layout.Tabbar;
             ToolbarResource = Resource.Layout.Toolbar;
-            Xamarin.Agora.Full.Forms.AgoraServiceDroid.Init();
+            AgoraServiceDroid.Init();
             Plugin.CurrentActivity.CrossCurrentActivity.Current.Init(this, savedInstanceState);
             base.OnCreate(savedInstanceState);
             global::Xamarin.Forms.Forms.Init(this, savedInstanceState);

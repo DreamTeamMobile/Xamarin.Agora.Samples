@@ -8,7 +8,7 @@ namespace XMBindingExample
 	public partial class VideoChatViewController : NSViewController
 	{
         protected const string Channel = "drmtm.us";
-        protected const string AgoraKey = "988bb3b0b9294430b96e59bb19180ae9";
+        protected const string AgoraKey = "<AgoraKey>";
         private AgoraRtcEngineKit _agoraKit;
         private AgoraDelegate _agoraDelegate;
         private bool _muteAudio;

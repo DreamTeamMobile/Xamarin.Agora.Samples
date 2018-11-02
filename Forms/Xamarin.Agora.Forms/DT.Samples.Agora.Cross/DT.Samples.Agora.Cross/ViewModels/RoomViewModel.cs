@@ -95,7 +95,7 @@ namespace DT.Samples.Agora.Cross.ViewModels
                 _agoraService.JoinChannelSuccess += (uid) => { };
                 _agoraService.OnDisconnected += _agoraService_OnDisconnected;
                 _agoraService.OnNewStream += _agoraService_OnNewStream;
-                _agoraService.StartSession(Room, "988bb3b0b9294430b96e59bb19180ae9");
+                _agoraService.StartSession(Room, "<AgoraKey>");
             }
         }
 

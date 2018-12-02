@@ -3,6 +3,11 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio 2012
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DT.Samples.Agora.Mac", "DT.Samples.Agora.Mac\DT.Samples.Agora.Mac.csproj", "{EF336464-B5EF-494E-88AD-751F99E0FB3B}"
 EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Solution Items", "Solution Items", "{48CDD7F0-FEB9-451E-8369-D65EC77FFFEB}"
+	ProjectSection(SolutionItems) = preProject
+		Main.storyboard = Main.storyboard
+	EndProjectSection
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|x86 = Debug|x86

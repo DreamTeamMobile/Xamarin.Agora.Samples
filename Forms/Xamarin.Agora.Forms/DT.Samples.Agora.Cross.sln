@@ -7,6 +7,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DT.Samples.Agora.Cross", "D
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DT.Samples.Agora.Cross.iOS", "DT.Samples.Agora.Cross\DT.Samples.Agora.Cross.iOS\DT.Samples.Agora.Cross.iOS.csproj", "{67F8A435-4266-4706-8DC6-B7BE23106E0D}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DT.Samples.Agora.Cross.MacOS", "DT.Samples.Agora.Cross.MacOS\DT.Samples.Agora.Cross.MacOS.csproj", "{8AE6A2FA-89D4-4EE0-8DA2-4DDF3C68F8D1}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -53,6 +55,18 @@ Global
 		{67F8A435-4266-4706-8DC6-B7BE23106E0D}.Debug|iPhone.Build.0 = Debug|iPhone
 		{67F8A435-4266-4706-8DC6-B7BE23106E0D}.Release|iPhone.ActiveCfg = Release|iPhone
 		{67F8A435-4266-4706-8DC6-B7BE23106E0D}.Release|iPhone.Build.0 = Release|iPhone
+		{8AE6A2FA-89D4-4EE0-8DA2-4DDF3C68F8D1}.Debug|Any CPU.ActiveCfg = Debug|iPhone
+		{8AE6A2FA-89D4-4EE0-8DA2-4DDF3C68F8D1}.Debug|Any CPU.Build.0 = Debug|iPhone
+		{8AE6A2FA-89D4-4EE0-8DA2-4DDF3C68F8D1}.Release|Any CPU.ActiveCfg = Release|iPhone
+		{8AE6A2FA-89D4-4EE0-8DA2-4DDF3C68F8D1}.Release|Any CPU.Build.0 = Release|iPhone
+		{8AE6A2FA-89D4-4EE0-8DA2-4DDF3C68F8D1}.Debug|iPhoneSimulator.ActiveCfg = Debug|iPhone
+		{8AE6A2FA-89D4-4EE0-8DA2-4DDF3C68F8D1}.Debug|iPhoneSimulator.Build.0 = Debug|iPhone
+		{8AE6A2FA-89D4-4EE0-8DA2-4DDF3C68F8D1}.Release|iPhoneSimulator.ActiveCfg = Release|iPhone
+		{8AE6A2FA-89D4-4EE0-8DA2-4DDF3C68F8D1}.Release|iPhoneSimulator.Build.0 = Release|iPhone
+		{8AE6A2FA-89D4-4EE0-8DA2-4DDF3C68F8D1}.Debug|iPhone.ActiveCfg = Debug|iPhone
+		{8AE6A2FA-89D4-4EE0-8DA2-4DDF3C68F8D1}.Debug|iPhone.Build.0 = Debug|iPhone
+		{8AE6A2FA-89D4-4EE0-8DA2-4DDF3C68F8D1}.Release|iPhone.ActiveCfg = Release|iPhone
+		{8AE6A2FA-89D4-4EE0-8DA2-4DDF3C68F8D1}.Release|iPhone.Build.0 = Release|iPhone
 	EndGlobalSection
 	GlobalSection(NestedProjects) = preSolution
 	EndGlobalSection

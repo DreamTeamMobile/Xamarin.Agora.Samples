@@ -127,8 +127,5 @@
     </Compile>
     <Compile Include="AgoraDelegate.cs" />
   </ItemGroup>
-  <ItemGroup>
-    <InterfaceDefinition Include="Main.storyboard" />
-  </ItemGroup>
   <Import Project="$(MSBuildExtensionsPath)\Xamarin\Mac\Xamarin.Mac.CSharp.targets" />
 </Project>

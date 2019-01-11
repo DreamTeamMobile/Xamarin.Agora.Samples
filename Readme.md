@@ -34,35 +34,29 @@ Quick Start
 
    * For Android/iOS app
     [DT.Samples.Agora.Shared/AgoraTestConstants.cs](DT.Samples.Agora.Shared/AgoraTestConstants.cs)
-    
-        
+```
         public const string AgoraAPI = "";
-        
+```
    * For Forms app
     [Forms/Xamarin.Agora.Forms/DT.Samples.Agora.Cross/DT.Samples.Agora.Cross/Consts.cs](Forms/Xamarin.Agora.Forms/DT.Samples.Agora.Cross/DT.Samples.Agora.Cross/Consts.cs)
-    
-        
+```
         public const string AgoraKey = "<AgoraKey>";
-        
+```
    * For Mac app
     [Mac/Xamarin.Agora.Mac/DT.Samples.Agora.Mac/VideoChatViewController.cs](Mac/Xamarin.Agora.Mac/DT.Samples.Agora.Mac/VideoChatViewController.cs)
-    
-        
+```
          protected const string AgoraKey = "<AgoraKey>";
-    
+```
    * For WebRTC app
     [Web/webrtc/index.html](Web/webrtc/index.html)
-    
-        
+```
         vendorKey = ""
-        
-
+```
    * For WebAgent app
     [Web/agent/js/index.js](Web/agent/js/index.js)
-    
-        
+```
         vendorKey = ""
-        
+```
 
 What's Inside
 -------------

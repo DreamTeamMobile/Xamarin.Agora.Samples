@@ -32,27 +32,27 @@ Quick Start
 
 1. Replace the following empty string with the corresponding App ID:
 
-   * For Android/iOS app
+* For Android/iOS app
     [DT.Samples.Agora.Shared/AgoraTestConstants.cs](DT.Samples.Agora.Shared/AgoraTestConstants.cs)
 ```
         public const string AgoraAPI = "";
 ```
-   * For Forms app
+* For Forms app
     [Forms/Xamarin.Agora.Forms/DT.Samples.Agora.Cross/DT.Samples.Agora.Cross/Consts.cs](Forms/Xamarin.Agora.Forms/DT.Samples.Agora.Cross/DT.Samples.Agora.Cross/Consts.cs)
 ```
         public const string AgoraKey = "<AgoraKey>";
 ```
-   * For Mac app
+* For Mac app
     [Mac/Xamarin.Agora.Mac/DT.Samples.Agora.Mac/VideoChatViewController.cs](Mac/Xamarin.Agora.Mac/DT.Samples.Agora.Mac/VideoChatViewController.cs)
 ```
          protected const string AgoraKey = "<AgoraKey>";
 ```
-   * For WebRTC app
+* For WebRTC app
     [Web/webrtc/index.html](Web/webrtc/index.html)
 ```
         vendorKey = ""
 ```
-   * For WebAgent app
+* For WebAgent app
     [Web/agent/js/index.js](Web/agent/js/index.js)
 ```
         vendorKey = ""

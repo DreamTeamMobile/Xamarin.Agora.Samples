@@ -27,36 +27,29 @@ namespace DT.Samples.Agora.Cross.ViewModels
             }
         }
 
-        public Command LoadItemsCommand { get; set; }
-
         public ConnectViewModel()
         {
             Title = "Join Room";
-            LoadItemsCommand = new Command(async () => await ExecuteLoadItemsCommand());
-            //CheckPermissionsAndStart();
+            CheckPermissionsAndStart();
         }
 
-        //private async void CheckPermissionsAndStart()
-        //{
-        //    var permissionsToRequest = new List<Permission>();
-        //    var cameraPermissionState = await CrossPermissions.Current.CheckPermissionStatusAsync(Permission.Camera);
-        //    if (cameraPermissionState != PermissionStatus.Granted)
-        //        permissionsToRequest.Add(Permission.Camera);
-
-        //    var microphonePermissionState = await CrossPermissions.Current.CheckPermissionStatusAsync(Permission.Microphone);
-        //    if (microphonePermissionState != PermissionStatus.Granted)
-        //        permissionsToRequest.Add(Permission.Microphone);
-
-        //    var storagePermissionState = await CrossPermissions.Current.CheckPermissionStatusAsync(Permission.Storage);
-        //    if (storagePermissionState != PermissionStatus.Granted)
-        //        permissionsToRequest.Add(Permission.Storage);
-
-        //    if (permissionsToRequest.Count > 0)
-        //        await CrossPermissions.Current.RequestPermissionsAsync(permissionsToRequest.ToArray());
-        //}
-
-        async Task ExecuteLoadItemsCommand()
+        private async void CheckPermissionsAndStart()
         {
+            //var permissionsToRequest = new List<Permission>();
+            //var cameraPermissionState = await CrossPermissions.Current.CheckPermissionStatusAsync(Permission.Camera);
+            //if (cameraPermissionState != PermissionStatus.Granted)
+            //    permissionsToRequest.Add(Permission.Camera);
+
+            //var microphonePermissionState = await CrossPermissions.Current.CheckPermissionStatusAsync(Permission.Microphone);
+            //if (microphonePermissionState != PermissionStatus.Granted)
+            //    permissionsToRequest.Add(Permission.Microphone);
+
+            //var storagePermissionState = await CrossPermissions.Current.CheckPermissionStatusAsync(Permission.Storage);
+            //if (storagePermissionState != PermissionStatus.Granted)
+            //    permissionsToRequest.Add(Permission.Storage);
+
+            //if (permissionsToRequest.Count > 0)
+                //await CrossPermissions.Current.RequestPermissionsAsync(permissionsToRequest.ToArray());
         }
     }
 }

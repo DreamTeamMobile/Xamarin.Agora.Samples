@@ -26,5 +26,9 @@
 	<string>NSApplication</string>
 	<key>XSAppIconAssets</key>
 	<string>Assets.xcassets/AppIcon.appiconset</string>
+	<key>NSCameraUsageDescription</key>
+	<string>Video Chat</string>
+	<key>NSMicrophoneUsageDescription</key>
+	<string>Video Chat</string>
 </dict>
 </plist>

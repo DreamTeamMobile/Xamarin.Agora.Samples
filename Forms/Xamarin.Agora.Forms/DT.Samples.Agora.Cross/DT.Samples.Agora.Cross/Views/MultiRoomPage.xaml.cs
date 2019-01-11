@@ -6,27 +6,27 @@ using Xamarin.Forms.Xaml;
 using DT.Samples.Agora.Cross.Models;
 using DT.Samples.Agora.Cross.ViewModels;
 
+using Xamarin.Forms;
+
 namespace DT.Samples.Agora.Cross.Views
 {
     [XamlCompilation(XamlCompilationOptions.Compile)]
-    public partial class RoomPage : ContentPage
+    public partial class MultiRoomPage : ContentPage
     {
-        RoomViewModel viewModel;
+        MultiRoomViewModel viewModel;
 
-        public RoomPage(RoomViewModel viewModel)
+        public MultiRoomPage(MultiRoomViewModel viewModel)
         {
             InitializeComponent();
 
             BindingContext = this.viewModel = viewModel;
             viewModel.Init();
-
-
         }
 
-        public RoomPage()
+        public MultiRoomPage()
         {
             InitializeComponent();
-            viewModel = new RoomViewModel("NoRoom");
+            viewModel = new MultiRoomViewModel("NoRoom");
             BindingContext = viewModel;
         }
 

@@ -1,10 +1,9 @@
-<?xml version="1.0" encoding="utf-8"?>
-<ContentPage 
-    xmlns="http://xamarin.com/schemas/2014/forms" 
-    xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml" 
-    x:Class="DT.Samples.Agora.Cross.Views.RoomPage"
-    xmlns:agora="clr-namespace:Xamarin.Agora.Full.Forms;assembly=Xamarin.Agora.Full.Forms"
-    Title="{Binding Title}">
+<?xml version="1.0" encoding="UTF-8"?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms" 
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml" 
+             xmlns:agora="clr-namespace:Xamarin.Agora.Full.Forms;assembly=Xamarin.Agora.Full.Forms"
+             x:Class="DT.Samples.Agora.Cross.Views.MultiRoomPage" 
+             Title="{Binding Title}">
     <ContentPage.Resources>
         <ResourceDictionary>
             <Style TargetType="Image">
@@ -16,18 +15,22 @@
         </ResourceDictionary>
     </ContentPage.Resources>
     <Grid>
-        <Grid.ColumnDefinitions>
-            <ColumnDefinition/>
-            <ColumnDefinition/>
-        </Grid.ColumnDefinitions>
         <Grid.RowDefinitions>
-            <RowDefinition/>
-            <RowDefinition/>
+            <RowDefinition />
+            <RowDefinition />
             <RowDefinition Height="50"/>
         </Grid.RowDefinitions>
-        <agora:AgoraVideoView Grid.Row="0" Grid.Column="0" IsStatic="true"/>
-        <agora:AgoraVideoView Grid.Row="1" Grid.Column="1" StreamUID="0" IsStatic="true"/>
-        <StackLayout Grid.ColumnSpan="2" Grid.Row="2" Orientation="Horizontal" Spacing="5" HorizontalOptions="CenterAndExpand" Margin="0,5">
+        <ListView ItemsSource="{Binding UsersOnCall}" Grid.Row="1" RowHeight="200">
+            <ListView.ItemTemplate>
+                <DataTemplate>
+                    <ViewCell>
+                        <agora:AgoraVideoView StreamUID="{Binding}"/>
+                    </ViewCell>
+                </DataTemplate>
+            </ListView.ItemTemplate>
+        </ListView>
+        <agora:AgoraVideoView Grid.Row="0" StreamUID="0"/>
+        <StackLayout Grid.Row="2" Orientation="Horizontal" Spacing="5" HorizontalOptions="CenterAndExpand" Margin="0,5">
             <Image Source="unswitch_camera.png" Aspect="AspectFit">
                 <Image.GestureRecognizers>
                     <TapGestureRecognizer Command="{Binding SwitchCameraCommand}"/>

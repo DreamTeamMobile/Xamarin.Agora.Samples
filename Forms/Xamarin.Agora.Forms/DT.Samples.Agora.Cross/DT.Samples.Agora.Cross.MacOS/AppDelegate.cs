@@ -2,6 +2,7 @@
 using Foundation;
 using Xamarin.Forms;
 using Xamarin.Forms.Platform.MacOS;
+using Xamarin.Agora.Full.Forms;
 
 namespace DT.Samples.Agora.Cross.MacOS
 {
@@ -26,6 +27,7 @@ namespace DT.Samples.Agora.Cross.MacOS
 
         public override void DidFinishLaunching(NSNotification notification)
         {
+            AgoraServiceMac.Init();
             Forms.Init();
             LoadApplication(new App());
             base.DidFinishLaunching(notification);

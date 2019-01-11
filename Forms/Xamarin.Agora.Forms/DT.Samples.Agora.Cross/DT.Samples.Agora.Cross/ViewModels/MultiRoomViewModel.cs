@@ -1,13 +1,16 @@
-﻿using DT.Samples.Agora.Cross.Views;
+﻿using System.Collections.ObjectModel;
+using DT.Samples.Agora.Cross.Views;
 using Xamarin.Agora.Full.Forms;
 using Xamarin.Forms;
 
 namespace DT.Samples.Agora.Cross.ViewModels
 {
-    public class RoomViewModel : BaseViewModel
+    public class MultiRoomViewModel : BaseViewModel
     {
         private bool _isEnded = false;
         private IAgoraService _agoraService;
+
+        public ObservableCollection<uint> UsersOnCall { get; set; } = new ObservableCollection<uint>();
 
         private bool _isAudioMute;
         public bool IsAudioMute
@@ -45,7 +48,7 @@ namespace DT.Samples.Agora.Cross.ViewModels
         public Command SpeakerCommand { get; }
         public Command SwitchCameraCommand { get; }
 
-        public RoomViewModel(string roomName = null)
+        public MultiRoomViewModel(string roomName = null)
         {
             Title = roomName;
             Room = roomName;
@@ -79,42 +82,47 @@ namespace DT.Samples.Agora.Cross.ViewModels
         {
             IsVideoMute = !IsVideoMute;
             _agoraService.SetVideoMute(IsVideoMute);
-
         }
 
         private void OnEndSession(object param)
         {
-            if(_isEnded)
+            if (_isEnded)
             {
                 return;
             }
             _isEnded = true;
+            _agoraService.JoinChannelSuccess -= _agoraService_JoinChannelSuccess;;
+            _agoraService.OnDisconnected -= _agoraService_OnDisconnected;
+            _agoraService.OnNewStream -= _agoraService_OnNewStream;
             _agoraService.EndSession();
-            if (param == null || (param is bool && (bool)param != false))
+            if(param == null || (param is bool && (bool)param != false))
                 (Application.Current.MainPage as MainPage).Detail.Navigation.PopAsync();
         }
 
         public void Init()
         {
-            _isEnded = false;
             if (_agoraService == null)
             {
                 _agoraService = AgoraService.Current;
-                _agoraService.JoinChannelSuccess += (uid) => { };
+                _agoraService.JoinChannelSuccess += _agoraService_JoinChannelSuccess;
                 _agoraService.OnDisconnected += _agoraService_OnDisconnected;
                 _agoraService.OnNewStream += _agoraService_OnNewStream;
                 _agoraService.StartSession(Room, Consts.AgoraKey);
             }
         }
 
-
-        void _agoraService_OnNewStream(uint arg1, int arg2, int arg3)
+        void _agoraService_JoinChannelSuccess(uint obj)
         {
         }
 
-
-        void _agoraService_OnDisconnected(uint obj)
+        void _agoraService_OnNewStream(uint uid, int width, int height)
         {
+            UsersOnCall.Add(uid);
+        }
+
+        void _agoraService_OnDisconnected(uint uid)
+        {
+            UsersOnCall.Remove(uid);
         }
     }
 }

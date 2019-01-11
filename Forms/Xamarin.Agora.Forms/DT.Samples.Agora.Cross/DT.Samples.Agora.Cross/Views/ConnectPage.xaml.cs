@@ -16,9 +16,14 @@ namespace DT.Samples.Agora.Cross.Views
             BindingContext = viewModel = new ConnectViewModel();
         }
 
-        async void Handle_Clicked(object sender, System.EventArgs e)
+        async void Handle_OneToOne_Clicked(object sender, System.EventArgs e)
         {
             await Navigation.PushAsync(new RoomPage(new RoomViewModel(viewModel.RoomName)));
+        }
+
+        async void Handle_Group_Clicked(object sender, System.EventArgs e)
+        {
+            await Navigation.PushAsync(new MultiRoomPage(new MultiRoomViewModel(viewModel.RoomName)));
         }
     }
 }

@@ -101,6 +101,7 @@ namespace DT.Samples.Agora.Cross.ViewModels
 
         public void Init()
         {
+            _isEnded = false;
             if (_agoraService == null)
             {
                 _agoraService = AgoraService.Current;

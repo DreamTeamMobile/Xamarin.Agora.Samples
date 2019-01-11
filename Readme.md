@@ -7,9 +7,9 @@ This repository contains samples of using Xamarin Agora.io FULL SDK Nuget packag
 
 [Xamarin.Agora.Full.iOS](https://www.nuget.org/packages/Xamarin.Agora.Full.iOS/) [![NuGet Badge](https://buildstats.info/nuget/Xamarin.Agora.Full.iOS)](https://www.nuget.org/packages/Xamarin.Agora.Full.iOS/)
 
-[Xamarin.Agora.Full.Mac](https://www.nuget.org/packages/Xamarin.Agora.Full.Mac/) [![NuGet Badge](https://buildstats.info/nuget/Xamarin.Agora.Full.Mac)](https://www.nuget.org/packages/Xamarin.Agora.Full.Mac/)
+[Xamarin.Agora.Full.Mac](https://www.nuget.org/packages/Xamarin.Agora.Full.Mac/) [![NuGet Badge](https://img.shields.io/nuget/v/Xamarin.Agora.Full.Mac.svg)](https://www.nuget.org/packages/Xamarin.Agora.Full.Mac/)
 
-[Xamarin.Agora.Full.Forms](https://www.nuget.org/packages/Xamarin.Agora.Full.Forms/) [![NuGet Badge](https://buildstats.info/nuget/Xamarin.Agora.Full.Forms)](https://www.nuget.org/packages/Xamarin.Agora.Full.Forms/)
+[Xamarin.Agora.Full.Forms](https://www.nuget.org/packages/Xamarin.Agora.Full.Forms/) [![NuGet Badge](https://img.shields.io/nuget/v/Xamarin.Agora.Full.Forms.svg)](https://www.nuget.org/packages/Xamarin.Agora.Full.Forms/)
 
 also contains simple samples for Agora WebRTC and WebAgent SDK
 

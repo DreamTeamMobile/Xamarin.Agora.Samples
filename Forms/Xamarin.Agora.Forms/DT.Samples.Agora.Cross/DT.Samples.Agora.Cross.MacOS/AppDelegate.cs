@@ -6,17 +6,16 @@ using Xamarin.Agora.Full.Forms;
 
 namespace DT.Samples.Agora.Cross.MacOS
 {
-    [Register("AppDelegate")]
+    [Register(nameof(AppDelegate))]
     public class AppDelegate : FormsApplicationDelegate
     {
-        NSWindow _window;
+        private NSWindow _window;
         public AppDelegate()
         {
             var style = NSWindowStyle.Closable | NSWindowStyle.Resizable | NSWindowStyle.Titled;
-
-            var rect = new CoreGraphics.CGRect(200, 1000, 1024, 768);
-            _window = new NSWindow(rect, style, NSBackingStore.Buffered, false);
-            _window.Title = "Xamarin.Forms on Mac!";
+            var windowSize = new CoreGraphics.CGRect(200, 1000, 1024, 768);
+            _window = new NSWindow(windowSize, style, NSBackingStore.Buffered, false);
+            _window.Title = "Agora SDK + Xamarin.Forms";
             _window.TitleVisibility = NSWindowTitleVisibility.Hidden;
         }
 

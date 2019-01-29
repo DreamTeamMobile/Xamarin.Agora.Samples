@@ -48,7 +48,7 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <PackageReference Include="Xamarin.Forms" Version="3.4.0.1009999" />
+    <PackageReference Include="Xamarin.Forms" Version="3.4.0.1029999" />
     <PackageReference Include="Xamarin.Android.Support.Design" Version="27.0.2.1" />
     <PackageReference Include="Xamarin.Android.Support.v7.AppCompat" Version="27.0.2.1" />
     <PackageReference Include="Xamarin.Android.Support.v4" Version="27.0.2.1" />
@@ -61,7 +61,7 @@
       <Version>3.0.0.12</Version>
     </PackageReference>
     <PackageReference Include="Xamarin.Agora.Full.Forms">
-      <Version>2.3.1-beta5</Version>
+      <Version>2.3.1</Version>
     </PackageReference>
   </ItemGroup>
   <ItemGroup>
@@ -79,18 +79,6 @@
     <AndroidResource Include="Resources\layout\Toolbar.axml" />
     <AndroidResource Include="Resources\values\styles.xml" />
     <AndroidResource Include="Resources\values\colors.xml" />
-    <AndroidResource Include="Resources\mipmap-anydpi-v26\icon.xml" />
-    <AndroidResource Include="Resources\mipmap-anydpi-v26\icon_round.xml" />
-    <AndroidResource Include="Resources\mipmap-hdpi\Icon.png" />
-    <AndroidResource Include="Resources\mipmap-hdpi\launcher_foreground.png" />
-    <AndroidResource Include="Resources\mipmap-mdpi\Icon.png" />
-    <AndroidResource Include="Resources\mipmap-mdpi\launcher_foreground.png" />
-    <AndroidResource Include="Resources\mipmap-xhdpi\Icon.png" />
-    <AndroidResource Include="Resources\mipmap-xhdpi\launcher_foreground.png" />
-    <AndroidResource Include="Resources\mipmap-xxhdpi\Icon.png" />
-    <AndroidResource Include="Resources\mipmap-xxhdpi\launcher_foreground.png" />
-    <AndroidResource Include="Resources\mipmap-xxxhdpi\Icon.png" />
-    <AndroidResource Include="Resources\mipmap-xxxhdpi\launcher_foreground.png" />
     <AndroidResource Include="Resources\drawable\xamarin_logo.png" />
     <AndroidResource Include="Resources\drawable\cameraoff.png" />
     <AndroidResource Include="Resources\drawable\cameraon.png" />
@@ -99,6 +87,12 @@
     <AndroidResource Include="Resources\drawable\hangup.png" />
     <AndroidResource Include="Resources\drawable\unmute.png" />
     <AndroidResource Include="Resources\drawable\mute.png" />
+    <AndroidResource Include="Resources\drawable\fullscreen.png" />
+    <AndroidResource Include="Resources\mipmap-mdpi\app_icon.png" />
+    <AndroidResource Include="Resources\mipmap-xhdpi\app_icon.png" />
+    <AndroidResource Include="Resources\mipmap-xxhdpi\app_icon.png" />
+    <AndroidResource Include="Resources\mipmap-xxxhdpi\app_icon.png" />
+    <AndroidResource Include="Resources\mipmap-hdpi\app_icon.png" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="Resources\drawable-hdpi\" />

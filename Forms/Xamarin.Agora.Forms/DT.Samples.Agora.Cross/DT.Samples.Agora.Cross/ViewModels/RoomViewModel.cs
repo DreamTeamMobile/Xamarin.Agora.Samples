@@ -1,4 +1,5 @@
-﻿using DT.Samples.Agora.Cross.Views;
+using System;
+using DT.Samples.Agora.Cross.Views;
 using Xamarin.Agora.Full.Forms;
 using Xamarin.Forms;
 
@@ -44,6 +45,7 @@ namespace DT.Samples.Agora.Cross.ViewModels
         public Command VideoMuteCommand { get; }
         public Command SpeakerCommand { get; }
         public Command SwitchCameraCommand { get; }
+        public Command VideoTapCommand { get; }
 
         public RoomViewModel(string roomName = null)
         {
@@ -55,6 +57,17 @@ namespace DT.Samples.Agora.Cross.ViewModels
             VideoMuteCommand = new Command(OnVideoMute);
             SpeakerCommand = new Command(OnSpeaker);
             SwitchCameraCommand = new Command(SwitchCamera);
+            VideoTapCommand = new Command(TapVideo);
+        }
+
+        private void TapVideo(object param)
+        {
+            if (param is AgoraVideoView view)
+            {
+                //cycle through all video display modes
+                var mode = (int)view.Mode + 1;
+                view.Mode = (VideoDisplayMode)(mode < 4 ? mode : 1);
+            }
         }
 
         private void SwitchCamera(object param)
@@ -84,7 +97,7 @@ namespace DT.Samples.Agora.Cross.ViewModels
 
         private void OnEndSession(object param)
         {
-            if(_isEnded)
+            if (_isEnded)
             {
                 return;
             }
@@ -101,19 +114,19 @@ namespace DT.Samples.Agora.Cross.ViewModels
             {
                 _agoraService = AgoraService.Current;
                 _agoraService.JoinChannelSuccess += (uid) => { };
-                _agoraService.OnDisconnected += _agoraService_OnDisconnected;
-                _agoraService.OnNewStream += _agoraService_OnNewStream;
-                _agoraService.StartSession(Room, Consts.AgoraKey);
+                _agoraService.OnDisconnected += OnDisconnected;
+                _agoraService.OnNewStream += OnNewStream;
+                _agoraService.StartSession(Room, Consts.AgoraKey, webSdkInteroperability: true);
             }
         }
 
 
-        void _agoraService_OnNewStream(uint arg1, int arg2, int arg3)
+        private void OnNewStream(uint arg1, int arg2, int arg3)
         {
         }
 
 
-        void _agoraService_OnDisconnected(uint obj)
+        private void OnDisconnected(uint obj)
         {
         }
     }

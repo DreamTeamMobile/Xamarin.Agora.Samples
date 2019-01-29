@@ -23,15 +23,13 @@
 	<key>MinimumOSVersion</key>
 	<string>10.0</string>
 	<key>CFBundleDisplayName</key>
-	<string>DT.Samples.Agora.Cross</string>
+	<string>FormsAgora</string>
 	<key>CFBundleIdentifier</key>
 	<string>com.dreamteammobile.formsagora</string>
 	<key>CFBundleVersion</key>
 	<string>1.0</string>
 	<key>UILaunchStoryboardName</key>
 	<string>LaunchScreen</string>
-	<key>CFBundleName</key>
-	<string>DT Forms Agora</string>
 	<key>XSAppIconAssets</key>
 	<string>Assets.xcassets/AppIcon.appiconset</string>
 	<key>UIBackgroundModes</key>
@@ -40,8 +38,10 @@
 		<string>voip</string>
 	</array>
 	<key>NSCameraUsageDescription</key>
-	<string>app is using camera for Calls</string>
+	<string>The app is using camera for Agora Demo</string>
 	<key>NSMicrophoneUsageDescription</key>
-	<string>Use mic on call</string>
+	<string>The app is using mic for Agora Demo</string>
+	<key>CFBundleName</key>
+	<string>FormsAgora</string>
 </dict>
 </plist>

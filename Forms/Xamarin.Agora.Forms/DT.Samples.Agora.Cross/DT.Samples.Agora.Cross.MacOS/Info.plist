@@ -2,8 +2,6 @@
 <!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
 <plist version="1.0">
 <dict>
-	<key>CFBundleName</key>
-	<string>DT.Samples.Agora.Cross.MacOS</string>
 	<key>CFBundleIdentifier</key>
 	<string>dt.agora.cross.DT-Samples-Agora-Cross-MacOS</string>
 	<key>CFBundleShortVersionString</key>
@@ -27,8 +25,12 @@
 	<key>XSAppIconAssets</key>
 	<string>Assets.xcassets/AppIcon.appiconset</string>
 	<key>NSCameraUsageDescription</key>
-	<string>Video Chat</string>
+	<string>The app is using camera for Agora Demo</string>
 	<key>NSMicrophoneUsageDescription</key>
-	<string>Video Chat</string>
+	<string>The app is using mic for Agora Demo</string>
+	<key>CFBundleName</key>
+	<string>FormsAgora</string>
+	<key>LSApplicationCategoryType</key>
+	<string>public.app-category.developer-tools</string>
 </dict>
 </plist>

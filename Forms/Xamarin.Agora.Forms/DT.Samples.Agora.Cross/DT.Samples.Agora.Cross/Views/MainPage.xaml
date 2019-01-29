@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
-<MasterDetailPage xmlns="http://xamarin.com/schemas/2014/forms" xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml" xmlns:views="clr-namespace:DT.Samples.Agora.Cross.Views" x:Class="DT.Samples.Agora.Cross.Views.MainPage">
+<MasterDetailPage xmlns="http://xamarin.com/schemas/2014/forms" xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml" xmlns:views="clr-namespace:DT.Samples.Agora.Cross.Views" x:Class="DT.Samples.Agora.Cross.Views.MainPage" BackgroundColor="{StaticResource DTBlue}">
     <MasterDetailPage.Master>
         <views:MenuPage />
     </MasterDetailPage.Master>

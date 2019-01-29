@@ -1,4 +1,4 @@
-﻿using System.Collections.ObjectModel;
+using System.Collections.ObjectModel;
 using DT.Samples.Agora.Cross.Views;
 using Xamarin.Agora.Full.Forms;
 using Xamarin.Forms;
@@ -91,9 +91,9 @@ namespace DT.Samples.Agora.Cross.ViewModels
                 return;
             }
             _isEnded = true;
-            _agoraService.JoinChannelSuccess -= _agoraService_JoinChannelSuccess;;
-            _agoraService.OnDisconnected -= _agoraService_OnDisconnected;
-            _agoraService.OnNewStream -= _agoraService_OnNewStream;
+            _agoraService.JoinChannelSuccess -= OnJoinChannelSuccess;;
+            _agoraService.OnDisconnected -= OnDisconnected;
+            _agoraService.OnNewStream -= OnNewStream;
             _agoraService.EndSession();
             if(param == null || (param is bool && (bool)param != false))
                 (Application.Current.MainPage as MainPage).Detail.Navigation.PopAsync();
@@ -105,23 +105,23 @@ namespace DT.Samples.Agora.Cross.ViewModels
             if (_agoraService == null)
             {
                 _agoraService = AgoraService.Current;
-                _agoraService.JoinChannelSuccess += _agoraService_JoinChannelSuccess;
-                _agoraService.OnDisconnected += _agoraService_OnDisconnected;
-                _agoraService.OnNewStream += _agoraService_OnNewStream;
-                _agoraService.StartSession(Room, Consts.AgoraKey);
+                _agoraService.JoinChannelSuccess += OnJoinChannelSuccess;
+                _agoraService.OnDisconnected += OnDisconnected;
+                _agoraService.OnNewStream += OnNewStream;
+                _agoraService.StartSession(Room, Consts.AgoraKey, webSdkInteroperability: true);
             }
         }
 
-        void _agoraService_JoinChannelSuccess(uint obj)
+        private void OnJoinChannelSuccess(uint obj)
         {
         }
 
-        void _agoraService_OnNewStream(uint uid, int width, int height)
+        private void OnNewStream(uint uid, int width, int height)
         {
             UsersOnCall.Add(uid);
         }
 
-        void _agoraService_OnDisconnected(uint uid)
+        private void OnDisconnected(uint uid)
         {
             UsersOnCall.Remove(uid);
         }

@@ -5,6 +5,7 @@ using Xamarin.Forms.Xaml;
 
 using DT.Samples.Agora.Cross.Models;
 using DT.Samples.Agora.Cross.ViewModels;
+using Xamarin.Forms.PlatformConfiguration.iOSSpecific;
 
 namespace DT.Samples.Agora.Cross.Views
 {
@@ -16,18 +17,14 @@ namespace DT.Samples.Agora.Cross.Views
         public RoomPage(RoomViewModel viewModel)
         {
             InitializeComponent();
-
+            On<Xamarin.Forms.PlatformConfiguration.iOS>().SetUseSafeArea(true);
             BindingContext = this.viewModel = viewModel;
             viewModel.Init();
-
-
         }
 
-        public RoomPage()
+        public RoomPage() : this(new RoomViewModel("DesignTimeRoom"))
         {
-            InitializeComponent();
-            viewModel = new RoomViewModel("NoRoom");
-            BindingContext = viewModel;
+           
         }
 
         protected override void OnDisappearing()

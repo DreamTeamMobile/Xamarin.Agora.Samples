@@ -26,7 +26,7 @@
         <ColumnDefinition />
         <ColumnDefinition />
       </Grid.ColumnDefinitions>
-      <agora:AgoraVideoView x:Name="RemoteVideo" IsStatic="true" Grid.ColumnSpan="3" />
+      <agora:AgoraVideoView x:Name="RemoteVideo" IsStatic="true" Grid.ColumnSpan="3" Mode="Hidden"/>
       <Image Source="mute.png" IsVisible="{Binding Source={x:Reference Name=RemoteVideo}, Path=IsAudioMuted}" Aspect="AspectFit" HeightRequest="30" WidthRequest="30" VerticalOptions="End" HorizontalOptions="Center" />
       <Image Source="cameraoff.png" Grid.Column="1" IsVisible="{Binding Source={x:Reference Name=RemoteVideo}, Path=IsVideoMuted}" Aspect="AspectFit" HeightRequest="30" WidthRequest="30" VerticalOptions="End" HorizontalOptions="Center" />
       <Image Source="fullscreen.png" IsVisible="{Binding Source={x:Reference Name=RemoteVideo}, Path=IsOffline, Converter={StaticResource InvertBoolConverter}}" Grid.Column="2" Aspect="AspectFit" HeightRequest="30" WidthRequest="30" VerticalOptions="End" HorizontalOptions="Center">

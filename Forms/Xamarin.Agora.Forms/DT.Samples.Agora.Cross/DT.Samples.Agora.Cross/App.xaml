@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Application 
+    xmlns="http://xamarin.com/schemas/2014/forms" 
+    xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml" 
+    xmlns:converters="clr-namespace:DT.Samples.Agora.Cross.Converters"
+    x:Class="DT.Samples.Agora.Cross.App">
+    <Application.Resources>
+        <ResourceDictionary>
+            <Color x:Key="DTBlue">#3a4fb7</Color>
+            <Color x:Key="DTAccent">#15fd89</Color>
+            <converters:InvertBoolConverter x:Key="InvertBoolConverter"/>
+            <Style TargetType="NavigationPage">
+                <Setter Property="BarBackgroundColor" Value="{StaticResource DTBlue}" />
+                <Setter Property="BarTextColor" Value="{StaticResource DTAccent}" />
+            </Style>
+            <Style TargetType="ContentPage">
+                <Setter Property="BackgroundColor" Value="{StaticResource DTBlue}" />
+            </Style>
+        </ResourceDictionary>
+    </Application.Resources>
+</Application>

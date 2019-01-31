@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="utf-8"?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms" xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml" x:Class="DT.Samples.Agora.Cross.Views.MenuPage" Title="Menu" BackgroundColor="{StaticResource DTBlue}">
+  <StackLayout VerticalOptions="FillAndExpand">
+    <Label Text="Menu" FontSize="32" Margin="10" TextColor="{StaticResource DTAccent}">
+      <Label.IsVisible>
+        <OnPlatform x:TypeArguments="x:Boolean">
+          <On Platform="macOS" Value="true" />
+          <On Platform="Android" Value="false" />
+          <On Platform="iOS" Value="false" />
+        </OnPlatform>
+      </Label.IsVisible>
+    </Label>
+    <ListView x:Name="ListViewMenu" HasUnevenRows="True" BackgroundColor="{StaticResource DTBlue}" SeparatorVisibility="None">
+      <ListView.ItemTemplate>
+        <DataTemplate>
+          <ViewCell>
+            <Grid Margin="10" Padding="10" BackgroundColor="{StaticResource DTBlue}">
+              <Label Text="{Binding Title}" FontSize="20" TextColor="{StaticResource DTAccent}" />
+            </Grid>
+          </ViewCell>
+        </DataTemplate>
+      </ListView.ItemTemplate>
+    </ListView>
+  </StackLayout>
+</ContentPage>

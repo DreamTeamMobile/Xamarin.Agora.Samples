@@ -2,10 +2,8 @@
 <!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
 <plist version="1.0">
 <dict>
-	<key>CFBundleName</key>
-	<string>XMBindingExample</string>
 	<key>CFBundleIdentifier</key>
-	<string>com.companyname.XMBindingExample</string>
+	<string>com.dreamteammobile.agora.onetoone</string>
 	<key>CFBundleShortVersionString</key>
 	<string>1.0</string>
 	<key>CFBundleVersion</key>
@@ -30,5 +28,11 @@
 	<string>Assets.xcassets/AppIcon.appiconset</string>
 	<key>Custom Property</key>
 	<string></string>
+	<key>CFBundleName</key>
+	<string>Agora Xamarin Mac sample</string>
+    <key>NSCameraUsageDescription</key>
+	<string>The app is using camera for Agora Demo</string>
+	<key>NSMicrophoneUsageDescription</key>
+	<string>The app is using mic for Agora Demo</string>
 </dict>
 </plist>

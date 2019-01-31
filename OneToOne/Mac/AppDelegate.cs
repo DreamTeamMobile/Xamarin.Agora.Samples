@@ -1,9 +1,9 @@
 ﻿using AppKit;
 using Foundation;
 
-namespace XMBindingExample
+namespace DT.Samples.Agora.OneToOne.Mac
 {
-	[Register("AppDelegate")]
+	[Register(nameof(AppDelegate))]
 	public class AppDelegate : NSApplicationDelegate
 	{
 		public AppDelegate()

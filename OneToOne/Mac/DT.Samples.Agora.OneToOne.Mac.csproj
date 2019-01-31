@@ -6,8 +6,8 @@
     <ProjectGuid>{EF336464-B5EF-494E-88AD-751F99E0FB3B}</ProjectGuid>
     <ProjectTypeGuids>{A3F8F2AB-B479-4A4A-A458-A89E7DC349F1};{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}</ProjectTypeGuids>
     <OutputType>Exe</OutputType>
-    <RootNamespace>XMBindingExample</RootNamespace>
-    <AssemblyName>XMBindingExample</AssemblyName>
+    <RootNamespace>DT.Samples.Agora.OneToOne.Mac</RootNamespace>
+    <AssemblyName>DT.Samples.Agora.OneToOne.Mac</AssemblyName>
     <TargetFrameworkVersion>v2.0</TargetFrameworkVersion>
     <TargetFrameworkIdentifier>Xamarin.Mac</TargetFrameworkIdentifier>
     <MonoMacResourcePrefix>Resources</MonoMacResourcePrefix>
@@ -53,23 +53,13 @@
   <ItemGroup>
     <Reference Include="System" />
     <Reference Include="System.Core" />
-    <Reference Include="Xamarin.Mac" />
+    <Reference Include="Xamarin.Mac" />    
     <Reference Include="Xamarin.Agora.Full.Mac">
-      <HintPath>..\packages\Xamarin.Agora.Full.Mac.2.2.3-beta1\lib\Xamarin.Mac20\Xamarin.Agora.Full.Mac.dll</HintPath>
+      <HintPath>..\..\packages\Xamarin.Agora.Full.Mac.2.3.3\lib\Xamarin.Mac20\Xamarin.Agora.Full.Mac.dll</HintPath>
     </Reference>
   </ItemGroup>
   <ItemGroup>
     <ImageAsset Include="Assets.xcassets\AppIcon.appiconset\Contents.json" />
-    <ImageAsset Include="Assets.xcassets\AppIcon.appiconset\AppIcon-128.png" />
-    <ImageAsset Include="Assets.xcassets\AppIcon.appiconset\AppIcon-128%402x.png" />
-    <ImageAsset Include="Assets.xcassets\AppIcon.appiconset\AppIcon-16.png" />
-    <ImageAsset Include="Assets.xcassets\AppIcon.appiconset\AppIcon-16%402x.png" />
-    <ImageAsset Include="Assets.xcassets\AppIcon.appiconset\AppIcon-256.png" />
-    <ImageAsset Include="Assets.xcassets\AppIcon.appiconset\AppIcon-256%402x.png" />
-    <ImageAsset Include="Assets.xcassets\AppIcon.appiconset\AppIcon-32.png" />
-    <ImageAsset Include="Assets.xcassets\AppIcon.appiconset\AppIcon-32%402x.png" />
-    <ImageAsset Include="Assets.xcassets\AppIcon.appiconset\AppIcon-512.png" />
-    <ImageAsset Include="Assets.xcassets\AppIcon.appiconset\AppIcon-512%402x.png" />
     <ImageAsset Include="Assets.xcassets\Contents.json" />
     <ImageAsset Include="Assets.xcassets\deviceSelectionButton.imageset\Contents.json" />
     <ImageAsset Include="Assets.xcassets\deviceSelectionButton.imageset\device_selection.png" />
@@ -91,6 +81,13 @@
     <ImageAsset Include="Assets.xcassets\videoMuteButtonSelected.imageset\cameraon.png" />
     <ImageAsset Include="Assets.xcassets\videoMutedIndicator.imageset\Contents.json" />
     <ImageAsset Include="Assets.xcassets\videoMutedIndicator.imageset\cameraoff_mainVideo.png" />
+    <ImageAsset Include="Assets.xcassets\AppIcon.appiconset\16.png" />
+    <ImageAsset Include="Assets.xcassets\AppIcon.appiconset\32.png" />
+    <ImageAsset Include="Assets.xcassets\AppIcon.appiconset\64.png" />
+    <ImageAsset Include="Assets.xcassets\AppIcon.appiconset\128.png" />
+    <ImageAsset Include="Assets.xcassets\AppIcon.appiconset\256.png" />
+    <ImageAsset Include="Assets.xcassets\AppIcon.appiconset\512.png" />
+    <ImageAsset Include="Assets.xcassets\AppIcon.appiconset\1024.png" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="Resources\" />
@@ -113,19 +110,24 @@
   <ItemGroup>
     <Compile Include="Main.cs" />
     <Compile Include="AppDelegate.cs" />
-    <Compile Include="ViewController.cs" />
-    <Compile Include="ViewController.designer.cs">
-      <DependentUpon>ViewController.cs</DependentUpon>
-    </Compile>
     <Compile Include="VideoChatViewController.cs" />
     <Compile Include="VideoChatViewController.designer.cs">
       <DependentUpon>VideoChatViewController.cs</DependentUpon>
     </Compile>
+    <Compile Include="AgoraDelegate.cs" />
     <Compile Include="DeviceSelectionViewController.cs" />
     <Compile Include="DeviceSelectionViewController.designer.cs">
       <DependentUpon>DeviceSelectionViewController.cs</DependentUpon>
     </Compile>
-    <Compile Include="AgoraDelegate.cs" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\..\DT.Samples.Agora.Shared\DT.Samples.Agora.Shared.csproj">
+      <Project>{2DDB7277-5ACB-4DE9-BFC7-29C5DEDA4217}</Project>
+      <Name>DT.Samples.Agora.Shared</Name>
+    </ProjectReference>
+  </ItemGroup>
+  <ItemGroup>
+    <InterfaceDefinition Include="Main.storyboard" />
   </ItemGroup>
   <Import Project="$(MSBuildExtensionsPath)\Xamarin\Mac\Xamarin.Mac.CSharp.targets" />
 </Project>

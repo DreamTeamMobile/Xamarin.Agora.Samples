@@ -31,5 +31,10 @@ namespace DT.Samples.Agora.Cross.MacOS
             LoadApplication(new App());
             base.DidFinishLaunching(notification);
         }
+
+        public override bool ApplicationShouldTerminateAfterLastWindowClosed(NSApplication sender)
+        {
+            return true;
+        }
     }
 }

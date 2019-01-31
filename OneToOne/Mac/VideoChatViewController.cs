@@ -1,23 +1,27 @@
-using System;
+﻿using System;
 using AppKit;
 using Xamarin.Agora.Mac;
 using CoreGraphics;
+using DT.Samples.Agora.Shared;
+using System.Threading.Tasks;
 
-namespace XMBindingExample
+namespace DT.Samples.Agora.OneToOne.Mac
 {
-	public partial class VideoChatViewController : NSViewController
-	{
+    /*
+        For additional information on MacOS and Agora see Agora MacOS Swift tutorials
+    */
+    public partial class VideoChatViewController : NSViewController
+    {
         protected const string Channel = "drmtm.us";
-        protected const string AgoraKey = "<AgoraKey>";
         private AgoraRtcEngineKit _agoraKit;
         private AgoraDelegate _agoraDelegate;
         private bool _muteAudio;
         private bool _muteVideo;
         private bool _screenShare;
 
-        public VideoChatViewController (IntPtr handle) : base (handle)
-		{
-		}
+        public VideoChatViewController(IntPtr handle) : base(handle)
+        {
+        }
 
         public override void ViewDidLoad()
         {
@@ -25,12 +29,10 @@ namespace XMBindingExample
             this.View.WantsLayer = true;
             remoteVideo.WantsLayer = true;
             localVideo.WantsLayer = true;
-
-            SetupButtons();              
-            HideVideoMuted();            
-            InitializeAgoraEngine();     
-            SetupVideo();                
-            SetupLocalVideo();           
+            HideVideoMuted();
+            InitializeAgoraEngine();
+            SetupVideo();
+            SetupLocalVideo();
             JoinChannel();
         }
 
@@ -57,22 +59,23 @@ namespace XMBindingExample
         private void didShareButtonClicked(object sender, EventArgs e)
         {
             _screenShare = !_screenShare;
-            if(_screenShare)
+            if (_screenShare)
             {
-                //(sender as NSButton).Image = new NSImage("screenShareButtonSelected"); 
-                _agoraKit.StartScreenCapture(0, 15, 0, CGRect.Empty);
+                (sender as NSButton).Image = NSImage.ImageNamed("screenShareButtonSelected");
+                _agoraKit.StartScreenCapture(0, 15, 0, CGRect.Null);
             }
             else
             {
-                //(sender as NSButton).Image = new NSImage("screenShareButton"); 
+                (sender as NSButton).Image = NSImage.ImageNamed("screenShareButton");
                 _agoraKit.StopScreenCapture();
             }
         }
 
         private void didDeviceSelectionButtonClicked(object sender, EventArgs e)
         {
-            var deviceSelectionViewController = this.Storyboard.InstantiateControllerWithIdentifier("DeviceSelectionViewController") as NSViewController;
+            var deviceSelectionViewController = this.Storyboard.InstantiateControllerWithIdentifier("DeviceSelectionViewController") as DeviceSelectionViewController;
             this.PresentViewControllerAsSheet(deviceSelectionViewController);
+            deviceSelectionViewController.SetAgoraKit(this._agoraKit);
         }
 
         private void didVideoMuteButtonClicked(object sender, EventArgs e)
@@ -80,19 +83,26 @@ namespace XMBindingExample
             _muteVideo = !_muteVideo;
             _agoraKit.MuteLocalVideoStream(_muteVideo);
 
-            if (_muteAudio)
+            if (_muteVideo)
             {
-                //(sender as NSButton).Image = new NSImage("videoMuteButtonSelected"); 
+                (sender as NSButton).Image = NSImage.ImageNamed("videoMuteButtonSelected");
             }
             else
             {
-                //(sender as NSButton).Image = new NSImage("videoMuteButton");
+                (sender as NSButton).Image = NSImage.ImageNamed("videoMuteButton");
             }
         }
 
         private void didHungUpButtonClicked(object sender, EventArgs e)
         {
             LeaveChannel();
+            Task.Delay(1000).ContinueWith(_ =>
+            {
+                BeginInvokeOnMainThread(() =>
+                {
+                    NSApplication.SharedApplication.Terminate(this);
+                });
+            });
         }
 
         private void didClickedMuteButtonClicked(object sender, EventArgs e)
@@ -100,13 +110,13 @@ namespace XMBindingExample
             _muteAudio = !_muteAudio;
             _agoraKit.MuteLocalAudioStream(_muteAudio);
 
-            if(_muteAudio)
+            if (_muteAudio)
             {
-                //(sender as NSButton).Image = new NSImage("muteButtonSelected"); 
+                (sender as NSButton).Image = NSImage.ImageNamed("muteButtonSelected");
             }
             else
             {
-                //(sender as NSButton).Image = new NSImage("muteButton");
+                (sender as NSButton).Image = NSImage.ImageNamed("muteButton");
             }
         }
 
@@ -121,7 +131,7 @@ namespace XMBindingExample
         public void InitializeAgoraEngine()
         {
             _agoraDelegate = new AgoraDelegate(this);
-            _agoraKit = AgoraRtcEngineKit.SharedEngineWithAppId(AgoraKey, _agoraDelegate);
+            _agoraKit = AgoraRtcEngineKit.SharedEngineWithAppId(AgoraTestConstants.AgoraAPI, _agoraDelegate);
         }
 
         public void SetupVideo()
@@ -143,7 +153,7 @@ namespace XMBindingExample
 
         public void JoinChannel()
         {
-            _agoraKit.JoinChannelByToken(null, Channel, null, 0, (arg1, arg2, arg3) => {});
+            _agoraKit.JoinChannelByToken(null, Channel, null, 0, (arg1, arg2, arg3) => { });
         }
 
         public void LeaveChannel()
@@ -154,32 +164,12 @@ namespace XMBindingExample
             localVideo.RemoveFromSuperview();
             //delegate?.VideoChatNeedClose(self);
             _agoraKit = null;
-            View.Window?.Close();
-        }
-
-
-        public void SetupButtons()
-        {
-            //perform(#selector(hideControlButtons), with:nil, afterDelay:3)
-        //    var remoteVideoTrackingArea = new NSTrackingArea(remoteVideo.Bounds, 
-        //                                                       NSTrackingAreaOptions.MouseMoved & NSTrackingAreaOptions.ActiveInActiveApp & NSTrackingAreaOptions.InVisibleRect, 
-        //                                                       this, 
-        //                                                       null);
-
-        //    remoteVideo.AddTrackingArea(remoteVideoTrackingArea);
-
-        //    var controlButtonsTrackingArea = new NSTrackingArea(controlButtons.Bounds,
-        //                                                        NSTrackingAreaOptions.MouseEnteredAndExited & NSTrackingAreaOptions.ActiveInActiveApp & NSTrackingAreaOptions.InVisibleRect,
-        //                                                       this,
-        //                                                       null);
-
-        //    controlButtons.AddTrackingArea(controlButtonsTrackingArea);
         }
 
         public override void MouseMoved(NSEvent theEvent)
         {
             base.MouseMoved(theEvent);
-            if(controlButtons.Hidden)
+            if (controlButtons.Hidden)
             {
                 controlButtons.Hidden = false;
                 //perform(#selector(hideControlButtons), with:nil, afterDelay:3)

@@ -3,7 +3,7 @@ using CoreGraphics;
 using Foundation;
 using Xamarin.Agora.Mac;
 
-namespace XMBindingExample
+namespace DT.Samples.Agora.OneToOne.Mac
 {
     public class AgoraDelegate : AgoraRtcEngineDelegate
     {

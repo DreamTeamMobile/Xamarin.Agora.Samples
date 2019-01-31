@@ -1,6 +1,6 @@
 ﻿using AppKit;
 
-namespace XMBindingExample
+namespace DT.Samples.Agora.OneToOne.Mac
 {
 	static class MainClass
 	{

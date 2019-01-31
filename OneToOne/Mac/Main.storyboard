@@ -1,8 +1,8 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.Cocoa.Storyboard.XIB" version="3.0" toolsVersion="14313.18" targetRuntime="MacOSX.Cocoa" propertyAccessControl="none" useAutolayout="YES" initialViewController="B8D-0N-5wS">
+<document type="com.apple.InterfaceBuilder3.Cocoa.Storyboard.XIB" version="3.0" toolsVersion="14460.31" targetRuntime="MacOSX.Cocoa" propertyAccessControl="none" useAutolayout="YES" initialViewController="B8D-0N-5wS">
     <dependencies>
         <deployment identifier="macosx"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.CocoaPlugin" version="14313.18"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.CocoaPlugin" version="14460.31"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <scenes>
@@ -717,9 +717,6 @@
                                             <behavior key="behavior" lightByContents="YES"/>
                                             <font key="font" metaFont="system"/>
                                         </buttonCell>
-                                        <connections>
-                                            <action selector="didClickDeviceSelectionButton:" target="e5B-ri-8aw" id="pGV-VD-nha"/>
-                                        </connections>
                                     </button>
                                     <customView hidden="YES" translatesAutoresizingMaskIntoConstraints="NO" id="VgQ-2N-of6" userLabel="controlButtonSpacer">
                                         <rect key="frame" x="110" y="0.0" width="50" height="66"/>
@@ -748,9 +745,6 @@
                                             <behavior key="behavior" lightByContents="YES"/>
                                             <font key="font" metaFont="system"/>
                                         </buttonCell>
-                                        <connections>
-                                            <action selector="didClickMuteButton:" target="e5B-ri-8aw" id="cXW-Q3-5C9"/>
-                                        </connections>
                                     </button>
                                     <customView hidden="YES" translatesAutoresizingMaskIntoConstraints="NO" id="cHp-Re-s25" userLabel="controlButtonSpacer">
                                         <rect key="frame" x="330" y="0.0" width="50" height="66"/>
@@ -765,9 +759,6 @@
                                             <behavior key="behavior" lightByContents="YES"/>
                                             <font key="font" metaFont="system"/>
                                         </buttonCell>
-                                        <connections>
-                                            <action selector="didClickScreenShareButton:" target="e5B-ri-8aw" id="7do-qB-A1n"/>
-                                        </connections>
                                     </button>
                                     <customView hidden="YES" translatesAutoresizingMaskIntoConstraints="NO" id="XXF-7L-j3W" userLabel="controlButtonSpacer">
                                         <rect key="frame" x="440" y="0.0" width="50" height="66"/>
@@ -782,9 +773,6 @@
                                             <behavior key="behavior" lightByContents="YES"/>
                                             <font key="font" metaFont="system"/>
                                         </buttonCell>
-                                        <connections>
-                                            <action selector="didClickHangUpButton:" target="e5B-ri-8aw" id="0Af-52-g2h"/>
-                                        </connections>
                                     </button>
                                     <customView hidden="YES" translatesAutoresizingMaskIntoConstraints="NO" id="VLy-kE-w9f" userLabel="controlButtonSpacer">
                                         <rect key="frame" x="550" y="0.0" width="50" height="66"/>
@@ -855,7 +843,7 @@
                     </view>
                     <connections>
                         <outlet property="controlButtons" destination="whz-E3-nqj" id="yx1-Jh-Uty"/>
-                        <outlet property="deviceSelectionButton" destination="Hs0-Bt-t6t" id="KYr-00-axA"/>
+                        <outlet property="deviceSelectionButton" destination="Hs0-Bt-t6t" id="0kD-Rg-ZMJ"/>
                         <outlet property="hungUpButton" destination="5eX-b2-8eW" id="dTu-8i-eNg"/>
                         <outlet property="localVideo" destination="0Fp-dV-y3H" id="Tbq-57-Usv"/>
                         <outlet property="localVideoMuteBg" destination="d58-P3-pIG" id="j9O-P3-hEh"/>
@@ -972,7 +960,7 @@
                                     <font key="font" metaFont="system"/>
                                 </buttonCell>
                                 <connections>
-                                    <action selector="didClickConfirmButton:" target="lRI-FJ-G6f" id="Ujt-kA-63l"/>
+                                    <action selector="didClickConfirmButton:" target="lRI-FJ-G6f" id="mc2-Oq-G7M"/>
                                 </connections>
                             </button>
                         </subviews>
@@ -999,9 +987,9 @@
                         </constraints>
                     </view>
                     <connections>
-                        <outlet property="cameraSelection" destination="W8m-hU-xJd" id="t8Q-sY-0k8"/>
-                        <outlet property="microphoneSelection" destination="fzN-zl-tAV" id="h86-aT-anz"/>
-                        <outlet property="speakerSelection" destination="7D5-WM-FGG" id="POE-mE-J8S"/>
+                        <outlet property="cameraSelection" destination="W8m-hU-xJd" id="AUM-f8-p2T"/>
+                        <outlet property="microphoneSelection" destination="fzN-zl-tAV" id="dSD-we-yKh"/>
+                        <outlet property="speakerSelection" destination="7D5-WM-FGG" id="PdG-ub-tJI"/>
                     </connections>
                 </viewController>
                 <customObject id="62f-a3-niC" userLabel="First Responder" customClass="NSResponder" sceneMemberID="firstResponder"/>

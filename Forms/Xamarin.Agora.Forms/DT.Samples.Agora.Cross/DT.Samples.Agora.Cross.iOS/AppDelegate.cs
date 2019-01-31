@@ -8,7 +8,7 @@ namespace DT.Samples.Agora.Cross.iOS
     {
         public override bool FinishedLaunching(UIApplication uiApplication, NSDictionary launchOptions)
         {
-            Xamarin.Agora.Full.Forms.AgoraServiceIos.Init();
+            global::Xamarin.Agora.Full.Forms.AgoraServiceIos.Init();
             global::Xamarin.Forms.Forms.Init();
             LoadApplication(new App());
 

@@ -11,7 +11,7 @@ This repository contains samples of using Xamarin Agora.io FULL SDK Nuget packag
 
 [Xamarin.Agora.Full.Forms](https://www.nuget.org/packages/Xamarin.Agora.Full.Forms/) [![NuGet Badge](https://buildstats.info/nuget/Xamarin.Agora.Full.Forms)](https://www.nuget.org/packages/Xamarin.Agora.Full.Forms/)
 
-also contains basic sample for Agora WebRTC
+also contains a basic sample for Agora WebRTC
 
 
 Running samples
@@ -67,5 +67,22 @@ In this repository you can find OneToOne Communication apps for Android, iOS, Ma
 * **Agora WebRTC** usage example in [/Web/webrtc](/Web/webrtc)
  
 
+Screenshots
+-------------
+
+Xamarin.Forms iOS
+
+<img src="https://raw.githubusercontent.com/DreamTeamMobile/Xamarin.Agora.Samples/master/Screenshots/Forms/AgoraXamarinFormsiOS_00.png" width="200" />
+<img src="https://raw.githubusercontent.com/DreamTeamMobile/Xamarin.Agora.Samples/master/Screenshots/Forms/AgoraXamarinFormsiOS_01.png" width="200" />
+
+Xamarin.Forms Android
+
+<img src="https://raw.githubusercontent.com/DreamTeamMobile/Xamarin.Agora.Samples/master/Screenshots/Forms/AgoraXamarinFormsAndroid_00.png" width="200" />
+<img src="https://raw.githubusercontent.com/DreamTeamMobile/Xamarin.Agora.Samples/master/Screenshots/Forms/AgoraXamarinFormsAndroid_01.png" width="200" />
+
+Xamarin.Forms MacOS
+
+<img src="https://raw.githubusercontent.com/DreamTeamMobile/Xamarin.Agora.Samples/master/Screenshots/Forms/AgoraXamarinFormsMacOS_00.png" width="500" />
+<img src="https://raw.githubusercontent.com/DreamTeamMobile/Xamarin.Agora.Samples/master/Screenshots/Forms/AgoraXamarinFormsMacOS_01.png" width="500" />
 
 

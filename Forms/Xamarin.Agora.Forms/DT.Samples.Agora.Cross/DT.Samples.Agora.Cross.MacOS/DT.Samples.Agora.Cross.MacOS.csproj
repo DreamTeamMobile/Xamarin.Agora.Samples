@@ -70,13 +70,13 @@
       <HintPath>..\..\packages\Xamarin.Forms.3.4.0.1029999\lib\Xamarin.Mac\Xamarin.Forms.Xaml.dll</HintPath>
     </Reference>
     <Reference Include="Xamarin.Agora.Full.Mac">
-      <HintPath>..\..\packages\Xamarin.Agora.Full.Forms.2.3.3-beta1\lib\Xamarin.Mac20\Xamarin.Agora.Full.Mac.dll</HintPath>
-    </Reference>
-    <Reference Include="Xamarin.Agora.Full.Forms">
-      <HintPath>..\..\packages\Xamarin.Agora.Full.Forms.2.3.3-beta1\lib\Xamarin.Mac20\Xamarin.Agora.Full.Forms.dll</HintPath>
+      <HintPath>..\..\packages\Xamarin.Agora.Full.Mac.2.3.4.1\lib\Xamarin.Mac20\Xamarin.Agora.Full.Mac.dll</HintPath>
     </Reference>
     <Reference Include="Xamarin.Agora.Full.Forms.MacOS">
-      <HintPath>..\..\packages\Xamarin.Agora.Full.Forms.2.3.3-beta1\lib\Xamarin.Mac20\Xamarin.Agora.Full.Forms.MacOS.dll</HintPath>
+      <HintPath>..\..\packages\Xamarin.Agora.Full.Forms.2.3.4.3\lib\Xamarin.Mac20\Xamarin.Agora.Full.Forms.MacOS.dll</HintPath>
+    </Reference>
+    <Reference Include="Xamarin.Agora.Full.Forms">
+      <HintPath>..\..\packages\Xamarin.Agora.Full.Forms.2.3.4.3\lib\Xamarin.Mac20\Xamarin.Agora.Full.Forms.dll</HintPath>
     </Reference>
   </ItemGroup>
   <ItemGroup>

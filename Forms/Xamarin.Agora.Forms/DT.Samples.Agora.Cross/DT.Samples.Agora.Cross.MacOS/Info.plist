@@ -3,7 +3,7 @@
 <plist version="1.0">
 <dict>
 	<key>CFBundleIdentifier</key>
-	<string>dt.agora.cross.DT-Samples-Agora-Cross-MacOS</string>
+	<string>com.dreamteam.sample</string>
 	<key>CFBundleShortVersionString</key>
 	<string>1.0</string>
 	<key>CFBundleVersion</key>
@@ -29,7 +29,7 @@
 	<key>NSMicrophoneUsageDescription</key>
 	<string>The app is using mic for Agora Demo</string>
 	<key>CFBundleName</key>
-	<string>FormsAgora</string>
+	<string>DTMacSampleSpec</string>
 	<key>LSApplicationCategoryType</key>
 	<string>public.app-category.developer-tools</string>
 </dict>

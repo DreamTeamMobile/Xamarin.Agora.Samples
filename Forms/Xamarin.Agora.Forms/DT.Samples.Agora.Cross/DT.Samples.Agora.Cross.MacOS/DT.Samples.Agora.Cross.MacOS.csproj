@@ -9,7 +9,7 @@
     <ProjectTypeGuids>{A3F8F2AB-B479-4A4A-A458-A89E7DC349F1};{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}</ProjectTypeGuids>
     <OutputType>Exe</OutputType>
     <RootNamespace>DT.Samples.Agora.Cross.MacOS</RootNamespace>
-    <AssemblyName>Agora Sample</AssemblyName>
+    <AssemblyName>AgoraSample</AssemblyName>
     <TargetFrameworkVersion>v2.0</TargetFrameworkVersion>
     <TargetFrameworkIdentifier>Xamarin.Mac</TargetFrameworkIdentifier>
     <MonoMacResourcePrefix>Resources</MonoMacResourcePrefix>
@@ -40,9 +40,9 @@
     <DefineConstants></DefineConstants>
     <ErrorReport>prompt</ErrorReport>
     <WarningLevel>4</WarningLevel>
-    <EnableCodeSigning>false</EnableCodeSigning>
+    <EnableCodeSigning>true</EnableCodeSigning>
     <CreatePackage>true</CreatePackage>
-    <EnablePackageSigning>false</EnablePackageSigning>
+    <EnablePackageSigning>true</EnablePackageSigning>
     <IncludeMonoRuntime>true</IncludeMonoRuntime>
     <UseSGen>true</UseSGen>
     <UseRefCounting>true</UseRefCounting>
@@ -70,7 +70,7 @@
       <HintPath>..\..\packages\Xamarin.Forms.3.4.0.1029999\lib\Xamarin.Mac\Xamarin.Forms.Xaml.dll</HintPath>
     </Reference>
     <Reference Include="Xamarin.Agora.Full.Mac">
-      <HintPath>..\..\packages\Xamarin.Agora.Full.Mac.2.3.4.1\lib\Xamarin.Mac20\Xamarin.Agora.Full.Mac.dll</HintPath>
+      <HintPath>..\..\packages\Xamarin.Agora.Full.Mac.2.3.4.2\lib\Xamarin.Mac20\Xamarin.Agora.Full.Mac.dll</HintPath>
     </Reference>
     <Reference Include="Xamarin.Agora.Full.Forms.MacOS">
       <HintPath>..\..\packages\Xamarin.Agora.Full.Forms.2.3.4.3\lib\Xamarin.Mac20\Xamarin.Agora.Full.Forms.MacOS.dll</HintPath>

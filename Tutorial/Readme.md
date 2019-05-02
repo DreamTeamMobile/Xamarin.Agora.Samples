@@ -6,7 +6,7 @@
 - Agora.io Developer Account
 
 ## Step 1. Agora.io Account
-If you haven't already, [create an Agora.io developer account](https://www.dashboard.agora.io/signup). Once you finish the sign up process, you will be redirected to the Dashboard. Feel free to use the sample project's App ID for this tutorial.
+If you haven't already, [create an Agora.io developer account](https://www.agora.io/en/developer-sign-up-form/). Once you finish the sign up process, you will be redirected to the Dashboard. Feel free to use the sample project's App ID for this tutorial.
 
 ## Step 2. Integrate the Agora SDK
 Create a new Blank Native app Solution.

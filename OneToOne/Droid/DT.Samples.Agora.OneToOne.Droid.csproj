@@ -93,7 +93,7 @@
       <HintPath>..\..\packages\Xam.Plugins.Settings.3.1.1\lib\MonoAndroid10\Plugin.Settings.dll</HintPath>
     </Reference>
     <Reference Include="Xamarin.Agora.Full.Android">
-      <HintPath>..\..\packages\Xamarin.Agora.Full.Android.2.3.3\lib\MonoAndroid\Xamarin.Agora.Full.Android.dll</HintPath>
+      <HintPath>..\..\packages\Xamarin.Agora.Full.Android.2.9.0.1\lib\MonoAndroid\Xamarin.Agora.Full.Android.dll</HintPath>
     </Reference>
   </ItemGroup>
   <ItemGroup>

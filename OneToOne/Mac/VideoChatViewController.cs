@@ -137,7 +137,7 @@ namespace DT.Samples.Agora.OneToOne.Mac
         public void SetupVideo()
         {
             _agoraKit.EnableVideo();
-            _agoraKit.SetVideoProfile(AgoraVideoProfile.Landscape720P, swapWidthAndHeight: false);
+            _agoraKit.SetVideoProfile(Xamarin.Agora.Mac.VideoProfile.Landscape720P, swapWidthAndHeight: false);
         }
 
         public void SetupLocalVideo()
@@ -145,7 +145,7 @@ namespace DT.Samples.Agora.OneToOne.Mac
             var videoCanvas = new AgoraRtcVideoCanvas();
             videoCanvas.Uid = 0;
             videoCanvas.View = localVideo;
-            videoCanvas.RenderMode = AgoraVideoRenderMode.Adaptive;
+            videoCanvas.RenderMode = VideoRenderMode.Adaptive;
             _agoraKit.SetupLocalVideo(videoCanvas);
             localVideoMutedIndicator.Hidden = true;
             localVideoMuteBg.Hidden = true;
@@ -210,11 +210,11 @@ namespace DT.Samples.Agora.OneToOne.Mac
             var videoCanvas = new AgoraRtcVideoCanvas();
             videoCanvas.Uid = uid;
             videoCanvas.View = remoteVideo;
-            videoCanvas.RenderMode = AgoraVideoRenderMode.Adaptive;
+            videoCanvas.RenderMode = VideoRenderMode.Adaptive;
             _agoraKit.SetupRemoteVideo(videoCanvas);
         }
 
-        public void DidOfflineOfUid(AgoraRtcEngineKit engine, nuint uid, AgoraUserOfflineReason reason)
+        public void DidOfflineOfUid(AgoraRtcEngineKit engine, nuint uid, UserOfflineReason reason)
         {
             remoteVideo.Hidden = true;
             remoteVideoMutedIndicator.Hidden = false;

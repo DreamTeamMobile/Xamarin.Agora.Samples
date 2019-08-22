@@ -27,12 +27,12 @@ namespace DT.Samples.Agora.OneToOne.Mac
 
         private void LoadDevicesInPopUpButtons()
         {
-            FillInDeviceSelection(AgoraMediaDeviceType.AudioRecording, microphoneSelection, connectedRecordingDevices);
-            FillInDeviceSelection(AgoraMediaDeviceType.AudioPlayout, speakerSelection, connectedPlaybackDevices);
-            FillInDeviceSelection(AgoraMediaDeviceType.VideoCapture, cameraSelection, connectedVideoCaptureDevices);
+            FillInDeviceSelection(MediaDeviceType.AudioRecording, microphoneSelection, connectedRecordingDevices);
+            FillInDeviceSelection(MediaDeviceType.AudioPlayout, speakerSelection, connectedPlaybackDevices);
+            FillInDeviceSelection(MediaDeviceType.VideoCapture, cameraSelection, connectedVideoCaptureDevices);
         }
 
-        private void FillInDeviceSelection(AgoraMediaDeviceType deviceType, NSPopUpButton deviceSelection, List<AgoraRtcDeviceInfo> deviceMap)
+        private void FillInDeviceSelection(MediaDeviceType deviceType, NSPopUpButton deviceSelection, List<AgoraRtcDeviceInfo> deviceMap)
         {
             deviceSelection.RemoveAllItems();
             deviceMap.Clear();
@@ -56,18 +56,18 @@ namespace DT.Samples.Agora.OneToOne.Mac
             var recordingDevice = connectedRecordingDevices[(int)microphoneSelection.IndexOfSelectedItem]?.DeviceId;
             if (!String.IsNullOrEmpty(recordingDevice))
             {
-                _agoraKit.SetDevice(AgoraMediaDeviceType.AudioRecording, recordingDevice);
+                _agoraKit.SetDevice(MediaDeviceType.AudioRecording, recordingDevice);
             }
 
             var playbackDevice = connectedPlaybackDevices[(int)speakerSelection.IndexOfSelectedItem]?.DeviceId;
             if (!String.IsNullOrEmpty(playbackDevice))
             {
-                _agoraKit.SetDevice(AgoraMediaDeviceType.AudioPlayout, playbackDevice);
+                _agoraKit.SetDevice(MediaDeviceType.AudioPlayout, playbackDevice);
             }
             var videoDevice = connectedVideoCaptureDevices[(int)cameraSelection.IndexOfSelectedItem]?.DeviceId;
             if (!String.IsNullOrEmpty(videoDevice))
             {
-                _agoraKit.SetDevice(AgoraMediaDeviceType.VideoCapture, recordingDevice);
+                _agoraKit.SetDevice(MediaDeviceType.VideoCapture, recordingDevice);
             }
             DismissViewController(this);
         }

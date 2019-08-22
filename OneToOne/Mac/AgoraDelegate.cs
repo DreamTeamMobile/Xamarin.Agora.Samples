@@ -19,7 +19,7 @@ namespace DT.Samples.Agora.OneToOne.Mac
             _controller.FirstRemoteVideoDecodedOfUid(engine, uid, size, elapsed);
         }
 
-        public override void DidOfflineOfUid(AgoraRtcEngineKit engine, nuint uid, AgoraUserOfflineReason reason)
+        public override void DidOfflineOfUid(AgoraRtcEngineKit engine, nuint uid, UserOfflineReason reason)
         {
             _controller.DidOfflineOfUid(engine, uid, reason);
         }

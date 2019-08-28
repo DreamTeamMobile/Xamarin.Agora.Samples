@@ -108,7 +108,7 @@ namespace DT.Samples.Agora.Cross.ViewModels
                 _agoraService.JoinChannelSuccess += OnJoinChannelSuccess;
                 _agoraService.OnDisconnected += OnDisconnected;
                 _agoraService.OnNewStream += OnNewStream;
-                _agoraService.StartSession(Room, Consts.AgoraKey, webSdkInteroperability: true);
+                _agoraService.StartSession(Room, Consts.AgoraAPI, Consts.Token, webSdkInteroperability: true);
             }
         }
 

@@ -73,10 +73,10 @@
       <HintPath>..\..\packages\Xamarin.Agora.Full.Mac.2.9.0\lib\Xamarin.Mac20\Xamarin.Agora.Full.Mac.dll</HintPath>
     </Reference>
     <Reference Include="Xamarin.Agora.Full.Forms.MacOS">
-      <HintPath>..\..\packages\Xamarin.Agora.Full.Forms.2.9.0-beta1\lib\Xamarin.Mac20\Xamarin.Agora.Full.Forms.MacOS.dll</HintPath>
+      <HintPath>..\..\packages\Xamarin.Agora.Full.Forms.2.9.0-beta4\lib\Xamarin.Mac20\Xamarin.Agora.Full.Forms.MacOS.dll</HintPath>
     </Reference>
     <Reference Include="Xamarin.Agora.Full.Forms">
-      <HintPath>..\..\packages\Xamarin.Agora.Full.Forms.2.9.0-beta1\lib\Xamarin.Mac20\Xamarin.Agora.Full.Forms.dll</HintPath>
+      <HintPath>..\..\packages\Xamarin.Agora.Full.Forms.2.9.0-beta4\lib\Xamarin.Mac20\Xamarin.Agora.Full.Forms.dll</HintPath>
     </Reference>
   </ItemGroup>
   <ItemGroup>

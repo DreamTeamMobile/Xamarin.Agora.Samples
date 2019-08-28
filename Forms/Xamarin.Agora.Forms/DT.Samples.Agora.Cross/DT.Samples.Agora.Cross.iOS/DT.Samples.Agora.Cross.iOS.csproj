@@ -113,7 +113,7 @@
       <Version>3.0.0.12</Version>
     </PackageReference>
     <PackageReference Include="Xamarin.Agora.Full.Forms">
-      <Version>2.9.0-beta1</Version>
+      <Version>2.9.0-beta3</Version>
     </PackageReference>
   </ItemGroup>
   <Import Project="$(MSBuildExtensionsPath)\Xamarin\iOS\Xamarin.iOS.CSharp.targets" />

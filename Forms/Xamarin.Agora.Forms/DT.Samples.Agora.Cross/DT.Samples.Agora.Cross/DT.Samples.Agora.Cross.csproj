@@ -12,6 +12,6 @@
   <ItemGroup>
     <PackageReference Include="Xamarin.Forms" Version="4.2.0.709249" />  
     <PackageReference Include="Plugin.Permissions" Version="3.0.0.12" />
-    <PackageReference Include="Xamarin.Agora.Full.Forms" Version="2.9.0-beta1" />
+    <PackageReference Include="Xamarin.Agora.Full.Forms" Version="2.9.0-beta4" />
   </ItemGroup>
 </Project>

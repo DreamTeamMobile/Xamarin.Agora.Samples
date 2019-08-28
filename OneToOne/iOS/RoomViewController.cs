@@ -85,7 +85,7 @@ namespace DT.Samples.Agora.OneToOne.iOS
                 AgoraKit.SetEncryptionSecret(AgoraSettings.Current.EncryptionPhrase);
             }
             AgoraKit.StartPreview();
-            AgoraKit.JoinChannelByToken(AgoraTestConstants.AgoraAPI, AgoraSettings.Current.RoomName, null, 0, JoiningCompleted);
+            AgoraKit.JoinChannelByToken(AgoraTestConstants.Token, AgoraSettings.Current.RoomName, null, 0, JoiningCompleted);
         }
 
         private void JoiningCompleted(Foundation.NSString channel, nuint uid, nint elapsed)

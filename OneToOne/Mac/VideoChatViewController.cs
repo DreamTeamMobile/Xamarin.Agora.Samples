@@ -153,7 +153,7 @@ namespace DT.Samples.Agora.OneToOne.Mac
 
         public void JoinChannel()
         {
-            _agoraKit.JoinChannelByToken(null, Channel, null, 0, (arg1, arg2, arg3) => { });
+            _agoraKit.JoinChannelByToken(AgoraTestConstants.Token, Channel, null, 0, (arg1, arg2, arg3) => { });
         }
 
         public void LeaveChannel()

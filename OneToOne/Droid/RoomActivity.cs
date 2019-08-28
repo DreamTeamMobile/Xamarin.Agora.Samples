@@ -185,7 +185,7 @@ namespace DT.Samples.Agora.OneToOne.Droid
 
         private void JoinChannel()
         {
-            AgoraEngine.JoinChannel(null, AgoraSettings.Current.RoomName, string.Empty, 0); // if you do not specify the uid, we will generate the uid for you
+            AgoraEngine.JoinChannel(AgoraTestConstants.Token, AgoraSettings.Current.RoomName, string.Empty, 0); // if you do not specify the uid, we will generate the uid for you
         }
 
         private void SetupRemoteVideo(int uid)

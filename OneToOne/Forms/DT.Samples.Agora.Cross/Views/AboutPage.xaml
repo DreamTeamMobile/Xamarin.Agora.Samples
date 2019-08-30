@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="utf-8"?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms" xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml" x:Class="DT.Samples.Agora.Cross.Views.AboutPage" Title="About" BackgroundColor="{StaticResource DTBlue}">
+  <StackLayout Orientation="Vertical" HorizontalOptions="StartAndExpand">
+    <Label Text="This is a Xamarin.Forms sample for Agora Xamarin.Forms SDK" TextColor="{StaticResource DTAccent}" HorizontalTextAlignment="Center" Margin="40" />
+    <Label Text="Proudly presented by Agora and DreamTeam Mobile" TextColor="{StaticResource DTAccent}" HorizontalTextAlignment="Center" Margin="20" />
+    <Button Text="https://agora.io/" Margin="10" BackgroundColor="{StaticResource DTAccent}" TextColor="{StaticResource DTBlue}" Clicked="LinkButtonClicked" />
+    <Button Text="https://drmtm.us/" Margin="10" BackgroundColor="{StaticResource DTAccent}" TextColor="{StaticResource DTBlue}" Clicked="LinkButtonClicked" />
+  </StackLayout>
+</ContentPage>

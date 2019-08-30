@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="utf-8"?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms" xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml" x:Class="DT.Samples.Agora.Cross.Views.ConnectPage" Title="{Binding Title}" x:Name="ConnectToRoomPage" BackgroundColor="{StaticResource DTBlue}">
+  <StackLayout Orientation="Vertical">
+    <Label Text="Please enter the room name" Margin="20" HorizontalTextAlignment="Center" TextColor="{StaticResource DTAccent}"/>
+    <Entry x:Name="RoomName" Margin="20" HeightRequest="40" TextColor="White" BackgroundColor="{StaticResource DTBlue}" Placeholder="&lt;room name&gt;" HorizontalTextAlignment="Center" PlaceholderColor="#1AFFFFFF" Text="{Binding RoomName}" IsSpellCheckEnabled="false" IsTextPredictionEnabled="false" />
+    <Button x:Name="NextButton" Margin="20" WidthRequest="200" HeightRequest="60" TextColor="{StaticResource DTBlue}" Text="Join OneToOne" BackgroundColor="{StaticResource DTAccent}" Clicked="Handle_OneToOne_Clicked"/>     
+    <Button x:Name="NextMultiButton" Margin="20" WidthRequest="200" HeightRequest="60" TextColor="{StaticResource DTBlue}" BackgroundColor="{StaticResource DTAccent}" Text="Join Group" Clicked="Handle_Group_Clicked" />    
+  </StackLayout>
+</ContentPage>

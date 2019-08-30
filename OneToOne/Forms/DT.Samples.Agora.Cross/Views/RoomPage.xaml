@@ -1,0 +1,84 @@
+<?xml version="1.0" encoding="utf-8"?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms" xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml" x:Class="DT.Samples.Agora.Cross.Views.RoomPage" xmlns:agora="clr-namespace:DT.Samples.Agora.Cross;assembly=DT.Samples.Agora.Cross" Title="{Binding Title}" BackgroundColor="{StaticResource DTBlue}">
+  <ContentPage.Resources>
+    <ResourceDictionary>
+      <Style TargetType="Image">
+        <Setter Property="HorizontalOptions" Value="CenterAndExpand" />
+        <Setter Property="HeightRequest" Value="70" />
+        <Setter Property="WidthRequest" Value="70" />
+        <Setter Property="BackgroundColor" Value="Transparent" />
+      </Style>
+    </ResourceDictionary>
+  </ContentPage.Resources>
+  <Grid>
+    <Grid.ColumnDefinitions>
+      <ColumnDefinition />
+      <ColumnDefinition />
+    </Grid.ColumnDefinitions>
+    <Grid.RowDefinitions>
+      <RowDefinition />
+      <RowDefinition />
+      <RowDefinition Height="50" />
+    </Grid.RowDefinitions>
+    <Grid Grid.ColumnSpan="2" Grid.Row="0">
+      <Grid.ColumnDefinitions>
+        <ColumnDefinition />
+        <ColumnDefinition />
+        <ColumnDefinition />
+      </Grid.ColumnDefinitions>
+      <agora:AgoraVideoView x:Name="RemoteVideo" IsStatic="true" Grid.ColumnSpan="3" />
+      <Image Source="mute.png" IsVisible="{Binding Source={x:Reference Name=RemoteVideo}, Path=IsAudioMuted}" Aspect="AspectFit" HeightRequest="30" WidthRequest="30" VerticalOptions="End" HorizontalOptions="Center" />
+      <Image Source="cameraoff.png" Grid.Column="1" IsVisible="{Binding Source={x:Reference Name=RemoteVideo}, Path=IsVideoMuted}" Aspect="AspectFit" HeightRequest="30" WidthRequest="30" VerticalOptions="End" HorizontalOptions="Center" />
+      <Image Source="fullscreen.png" IsVisible="{Binding Source={x:Reference Name=RemoteVideo}, Path=IsOffline, Converter={StaticResource InvertBoolConverter}}" Grid.Column="2" Aspect="AspectFit" HeightRequest="30" WidthRequest="30" VerticalOptions="End" HorizontalOptions="Center">
+        <Image.GestureRecognizers>
+          <TapGestureRecognizer Command="{Binding VideoTapCommand}" CommandParameter="{x:Reference Name=RemoteVideo}" />
+        </Image.GestureRecognizers>
+      </Image>
+    </Grid>
+    <Grid Grid.ColumnSpan="2" Grid.Row="1" HorizontalOptions="Fill">
+      <agora:AgoraVideoView x:Name="LocalVideo" StreamUID="0" IsStatic="true" />
+      <Image Source="fullscreen.png" Aspect="AspectFit" IsVisible="{Binding Source={x:Reference Name=LocalVideo}, Path=IsOffline, Converter={StaticResource InvertBoolConverter}}" HeightRequest="30" WidthRequest="30" VerticalOptions="End" HorizontalOptions="Center">
+        <Image.GestureRecognizers>
+          <TapGestureRecognizer Command="{Binding VideoTapCommand}" CommandParameter="{x:Reference Name=LocalVideo}" />
+        </Image.GestureRecognizers>
+      </Image>
+    </Grid>
+    <StackLayout Grid.ColumnSpan="2" Grid.Row="2" Orientation="Horizontal" Spacing="5" HorizontalOptions="CenterAndExpand" Margin="0,5">
+      <Image Source="unswitch_camera.png" Aspect="AspectFit">
+        <Image.GestureRecognizers>
+          <TapGestureRecognizer Command="{Binding SwitchCameraCommand}" />
+        </Image.GestureRecognizers>
+        <Image.Triggers>
+          <DataTrigger TargetType="Image" Binding="{Binding IsCameraSwitched}" Value="true">
+            <Setter Property="Source" Value="switch_camera.png" />
+          </DataTrigger>
+        </Image.Triggers>
+      </Image>
+      <Image Source="unmute.png" Aspect="AspectFit">
+        <Image.GestureRecognizers>
+          <TapGestureRecognizer Command="{Binding AudioMuteCommand}" />
+        </Image.GestureRecognizers>
+        <Image.Triggers>
+          <DataTrigger TargetType="Image" Binding="{Binding IsAudioMute}" Value="true">
+            <Setter Property="Source" Value="mute.png" />
+          </DataTrigger>
+        </Image.Triggers>
+      </Image>
+      <Image Source="cameraon.png" Aspect="AspectFit">
+        <Image.GestureRecognizers>
+          <TapGestureRecognizer Command="{Binding VideoMuteCommand}" />
+        </Image.GestureRecognizers>
+        <Image.Triggers>
+          <DataTrigger TargetType="Image" Binding="{Binding IsVideoMute}" Value="true">
+            <Setter Property="Source" Value="cameraoff.png" />
+          </DataTrigger>
+        </Image.Triggers>
+      </Image>
+      <Image Source="hangup.png" Aspect="AspectFit">
+        <Image.GestureRecognizers>
+          <TapGestureRecognizer Command="{Binding EndSessionCommand}" />
+        </Image.GestureRecognizers>
+      </Image>
+    </StackLayout>
+  </Grid>
+</ContentPage>

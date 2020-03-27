@@ -172,7 +172,7 @@
       <HintPath>..\..\packages\Xam.Plugins.Settings.3.1.1\lib\Xamarin.iOS10\Plugin.Settings.dll</HintPath>
     </Reference>
     <Reference Include="Xamarin.Agora.Full.iOS">
-      <HintPath>..\..\packages\Xamarin.Agora.Full.iOS.3.0.0-beta1\lib\Xamarin.iOS10\Xamarin.Agora.Full.iOS.dll</HintPath>
+      <HintPath>..\..\packages\Xamarin.Agora.Full.iOS.3.0.0-beta2\lib\Xamarin.iOS10\Xamarin.Agora.Full.iOS.dll</HintPath>
     </Reference>
   </ItemGroup>
   <ItemGroup>

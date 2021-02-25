@@ -102,32 +102,32 @@ namespace DT.Samples.Agora.OneToOne.iOS
             NavigationController.PushViewController(Storyboard.InstantiateViewController("SettingsViewController") as SettingsViewController, true);
         }
 
-        public void LastmileQuality(AgoraRtcEngineKit engine, Quality agoraQuality)
+        public void LastmileQuality(AgoraRtcEngineKit engine, NetworkQuality agoraQuality)
         {
             string quality = string.Empty;
             switch (agoraQuality)
             {
-                case Quality.Excellent:
+                case NetworkQuality.Excellent:
                     quality = "Excellent";
                     ConnectionImage.Image = UIImage.FromBundle("connection_5");
                     break;
-                case Quality.Good:
+                case NetworkQuality.Good:
                     quality = "Good";
                     ConnectionImage.Image = UIImage.FromBundle("connection_4");
                     break;
-                case Quality.Poor:
+                case NetworkQuality.Poor:
                     quality = "Poor";
                     ConnectionImage.Image = UIImage.FromBundle("connection_3");
                     break;
-                case Quality.Bad:
+                case NetworkQuality.Bad:
                     quality = "Bad";
                     ConnectionImage.Image = UIImage.FromBundle("connection_2");
                     break;
-                case Quality.VBad:
+                case NetworkQuality.VBad:
                     quality = "Very Bad";
                     ConnectionImage.Image = UIImage.FromBundle("connection_1");
                     break;
-                case Quality.Down:
+                case NetworkQuality.Down:
                     quality = "Down";
                     ConnectionImage.Image = UIImage.FromBundle("connection_0");
                     break;

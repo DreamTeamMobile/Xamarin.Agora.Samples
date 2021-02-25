@@ -11,7 +11,7 @@ namespace DT.Samples.Agora.OneToOne.iOS
             _controller = controller;
         }
 
-        public override void LastmileQuality(AgoraRtcEngineKit engine, Quality quality)
+        public override void LastmileQuality(AgoraRtcEngineKit engine, NetworkQuality quality)
         {
             _controller.LastmileQuality(engine, quality);
         }

@@ -54,8 +54,13 @@
     <Reference Include="System" />
     <Reference Include="System.Core" />
     <Reference Include="Xamarin.Mac" />    
+    <Reference Include="Xamarin.Essentials">
+      <HintPath>..\..\packages\Xamarin.Essentials.1.6.0\lib\xamarinmac20\Xamarin.Essentials.dll</HintPath>
+    </Reference>
+    <Reference Include="OpenTK" />
+    <Reference Include="System.Numerics.Vectors" />
     <Reference Include="Xamarin.Agora.Full.Mac">
-      <HintPath>..\..\packages\Xamarin.Agora.Full.Mac.2.9.0\lib\Xamarin.Mac20\Xamarin.Agora.Full.Mac.dll</HintPath>
+      <HintPath>..\..\packages\Xamarin.Agora.Full.Mac.3.2.2\lib\Xamarin.Mac20\Xamarin.Agora.Full.Mac.dll</HintPath>
     </Reference>
   </ItemGroup>
   <ItemGroup>

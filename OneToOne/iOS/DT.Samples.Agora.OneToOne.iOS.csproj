@@ -178,7 +178,7 @@
     <Reference Include="System.Drawing.Common.dll" />
     <Reference Include="System.Numerics" />
     <Reference Include="Xamarin.Agora.Full.iOS">
-      <HintPath>..\..\..\Agora-RTC-SDK-for-Xamarin\Nugets\Xamarin.Agora.Full.iOS\lib\Xamarin.iOS10\Xamarin.Agora.Full.iOS.dll</HintPath>
+      <HintPath>..\..\packages\Xamarin.Agora.Full.iOS.3.3.0\lib\Xamarin.iOS10\Xamarin.Agora.Full.iOS.dll</HintPath>
     </Reference>
   </ItemGroup>
   <ItemGroup>

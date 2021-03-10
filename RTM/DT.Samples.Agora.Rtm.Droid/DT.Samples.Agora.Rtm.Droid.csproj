@@ -218,6 +218,7 @@
     <Compile Include="MainApplication.cs" />
     <Compile Include="Helpers\Settings.cs" />
     <Compile Include="Utils\ImageUtil.cs" />
+    <Compile Include="RtmMessagePool.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="Resources\AboutResources.txt" />

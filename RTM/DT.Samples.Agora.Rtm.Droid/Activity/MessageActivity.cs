@@ -141,6 +141,10 @@ namespace DT.Samples.Agora.Rtm.Droid
 
         private void InitUIAndData()
         {
+            InitCallbackAndListener();
+            _chatManager = MainApplication.ChatManager;
+            _chatManager.RegisterListener(_myRtmClientListener);
+
             _titleTextView = FindViewById<TextView>(Resource.Id.message_title);
             _msgEditText = FindViewById<EditText>(Resource.Id.message_edittiext);
             _recyclerView = FindViewById<RecyclerView>(Resource.Id.message_list);
@@ -162,6 +166,10 @@ namespace DT.Samples.Agora.Rtm.Droid
                 if (messageListBean != null) {
                     _messageBeanList.AddRange(messageListBean.MessageBeanList);
                 }
+                MessageListBean offlineMessageBean = new MessageListBean(_peerId, _chatManager);
+                _messageBeanList.AddRange(offlineMessageBean.MessageBeanList);
+                _chatManager.RemoveAllOfflineMessages(_peerId);
+
                 _titleTextView.Text = $"Chat with {_peerId}";
             } else {
                 _channelName = targetName;
@@ -179,12 +187,7 @@ namespace DT.Samples.Agora.Rtm.Droid
 
         private void InitChat()
         {
-            InitCallbackAndListener();
-
-            _chatManager = MainApplication.ChatManager;
             rtmClient = _chatManager.GetRtmClient();
-
-            _chatManager.RegisterListener(_myRtmClientListener);
 
             if (!_isPeerToPeerMode)
             {
@@ -423,7 +426,7 @@ namespace DT.Samples.Agora.Rtm.Droid
          */
         private void SendPeerMessage(RtmMessage message)
         {
-            rtmClient.SendMessageToPeer(_peerId, message, _sendMessageClientCallback);
+            rtmClient.SendMessageToPeer(_peerId, message, _chatManager.SendMessageOptions, _sendMessageClientCallback);
         }
 
         /**

@@ -1,8 +1,11 @@
 using System.Collections.Generic;
 using Android.App;
 using Android.Content;
+using Android.Graphics;
 using Android.Support.V7.Widget;
+using Android.Util;
 using Android.Views;
+using DT.Xamarin.Agora.Rtm;
 
 namespace DT.Samples.Agora.Rtm.Droid
 {
@@ -33,23 +36,57 @@ namespace DT.Samples.Agora.Rtm.Droid
 
         private void SetupView(MyViewHolder holder, int position)
         {
-
-            MessageBean bean = _messageBeanList[position];
-            if (bean.BeSelf)
+            Log.Debug("Adapter", $"getView for index {position}");
+            var bean = _messageBeanList[position];
+            var message = bean.Message;
+            switch (message.MessageType)
             {
-                holder.TextViewSelfName.Text = bean.Account;
-                holder.TextViewSelfMsg.Text = bean.Message;
-            }
-            else
-            {
-                holder.TextViewOtherName.Text = bean.Account;
-                holder.TextViewOtherMsg.Text = bean.Message;
-                if (bean.Background != 0)
-                {
-                    holder.TextViewOtherName.SetBackgroundResource(bean.Background);
-                }
-            }
+                case RtmMessageType.Text:
+                    if (bean.BeSelf)
+                    {
+                        holder.TextViewSelfMsg.Visibility = ViewStates.Visible;
+                        holder.TextViewSelfName.Text = bean.Account;
+                        holder.TextViewSelfMsg.Text = message.Text;
+                    }
+                    else
+                    {
+                        holder.TextViewOtherMsg.Visibility = ViewStates.Visible;
+                        holder.TextViewOtherName.Text = bean.Account;
+                        holder.TextViewOtherMsg.Text = message.Text;
+                        if (bean.Background != 0)
+                        {
+                            holder.TextViewOtherName.SetBackgroundResource(bean.Background);
+                        }
+                    }
 
+                    holder.ImageViewSelfImg.Visibility = ViewStates.Gone;
+                    holder.ImageViewOtherImg.Visibility = ViewStates.Gone;
+                    break;
+                case RtmMessageType.Image:
+                    var imageMessage = message as RtmImageMessage;
+                    var bmp = BitmapFactory.DecodeByteArray(imageMessage.GetThumbnail(), 0, imageMessage.GetThumbnail().Length);
+                    if (bean.BeSelf)
+                    {
+                        holder.ImageViewSelfImg.Visibility = ViewStates.Visible;
+                        holder.TextViewSelfName.Text = bean.Account;
+                        holder.ImageViewSelfImg.LayoutParameters.Width = imageMessage.ThumbnailWidth;
+                        holder.ImageViewSelfImg.LayoutParameters.Height = imageMessage.ThumbnailHeight;
+                        holder.ImageViewSelfImg.SetImageBitmap(bmp);
+                    }
+                    else
+                    {
+                        holder.ImageViewOtherImg.Visibility = ViewStates.Visible;
+                        holder.TextViewOtherName.Text = bean.Account;
+                        holder.ImageViewOtherImg.LayoutParameters.Width = imageMessage.ThumbnailWidth;
+                        holder.ImageViewOtherImg.LayoutParameters.Height = imageMessage.ThumbnailHeight;
+                        holder.ImageViewOtherImg.SetImageBitmap(bmp);
+                    }
+
+                    holder.TextViewSelfMsg.Visibility = ViewStates.Gone;
+                    holder.TextViewOtherMsg.Visibility = ViewStates.Gone;
+                    break;
+            }
+            
             holder.LayoutRight.Visibility = bean.BeSelf ? ViewStates.Visible : ViewStates.Gone;
             holder.LayoutLeft.Visibility = bean.BeSelf ? ViewStates.Gone : ViewStates.Visible;
         }

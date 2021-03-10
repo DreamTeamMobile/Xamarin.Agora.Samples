@@ -1,5 +1,6 @@
 using System.Collections.Generic;
 using Android;
+using DT.Xamarin.Agora.Rtm;
 using Java.Util;
 
 namespace DT.Samples.Agora.Rtm.Droid
@@ -64,7 +65,7 @@ namespace DT.Samples.Agora.Rtm.Droid
             return -1;
         }
 
-        public static void AddMessageBean(string account, string msg)
+        public static void AddMessageBean(string account, RtmMessage msg)
         {
             MessageBean messageBean = new MessageBean(account, msg, false);
             int ret = ExistMessageListBean(account);

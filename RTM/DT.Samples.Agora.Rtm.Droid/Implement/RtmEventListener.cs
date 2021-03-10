@@ -20,9 +20,9 @@ namespace DT.Samples.Agora.Rtm.Droid
             // not supported yet
         }
 
-        public void OnImageMessageReceivedFromPeer(RtmImageMessage p0, string p1)
+        public void OnImageMessageReceivedFromPeer(RtmImageMessage message, string peerId)
         {
-            // not supported yet
+            MessageReceived?.Invoke(message, peerId);
         }
 
         public void OnMediaDownloadingProgress(RtmMediaOperationProgress p0, long p1)

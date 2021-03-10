@@ -7,7 +7,7 @@ using DT.Xamarin.Agora.Rtm;
 
 namespace DT.Samples.Agora.Rtm.Droid
 {
-    [Activity(Label = "SelectionActivity")]
+    [Activity(Label = "SelectionActivity", Theme = "@style/AppTheme")]
     public class SelectionActivity : AppCompatActivity {
 
         private const int ChatRequestCode = 1;

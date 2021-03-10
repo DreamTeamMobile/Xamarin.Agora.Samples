@@ -30,9 +30,9 @@ namespace DT.Samples.Agora.Rtm.Droid
             // not supported yet
         }
 
-        public void OnImageMessageReceived(RtmImageMessage p0, RtmChannelMember p1)
+        public void OnImageMessageReceived(RtmImageMessage message, RtmChannelMember member)
         {
-            // not supported yet
+            OnMessageReceivedAction?.Invoke(message, member);
         }
 
         public void OnMemberCountUpdated(int p0)

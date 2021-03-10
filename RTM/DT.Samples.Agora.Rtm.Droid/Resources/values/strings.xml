@@ -27,6 +27,7 @@
     <string name="single_input">Single line input</string>
     <string name="str_send">Send</string>
     <string name="send_msg_failed">Failed to send message</string>
+    <string name="send_msg_failed_invalid">The message is null or exceeds 32 KB in length</string>
     <string name="peer_offline">Peer is offline</string>
     <string name="reconnecting">Network reconnecting ...</string>
     <string name="account_offline">Connection lost</string>

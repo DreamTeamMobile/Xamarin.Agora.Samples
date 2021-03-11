@@ -26,7 +26,7 @@ namespace DT.Samples.Agora.Rtm.iOS
         
         }
 
-        List<Message> list = new List<Message>();
+        List<Message> _list = new List<Message>();
 
         ChatType _type = ChatType.Unknow;
 
@@ -64,7 +64,9 @@ namespace DT.Samples.Agora.Rtm.iOS
             base.ViewDidLoad();
             AddKeyboradObserver();
             UpdateViews();
-            TableView.DataSource = new TableSource(list);
+
+            TableView.DataSource = new TableSource(_list);
+            LoadOfflineMessages();
 
             _rtmDelegate = new RtmDelegate();
             _rtmDelegate.AppendMessage += AppendMsg;
@@ -118,12 +120,22 @@ namespace DT.Samples.Agora.Rtm.iOS
             TableView.EstimatedRowHeight = 55;
         }
 
-        public void AppendMsg(string user, string content)
+        private void LoadOfflineMessages()
         {
-            var msg = new Message(user, content);
-            list.Add(msg);
+            if(_type == ChatType.Peer)
+            {
+                var messages = AgoraRtm.GetOfflineMessages(ChannelOrPeerName);
+                messages.ForEach(m => AppendMsg(ChannelOrPeerName, m));
+                AgoraRtm.RemoveAllOfflineMessages(ChannelOrPeerName);
+            }
+        }
 
-            var end = NSIndexPath.FromRowSection(list.Count - 1, 0);
+        public void AppendMsg(string user, AgoraRtmMessage message)
+        {
+            var msg = new Message(user, message.Text);
+            _list.Add(msg);
+
+            var end = NSIndexPath.FromRowSection(_list.Count - 1, 0);
 
             InvokeOnMainThread(() =>
             {
@@ -193,13 +205,17 @@ namespace DT.Samples.Agora.Rtm.iOS
         public void SendPeer(string peer, string msg)
         {
             var message = new AgoraRtmMessage(msg);
+            var oprions = new AgoraRtmSendMessageOptions
+            {
+                EnableOfflineMessaging = AgoraRtm.OneToOneMessageType == OneToOneMessageType.Offline
+            };
 
-            AgoraRtm.RtmKit.SendMessage(message, peer, (state) =>
+            AgoraRtm.RtmKit.SendMessage(message, peer, oprions, (state) =>
             {
                 Console.WriteLine($"send peer msg state: ({state})");
 
                 var current = AgoraRtm.Current;
-                AppendMsg(current, msg);
+                AppendMsg(current, message);
             });
         }
 
@@ -219,7 +235,7 @@ namespace DT.Samples.Agora.Rtm.iOS
                     if (current == null)
                         return;
 
-                    AppendMsg(current, msg);
+                    AppendMsg(current, message);
                 });
             }
         }

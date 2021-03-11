@@ -23,6 +23,7 @@ namespace DT.Samples.Agora.Rtm.iOS
             };
 
             AgoraRtm.UpdateCallKit(_callKitDelegate);
+            OfflineSwitch.On = AgoraRtm.OneToOneMessageType == OneToOneMessageType.Offline;
         }
 
         public override void ViewWillDisappear(bool animated)
@@ -35,7 +36,7 @@ namespace DT.Samples.Agora.Rtm.iOS
         {
             if (string.IsNullOrEmpty(PeerTextField.Text))
                 return;
-
+            AgoraRtm.OneToOneMessageType = OfflineSwitch.On ? OneToOneMessageType.Offline : OneToOneMessageType.Normal;
             PerformSegue("peerToChat", NSObject.FromObject(PeerTextField.Text));
         }
 

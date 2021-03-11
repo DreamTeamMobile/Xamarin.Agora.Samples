@@ -148,11 +148,7 @@
                                 <nil key="highlightedColor"/>
                             </label>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="tAy-sB-9Kb">
-                                <rect key="frame" x="277" y="206" width="70" height="33"/>
-                                <constraints>
-                                    <constraint firstAttribute="height" constant="33" id="TU4-TN-vmK"/>
-                                    <constraint firstAttribute="width" constant="70" id="Vf7-w0-xUg"/>
-                                </constraints>
+                                <rect key="frame" x="283" y="254.5" width="70" height="33"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                 <state key="normal" title="Invitation">
                                     <color key="titleColor" red="0.28016150000000001" green="0.6195479035" blue="0.89025932549999998" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
@@ -161,15 +157,6 @@
                                     <action selector="InvitationPress:" destination="ga0-NN-e95" eventType="touchUpInside" id="fHV-8V-5Tf"/>
                                 </connections>
                             </button>
-                            <textField opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="249" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="User Name" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="gVp-jr-5E0">
-                                <rect key="frame" x="40" y="205" width="210" height="34"/>
-                                <constraints>
-                                    <constraint firstAttribute="width" constant="210" id="ceO-5V-sFo"/>
-                                    <constraint firstAttribute="height" constant="30" id="hxS-hK-uqs"/>
-                                </constraints>
-                                <fontDescription key="fontDescription" type="system" pointSize="14"/>
-                                <textInputTraits key="textInputTraits"/>
-                            </textField>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="lOh-8l-ah4">
                                 <rect key="frame" x="295" y="132.5" width="34" height="33"/>
                                 <constraints>
@@ -183,26 +170,41 @@
                                     <action selector="DoChatPressed:" destination="ga0-NN-e95" eventType="touchUpInside" id="3888"/>
                                 </connections>
                             </button>
+                            <switch opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" contentHorizontalAlignment="center" contentVerticalAlignment="center" on="YES" translatesAutoresizingMaskIntoConstraints="NO" id="BX4-Fu-m0t">
+                                <rect key="frame" x="242" y="193" width="51" height="31"/>
+                            </switch>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Enable offline message" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="4dB-Tc-P0C">
+                                <rect key="frame" x="40" y="198" width="177" height="21"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                <nil key="textColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <textField opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="249" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="User Name" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="gVp-jr-5E0">
+                                <rect key="frame" x="40" y="254" width="210" height="34"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                <textInputTraits key="textInputTraits"/>
+                            </textField>
                         </subviews>
                         <viewLayoutGuide key="safeArea" id="z4x-kQ-gM8"/>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                         <constraints>
-                            <constraint firstItem="tAy-sB-9Kb" firstAttribute="baseline" secondItem="gVp-jr-5E0" secondAttribute="firstBaseline" id="2xi-aP-MbM"/>
-                            <constraint firstItem="tAy-sB-9Kb" firstAttribute="baseline" secondItem="gVp-jr-5E0" secondAttribute="baseline" id="6qF-j4-b0e"/>
+                            <constraint firstItem="BX4-Fu-m0t" firstAttribute="centerY" secondItem="4dB-Tc-P0C" secondAttribute="centerY" id="3Zt-wb-cDx"/>
+                            <constraint firstItem="4dB-Tc-P0C" firstAttribute="leading" secondItem="3yl-M1-HpL" secondAttribute="leading" id="7GK-UT-zTD"/>
                             <constraint firstItem="eAm-M7-YFd" firstAttribute="leading" secondItem="z4x-kQ-gM8" secondAttribute="leading" constant="46" id="Bjv-Aa-Yn0"/>
+                            <constraint firstItem="BX4-Fu-m0t" firstAttribute="leading" secondItem="4dB-Tc-P0C" secondAttribute="trailing" constant="25" id="GZa-OO-lja"/>
                             <constraint firstItem="eAm-M7-YFd" firstAttribute="top" secondItem="z4x-kQ-gM8" secondAttribute="top" constant="39" id="Pba-AD-ov5"/>
-                            <constraint firstItem="tAy-sB-9Kb" firstAttribute="firstBaseline" secondItem="gVp-jr-5E0" secondAttribute="baseline" id="Tda-QH-KaS"/>
+                            <constraint firstItem="4dB-Tc-P0C" firstAttribute="top" secondItem="3yl-M1-HpL" secondAttribute="bottom" constant="30" id="Ux0-nE-PLc"/>
+                            <constraint firstItem="gVp-jr-5E0" firstAttribute="top" secondItem="BX4-Fu-m0t" secondAttribute="bottom" constant="30" id="WXC-Wf-EUN"/>
                             <constraint firstItem="eAm-M7-YFd" firstAttribute="centerX" secondItem="z4x-kQ-gM8" secondAttribute="centerX" id="Ywg-LY-aGw"/>
-                            <constraint firstItem="z4x-kQ-gM8" firstAttribute="trailing" secondItem="tAy-sB-9Kb" secondAttribute="trailing" constant="28" id="ano-gc-oZc"/>
                             <constraint firstItem="lOh-8l-ah4" firstAttribute="top" secondItem="eAm-M7-YFd" secondAttribute="bottom" constant="28.5" id="cXF-Ew-rhL"/>
-                            <constraint firstItem="tAy-sB-9Kb" firstAttribute="bottom" secondItem="gVp-jr-5E0" secondAttribute="bottom" id="gAr-eZ-xVC"/>
-                            <constraint firstItem="gVp-jr-5E0" firstAttribute="leading" secondItem="z4x-kQ-gM8" secondAttribute="leading" constant="40" id="gZH-es-wPm"/>
+                            <constraint firstItem="gVp-jr-5E0" firstAttribute="trailing" secondItem="3yl-M1-HpL" secondAttribute="trailing" id="ecM-gS-xx7"/>
                             <constraint firstItem="3yl-M1-HpL" firstAttribute="top" secondItem="z4x-kQ-gM8" secondAttribute="top" constant="90" id="i0s-T2-eWa"/>
-                            <constraint firstItem="tAy-sB-9Kb" firstAttribute="leading" secondItem="gVp-jr-5E0" secondAttribute="trailing" constant="27" id="ixX-I8-Jtv"/>
-                            <constraint firstItem="gVp-jr-5E0" firstAttribute="top" secondItem="3yl-M1-HpL" secondAttribute="bottom" constant="37" id="jia-XL-l7x"/>
+                            <constraint firstItem="gVp-jr-5E0" firstAttribute="leading" secondItem="3yl-M1-HpL" secondAttribute="leading" id="jjq-wi-PQq"/>
                             <constraint firstItem="3yl-M1-HpL" firstAttribute="leading" secondItem="z4x-kQ-gM8" secondAttribute="leading" constant="40" id="mab-LD-kqk"/>
                             <constraint firstItem="z4x-kQ-gM8" firstAttribute="trailing" secondItem="eAm-M7-YFd" secondAttribute="trailing" constant="46" id="nGp-qH-5bM"/>
                             <constraint firstItem="lOh-8l-ah4" firstAttribute="leading" secondItem="3yl-M1-HpL" secondAttribute="trailing" constant="45" id="pud-5i-PaY"/>
+                            <constraint firstItem="tAy-sB-9Kb" firstAttribute="leading" secondItem="gVp-jr-5E0" secondAttribute="trailing" constant="33" id="qrm-Dh-BtG"/>
+                            <constraint firstItem="tAy-sB-9Kb" firstAttribute="centerY" secondItem="gVp-jr-5E0" secondAttribute="centerY" id="ra4-0K-AYv"/>
                             <constraint firstItem="z4x-kQ-gM8" firstAttribute="trailing" secondItem="lOh-8l-ah4" secondAttribute="trailing" constant="46" id="xbi-xP-SWW"/>
                         </constraints>
                     </view>
@@ -212,6 +214,7 @@
                     </navigationItem>
                     <connections>
                         <outlet property="InvitationUserTextFiled" destination="gVp-jr-5E0" id="9Mb-ri-s75"/>
+                        <outlet property="OfflineSwitch" destination="BX4-Fu-m0t" id="Lvp-n4-Qrs"/>
                         <outlet property="PeerTextField" destination="3yl-M1-HpL" id="name-outlet-3yl-M1-HpL"/>
                         <segue destination="f4O-eg-bc3" kind="show" identifier="peerToChat" id="wps-Zl-wBr"/>
                     </connections>
@@ -453,7 +456,7 @@
         </scene>
     </scenes>
     <inferredMetricsTieBreakers>
-        <segue reference="Uvt-v8-NwZ"/>
+        <segue reference="wps-Zl-wBr"/>
     </inferredMetricsTieBreakers>
     <color key="tintColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
     <resources>

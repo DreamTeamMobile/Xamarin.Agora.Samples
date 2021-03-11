@@ -5,7 +5,7 @@ namespace DT.Samples.Agora.Rtm.iOS
 {
     public class RtmDelegate : AgoraRtmDelegate
     {
-        public Action<string, string> AppendMessage;
+        public Action<string, AgoraRtmMessage> AppendMessage;
 
         public override void ConnectionStateChanged(AgoraRtmKit kit, AgoraRtmConnectionState state, AgoraRtmConnectionChangeReason reason)
         {
@@ -14,7 +14,7 @@ namespace DT.Samples.Agora.Rtm.iOS
 
         public override void MessageReceived(AgoraRtmKit kit, AgoraRtmMessage message, string peerId)
         {
-            AppendMessage(peerId, message.Text);
+            AppendMessage(peerId, message);
         }
     }
 }

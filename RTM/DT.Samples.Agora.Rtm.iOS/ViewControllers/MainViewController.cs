@@ -44,6 +44,11 @@ namespace DT.Samples.Agora.Rtm.iOS
                 {
                     InvokeOnMainThread(() =>
                     {
+                        //getting offline messages
+                        var rtmDelegate = new RtmDelegate();
+                        rtmDelegate.AppendMessage += (user, message) => AgoraRtm.AddOfflineMessage(message, user);
+                        AgoraRtm.UpdateKit(rtmDelegate);
+
                         AgoraRtm.Status = LoginStatus.Online;
                         PerformSegue("mainToTab", null);
                     });

@@ -13,6 +13,29 @@
         android:textColor="@color/white"
         android:text="Enter your name"/>
 
+    <EditText
+        android:id="@+id/user_id"
+        android:layout_width="match_parent"
+        android:layout_height="40dp"
+        android:hint="@string/str_account"
+        android:layout_above="@+id/offline_msg_check"
+        android:layout_marginLeft="80dp"
+        android:layout_marginRight="80dp"
+        android:layout_marginBottom="25dp"
+        android:background="@color/white"
+        android:lines="1"
+        android:padding="5dp" />
+
+    <CheckBox
+        android:id="@+id/offline_msg_check"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="25dp"
+        android:layout_above="@+id/button_login"
+        android:layout_alignStart="@id/user_id"
+        android:layout_alignLeft="@id/user_id"
+        android:text="@string/hint_enable_offline_message" />
+
     <TextView
         android:id="@+id/button_login"
         android:layout_width="wrap_content"
@@ -27,17 +50,4 @@
         android:paddingRight="20dp"
         android:text="@string/str_login"
         android:textColor="@color/white" />
-
-    <EditText
-        android:id="@+id/user_id"
-        android:layout_width="match_parent"
-        android:layout_height="40dp"
-        android:layout_above="@+id/button_login"
-        android:hint="@string/str_account"
-        android:layout_marginLeft="80dp"
-        android:layout_marginRight="80dp"
-        android:layout_marginBottom="25dp"
-        android:background="@color/white"
-        android:lines="1"
-        android:padding="5dp" />
 </RelativeLayout>

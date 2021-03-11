@@ -12,30 +12,24 @@ namespace DT.Samples.Agora.Rtm.Droid
 
         private const int ChatRequestCode = 1;
 
-        private ChatManager _chatManager;
         private TextView _titleTextView;
         private TextView _chatButton;
         private TextView _invitationButton;
 
         private EditText _nameEditText;
         private EditText _invitationNameEditText;
-        private CheckBox _offlineCheck;
-
+        
         private ImageView btnBack;
 
         private bool _isPeerToPeerMode = true; // whether peer to peer mode or channel mode
         private string _targetName;
         private string _userId;
 
-        private RtmClient _rtmClient;
-
         protected override void OnCreate(Bundle savedInstanceState)
         {
             base.OnCreate(savedInstanceState);
             SetContentView(Resource.Layout.ActivitySelection);
 
-            _rtmClient = MainApplication.ChatManager.GetRtmClient();
-            _chatManager = MainApplication.ChatManager;
             InitUIAndData();
         }
 
@@ -61,10 +55,7 @@ namespace DT.Samples.Agora.Rtm.Droid
 
             _invitationButton = FindViewById<TextView>(Resource.Id.invitation_btn);
             _invitationNameEditText = FindViewById<EditText>(Resource.Id.invitation_name);
-            _offlineCheck = FindViewById<CheckBox>(Resource.Id.offline_msg_check);
-            _offlineCheck.Checked = _chatManager.OfflineMessagesEnabled;
-            _offlineCheck.CheckedChange += (s, e) => _chatManager.OfflineMessagesEnabled = _offlineCheck.Checked;
-
+            
             RadioGroup modeGroup = FindViewById<RadioGroup>(Resource.Id.mode_radio_group);
             btnBack = FindViewById<ImageView>(Resource.Id.back);
 

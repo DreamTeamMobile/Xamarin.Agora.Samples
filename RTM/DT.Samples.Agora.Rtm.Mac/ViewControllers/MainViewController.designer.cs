@@ -18,6 +18,9 @@ namespace DT.Samples.Agora.Rtm.Mac
 		[Outlet]
 		AppKit.NSButton LoginButton { get; set; }
 
+		[Outlet]
+		AppKit.NSButton OfflineSwitch { get; set; }
+
 		[Action ("DoLoginPress:")]
 		partial void DoLoginPress (AppKit.NSButton sender);
 		
@@ -31,6 +34,11 @@ namespace DT.Samples.Agora.Rtm.Mac
 			if (LoginButton != null) {
 				LoginButton.Dispose ();
 				LoginButton = null;
+			}
+
+			if (OfflineSwitch != null) {
+				OfflineSwitch.Dispose ();
+				OfflineSwitch = null;
 			}
 		}
 	}

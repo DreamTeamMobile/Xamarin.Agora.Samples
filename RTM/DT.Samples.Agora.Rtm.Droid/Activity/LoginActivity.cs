@@ -17,6 +17,7 @@ namespace DT.Samples.Agora.Rtm.Droid
     {
         private TextView _loginBtn;
         private EditText _userIdEditText;
+        private CheckBox _offlineCheck;
         private string _userId;
 
         private RtmClient _rtmClient;
@@ -32,11 +33,15 @@ namespace DT.Samples.Agora.Rtm.Droid
 
             _userIdEditText = FindViewById<EditText>(Resource.Id.user_id);
             _loginBtn = FindViewById<TextView>(Resource.Id.button_login);
-
+            _offlineCheck = FindViewById<CheckBox>(Resource.Id.offline_msg_check);
+            
             _loginBtn.Click += OnClickLogin;
 
             MainApplication.ChatManager = new ChatManager(this);
             MainApplication.ChatManager.Init();
+
+            _offlineCheck.Checked = MainApplication.ChatManager.OfflineMessagesEnabled;
+            _offlineCheck.CheckedChange += (s, e) => MainApplication.ChatManager.OfflineMessagesEnabled = _offlineCheck.Checked;
 
             _rtmClient = MainApplication.ChatManager.GetRtmClient();
 

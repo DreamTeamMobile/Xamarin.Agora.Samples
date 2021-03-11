@@ -79,6 +79,7 @@ namespace DT.Samples.Agora.Rtm.Mac.ViewControllers
             var dataSource = new TableSource(_messages);
             Table.DataSource = dataSource;
             Table.Delegate = new TableDelegate(dataSource);
+            LoadOfflineMessages();
 
             _rtmDelegate = new RtmDelegate();
             _rtmDelegate.AppendMessage += AppendMsg;
@@ -90,6 +91,16 @@ namespace DT.Samples.Agora.Rtm.Mac.ViewControllers
         {
             base.ViewWillDisappear();
             LeaveChannel();
+        }
+
+        private void LoadOfflineMessages()
+        {
+            if (_type == ChatType.Peer)
+            {
+                var messages = AgoraRtm.GetOfflineMessages(ChannelOrPeerName);
+                messages.ForEach(m => AppendMsg(ChannelOrPeerName, m));
+                AgoraRtm.RemoveAllOfflineMessages(ChannelOrPeerName);
+            }
         }
 
         partial void OnBackPressed(NSButton sender)
@@ -131,13 +142,17 @@ namespace DT.Samples.Agora.Rtm.Mac.ViewControllers
         public void SendPeer(string peer, string msg)
         {
             var message = new AgoraRtmMessage(msg);
+            var options = new AgoraRtmSendMessageOptions
+            {
+                EnableOfflineMessaging = AgoraRtm.OneToOneMessageType == OneToOneMessageType.Offline
+            };
 
-            AgoraRtm.RtmKit.SendMessage(message, peer, (state) =>
+            AgoraRtm.RtmKit.SendMessage(message, peer, options, (state) =>
             {
                 Console.WriteLine($"send peer msg state: ({state})");
 
                 var current = AgoraRtm.Current;
-                AppendMsg(current, msg);
+                AppendMsg(current, message);
             });
         }
 
@@ -148,8 +163,12 @@ namespace DT.Samples.Agora.Rtm.Mac.ViewControllers
             if (rtmChannels[channel] is AgoraRtmChannel rtmChannel)
             {
                 var message = new AgoraRtmMessage(msg);
+                var options = new AgoraRtmSendMessageOptions
+                {
+                    EnableOfflineMessaging = AgoraRtm.OneToOneMessageType == OneToOneMessageType.Offline
+                };
 
-                rtmChannel.SendMessage(message, (state) =>
+                rtmChannel.SendMessage(message, options, (state) =>
                 {
                     Console.Write($"send channel msg state: {state}");
 
@@ -157,14 +176,14 @@ namespace DT.Samples.Agora.Rtm.Mac.ViewControllers
                     if (current == null)
                         return;
 
-                    AppendMsg(current, msg);
+                    AppendMsg(current, message);
                 });
             }
         }
 
-        public void AppendMsg(string user, string content)
+        public void AppendMsg(string user, AgoraRtmMessage message)
         {
-            var msg = new Message(user, content);
+            var msg = new Message(user, message.Text);
             _messages.Add(msg);
 
             var end = _messages.Count - 1;

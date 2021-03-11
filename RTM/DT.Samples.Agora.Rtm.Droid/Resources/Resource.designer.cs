@@ -3502,8 +3502,8 @@ namespace DT.Samples.Agora.Rtm.Droid
 			// aapt resource value: 0x7f0a006c
 			public const int activity_chooser_view_content = 2131361900;
 			
-			// aapt resource value: 0x7f0a00a6
-			public const int activity_video_chat_view = 2131361958;
+			// aapt resource value: 0x7f0a00a7
+			public const int activity_video_chat_view = 2131361959;
 			
 			// aapt resource value: 0x7f0a002e
 			public const int add = 2131361838;
@@ -3523,8 +3523,8 @@ namespace DT.Samples.Agora.Rtm.Droid
 			// aapt resource value: 0x7f0a004d
 			public const int auto = 2131361869;
 			
-			// aapt resource value: 0x7f0a00a1
-			public const int back = 2131361953;
+			// aapt resource value: 0x7f0a00a2
+			public const int back = 2131361954;
 			
 			// aapt resource value: 0x7f0a0036
 			public const int beginning = 2131361846;
@@ -3553,8 +3553,8 @@ namespace DT.Samples.Agora.Rtm.Droid
 			// aapt resource value: 0x7f0a0072
 			public const int buttonPanel = 2131361906;
 			
-			// aapt resource value: 0x7f0a009e
-			public const int button_login = 2131361950;
+			// aapt resource value: 0x7f0a00a0
+			public const int button_login = 2131361952;
 			
 			// aapt resource value: 0x7f0a00d0
 			public const int cancel_action = 2131362000;
@@ -3694,11 +3694,11 @@ namespace DT.Samples.Agora.Rtm.Droid
 			// aapt resource value: 0x7f0a00d9
 			public const int info = 2131362009;
 			
-			// aapt resource value: 0x7f0a00a9
-			public const int invitation_btn = 2131361961;
-			
 			// aapt resource value: 0x7f0a00aa
-			public const int invitation_name = 2131361962;
+			public const int invitation_btn = 2131361962;
+			
+			// aapt resource value: 0x7f0a00ab
+			public const int invitation_name = 2131361963;
 			
 			// aapt resource value: 0x7f0a0068
 			public const int italic = 2131361896;
@@ -3772,14 +3772,14 @@ namespace DT.Samples.Agora.Rtm.Droid
 			// aapt resource value: 0x7f0a009c
 			public const int message = 2131361948;
 			
-			// aapt resource value: 0x7f0a00a4
-			public const int message_edittiext = 2131361956;
-			
 			// aapt resource value: 0x7f0a00a5
-			public const int message_list = 2131361957;
+			public const int message_edittiext = 2131361957;
 			
-			// aapt resource value: 0x7f0a00a0
-			public const int message_title = 2131361952;
+			// aapt resource value: 0x7f0a00a6
+			public const int message_list = 2131361958;
+			
+			// aapt resource value: 0x7f0a00a1
+			public const int message_title = 2131361953;
 			
 			// aapt resource value: 0x7f0a0038
 			public const int middle = 2131361848;
@@ -3820,8 +3820,8 @@ namespace DT.Samples.Agora.Rtm.Droid
 			// aapt resource value: 0x7f0a00d4
 			public const int notification_main_column_container = 2131362004;
 			
-			// aapt resource value: 0x7f0a00ab
-			public const int offline_msg_check = 2131361963;
+			// aapt resource value: 0x7f0a009f
+			public const int offline_msg_check = 2131361951;
 			
 			// aapt resource value: 0x7f0a0060
 			public const int outline = 2131361888;
@@ -3922,20 +3922,20 @@ namespace DT.Samples.Agora.Rtm.Droid
 			// aapt resource value: 0x7f0a004f
 			public const int selected = 2131361871;
 			
-			// aapt resource value: 0x7f0a00a2
-			public const int selection_chat_btn = 2131361954;
-			
 			// aapt resource value: 0x7f0a00a3
-			public const int selection_img_btn = 2131361955;
+			public const int selection_chat_btn = 2131361955;
 			
-			// aapt resource value: 0x7f0a00a8
-			public const int selection_name = 2131361960;
+			// aapt resource value: 0x7f0a00a4
+			public const int selection_img_btn = 2131361956;
+			
+			// aapt resource value: 0x7f0a00a9
+			public const int selection_name = 2131361961;
 			
 			// aapt resource value: 0x7f0a00ae
 			public const int selection_tab_channel = 2131361966;
 			
-			// aapt resource value: 0x7f0a00a7
-			public const int selection_title = 2131361959;
+			// aapt resource value: 0x7f0a00a8
+			public const int selection_title = 2131361960;
 			
 			// aapt resource value: 0x7f0a0083
 			public const int shortcut = 2131361923;
@@ -4084,8 +4084,8 @@ namespace DT.Samples.Agora.Rtm.Droid
 			// aapt resource value: 0x7f0a002d
 			public const int useLogo = 2131361837;
 			
-			// aapt resource value: 0x7f0a009f
-			public const int user_id = 2131361951;
+			// aapt resource value: 0x7f0a009e
+			public const int user_id = 2131361950;
 			
 			// aapt resource value: 0x7f0a001b
 			public const int view_offset_helper = 2131361819;

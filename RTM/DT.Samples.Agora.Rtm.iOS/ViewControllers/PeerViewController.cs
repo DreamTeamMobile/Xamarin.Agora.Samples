@@ -35,7 +35,6 @@ namespace DT.Samples.Agora.Rtm.iOS
         {
             if (string.IsNullOrEmpty(PeerTextField.Text))
                 return;
-
             PerformSegue("peerToChat", NSObject.FromObject(PeerTextField.Text));
         }
 

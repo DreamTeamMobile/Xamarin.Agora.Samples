@@ -2,6 +2,7 @@ using Foundation;
 using DT.Xamarin.Agora;
 using System;
 using DT.Samples.Agora.Shared;
+using System.Collections.Generic;
 
 namespace DT.Samples.Agora.Rtm.iOS
 {
@@ -11,15 +12,23 @@ namespace DT.Samples.Agora.Rtm.iOS
         Offline = 1
     }
 
+    public enum OneToOneMessageType
+    {
+        Normal,
+        Offline
+    }
+
     public class AgoraRtm : NSObject
     {
         public static AgoraRtmKit RtmKit = new AgoraRtmKit(AgoraTestConstants.AgoraAPI, null);
         public static AgoraRtmCallKit CallKitManager = RtmKit.RtmCallKit;
 
 
-        public static string Current;
-        public static LoginStatus Status = LoginStatus.Offline;
+        public static string Current { get; set; }
+        public static LoginStatus Status { get; set; } = LoginStatus.Offline;
+        public static OneToOneMessageType OneToOneMessageType { get; set; } = OneToOneMessageType.Normal;
 
+        private static Dictionary<string, List<AgoraRtmMessage>> _offlineMessages = new Dictionary<string, List<AgoraRtmMessage>>();
 
         public static void UpdateKit(AgoraRtmDelegate del) 
         {
@@ -86,6 +95,31 @@ namespace DT.Samples.Agora.Rtm.iOS
                     Console.WriteLine("Invitation send error. Try again");
                 }
             });
+        }
+
+        public static void AddOfflineMessage(AgoraRtmMessage message, string user)
+        {
+            if (!message.IsOfflineMessage)
+                return;
+
+            var messages = new List<AgoraRtmMessage>();
+            if(_offlineMessages.ContainsKey(user))
+            {
+                messages = _offlineMessages[user];
+            }
+            messages.Add(message);
+            _offlineMessages[user] = messages;
+        }
+
+        public static List<AgoraRtmMessage> GetOfflineMessages(string user)
+        {
+            return _offlineMessages.ContainsKey(user) ? _offlineMessages[user] : new List<AgoraRtmMessage>();
+        }
+
+        public static void RemoveAllOfflineMessages(string user)
+        {
+            if (_offlineMessages.ContainsKey(user))
+                _offlineMessages.Remove(user);
         }
     }
 }

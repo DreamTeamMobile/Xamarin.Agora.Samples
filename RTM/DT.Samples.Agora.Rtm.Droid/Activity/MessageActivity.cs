@@ -193,6 +193,10 @@ namespace DT.Samples.Agora.Rtm.Droid
             {
                 CreateAndJoinChannel();
             }
+            else
+            {
+                JoinPeer();
+            }
         }
 
         private void InitCallbackAndListener()
@@ -273,6 +277,19 @@ namespace DT.Samples.Agora.Rtm.Droid
                     });
                     break;
             }
+        }
+
+        private void JoinPeer()
+        {
+            var message = rtmClient.CreateMessage();
+
+            message.Text = $"{_userId} joined";
+            MessageBean messageBean = new MessageBean(_userId, message, true);
+            _messageBeanList.Add(messageBean);
+            _messageAdapter.NotifyItemRangeChanged(_messageBeanList.Count, 1);
+            _recyclerView.ScrollToPosition(_messageBeanList.Count - 1);
+
+            SendPeerMessage(message);
         }
 
         private void MemberSuccessAction(Java.Lang.Object obj)

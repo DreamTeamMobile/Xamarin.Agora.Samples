@@ -717,7 +717,7 @@
                                 </textFieldCell>
                             </textField>
                             <button verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="Z0z-Ci-87c">
-                                <rect key="frame" x="206" y="92" width="68" height="32"/>
+                                <rect key="frame" x="206" y="82" width="68" height="32"/>
                                 <buttonCell key="cell" type="push" title="Login" bezelStyle="rounded" alignment="center" borderStyle="border" imageScaling="proportionallyDown" inset="2" id="u0z-bq-UFF">
                                     <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
                                     <font key="font" metaFont="system"/>
@@ -726,17 +726,27 @@
                                     <action selector="DoLoginPress:" target="XfG-lQ-9wD" id="dch-y5-mvK"/>
                                 </connections>
                             </button>
+                            <button verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="J1X-ik-7ng">
+                                <rect key="frame" x="128" y="137" width="167" height="18"/>
+                                <buttonCell key="cell" type="check" title="Enable offline message" bezelStyle="regularSquare" imagePosition="left" inset="2" id="DdL-dp-ShE">
+                                    <behavior key="behavior" changeContents="YES" doesNotDimImage="YES" lightByContents="YES"/>
+                                    <font key="font" metaFont="system"/>
+                                </buttonCell>
+                            </button>
                         </subviews>
                         <constraints>
                             <constraint firstItem="Z0z-Ci-87c" firstAttribute="centerX" secondItem="m2S-Jp-Qdl" secondAttribute="centerX" id="AFj-xj-Q4s"/>
-                            <constraint firstItem="Z0z-Ci-87c" firstAttribute="top" secondItem="oJx-5g-OhE" secondAttribute="bottom" constant="60" id="Kud-7b-P4M"/>
+                            <constraint firstItem="J1X-ik-7ng" firstAttribute="top" secondItem="oJx-5g-OhE" secondAttribute="bottom" constant="25" id="JLm-Fs-s7t"/>
+                            <constraint firstItem="Z0z-Ci-87c" firstAttribute="top" secondItem="oJx-5g-OhE" secondAttribute="bottom" constant="70" id="Kud-7b-P4M"/>
                             <constraint firstItem="oJx-5g-OhE" firstAttribute="top" secondItem="m2S-Jp-Qdl" secondAttribute="top" constant="65" id="Lde-UT-d4k"/>
+                            <constraint firstItem="J1X-ik-7ng" firstAttribute="leading" secondItem="oJx-5g-OhE" secondAttribute="leading" id="PI9-iu-tiU"/>
                             <constraint firstItem="oJx-5g-OhE" firstAttribute="centerX" secondItem="m2S-Jp-Qdl" secondAttribute="centerX" id="fDI-N3-flf"/>
                         </constraints>
                     </view>
                     <connections>
                         <outlet property="AccountText" destination="oJx-5g-OhE" id="MR1-An-nWa"/>
                         <outlet property="LoginButton" destination="Z0z-Ci-87c" id="esO-e7-77i"/>
+                        <outlet property="OfflineSwitch" destination="J1X-ik-7ng" id="qco-Dx-fwc"/>
                         <segue destination="5Qh-9T-BRk" kind="custom" identifier="mainToTab" customClass="ReplaceSegue" id="oSC-xy-Jfy"/>
                     </connections>
                 </viewController>
@@ -879,13 +889,13 @@
                         <autoresizingMask key="autoresizingMask"/>
                         <subviews>
                             <scrollView autohidesScrollers="YES" horizontalLineScroll="43" horizontalPageScroll="10" verticalLineScroll="43" verticalPageScroll="10" usesPredominantAxisScrolling="NO" translatesAutoresizingMaskIntoConstraints="NO" id="fZh-74-XcW">
-                                <rect key="frame" x="0.0" y="49" width="479" height="181"/>
+                                <rect key="frame" x="0.0" y="49" width="479" height="155"/>
                                 <clipView key="contentView" id="Efm-6C-vt8">
-                                    <rect key="frame" x="1" y="1" width="477" height="179"/>
+                                    <rect key="frame" x="1" y="1" width="477" height="153"/>
                                     <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                                     <subviews>
                                         <tableView verticalHuggingPriority="750" allowsExpansionToolTips="YES" columnAutoresizingStyle="lastColumnOnly" columnSelection="YES" multipleSelection="NO" autosaveColumns="NO" rowHeight="41" rowSizeStyle="automatic" viewBased="YES" id="b1J-o6-OZ1">
-                                            <rect key="frame" x="0.0" y="0.0" width="477" height="179"/>
+                                            <rect key="frame" x="0.0" y="0.0" width="477" height="153"/>
                                             <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                                             <size key="intercellSpacing" width="3" height="2"/>
                                             <color key="backgroundColor" name="controlBackgroundColor" catalog="System" colorSpace="catalog"/>
@@ -1002,7 +1012,7 @@
                                 </connections>
                             </textField>
                             <button verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="eB0-Or-Vyj">
-                                <rect key="frame" x="1" y="235" width="64" height="32"/>
+                                <rect key="frame" x="1" y="209" width="64" height="32"/>
                                 <buttonCell key="cell" type="push" title="Back" bezelStyle="rounded" alignment="center" borderStyle="border" imageScaling="proportionallyDown" inset="2" id="j1W-Wh-DLY">
                                     <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
                                     <font key="font" metaFont="system"/>

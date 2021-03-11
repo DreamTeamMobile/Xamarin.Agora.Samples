@@ -21,9 +21,9 @@ namespace DT.Samples.Agora.Rtm.Mac
         public static AgoraRtmKit RtmKit = new AgoraRtmKit(AgoraTestConstants.AgoraAPI, null);
         public static string Current;
         public static LoginStatus Status = LoginStatus.Offline;
-        public static OneToOneMessageType OneToOneMessageType = OneToOneMessageType.Normal;
-        public static Dictionary<string, List<AgoraRtmMessage>> OfflineMessages = new Dictionary<string, List<AgoraRtmMessage>>();
+        public static OneToOneMessageType OneToOneMessageType { get; set; } = OneToOneMessageType.Normal;
 
+        private static Dictionary<string, List<AgoraRtmMessage>> _offlineMessages = new Dictionary<string, List<AgoraRtmMessage>>();
 
         public static void UpdateKit(AgoraRtmDelegate del)
         {
@@ -38,23 +38,23 @@ namespace DT.Samples.Agora.Rtm.Mac
             if (offlineMessage == null || !offlineMessage.IsOfflineMessage)
                 return;
 
-            if (!OfflineMessages.TryGetValue(user, out List<AgoraRtmMessage> userMessages))
+            if (!_offlineMessages.TryGetValue(user, out List<AgoraRtmMessage> userMessages))
             {
                 userMessages = new List<AgoraRtmMessage>();
             }
             userMessages.Add(offlineMessage);
-            OfflineMessages[user] = userMessages;
+            _offlineMessages[user] = userMessages;
         }
 
         public static List<AgoraRtmMessage> GetOfflineMessages(string user)
         {
-            return OfflineMessages.ContainsKey(user) ? OfflineMessages[user] : new List<AgoraRtmMessage>();
+            return _offlineMessages.ContainsKey(user) ? _offlineMessages[user] : new List<AgoraRtmMessage>();
         }
 
-        public static void RemoveOfflineMessages(string user)
+        public static void RemoveAllOfflineMessages(string user)
         {
-            if (OfflineMessages.ContainsKey(user))
-                OfflineMessages[user].Clear();
+            if (_offlineMessages.ContainsKey(user))
+                _offlineMessages[user].Clear();
         }
     }
 }

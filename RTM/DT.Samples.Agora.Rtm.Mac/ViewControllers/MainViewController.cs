@@ -1,6 +1,7 @@
 using System;
 using Foundation;
 using AppKit;
+using DT.Samples.Agora.Rtm.Mac.Delegates;
 
 namespace DT.Samples.Agora.Rtm.Mac
 {
@@ -51,6 +52,14 @@ namespace DT.Samples.Agora.Rtm.Mac
                 {
                     InvokeOnMainThread(() =>
                     {
+                        AgoraRtm.OneToOneMessageType = OfflineSwitch.State == NSCellStateValue.On
+                            ? OneToOneMessageType.Offline
+                            : OneToOneMessageType.Normal;
+                        //getting offline messages
+                        var rtmDelegate = new RtmDelegate();
+                        rtmDelegate.AppendMessage += (user, message) => AgoraRtm.AddOfflineMessage(message, user);
+                        AgoraRtm.UpdateKit(rtmDelegate);
+
                         AgoraRtm.Status = LoginStatus.Online;
                         PerformSegue("mainToTab", this);
                     });

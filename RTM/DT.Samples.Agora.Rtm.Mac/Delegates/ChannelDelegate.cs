@@ -5,7 +5,7 @@ namespace DT.Samples.Agora.Rtm.Mac.Delegates
 {
     public class ChannelDelegate: AgoraRtmChannelDelegate
     {
-        public Action<string, string> AppendMessage;
+        public Action<string, AgoraRtmMessage> AppendMessage;
         public Action<string, string> ShowAlert;
 
         public override void MemberJoined(AgoraRtmChannel channel, AgoraRtmMember member)
@@ -20,7 +20,7 @@ namespace DT.Samples.Agora.Rtm.Mac.Delegates
 
         public override void MessageReceived(AgoraRtmChannel channel, AgoraRtmMessage message, AgoraRtmMember member)
         {
-            InvokeOnMainThread(() => AppendMessage(member.UserId, message.Text));
+            InvokeOnMainThread(() => AppendMessage(member.UserId, message));
         }
     }
 }

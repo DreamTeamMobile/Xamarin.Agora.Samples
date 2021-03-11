@@ -12,5 +12,17 @@ namespace DT.Samples.Agora.Rtm.Droid
             AccountOther = account;
             MessageBeanList = messageBeanList;
         }
+
+        public MessageListBean(string account, ChatManager chatManager)
+        {
+            AccountOther = account;
+            MessageBeanList = new List<MessageBean>();
+            var messageList = chatManager.GetAllOfflineMessages(account);
+            messageList.ForEach(m =>
+            {
+                var bean = new MessageBean(account, m, false);
+                MessageBeanList.Add(bean);
+            });
+        }
     }
 }

@@ -30,6 +30,17 @@
             android:layout_toRightOf="@+id/item_name_l"
             android:layout_centerVertical="true"
             />
+
+        <ImageView
+            android:id="@+id/item_img_l"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerVertical="true"
+            android:layout_toRightOf="@+id/item_name_l"
+            android:background="@drawable/icon_msg_l"
+            android:gravity="center"
+            android:padding="5dp"
+            android:visibility="gone" />
     </RelativeLayout>
    <RelativeLayout
        android:id="@+id/item_layout_r"
@@ -61,6 +72,18 @@
            android:background="@drawable/icon_msg_r"
            android:layout_centerVertical="true"
            />
+
+        <ImageView
+            android:id="@+id/item_img_r"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerVertical="true"
+            android:adjustViewBounds="true"
+            android:layout_toLeftOf="@+id/item_name_r"
+            android:background="@drawable/icon_msg_r"
+            android:gravity="center"
+            android:padding="5dp"
+            android:visibility="gone" />
    </RelativeLayout>
 
 

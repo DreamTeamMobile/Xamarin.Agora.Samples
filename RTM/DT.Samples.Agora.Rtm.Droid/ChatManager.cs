@@ -11,12 +11,22 @@ namespace DT.Samples.Agora.Rtm.Droid
     {
         public Action<string> OnAcceptInvitation;
 
+        private SendMessageOptions _sendMsgOptions = new SendMessageOptions();
         private Context _context;
         private RtmClient _rtmClient;
         private RtmCallManager _callManager;
+        private RtmMessagePool _messagePool = new RtmMessagePool();
 
         private List<IRtmClientListener> _listenerList = new List<IRtmClientListener>();
         private RtmClientListener _myRtmClientListener;
+
+        public bool OfflineMessagesEnabled
+        {
+            get => _sendMsgOptions.EnableOfflineMessaging;
+            set => _sendMsgOptions.EnableOfflineMessaging = value;
+        }
+
+        public SendMessageOptions SendMessageOptions => _sendMsgOptions;
 
         public ChatManager(Context context) {
             _context = context;
@@ -164,9 +174,16 @@ namespace DT.Samples.Agora.Rtm.Droid
 
         private void OnRtmMessageReceived(RtmMessage rtmMessage, string peerId)
         {
-            foreach (RtmClientListener listener in _listenerList)
+            if (_listenerList.Count == 0)
             {
-                listener.OnMessageReceived(rtmMessage, peerId);
+                _messagePool.InsertOfflineMessage(rtmMessage, peerId);
+            }
+            else
+            {
+                foreach (RtmClientListener listener in _listenerList)
+                {
+                    listener.OnMessageReceived(rtmMessage, peerId);
+                }
             }
         }
 
@@ -180,6 +197,16 @@ namespace DT.Samples.Agora.Rtm.Droid
 
         public void UnregisterListener(RtmClientListener listener) {
             _listenerList.Remove(listener);
+        }
+
+        public List<RtmMessage> GetAllOfflineMessages(string peerId)
+        {
+            return _messagePool.GetAllOfflineMessages(peerId);
+        }
+
+        public void RemoveAllOfflineMessages(string peerId)
+        {
+            _messagePool.RemoveAllOfflineMessages(peerId);
         }
     }
 

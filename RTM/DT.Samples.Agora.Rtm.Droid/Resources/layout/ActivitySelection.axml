@@ -51,7 +51,7 @@
         android:layout_marginTop="40dp"
         android:background="@color/white"
         android:lines="1"
-        android:padding="5dp" />
+        android:padding="5dp" /> 
     
     <TextView
         android:id="@+id/invitation_btn"
@@ -81,6 +81,16 @@
         android:background="@color/white"
         android:lines="1"
         android:padding="5dp" />
+
+    <CheckBox
+        android:id="@+id/offline_msg_check"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="40dp"
+        android:layout_below="@id/invitation_name"
+        android:layout_alignStart="@id/selection_name"
+        android:layout_alignLeft="@id/selection_name"
+        android:text="@string/hint_enable_offline_message" />
 
     <RadioGroup
         android:id="@+id/mode_radio_group"

@@ -7,15 +7,24 @@ using Android.Support.V7.Widget;
 using Android.Widget;
 using DT.Xamarin.Agora.Rtm;
 using Android.Runtime;
+using Android.Content;
+using Android.Provider;
+using Android.Support.V4.App;
+using Android;
+using Android.Support.V4.Content;
+using Android.Content.PM;
+using DT.Samples.Agora.Rtm.Droid.Utils;
 
 namespace DT.Samples.Agora.Rtm.Droid
 {
-    [Activity(Label = "MessageActivity")]
+    [Activity(Label = "MessageActivity", Theme = "@style/AppTheme")]
     public class MessageActivity : AppCompatActivity 
     {
+        private const int ReadExternalStoragePermissionRequestCode = 1;
 
         private TextView _titleTextView;
         private TextView _btnSend;
+        private ImageView _btnImageSend;
         private EditText _msgEditText;
         private ImageView _btnBack;
         private RecyclerView _recyclerView;
@@ -41,6 +50,8 @@ namespace DT.Samples.Agora.Rtm.Droid
 
         private RtmChannelListener _channelListener;
 
+        private bool CanReadExternalStorage => ContextCompat.CheckSelfPermission(this, Manifest.Permission.ReadExternalStorage) == (int)Permission.Granted;
+
         protected override void OnCreate(Bundle savedInstanceState) {
             base.OnCreate(savedInstanceState);
             SetContentView(Resource.Layout.ActivityMessage);
@@ -49,28 +60,10 @@ namespace DT.Samples.Agora.Rtm.Droid
             InitChat();
         }
 
-        private void PeerJoin() 
-        {
-            var joinText = $"{_userId} join";
-
-            var messageBean = new MessageBean(_userId, joinText, true)
-            {
-                Background = GetMessageColor(_userId)
-            };
-
-            RunOnUiThread(() =>
-            {
-                _messageBeanList.Add(messageBean);
-                _messageAdapter.NotifyItemRangeChanged(_messageBeanList.Count, 1);
-                _recyclerView.ScrollToPosition(_messageBeanList.Count - 1);
-            });
-        }
-
         private void OnMessageReceived(RtmMessage message, RtmChannelMember fromMember)
         {
-            string account = fromMember.UserId;
-            string msg = message.Text;
-            MessageBean messageBean = new MessageBean(account, msg, false)
+            var account = fromMember.UserId;
+            MessageBean messageBean = new MessageBean(account, message, false)
             {
                 Background = GetMessageColor(account)
             };
@@ -99,10 +92,9 @@ namespace DT.Samples.Agora.Rtm.Droid
         {
             RunOnUiThread(() =>
             {
-                string content = message.Text;
                 if (_peerId.Equals(peerId))
                 {
-                    MessageBean messageBean = new MessageBean(peerId, content, false)
+                    MessageBean messageBean = new MessageBean(peerId, message, false)
                     {
                         Background = GetMessageColor(peerId)
                     };
@@ -113,7 +105,7 @@ namespace DT.Samples.Agora.Rtm.Droid
                 }
                 else
                 {
-                    MessageUtil.AddMessageBean(peerId, content);
+                    MessageUtil.AddMessageBean(peerId, message);
                 }
             });
         }
@@ -149,14 +141,20 @@ namespace DT.Samples.Agora.Rtm.Droid
 
         private void InitUIAndData()
         {
+            InitCallbackAndListener();
+            _chatManager = MainApplication.ChatManager;
+            _chatManager.RegisterListener(_myRtmClientListener);
+
             _titleTextView = FindViewById<TextView>(Resource.Id.message_title);
             _msgEditText = FindViewById<EditText>(Resource.Id.message_edittiext);
             _recyclerView = FindViewById<RecyclerView>(Resource.Id.message_list);
             _btnSend = FindViewById<TextView>(Resource.Id.selection_chat_btn);
+            _btnImageSend = FindViewById<ImageView>(Resource.Id.selection_img_btn);
             _btnBack = FindViewById<ImageView>(Resource.Id.back);
 
             _btnBack.Click += OnClickFinish;
-            _btnSend.Click += OnClickSend;
+            _btnSend.Click += OnClickTextSend;
+            _btnImageSend.Click += OnClickImageSend;
 
             _isPeerToPeerMode = Intent.GetBooleanExtra(MessageUtil.IntentExtraIsPeerMode, true);
             _userId = Intent.GetStringExtra(MessageUtil.IntentExtraUserId);
@@ -168,6 +166,11 @@ namespace DT.Samples.Agora.Rtm.Droid
                 if (messageListBean != null) {
                     _messageBeanList.AddRange(messageListBean.MessageBeanList);
                 }
+                MessageListBean offlineMessageBean = new MessageListBean(_peerId, _chatManager);
+                _messageBeanList.AddRange(offlineMessageBean.MessageBeanList);
+                _chatManager.RemoveAllOfflineMessages(_peerId);
+
+                _titleTextView.Text = $"Chat with {_peerId}";
             } else {
                 _channelName = targetName;
                 _channelMemberCount = 1;
@@ -184,19 +187,12 @@ namespace DT.Samples.Agora.Rtm.Droid
 
         private void InitChat()
         {
-            InitCallbackAndListener();
-
-            _chatManager = MainApplication.ChatManager;
             rtmClient = _chatManager.GetRtmClient();
-
-            _chatManager.RegisterListener(_myRtmClientListener);
 
             if (!_isPeerToPeerMode)
             {
                 CreateAndJoinChannel();
             }
-
-            PeerJoin();
         }
 
         private void InitCallbackAndListener()
@@ -267,6 +263,15 @@ namespace DT.Samples.Agora.Rtm.Droid
                 case RtmStatusCodePeerMessageError.PeerMessageErrPeerUnreachable:
                     ShowToast(GetString(Resource.String.peer_offline));
                     break;
+                case RtmStatusCodePeerMessageError.PeerMessageErrInvalidMessage:
+                    ShowToast(GetString(Resource.String.send_msg_failed_invalid));
+                    RunOnUiThread(() =>
+                    {
+                        _messageBeanList.RemoveAt(_messageBeanList.Count - 1);
+                        _messageAdapter.NotifyItemRangeChanged(_messageBeanList.Count, 1);
+                        _recyclerView.ScrollToPosition(_messageBeanList.Count - 1);
+                    });
+                    break;
             }
         }
 
@@ -289,21 +294,126 @@ namespace DT.Samples.Agora.Rtm.Droid
             }
         }
 
-        public void OnClickSend(object sender, EventArgs e)
+        public void OnClickTextSend(object sender, EventArgs e)
         {
-            string msg = _msgEditText.Text;
-            if (!msg.Equals("")) {
-                MessageBean messageBean = new MessageBean(_userId, msg, true);
+            string messageText = _msgEditText.Text;
+            if (!string.IsNullOrEmpty(messageText)) {
+                var message = rtmClient.CreateMessage();
+                message.Text = messageText;
+                MessageBean messageBean = new MessageBean(_userId, message, true);
                 _messageBeanList.Add(messageBean);
                 _messageAdapter.NotifyItemRangeChanged(_messageBeanList.Count, 1);
                 _recyclerView.ScrollToPosition(_messageBeanList.Count - 1);
                 if (_isPeerToPeerMode) {
-                    SendPeerMessage(msg);
+                    SendPeerMessage(message);
                 } else {
-                    SendChannelMessage(msg);
+                    SendChannelMessage(message);
                 }
             }
             _msgEditText.Text = "";
+        }
+
+        public void OnClickImageSend(object sender, EventArgs e)
+        {
+            if (!CanReadExternalStorage)
+            {
+                ActivityCompat.RequestPermissions(this, new string[] { Manifest.Permission.ReadExternalStorage }, ReadExternalStoragePermissionRequestCode);
+            }
+            else
+            {
+                GetImageFromGalery();
+            }
+        }
+
+        private void GetImageFromGalery()
+        {
+            var intent = new Intent(Intent.ActionPick, MediaStore.Images.Media.ExternalContentUri);
+            StartActivityForResult(Intent.CreateChooser(intent, "Select image from galery"), 0);
+        }
+
+        protected override void OnActivityResult(int requestCode, [GeneratedEnum] Result resultCode, Intent data)
+        {
+            switch(requestCode)
+            {
+                case 0:
+                    if (data != null)
+                    {
+                        var resultUri = data.Data;
+                        var path = GetPath(resultUri);
+                        
+                        var resultCallback = new ResultCallback();
+                        resultCallback.OnSuccessAction += (message) =>
+                        {
+                            RunOnUiThread(() =>
+                            {
+                                var rtmImageMessage = message as RtmImageMessage;
+                                var messageBean = new MessageBean(_userId, rtmImageMessage, true)
+                                {
+                                    CacheFile = path
+                                };
+                                _messageBeanList.Add(messageBean);
+                                _messageAdapter.NotifyItemRangeChanged(_messageBeanList.Count, 1);
+                                _recyclerView.ScrollToPosition(_messageBeanList.Count - 1);
+
+                                if(_isPeerToPeerMode)
+                                {
+                                    SendPeerMessage(rtmImageMessage);
+                                }
+                                else
+                                {
+                                    SendChannelMessage(rtmImageMessage);
+                                }
+                            });
+                        };
+                        resultCallback.OnFailureAction += (err) =>
+                        {
+                            RunOnUiThread(() => ShowToast($"Uploaded image with error {err.ErrorDescription}"));
+                        };
+                        ImageUtil.UploadImage(this, rtmClient, path, resultCallback);
+                    }
+                    break;
+            }
+        }
+
+        public string GetPath(Android.Net.Uri uri)
+        {
+            string path = null;
+            string[] projection = { MediaStore.MediaColumns.Data };
+            var cr = ApplicationContext.ContentResolver;
+            var metaCursor = cr.Query(uri, projection, null, null, null);
+            if (metaCursor != null)
+            {
+                try
+                {
+                    if (metaCursor.MoveToFirst())
+                    {
+                        path = metaCursor.GetString(0);
+                    }
+                }
+                finally
+                {
+                    metaCursor.Close();
+                }
+
+            }
+            return path;
+        }
+
+        public override void OnRequestPermissionsResult(int requestCode, string[] permissions, [GeneratedEnum] Permission[] grantResults)
+        {
+            switch(requestCode)
+            {
+                case ReadExternalStoragePermissionRequestCode:
+                    if ((grantResults.Length == 1) && (grantResults[0] == Permission.Granted))
+                    {
+                        GetImageFromGalery();
+                    }
+                    else
+                    {
+                        Toast.MakeText(this, "Permission is missing", ToastLength.Short).Show();
+                    }
+                    break;
+            }
         }
 
         public void OnClickFinish(object sender, System.EventArgs e)
@@ -314,14 +424,9 @@ namespace DT.Samples.Agora.Rtm.Droid
         /**
          * API CALL: send message to peer
          */
-        private void SendPeerMessage(string content) {
-
-            // step 1: create a message
-            var message = rtmClient.CreateMessage();
-            message.Text = content;
-
-            // step 2: send message to peer
-            rtmClient.SendMessageToPeer(_peerId, message, _sendMessageClientCallback);
+        private void SendPeerMessage(RtmMessage message)
+        {
+            rtmClient.SendMessageToPeer(_peerId, message, _chatManager.SendMessageOptions, _sendMessageClientCallback);
         }
 
         /**
@@ -351,13 +456,8 @@ namespace DT.Samples.Agora.Rtm.Droid
         /**
          * API CALL: send message to a channel
          */
-        private void SendChannelMessage(string content)
+        private void SendChannelMessage(RtmMessage message)
         {
-            // step 1: create a message
-            RtmMessage message = rtmClient.CreateMessage();
-            message.Text = content;
-
-            // step 2: send message to channel
             _rtmChannel.SendMessage(message, _sendMessageChannelCallback);
         }
 

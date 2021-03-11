@@ -14,6 +14,7 @@ namespace DT.Samples.Agora.Rtm.iOS
         public override void ViewDidLoad()
         {
             base.ViewDidLoad();
+            OfflineSwitch.On = AgoraRtm.OneToOneMessageType == OneToOneMessageType.Offline;
         }
 
         public override void ViewWillAppear(bool animated)
@@ -44,6 +45,7 @@ namespace DT.Samples.Agora.Rtm.iOS
                 {
                     InvokeOnMainThread(() =>
                     {
+                        AgoraRtm.OneToOneMessageType = OfflineSwitch.On ? OneToOneMessageType.Offline : OneToOneMessageType.Normal;
                         //getting offline messages
                         var rtmDelegate = new RtmDelegate();
                         rtmDelegate.AppendMessage += (user, message) => AgoraRtm.AddOfflineMessage(message, user);

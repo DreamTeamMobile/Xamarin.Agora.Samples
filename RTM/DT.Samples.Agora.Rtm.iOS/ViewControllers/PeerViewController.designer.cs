@@ -16,9 +16,6 @@ namespace DT.Samples.Agora.Rtm.iOS
 		UIKit.UITextField InvitationUserTextFiled { get; set; }
 
 		[Outlet]
-		UIKit.UISwitch OfflineSwitch { get; set; }
-
-		[Outlet]
 		[GeneratedCode ("iOS Designer", "1.0")]
 		UIKit.UITextField PeerTextField { get; set; }
 
@@ -38,11 +35,6 @@ namespace DT.Samples.Agora.Rtm.iOS
 			if (PeerTextField != null) {
 				PeerTextField.Dispose ();
 				PeerTextField = null;
-			}
-
-			if (OfflineSwitch != null) {
-				OfflineSwitch.Dispose ();
-				OfflineSwitch = null;
 			}
 		}
 	}

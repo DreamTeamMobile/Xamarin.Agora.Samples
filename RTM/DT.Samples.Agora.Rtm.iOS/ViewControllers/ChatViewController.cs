@@ -205,12 +205,12 @@ namespace DT.Samples.Agora.Rtm.iOS
         public void SendPeer(string peer, string msg)
         {
             var message = new AgoraRtmMessage(msg);
-            var oprions = new AgoraRtmSendMessageOptions
+            var options = new AgoraRtmSendMessageOptions
             {
                 EnableOfflineMessaging = AgoraRtm.OneToOneMessageType == OneToOneMessageType.Offline
             };
 
-            AgoraRtm.RtmKit.SendMessage(message, peer, oprions, (state) =>
+            AgoraRtm.RtmKit.SendMessage(message, peer, options, (state) =>
             {
                 Console.WriteLine($"send peer msg state: ({state})");
 
@@ -223,11 +223,15 @@ namespace DT.Samples.Agora.Rtm.iOS
         {
             var rtmChannels = AgoraRtm.RtmKit.Channels;
 
-            if ((rtmChannels[channel] is AgoraRtmChannel rtmChannel))
+            if (rtmChannels[channel] is AgoraRtmChannel rtmChannel)
             {
                 var message = new AgoraRtmMessage(msg);
+                var options = new AgoraRtmSendMessageOptions
+                {
+                    EnableOfflineMessaging = AgoraRtm.OneToOneMessageType == OneToOneMessageType.Offline
+                };
 
-                rtmChannel.SendMessage(message, (state) =>
+                rtmChannel.SendMessage(message, options,(state) =>
                 {
                     Console.Write($"send channel msg state: {state}");
 

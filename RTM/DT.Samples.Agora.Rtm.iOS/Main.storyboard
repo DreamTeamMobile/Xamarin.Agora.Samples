@@ -35,20 +35,34 @@
                                     <action selector="DoLoginPress:" destination="BYZ-38-t0r" eventType="touchUpInside" id="1560"/>
                                 </connections>
                             </button>
+                            <switch opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" contentHorizontalAlignment="center" contentVerticalAlignment="center" on="YES" translatesAutoresizingMaskIntoConstraints="NO" id="FS7-5M-aXw">
+                                <rect key="frame" x="251" y="297.5" width="51" height="31"/>
+                            </switch>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Enable offline message" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="1js-Gw-6w7">
+                                <rect key="frame" x="75" y="304" width="159" height="18"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="15"/>
+                                <nil key="textColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
                         </subviews>
                         <viewLayoutGuide key="safeArea" id="G9g-wE-UJE"/>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <constraints>
                             <constraint firstItem="4tu-lH-B8y" firstAttribute="centerY" secondItem="G9g-wE-UJE" secondAttribute="centerY" multiplier="1.1" id="0pR-kJ-cbv"/>
+                            <constraint firstItem="1js-Gw-6w7" firstAttribute="leading" secondItem="3BQ-6F-6IS" secondAttribute="leading" id="4hZ-FN-fq7"/>
                             <constraint firstItem="3BQ-6F-6IS" firstAttribute="centerX" secondItem="G9g-wE-UJE" secondAttribute="centerX" id="9Rc-2H-ZLw"/>
+                            <constraint firstItem="FS7-5M-aXw" firstAttribute="centerY" secondItem="1js-Gw-6w7" secondAttribute="centerY" id="DfL-Br-3KC"/>
                             <constraint firstItem="3BQ-6F-6IS" firstAttribute="centerY" secondItem="G9g-wE-UJE" secondAttribute="centerY" multiplier="0.7" id="IoV-aU-mNQ"/>
+                            <constraint firstItem="FS7-5M-aXw" firstAttribute="trailing" secondItem="3BQ-6F-6IS" secondAttribute="trailing" id="QLo-Uh-hJD"/>
                             <constraint firstItem="3BQ-6F-6IS" firstAttribute="width" secondItem="8bC-Xf-vdC" secondAttribute="width" multiplier="0.6" id="a1z-up-NrB"/>
+                            <constraint firstItem="1js-Gw-6w7" firstAttribute="top" secondItem="3BQ-6F-6IS" secondAttribute="bottom" constant="40" id="nwA-xx-37U"/>
                             <constraint firstItem="4tu-lH-B8y" firstAttribute="centerX" secondItem="G9g-wE-UJE" secondAttribute="centerX" id="wLn-tI-Jme"/>
                         </constraints>
                     </view>
                     <navigationItem key="navigationItem" title="Enter your name" id="7fP-NG-3l1"/>
                     <connections>
                         <outlet property="AccountText" destination="3BQ-6F-6IS" id="name-outlet-3BQ-6F-6IS"/>
+                        <outlet property="OfflineSwitch" destination="FS7-5M-aXw" id="LI3-91-NUT"/>
                         <segue destination="2qm-jp-vnF" kind="show" identifier="mainToTab" id="aHd-el-ekb"/>
                     </connections>
                 </viewController>
@@ -148,7 +162,7 @@
                                 <nil key="highlightedColor"/>
                             </label>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="tAy-sB-9Kb">
-                                <rect key="frame" x="283" y="254.5" width="70" height="33"/>
+                                <rect key="frame" x="283" y="228.5" width="70" height="33"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                 <state key="normal" title="Invitation">
                                     <color key="titleColor" red="0.28016150000000001" green="0.6195479035" blue="0.89025932549999998" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
@@ -170,17 +184,8 @@
                                     <action selector="DoChatPressed:" destination="ga0-NN-e95" eventType="touchUpInside" id="3888"/>
                                 </connections>
                             </button>
-                            <switch opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" contentHorizontalAlignment="center" contentVerticalAlignment="center" on="YES" translatesAutoresizingMaskIntoConstraints="NO" id="BX4-Fu-m0t">
-                                <rect key="frame" x="242" y="193" width="51" height="31"/>
-                            </switch>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Enable offline message" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="4dB-Tc-P0C">
-                                <rect key="frame" x="40" y="198" width="177" height="21"/>
-                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
-                                <nil key="textColor"/>
-                                <nil key="highlightedColor"/>
-                            </label>
                             <textField opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="249" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="User Name" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="gVp-jr-5E0">
-                                <rect key="frame" x="40" y="254" width="210" height="34"/>
+                                <rect key="frame" x="40" y="228" width="210" height="34"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                 <textInputTraits key="textInputTraits"/>
                             </textField>
@@ -188,13 +193,8 @@
                         <viewLayoutGuide key="safeArea" id="z4x-kQ-gM8"/>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                         <constraints>
-                            <constraint firstItem="BX4-Fu-m0t" firstAttribute="centerY" secondItem="4dB-Tc-P0C" secondAttribute="centerY" id="3Zt-wb-cDx"/>
-                            <constraint firstItem="4dB-Tc-P0C" firstAttribute="leading" secondItem="3yl-M1-HpL" secondAttribute="leading" id="7GK-UT-zTD"/>
                             <constraint firstItem="eAm-M7-YFd" firstAttribute="leading" secondItem="z4x-kQ-gM8" secondAttribute="leading" constant="46" id="Bjv-Aa-Yn0"/>
-                            <constraint firstItem="BX4-Fu-m0t" firstAttribute="leading" secondItem="4dB-Tc-P0C" secondAttribute="trailing" constant="25" id="GZa-OO-lja"/>
                             <constraint firstItem="eAm-M7-YFd" firstAttribute="top" secondItem="z4x-kQ-gM8" secondAttribute="top" constant="39" id="Pba-AD-ov5"/>
-                            <constraint firstItem="4dB-Tc-P0C" firstAttribute="top" secondItem="3yl-M1-HpL" secondAttribute="bottom" constant="30" id="Ux0-nE-PLc"/>
-                            <constraint firstItem="gVp-jr-5E0" firstAttribute="top" secondItem="BX4-Fu-m0t" secondAttribute="bottom" constant="30" id="WXC-Wf-EUN"/>
                             <constraint firstItem="eAm-M7-YFd" firstAttribute="centerX" secondItem="z4x-kQ-gM8" secondAttribute="centerX" id="Ywg-LY-aGw"/>
                             <constraint firstItem="lOh-8l-ah4" firstAttribute="top" secondItem="eAm-M7-YFd" secondAttribute="bottom" constant="28.5" id="cXF-Ew-rhL"/>
                             <constraint firstItem="gVp-jr-5E0" firstAttribute="trailing" secondItem="3yl-M1-HpL" secondAttribute="trailing" id="ecM-gS-xx7"/>
@@ -205,6 +205,7 @@
                             <constraint firstItem="lOh-8l-ah4" firstAttribute="leading" secondItem="3yl-M1-HpL" secondAttribute="trailing" constant="45" id="pud-5i-PaY"/>
                             <constraint firstItem="tAy-sB-9Kb" firstAttribute="leading" secondItem="gVp-jr-5E0" secondAttribute="trailing" constant="33" id="qrm-Dh-BtG"/>
                             <constraint firstItem="tAy-sB-9Kb" firstAttribute="centerY" secondItem="gVp-jr-5E0" secondAttribute="centerY" id="ra4-0K-AYv"/>
+                            <constraint firstItem="gVp-jr-5E0" firstAttribute="top" secondItem="3yl-M1-HpL" secondAttribute="bottom" constant="60" id="voh-AM-gxe"/>
                             <constraint firstItem="z4x-kQ-gM8" firstAttribute="trailing" secondItem="lOh-8l-ah4" secondAttribute="trailing" constant="46" id="xbi-xP-SWW"/>
                         </constraints>
                     </view>
@@ -214,7 +215,6 @@
                     </navigationItem>
                     <connections>
                         <outlet property="InvitationUserTextFiled" destination="gVp-jr-5E0" id="9Mb-ri-s75"/>
-                        <outlet property="OfflineSwitch" destination="BX4-Fu-m0t" id="Lvp-n4-Qrs"/>
                         <outlet property="PeerTextField" destination="3yl-M1-HpL" id="name-outlet-3yl-M1-HpL"/>
                         <segue destination="f4O-eg-bc3" kind="show" identifier="peerToChat" id="wps-Zl-wBr"/>
                     </connections>

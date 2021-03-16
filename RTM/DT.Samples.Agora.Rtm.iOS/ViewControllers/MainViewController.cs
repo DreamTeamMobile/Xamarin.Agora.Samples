@@ -1,4 +1,6 @@
 using System;
+using System.Threading.Tasks;
+using DT.Samples.Agora.Shared;
 using UIKit;
 
 namespace DT.Samples.Agora.Rtm.iOS
@@ -34,12 +36,13 @@ namespace DT.Samples.Agora.Rtm.iOS
             Login();
         }
 
-        private void Login()
+        private async Task Login()
         {
             var account = AccountText.Text;
             AgoraRtm.Current = account;
 
-            AgoraRtm.RtmKit.LoginByToken(null, account, (status) =>
+            var token = await AgoraTokenService.GetRtmToken(account);
+            AgoraRtm.RtmKit.LoginByToken(token, account, (status) =>
             {
                 if (status == Xamarin.Agora.AgoraRtmLoginErrorCode.Ok)
                 {

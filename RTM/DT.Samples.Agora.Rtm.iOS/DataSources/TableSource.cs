@@ -8,6 +8,7 @@ namespace DT.Samples.Agora.Rtm.iOS
     public class TableSource : UITableViewDataSource
     {
         private readonly List<Message> _messageList = new List<Message>();
+        public List<Message> Messages => _messageList;
 
         public TableSource(List<Message> list)
         {

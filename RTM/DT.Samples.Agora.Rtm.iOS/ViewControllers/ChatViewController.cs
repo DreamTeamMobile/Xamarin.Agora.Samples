@@ -4,6 +4,7 @@ using Foundation;
 using System.Collections.Generic;
 using System;
 using CoreGraphics;
+using DT.Samples.Agora.Rtm.iOS.ViewControllers;
 
 namespace DT.Samples.Agora.Rtm.iOS
 {
@@ -21,9 +22,9 @@ namespace DT.Samples.Agora.Rtm.iOS
         private ChannelDelegate _channelDelegate;
         private RtmDelegate _rtmDelegate;
 
-        public ChatViewController(IntPtr ptr) : base(ptr) 
+        public ChatViewController(IntPtr ptr) : base(ptr)
         {
-        
+
         }
 
         List<Message> _list = new List<Message>();
@@ -48,7 +49,7 @@ namespace DT.Samples.Agora.Rtm.iOS
                 }
             }
 
-            get 
+            get
             {
                 return _type;
             }
@@ -65,7 +66,9 @@ namespace DT.Samples.Agora.Rtm.iOS
             AddKeyboradObserver();
             UpdateViews();
 
-            TableView.DataSource = new TableSource(_list);
+            var tableSource = new TableSource(_list);
+            TableView.DataSource = tableSource;
+            TableView.Delegate = new TableDelegate(tableSource);
             LoadOfflineMessages();
 
             _rtmDelegate = new RtmDelegate();
@@ -78,7 +81,7 @@ namespace DT.Samples.Agora.Rtm.iOS
 
         private bool ShouldReturn(UITextField textField)
         {
-            if(PressedReturnToSendText(ChannelOrPeerName, textField.Text)) 
+            if (PressedReturnToSendText(ChannelOrPeerName, textField.Text))
             {
                 textField.Text = null;
             }
@@ -88,6 +91,45 @@ namespace DT.Samples.Agora.Rtm.iOS
             }
 
             return true;
+        }
+
+        partial void OnSendImageClicked(UIButton sender)
+        {
+            var imagePicker = new UIImagePickerController
+            {
+                SourceType = UIImagePickerControllerSourceType.PhotoLibrary,
+                MediaTypes = UIImagePickerController.AvailableMediaTypes(UIImagePickerControllerSourceType.PhotoLibrary)
+            };
+            imagePicker.FinishedPickingMedia += (s, e) =>
+            {
+                imagePicker.DismissModalViewController(true);
+                var path = e.ImageUrl.AbsoluteString;
+                AgoraRtm.RtmKit.CreateImageMessageByUploading(path, new IntPtr(1), (reqId, rtmImageMessage, rtmUploadError) =>
+                {
+                    if (rtmUploadError != AgoraRtmUploadMediaErrorCode.Ok)
+                    {
+                        ShowAlert($"Smth went worng. Code {rtmUploadError}", "Could not send the messgae");
+                        return;
+                    }
+
+                    switch (ChatType)
+                    {
+                        case ChatType.Peer:
+                            SendPeer(ChannelOrPeerName, rtmImageMessage);
+                            break;
+                        case ChatType.Group:
+                            SendChannel(ChannelOrPeerName, rtmImageMessage);
+                            break;
+                    }
+                });
+            };
+            imagePicker.Canceled += (s, e) => imagePicker.DismissModalViewController(true);
+            PresentViewController(imagePicker, true, null);
+        }
+
+        private void OnFinishedPickingMedia(object sender, UIImagePickerMediaPickedEventArgs e)
+        {
+            
         }
 
         public override void ViewWillDisappear(bool animated)
@@ -100,14 +142,15 @@ namespace DT.Samples.Agora.Rtm.iOS
         {
             if (string.IsNullOrEmpty(text))
                 return false;
-                
+
+            var message = new AgoraRtmMessage(text);
             switch (ChatType)
             {
                 case ChatType.Peer:
-                    SendPeer(name, text);
+                    SendPeer(name, message);
                     break;
                 case ChatType.Group:
-                    SendChannel(name, text);
+                    SendChannel(name, message);
                     break;
             }
 
@@ -132,7 +175,7 @@ namespace DT.Samples.Agora.Rtm.iOS
 
         public void AppendMsg(string user, AgoraRtmMessage message)
         {
-            var msg = new Message(user, message.Text);
+            var msg = new Message(user, message);
             _list.Add(msg);
 
             var end = NSIndexPath.FromRowSection(_list.Count - 1, 0);
@@ -202,9 +245,8 @@ namespace DT.Samples.Agora.Rtm.iOS
             Console.WriteLine($"leave channel error: {errorCode}");
         }
 
-        public void SendPeer(string peer, string msg)
+        public void SendPeer(string peer, AgoraRtmMessage message)
         {
-            var message = new AgoraRtmMessage(msg);
             var options = new AgoraRtmSendMessageOptions
             {
                 EnableOfflineMessaging = AgoraRtm.OneToOneMessageType == OneToOneMessageType.Offline
@@ -219,13 +261,12 @@ namespace DT.Samples.Agora.Rtm.iOS
             });
         }
 
-        public void SendChannel(string channel, string msg)
+        public void SendChannel(string channel, AgoraRtmMessage message)
         {
             var rtmChannels = AgoraRtm.RtmKit.Channels;
 
             if (rtmChannels[channel] is AgoraRtmChannel rtmChannel)
             {
-                var message = new AgoraRtmMessage(msg);
                 var options = new AgoraRtmSendMessageOptions
                 {
                     EnableOfflineMessaging = AgoraRtm.OneToOneMessageType == OneToOneMessageType.Offline

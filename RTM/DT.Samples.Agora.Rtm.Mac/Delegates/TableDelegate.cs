@@ -24,7 +24,16 @@ namespace DT.Samples.Agora.Rtm.Mac.Delegates
 
         public override nfloat GetRowHeight(NSTableView tableView, nint row)
         {
-            return 30;
+            var msg = _dataSource.Messages[(int)row];
+            switch(msg.RtmMessage.Type)
+            {
+                case Xamarin.Agora.AgoraRtmMessageType.Text:
+                    return 30;
+                case Xamarin.Agora.AgoraRtmMessageType.Image:
+                    return 100;
+                default:
+                    return 30;
+            }
         }
     }
 }

@@ -1,14 +1,16 @@
-﻿namespace DT.Samples.Agora.Rtm.iOS
+﻿using DT.Xamarin.Agora;
+
+namespace DT.Samples.Agora.Rtm.iOS
 {
     public class Message
     {
-        public string UserId;
-        public string Text;
+        public string UserId { get; set; }
+        public AgoraRtmMessage RtmMessage { get; set; }
 
-        public Message(string userId, string text)
+        public Message(string userId, AgoraRtmMessage message)
         {
             UserId = userId;
-            Text = text;
+            RtmMessage = message;
         }
     }
 }

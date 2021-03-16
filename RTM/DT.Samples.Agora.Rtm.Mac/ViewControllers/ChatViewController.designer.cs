@@ -18,6 +18,9 @@ namespace DT.Samples.Agora.Rtm.Mac.ViewControllers
 		[Action ("OnBackPressed:")]
 		partial void OnBackPressed (AppKit.NSButton sender);
 
+		[Action ("OnSendImagePressed:")]
+		partial void OnSendImagePressed (AppKit.NSButton sender);
+
 		[Action ("OnSendMessagePressed:")]
 		partial void OnSendMessagePressed (AppKit.NSTextField sender);
 		

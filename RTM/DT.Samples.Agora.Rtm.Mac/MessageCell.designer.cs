@@ -16,24 +16,35 @@ namespace DT.Samples.Agora.Rtm.Mac
 		AppKit.NSTextField LeftContentLabel { get; set; }
 
 		[Outlet]
+		AppKit.NSImageView LeftImageView { get; set; }
+
+		[Outlet]
 		AppKit.NSTextField LeftUserLabel { get; set; }
 
 		[Outlet]
 		AppKit.NSTextField RightContentLabel { get; set; }
 
 		[Outlet]
+		AppKit.NSImageView RightImageView { get; set; }
+
+		[Outlet]
 		AppKit.NSTextField RightUserLabel { get; set; }
 		
 		void ReleaseDesignerOutlets ()
 		{
+			if (LeftContentLabel != null) {
+				LeftContentLabel.Dispose ();
+				LeftContentLabel = null;
+			}
+
 			if (LeftUserLabel != null) {
 				LeftUserLabel.Dispose ();
 				LeftUserLabel = null;
 			}
 
-			if (LeftContentLabel != null) {
-				LeftContentLabel.Dispose ();
-				LeftContentLabel = null;
+			if (RightContentLabel != null) {
+				RightContentLabel.Dispose ();
+				RightContentLabel = null;
 			}
 
 			if (RightUserLabel != null) {
@@ -41,9 +52,14 @@ namespace DT.Samples.Agora.Rtm.Mac
 				RightUserLabel = null;
 			}
 
-			if (RightContentLabel != null) {
-				RightContentLabel.Dispose ();
-				RightContentLabel = null;
+			if (LeftImageView != null) {
+				LeftImageView.Dispose ();
+				LeftImageView = null;
+			}
+
+			if (RightImageView != null) {
+				RightImageView.Dispose ();
+				RightImageView = null;
 			}
 		}
 	}

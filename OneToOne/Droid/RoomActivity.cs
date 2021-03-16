@@ -1,4 +1,5 @@
-﻿using Android.App;
+﻿using System.Threading.Tasks;
+using Android.App;
 using Android.Content.PM;
 using Android.OS;
 using Android.Util;
@@ -183,9 +184,10 @@ namespace DT.Samples.Agora.OneToOne.Droid
             AgoraEngine.StartPreview();
         }
 
-        private void JoinChannel()
+        private async Task JoinChannel()
         {
-            AgoraEngine.JoinChannel(AgoraTestConstants.Token, AgoraSettings.Current.RoomName, string.Empty, 0); // if you do not specify the uid, we will generate the uid for you
+            var token = await AgoraTokenService.GetRtcToken(AgoraSettings.Current.RoomName);
+            AgoraEngine.JoinChannel(token, AgoraSettings.Current.RoomName, string.Empty, 0); // if you do not specify the uid, we will generate the uid for you
         }
 
         private void SetupRemoteVideo(int uid)

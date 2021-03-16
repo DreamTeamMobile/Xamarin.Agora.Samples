@@ -15,16 +15,14 @@ namespace DT.Samples.Agora.Shared
             }
         }
 
-        /// <summary>
-        /// Temp token generated in https://dashboard.agora.io/ or Token from your API
-        /// </summary>
-        public static string Token
+        public static string TokernServerBaseUrl
         {
             get
             {
-                return null;
+                throw new NotImplementedException();
             }
         }
+
         public const string ShareString = "Hey check out Xamarin Agora sample app at: http://drmtm.us/videosample";
 	}
 }

@@ -151,9 +151,10 @@ namespace DT.Samples.Agora.OneToOne.Mac
             localVideoMuteBg.Hidden = true;
         }
 
-        public void JoinChannel()
+        public async Task JoinChannel()
         {
-            _agoraKit.JoinChannelByToken(AgoraTestConstants.Token, Channel, null, 0, (arg1, arg2, arg3) => { });
+            var token = await AgoraTokenService.GetRtcToken(Channel);
+            _agoraKit.JoinChannelByToken(token, Channel, null, 0, (arg1, arg2, arg3) => { });
         }
 
         public void LeaveChannel()

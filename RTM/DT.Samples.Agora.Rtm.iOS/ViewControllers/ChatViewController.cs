@@ -104,24 +104,32 @@ namespace DT.Samples.Agora.Rtm.iOS
             {
                 imagePicker.DismissModalViewController(true);
                 var path = e.ImageUrl.AbsoluteString;
-                AgoraRtm.RtmKit.CreateImageMessageByUploading(path, new IntPtr(1), (reqId, rtmImageMessage, rtmUploadError) =>
-                {
-                    if (rtmUploadError != AgoraRtmUploadMediaErrorCode.Ok)
-                    {
-                        ShowAlert($"Smth went worng. Code {rtmUploadError}", "Could not send the messgae");
-                        return;
-                    }
 
-                    switch (ChatType)
+                try
+                {
+                    new AgoraMediaUploader().UploadMediaByPath(AgoraRtm.RtmKit, path, 1, (reqId, rtmImageMessage, rtmUploadError) =>
                     {
-                        case ChatType.Peer:
-                            SendPeer(ChannelOrPeerName, rtmImageMessage);
-                            break;
-                        case ChatType.Group:
-                            SendChannel(ChannelOrPeerName, rtmImageMessage);
-                            break;
-                    }
-                });
+                        if (rtmUploadError != AgoraRtmUploadMediaErrorCode.Ok)
+                        {
+                            ShowAlert($"Smth went worng. Code {rtmUploadError}", "Could not send the messgae");
+                            return;
+                        }
+
+                        switch (ChatType)
+                        {
+                            case ChatType.Peer:
+                                SendPeer(ChannelOrPeerName, rtmImageMessage);
+                                break;
+                            case ChatType.Group:
+                                SendChannel(ChannelOrPeerName, rtmImageMessage);
+                                break;
+                        }
+                    });
+                }
+                catch(Exception ex)
+                {
+
+                }
             };
             imagePicker.Canceled += (s, e) => imagePicker.DismissModalViewController(true);
             PresentViewController(imagePicker, true, null);

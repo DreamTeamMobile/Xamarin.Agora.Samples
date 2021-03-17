@@ -16,13 +16,16 @@ namespace DT.Samples.Agora.Shared
     {
         public static async Task<string> GetRtcToken(string channelName)
         {
-            var request = WebRequest.Create($"{AgoraTestConstants.TokernServerBaseUrl}rtcToken?channelName={channelName}");
+            if (!string.IsNullOrEmpty(AgoraTestConstants.Token))
+                return AgoraTestConstants.Token;
+
+            var request = WebRequest.Create($"{AgoraTestConstants.TokenServerBaseUrl}/rtcToken?channelName={channelName}");
             return await GetStringResponse(request);
         }
 
         public static async Task<string> GetRtmToken(string userName)
         {
-            var request = WebRequest.Create($"{AgoraTestConstants.TokernServerBaseUrl}rtmToken?account={userName}");
+            var request = WebRequest.Create($"{AgoraTestConstants.TokenServerBaseUrl}/rtmToken?account={userName}");
             return await GetStringResponse(request);
         }
 

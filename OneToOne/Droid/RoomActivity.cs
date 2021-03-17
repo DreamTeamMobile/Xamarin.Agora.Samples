@@ -22,11 +22,13 @@ namespace DT.Samples.Agora.OneToOne.Droid
         private SurfaceView _localVideoView;
         private uint _localId = 0;
         private uint _remoteId = 0;
+        private ProgressBar _progressBar;
 
         protected override void OnCreate(Bundle savedInstanceState)
         {
             base.OnCreate(savedInstanceState);
             SetContentView(Resource.Layout.Room);
+            _progressBar = FindViewById<ProgressBar>(Resource.Id.progress_bar);
             InitAgoraEngineAndJoinChannel();
             FindViewById<TextView>(Resource.Id.room_name).Text = AgoraSettings.Current.RoomName;
         }
@@ -57,6 +59,7 @@ namespace DT.Samples.Agora.OneToOne.Droid
 
         public void OnJoinChannelSuccess(string channel, int uid, int elapsed)
         {
+            RunOnUiThread(() => _progressBar.Visibility = ViewStates.Gone);
             _localId = (uint)uid;
             RefreshDebug();
         }
@@ -186,8 +189,16 @@ namespace DT.Samples.Agora.OneToOne.Droid
 
         private async Task JoinChannel()
         {
+            _progressBar.Visibility = ViewStates.Visible;
             var token = await AgoraTokenService.GetRtcToken(AgoraSettings.Current.RoomName);
-            AgoraEngine.JoinChannel(token, AgoraSettings.Current.RoomName, string.Empty, 0); // if you do not specify the uid, we will generate the uid for you
+            if (string.IsNullOrEmpty(token))
+            {
+                _progressBar.Visibility = ViewStates.Gone;
+            }
+            else
+            {
+                AgoraEngine.JoinChannel(token, AgoraSettings.Current.RoomName, string.Empty, 0); // if you do not specify the uid, we will generate the uid for you
+            }
         }
 
         private void SetupRemoteVideo(int uid)

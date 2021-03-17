@@ -34,6 +34,7 @@ namespace DT.Samples.Agora.OneToOne.Mac
             SetupVideo();
             SetupLocalVideo();
             JoinChannel();
+            LoadingIndicator.StartAnimation(this);
         }
 
         public override void ViewDidAppear()
@@ -153,8 +154,19 @@ namespace DT.Samples.Agora.OneToOne.Mac
 
         public async Task JoinChannel()
         {
+            LoadingIndicator.Hidden = false;
             var token = await AgoraTokenService.GetRtcToken(Channel);
-            _agoraKit.JoinChannelByToken(token, Channel, null, 0, (arg1, arg2, arg3) => { });
+            if (string.IsNullOrEmpty(token))
+            {
+                LoadingIndicator.Hidden = true;
+            }
+            else
+            {
+                _agoraKit.JoinChannelByToken(token, Channel, null, 0, (arg1, arg2, arg3) =>
+                {
+                    LoadingIndicator.Hidden = true;
+                });
+            }
         }
 
         public void LeaveChannel()

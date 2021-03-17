@@ -1,4 +1,4 @@
-﻿// WARNING
+// WARNING
 //
 // This file has been generated automatically by Visual Studio to store outlets and
 // actions made in the UI designer. If it is removed, they will be lost.
@@ -20,6 +20,9 @@ namespace DT.Samples.Agora.OneToOne.Mac
 
 		[Outlet]
 		AppKit.NSButton hungUpButton { get; set; }
+
+		[Outlet]
+		AppKit.NSProgressIndicator LoadingIndicator { get; set; }
 
 		[Outlet]
 		AppKit.NSView localVideo { get; set; }
@@ -55,6 +58,16 @@ namespace DT.Samples.Agora.OneToOne.Mac
 				controlButtons = null;
 			}
 
+			if (deviceSelectionButton != null) {
+				deviceSelectionButton.Dispose ();
+				deviceSelectionButton = null;
+			}
+
+			if (hungUpButton != null) {
+				hungUpButton.Dispose ();
+				hungUpButton = null;
+			}
+
 			if (localVideo != null) {
 				localVideo.Dispose ();
 				localVideo = null;
@@ -70,6 +83,11 @@ namespace DT.Samples.Agora.OneToOne.Mac
 				localVideoMutedIndicator = null;
 			}
 
+			if (muteButton != null) {
+				muteButton.Dispose ();
+				muteButton = null;
+			}
+
 			if (remoteVideo != null) {
 				remoteVideo.Dispose ();
 				remoteVideo = null;
@@ -80,19 +98,9 @@ namespace DT.Samples.Agora.OneToOne.Mac
 				remoteVideoMutedIndicator = null;
 			}
 
-			if (hungUpButton != null) {
-				hungUpButton.Dispose ();
-				hungUpButton = null;
-			}
-
 			if (screenShareButton != null) {
 				screenShareButton.Dispose ();
 				screenShareButton = null;
-			}
-
-			if (muteButton != null) {
-				muteButton.Dispose ();
-				muteButton = null;
 			}
 
 			if (videoMuteButton != null) {
@@ -100,9 +108,9 @@ namespace DT.Samples.Agora.OneToOne.Mac
 				videoMuteButton = null;
 			}
 
-			if (deviceSelectionButton != null) {
-				deviceSelectionButton.Dispose ();
-				deviceSelectionButton = null;
+			if (LoadingIndicator != null) {
+				LoadingIndicator.Dispose ();
+				LoadingIndicator = null;
 			}
 		}
 	}

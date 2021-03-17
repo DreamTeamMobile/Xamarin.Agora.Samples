@@ -89,12 +89,14 @@ namespace DT.Samples.Agora.OneToOne.iOS
             Join();
         }
 
-        private async Task Join()
+        private async void Join()
         {
+            LoadingIndicator.Hidden = false;
             var token = await AgoraTokenService.GetRtcToken(AgoraSettings.Current.RoomName);
             if (string.IsNullOrEmpty(token))
             {
                 //smth went wrong
+                LoadingIndicator.Hidden = true;
             }
             else
             {
@@ -104,6 +106,7 @@ namespace DT.Samples.Agora.OneToOne.iOS
 
         private void JoiningCompleted(Foundation.NSString channel, nuint uid, nint elapsed)
         {
+            LoadingIndicator.Hidden = true;
             _localId = (uint)uid;
             AgoraKit.SetEnableSpeakerphone(true);
             UIApplication.SharedApplication.IdleTimerDisabled = true;

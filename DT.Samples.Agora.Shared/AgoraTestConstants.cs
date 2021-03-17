@@ -11,15 +11,25 @@ namespace DT.Samples.Agora.Shared
             get
             {
                 throw new NotImplementedException();
-                return "[AgoraKey]";
             }
         }
 
-        public static string TokernServerBaseUrl
+        public static string TokenServerBaseUrl
         {
             get
             {
                 throw new NotImplementedException();
+            }
+        }
+
+        /// <summary>
+        /// Temp token generated in https://dashboard.agora.io/ or Token from your API
+        /// </summary>
+        public static string Token
+        {
+            get
+            {
+                return null;
             }
         }
 

@@ -701,6 +701,13 @@
                                 </constraints>
                                 <imageCell key="cell" refusesFirstResponder="YES" alignment="left" imageScaling="proportionallyUpOrDown" image="videoMutedIndicator" id="wrg-pW-FFx"/>
                             </imageView>
+                            <progressIndicator hidden="YES" maxValue="100" indeterminate="YES" style="spinning" translatesAutoresizingMaskIntoConstraints="NO" id="32L-B5-Lu3">
+                                <rect key="frame" x="390" y="290" width="20" height="20"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="20" id="g0l-pa-8Ne"/>
+                                    <constraint firstAttribute="width" constant="20" id="oNE-6E-m4b"/>
+                                </constraints>
+                            </progressIndicator>
                             <customView translatesAutoresizingMaskIntoConstraints="NO" id="whz-E3-nqj" userLabel="controlButtons">
                                 <rect key="frame" x="100" y="30" width="600" height="66"/>
                                 <subviews>
@@ -822,6 +829,7 @@
                             <constraint firstItem="K12-17-oL6" firstAttribute="width" secondItem="0Fp-dV-y3H" secondAttribute="width" multiplier="0.3" id="BRW-d3-9nh"/>
                             <constraint firstItem="k3k-XJ-9lB" firstAttribute="centerX" secondItem="jdK-wV-Kbg" secondAttribute="centerX" id="C5J-MI-AuY"/>
                             <constraint firstItem="0Fp-dV-y3H" firstAttribute="width" secondItem="Jvj-ux-bod" secondAttribute="width" multiplier="0.2" id="Cfe-tK-VgG"/>
+                            <constraint firstItem="32L-B5-Lu3" firstAttribute="centerX" secondItem="Jvj-ux-bod" secondAttribute="centerX" id="Cs2-e6-Ag9"/>
                             <constraint firstItem="whz-E3-nqj" firstAttribute="width" secondItem="Jvj-ux-bod" secondAttribute="width" multiplier="0.75" id="Oh1-EM-7Va"/>
                             <constraint firstItem="K12-17-oL6" firstAttribute="centerY" secondItem="0Fp-dV-y3H" secondAttribute="centerY" id="QZF-r3-cUM"/>
                             <constraint firstItem="d58-P3-pIG" firstAttribute="height" secondItem="0Fp-dV-y3H" secondAttribute="height" id="Qlh-jW-gDd"/>
@@ -832,6 +840,7 @@
                             <constraint firstItem="k3k-XJ-9lB" firstAttribute="width" secondItem="jdK-wV-Kbg" secondAttribute="width" multiplier="0.3" id="heR-09-QVq"/>
                             <constraint firstItem="d58-P3-pIG" firstAttribute="centerX" secondItem="0Fp-dV-y3H" secondAttribute="centerX" id="kwo-tF-eR1"/>
                             <constraint firstAttribute="bottom" secondItem="whz-E3-nqj" secondAttribute="bottom" constant="30" id="mCb-d8-hgD"/>
+                            <constraint firstItem="32L-B5-Lu3" firstAttribute="centerY" secondItem="Jvj-ux-bod" secondAttribute="centerY" id="pof-S1-e34"/>
                             <constraint firstItem="d58-P3-pIG" firstAttribute="width" secondItem="0Fp-dV-y3H" secondAttribute="width" id="rlw-5l-RGI"/>
                             <constraint firstItem="d58-P3-pIG" firstAttribute="centerY" secondItem="0Fp-dV-y3H" secondAttribute="centerY" id="tco-6A-zyf"/>
                             <constraint firstItem="0Fp-dV-y3H" firstAttribute="top" secondItem="Jvj-ux-bod" secondAttribute="top" constant="20" id="vgb-Z4-lCJ"/>
@@ -842,6 +851,7 @@
                         </constraints>
                     </view>
                     <connections>
+                        <outlet property="LoadingIndicator" destination="32L-B5-Lu3" id="Dua-Do-ovj"/>
                         <outlet property="controlButtons" destination="whz-E3-nqj" id="yx1-Jh-Uty"/>
                         <outlet property="deviceSelectionButton" destination="Hs0-Bt-t6t" id="0kD-Rg-ZMJ"/>
                         <outlet property="hungUpButton" destination="5eX-b2-8eW" id="dTu-8i-eNg"/>

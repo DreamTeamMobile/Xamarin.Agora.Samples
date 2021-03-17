@@ -171,8 +171,11 @@ namespace DT.Samples.Agora.OneToOne.Droid
 
         public override bool OnTouchEvent(MotionEvent e)
         {
-            InputMethodManager imm = (InputMethodManager)GetSystemService(Context.InputMethodService);
-            imm.HideSoftInputFromWindow(CurrentFocus.WindowToken, 0);
+            if (CurrentFocus != null)
+            {
+                InputMethodManager imm = (InputMethodManager)GetSystemService(Context.InputMethodService);
+                imm.HideSoftInputFromWindow(CurrentFocus.WindowToken, 0);
+            }
             return base.OnTouchEvent(e);
         }
     }

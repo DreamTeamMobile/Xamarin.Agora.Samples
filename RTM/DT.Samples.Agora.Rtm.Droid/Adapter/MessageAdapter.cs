@@ -39,19 +39,25 @@ namespace DT.Samples.Agora.Rtm.Droid
             Log.Debug("Adapter", $"getView for index {position}");
             var bean = _messageBeanList[position];
             var message = bean.Message;
+            if (bean.BeSelf)
+            {
+                holder.TextViewSelfName.Text = bean.Account;
+            }
+            else
+            {
+                holder.TextViewOtherName.Text = bean.Account;
+            }
             switch (message.MessageType)
             {
                 case RtmMessageType.Text:
                     if (bean.BeSelf)
                     {
                         holder.TextViewSelfMsg.Visibility = ViewStates.Visible;
-                        holder.TextViewSelfName.Text = bean.Account;
                         holder.TextViewSelfMsg.Text = message.Text;
                     }
                     else
                     {
                         holder.TextViewOtherMsg.Visibility = ViewStates.Visible;
-                        holder.TextViewOtherName.Text = bean.Account;
                         holder.TextViewOtherMsg.Text = message.Text;
                         if (bean.Background != 0)
                         {
@@ -68,7 +74,6 @@ namespace DT.Samples.Agora.Rtm.Droid
                     if (bean.BeSelf)
                     {
                         holder.ImageViewSelfImg.Visibility = ViewStates.Visible;
-                        holder.TextViewSelfName.Text = bean.Account;
                         holder.ImageViewSelfImg.LayoutParameters.Width = imageMessage.ThumbnailWidth;
                         holder.ImageViewSelfImg.LayoutParameters.Height = imageMessage.ThumbnailHeight;
                         holder.ImageViewSelfImg.SetImageBitmap(bmp);
@@ -76,7 +81,6 @@ namespace DT.Samples.Agora.Rtm.Droid
                     else
                     {
                         holder.ImageViewOtherImg.Visibility = ViewStates.Visible;
-                        holder.TextViewOtherName.Text = bean.Account;
                         holder.ImageViewOtherImg.LayoutParameters.Width = imageMessage.ThumbnailWidth;
                         holder.ImageViewOtherImg.LayoutParameters.Height = imageMessage.ThumbnailHeight;
                         holder.ImageViewOtherImg.SetImageBitmap(bmp);
@@ -84,6 +88,26 @@ namespace DT.Samples.Agora.Rtm.Droid
 
                     holder.TextViewSelfMsg.Visibility = ViewStates.Gone;
                     holder.TextViewOtherMsg.Visibility = ViewStates.Gone;
+                    break;
+                case RtmMessageType.Raw:
+                    var raw = message.GetRawMessage();
+                    if (bean.BeSelf)
+                    {
+                        holder.TextViewSelfMsg.Visibility = ViewStates.Visible;
+                        holder.TextViewSelfMsg.Text = $"Raw[{raw.Length}bytes] {message.Text}";
+                    }
+                    else
+                    {
+                        holder.TextViewOtherMsg.Visibility = ViewStates.Visible;
+                        holder.TextViewOtherMsg.Text = $"Raw[{raw.Length}bytes] {message.Text}";
+                        if (bean.Background != 0)
+                        {
+                            holder.TextViewOtherName.SetBackgroundResource(bean.Background);
+                        }
+                    }
+
+                    holder.ImageViewSelfImg.Visibility = ViewStates.Gone;
+                    holder.ImageViewOtherImg.Visibility = ViewStates.Gone;
                     break;
             }
             

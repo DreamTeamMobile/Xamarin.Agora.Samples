@@ -131,6 +131,11 @@ namespace DT.Samples.Agora.Rtm.Mac
                     var image = new NSImage(imgData);
                     Image = image;
                     break;
+                case AgoraRtmMessageType.Raw:
+                    var rawMessage = message.RtmMessage as AgoraRtmRawMessage;
+                    var rawData = rawMessage.RawData;
+                    Content = $"Raw[{rawData.Length}bytes] {rawMessage.Text}";
+                    break;
             }
         }
     }

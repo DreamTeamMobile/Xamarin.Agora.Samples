@@ -11,7 +11,14 @@ namespace DT.Samples.Agora.Shared
             get
             {
                 throw new NotImplementedException();
-                return "[AgoraKey]";
+            }
+        }
+
+        public static string TokenServerBaseUrl
+        {
+            get
+            {
+                throw new NotImplementedException();
             }
         }
 
@@ -25,6 +32,7 @@ namespace DT.Samples.Agora.Shared
                 return null;
             }
         }
+
         public const string ShareString = "Hey check out Xamarin Agora sample app at: http://drmtm.us/videosample";
 	}
 }

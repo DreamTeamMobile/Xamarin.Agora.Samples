@@ -5,6 +5,8 @@ using Android.Content;
 using Android.App;
 using Android.Content.PM;
 using Android.Support.V7.App;
+using System.Threading.Tasks;
+using DT.Samples.Agora.Shared;
 
 namespace DT.Samples.Agora.Rtm.Droid
 {
@@ -112,10 +114,11 @@ namespace DT.Samples.Agora.Rtm.Droid
             }
         }
 
-        private void DoLogin()
+        private async Task DoLogin()
         {
             _isInChat = true;
-            _rtmClient.Login(null, _userId, _callbackResult);
+            var token = await AgoraTokenService.GetRtmToken(_userId);
+            _rtmClient.Login(token, _userId, _callbackResult);
         }
 
         private void DoLogout()

@@ -62,6 +62,9 @@
     <Reference Include="Xamarin.Agora.Full.Mac">
       <HintPath>..\..\packages\Xamarin.Agora.Full.Mac.3.3.0\lib\Xamarin.Mac20\Xamarin.Agora.Full.Mac.dll</HintPath>
     </Reference>
+    <Reference Include="Newtonsoft.Json">
+      <HintPath>..\..\packages\Newtonsoft.Json.13.0.1-beta2\lib\netstandard2.0\Newtonsoft.Json.dll</HintPath>
+    </Reference>
   </ItemGroup>
   <ItemGroup>
     <ImageAsset Include="Assets.xcassets\AppIcon.appiconset\Contents.json" />

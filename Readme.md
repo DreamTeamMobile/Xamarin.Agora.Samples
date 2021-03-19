@@ -15,7 +15,7 @@ also contains a basic sample for Agora WebRTC
 
 
 Running samples
--------------
+---------------
 
 1. Run app on any 2 devices
 
@@ -32,25 +32,31 @@ Quick Start
 
 1. Replace the following empty string with the corresponding App ID:
 
-* For Android/iOS app
+* For Android/iOS/macOS app
     [DT.Samples.Agora.Shared/AgoraTestConstants.cs](DT.Samples.Agora.Shared/AgoraTestConstants.cs)
 ```
-        public const string AgoraAPI = "";
+        public static string AgoraAPI
 ```
 * For Forms app
     [Forms/Xamarin.Agora.Forms/DT.Samples.Agora.Cross/DT.Samples.Agora.Cross/Consts.cs](Forms/Xamarin.Agora.Forms/DT.Samples.Agora.Cross/DT.Samples.Agora.Cross/Consts.cs)
 ```
         public const string AgoraKey = "<AgoraKey>";
 ```
-* For Mac app
-    [Mac/Xamarin.Agora.Mac/DT.Samples.Agora.Mac/VideoChatViewController.cs](Mac/Xamarin.Agora.Mac/DT.Samples.Agora.Mac/VideoChatViewController.cs)
-```
-         protected const string AgoraKey = "<AgoraKey>";
-```
 * For WebRTC app enter the key on UI or in the code
     [Web/webrtc/index.html](Web/webrtc/index.html)
 ```
         vendorKey = ...
+```
+1. Prepare node.js [AgoraTokenServer](AgoraTokenServer) server for generatin agora tokens. You need to enable Primary cetificate in your agora progect and replace the following empty strings with your cettificated string and App ID:
+    [AgoraTokenServer/TokenServer.js](AgoraTokenServer/TokenServer.js)
+```
+        var appID = "<YOUR APP ID>";
+        var appCertificate = "<YOUR APP CERTIFICATE>";
+```
+1. Run AgoraTokenServer and replace the following epmty string with server URL:
+    [DT.Samples.Agora.Shared/AgoraTestConstants.cs](DT.Samples.Agora.Shared/AgoraTestConstants.cs)
+```
+        public static string TokernServerBaseUrl
 ```
 
 What's Inside
@@ -85,4 +91,6 @@ Xamarin.Forms MacOS
 <img src="https://raw.githubusercontent.com/DreamTeamMobile/Xamarin.Agora.Samples/master/Screenshots/Forms/AgoraXamarinFormsMacOS_00.png" width="500" />
 <img src="https://raw.githubusercontent.com/DreamTeamMobile/Xamarin.Agora.Samples/master/Screenshots/Forms/AgoraXamarinFormsMacOS_01.png" width="500" />
 
+RTM example for Android, iOS and Mac
 
+* **Xamarin Android, iOS and MacOS** apps in one solution [RTM/DT.Samples.Agora.Rtm.sln](RTM/DT.Samples.Agora.Rtm.sln)

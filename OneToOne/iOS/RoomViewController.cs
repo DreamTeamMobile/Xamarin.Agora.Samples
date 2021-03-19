@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Threading.Tasks;
 using DT.Samples.Agora.Shared;
 using DT.Samples.Agora.Shared.Helpers;
 using DT.Xamarin.Agora;
@@ -85,11 +86,27 @@ namespace DT.Samples.Agora.OneToOne.iOS
                 AgoraKit.SetEncryptionSecret(AgoraSettings.Current.EncryptionPhrase);
             }
             AgoraKit.StartPreview();
-            AgoraKit.JoinChannelByToken(AgoraTestConstants.Token, AgoraSettings.Current.RoomName, null, 0, JoiningCompleted);
+            Join();
+        }
+
+        private async void Join()
+        {
+            LoadingIndicator.Hidden = false;
+            var token = await AgoraTokenService.GetRtcToken(AgoraSettings.Current.RoomName);
+            if (string.IsNullOrEmpty(token))
+            {
+                //smth went wrong
+                LoadingIndicator.Hidden = true;
+            }
+            else
+            {
+                AgoraKit.JoinChannelByToken(token, AgoraSettings.Current.RoomName, null, 0, JoiningCompleted);
+            }
         }
 
         private void JoiningCompleted(Foundation.NSString channel, nuint uid, nint elapsed)
         {
+            LoadingIndicator.Hidden = true;
             _localId = (uint)uid;
             AgoraKit.SetEnableSpeakerphone(true);
             UIApplication.SharedApplication.IdleTimerDisabled = true;

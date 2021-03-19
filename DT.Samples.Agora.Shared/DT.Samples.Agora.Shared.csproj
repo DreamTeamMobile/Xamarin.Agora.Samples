@@ -54,6 +54,7 @@
     <Compile Include="AgoraQuality.cs" />
     <Compile Include="EnumExtensions.cs" />
     <Compile Include="VideoProfile.cs" />
+    <Compile Include="AgoraTokenService.cs" />
   </ItemGroup>
   <ItemGroup>
     <Reference Include="Plugin.Settings.Abstractions">
@@ -73,6 +74,15 @@
     </Reference>
     <Reference Include="Xamarin.Essentials">
       <HintPath>..\packages\Xamarin.Essentials.1.6.1\lib\netstandard1.0\Xamarin.Essentials.dll</HintPath>
+    </Reference>
+    <Reference Include="System.ComponentModel.Primitives">
+      <HintPath>..\packages\System.ComponentModel.Primitives.4.3.0\lib\netstandard1.0\System.ComponentModel.Primitives.dll</HintPath>
+    </Reference>
+    <Reference Include="System.ComponentModel.TypeConverter">
+      <HintPath>..\packages\System.ComponentModel.TypeConverter.4.3.0\lib\netstandard1.0\System.ComponentModel.TypeConverter.dll</HintPath>
+    </Reference>
+    <Reference Include="Newtonsoft.Json">
+      <HintPath>..\packages\Newtonsoft.Json.13.0.1-beta2\lib\netstandard1.0\Newtonsoft.Json.dll</HintPath>
     </Reference>
   </ItemGroup>
   <ItemGroup>

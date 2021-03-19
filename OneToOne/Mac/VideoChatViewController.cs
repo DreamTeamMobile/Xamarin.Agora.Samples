@@ -238,5 +238,14 @@ namespace DT.Samples.Agora.OneToOne.Mac
             remoteVideo.Hidden = muted;
             remoteVideoMutedIndicator.Hidden = !muted;
         }
+
+        public async Task TokenPrivilegeWillExpire(AgoraRtcEngineKit engine, string token)
+        {
+            var newToken = await AgoraTokenService.GetRtcToken(Channel);
+            if (!string.IsNullOrEmpty(newToken))
+            {
+                _agoraKit.RenewToken(newToken);
+            }
+        }
     }
 }

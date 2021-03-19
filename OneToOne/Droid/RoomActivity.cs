@@ -160,6 +160,15 @@ namespace DT.Samples.Agora.OneToOne.Droid
             Finish();
         }
 
+        public async Task OnTokenPrivilegeWillExpire(string token)
+        {
+            var newToken = await AgoraTokenService.GetRtcToken(AgoraSettings.Current.RoomName);
+            if (!string.IsNullOrEmpty(token))
+            {
+                AgoraEngine.RenewToken(newToken);
+            }
+        }
+
         private void InitializeAgoraEngine()
         {
             AgoraHandler = new AgoraRtcHandler(this);

@@ -203,5 +203,14 @@ namespace DT.Samples.Agora.OneToOne.iOS
                 MutedView.Hidden = true;
             }
         }
+
+        public async Task TokenPrivilegeWillExpire(AgoraRtcEngineKit engine, string token)
+        {
+            var newToken = await AgoraTokenService.GetRtcToken(AgoraSettings.Current.RoomName);
+            if (!string.IsNullOrEmpty(newToken))
+            {
+                AgoraKit.RenewToken(newToken);
+            }
+        }
     }
 }

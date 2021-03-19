@@ -43,5 +43,10 @@ namespace DT.Samples.Agora.OneToOne.Droid
         {
             _context.OnFirstLocalVideoFrame(p0, p1, p2);
         }
+
+        public override void OnTokenPrivilegeWillExpire(string token)
+        {
+            _context.OnTokenPrivilegeWillExpire(token);
+        }
     }
 }

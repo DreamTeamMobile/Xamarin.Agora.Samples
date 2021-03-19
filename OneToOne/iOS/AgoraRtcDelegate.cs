@@ -39,5 +39,10 @@ namespace DT.Samples.Agora.OneToOne.iOS
         {
             _controller.FirstLocalVideoFrameWithSize(engine, size, elapsed);
         }
+
+        public override void TokenPrivilegeWillExpire(AgoraRtcEngineKit engine, string token)
+        {
+            _controller.TokenPrivilegeWillExpire(engine, token);
+        }
     }
 }

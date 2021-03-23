@@ -28,5 +28,10 @@ namespace DT.Samples.Agora.OneToOne.Mac
         {
             _controller.DidVideoMuted(engine, muted, uid);
         }
+
+        public override void TokenPrivilegeWillExpire(AgoraRtcEngineKit engine, string token)
+        {
+            _controller.TokenPrivilegeWillExpire(engine, token);
+        }
     }
 }

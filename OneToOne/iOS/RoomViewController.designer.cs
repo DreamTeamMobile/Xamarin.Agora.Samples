@@ -28,6 +28,9 @@ namespace DT.Samples.Agora.OneToOne.iOS
 		UIKit.UIButton EndCallButton { get; set; }
 
 		[Outlet]
+		UIKit.UIActivityIndicatorView LoadingIndicator { get; set; }
+
+		[Outlet]
 		UIKit.NSLayoutConstraint LocalVideoHeight { get; set; }
 
 		[Outlet]
@@ -86,6 +89,11 @@ namespace DT.Samples.Agora.OneToOne.iOS
 				ContainerView = null;
 			}
 
+			if (DebugData != null) {
+				DebugData.Dispose ();
+				DebugData = null;
+			}
+
 			if (EndCallButton != null) {
 				EndCallButton.Dispose ();
 				EndCallButton = null;
@@ -131,9 +139,9 @@ namespace DT.Samples.Agora.OneToOne.iOS
 				ToggleCamButton = null;
 			}
 
-			if (DebugData != null) {
-				DebugData.Dispose ();
-				DebugData = null;
+			if (LoadingIndicator != null) {
+				LoadingIndicator.Dispose ();
+				LoadingIndicator = null;
 			}
 		}
 	}

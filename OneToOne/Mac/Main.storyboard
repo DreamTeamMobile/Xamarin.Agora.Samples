@@ -1,8 +1,8 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.Cocoa.Storyboard.XIB" version="3.0" toolsVersion="14460.31" targetRuntime="MacOSX.Cocoa" propertyAccessControl="none" useAutolayout="YES" initialViewController="B8D-0N-5wS">
+<document type="com.apple.InterfaceBuilder3.Cocoa.Storyboard.XIB" version="3.0" toolsVersion="17701" targetRuntime="MacOSX.Cocoa" propertyAccessControl="none" useAutolayout="YES" initialViewController="B8D-0N-5wS">
     <dependencies>
         <deployment identifier="macosx"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.CocoaPlugin" version="14460.31"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.CocoaPlugin" version="17701"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <scenes>
@@ -701,6 +701,13 @@
                                 </constraints>
                                 <imageCell key="cell" refusesFirstResponder="YES" alignment="left" imageScaling="proportionallyUpOrDown" image="videoMutedIndicator" id="wrg-pW-FFx"/>
                             </imageView>
+                            <progressIndicator hidden="YES" maxValue="100" indeterminate="YES" style="spinning" translatesAutoresizingMaskIntoConstraints="NO" id="32L-B5-Lu3">
+                                <rect key="frame" x="390" y="290" width="20" height="20"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="20" id="g0l-pa-8Ne"/>
+                                    <constraint firstAttribute="width" constant="20" id="oNE-6E-m4b"/>
+                                </constraints>
+                            </progressIndicator>
                             <customView translatesAutoresizingMaskIntoConstraints="NO" id="whz-E3-nqj" userLabel="controlButtons">
                                 <rect key="frame" x="100" y="30" width="600" height="66"/>
                                 <subviews>
@@ -822,6 +829,7 @@
                             <constraint firstItem="K12-17-oL6" firstAttribute="width" secondItem="0Fp-dV-y3H" secondAttribute="width" multiplier="0.3" id="BRW-d3-9nh"/>
                             <constraint firstItem="k3k-XJ-9lB" firstAttribute="centerX" secondItem="jdK-wV-Kbg" secondAttribute="centerX" id="C5J-MI-AuY"/>
                             <constraint firstItem="0Fp-dV-y3H" firstAttribute="width" secondItem="Jvj-ux-bod" secondAttribute="width" multiplier="0.2" id="Cfe-tK-VgG"/>
+                            <constraint firstItem="32L-B5-Lu3" firstAttribute="centerX" secondItem="Jvj-ux-bod" secondAttribute="centerX" id="Cs2-e6-Ag9"/>
                             <constraint firstItem="whz-E3-nqj" firstAttribute="width" secondItem="Jvj-ux-bod" secondAttribute="width" multiplier="0.75" id="Oh1-EM-7Va"/>
                             <constraint firstItem="K12-17-oL6" firstAttribute="centerY" secondItem="0Fp-dV-y3H" secondAttribute="centerY" id="QZF-r3-cUM"/>
                             <constraint firstItem="d58-P3-pIG" firstAttribute="height" secondItem="0Fp-dV-y3H" secondAttribute="height" id="Qlh-jW-gDd"/>
@@ -832,6 +840,7 @@
                             <constraint firstItem="k3k-XJ-9lB" firstAttribute="width" secondItem="jdK-wV-Kbg" secondAttribute="width" multiplier="0.3" id="heR-09-QVq"/>
                             <constraint firstItem="d58-P3-pIG" firstAttribute="centerX" secondItem="0Fp-dV-y3H" secondAttribute="centerX" id="kwo-tF-eR1"/>
                             <constraint firstAttribute="bottom" secondItem="whz-E3-nqj" secondAttribute="bottom" constant="30" id="mCb-d8-hgD"/>
+                            <constraint firstItem="32L-B5-Lu3" firstAttribute="centerY" secondItem="Jvj-ux-bod" secondAttribute="centerY" id="pof-S1-e34"/>
                             <constraint firstItem="d58-P3-pIG" firstAttribute="width" secondItem="0Fp-dV-y3H" secondAttribute="width" id="rlw-5l-RGI"/>
                             <constraint firstItem="d58-P3-pIG" firstAttribute="centerY" secondItem="0Fp-dV-y3H" secondAttribute="centerY" id="tco-6A-zyf"/>
                             <constraint firstItem="0Fp-dV-y3H" firstAttribute="top" secondItem="Jvj-ux-bod" secondAttribute="top" constant="20" id="vgb-Z4-lCJ"/>
@@ -842,6 +851,7 @@
                         </constraints>
                     </view>
                     <connections>
+                        <outlet property="LoadingIndicator" destination="32L-B5-Lu3" id="Dua-Do-ovj"/>
                         <outlet property="controlButtons" destination="whz-E3-nqj" id="yx1-Jh-Uty"/>
                         <outlet property="deviceSelectionButton" destination="Hs0-Bt-t6t" id="0kD-Rg-ZMJ"/>
                         <outlet property="hungUpButton" destination="5eX-b2-8eW" id="dTu-8i-eNg"/>
@@ -868,7 +878,7 @@
                         <autoresizingMask key="autoresizingMask"/>
                         <subviews>
                             <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="lvt-Kt-4uK">
-                                <rect key="frame" x="144" y="221" width="192" height="29"/>
+                                <rect key="frame" x="145" y="222" width="191" height="28"/>
                                 <textFieldCell key="cell" scrollable="YES" lineBreakMode="clipping" sendsActionOnEndEditing="YES" title="Device Selection" id="lQ4-3G-SL3">
                                     <font key="font" metaFont="systemBold" size="24"/>
                                     <color key="textColor" red="0.29286110399999998" green="0.56359708310000001" blue="0.88719302420000001" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
@@ -876,7 +886,7 @@
                                 </textFieldCell>
                             </textField>
                             <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="aO3-Ut-YeM" userLabel="Microphone">
-                                <rect key="frame" x="38" y="180" width="94" height="21"/>
+                                <rect key="frame" x="38" y="181" width="94" height="21"/>
                                 <constraints>
                                     <constraint firstAttribute="width" constant="90" id="Sw4-3s-KlO"/>
                                     <constraint firstAttribute="height" constant="21" id="x8K-dB-vqo"/>
@@ -888,7 +898,7 @@
                                 </textFieldCell>
                             </textField>
                             <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="ON0-FU-vgX" userLabel="Speakers">
-                                <rect key="frame" x="38" y="139" width="94" height="21"/>
+                                <rect key="frame" x="38" y="140" width="94" height="21"/>
                                 <constraints>
                                     <constraint firstAttribute="width" constant="90" id="VC3-Pu-QXi"/>
                                     <constraint firstAttribute="height" constant="21" id="fEr-wo-804"/>
@@ -900,7 +910,7 @@
                                 </textFieldCell>
                             </textField>
                             <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="22E-4Q-LwH" userLabel="Camera">
-                                <rect key="frame" x="38" y="98" width="94" height="21"/>
+                                <rect key="frame" x="38" y="99" width="94" height="21"/>
                                 <constraints>
                                     <constraint firstAttribute="width" constant="90" id="mai-AQ-m1A"/>
                                     <constraint firstAttribute="height" constant="21" id="tsi-ix-JxU"/>
@@ -912,7 +922,7 @@
                                 </textFieldCell>
                             </textField>
                             <popUpButton verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="fzN-zl-tAV" userLabel="MicrophoneSelection">
-                                <rect key="frame" x="128" y="177" width="315" height="25"/>
+                                <rect key="frame" x="127" y="178" width="317" height="25"/>
                                 <popUpButtonCell key="cell" type="push" title="&lt;No connected devices detected&gt;" bezelStyle="rounded" alignment="left" lineBreakMode="truncatingTail" state="on" borderStyle="borderAndBezel" imageScaling="proportionallyDown" inset="2" selectedItem="RLl-jk-Ztt" id="ijX-Yb-X5D">
                                     <behavior key="behavior" lightByBackground="YES" lightByGray="YES"/>
                                     <font key="font" metaFont="menu"/>
@@ -926,7 +936,7 @@
                                 </popUpButtonCell>
                             </popUpButton>
                             <popUpButton verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="7D5-WM-FGG" userLabel="SpeakerSelection">
-                                <rect key="frame" x="128" y="136" width="315" height="25"/>
+                                <rect key="frame" x="127" y="138" width="317" height="25"/>
                                 <popUpButtonCell key="cell" type="push" title="&lt;No connected devices detected&gt;" bezelStyle="rounded" alignment="left" lineBreakMode="truncatingTail" state="on" borderStyle="borderAndBezel" imageScaling="proportionallyDown" inset="2" selectedItem="Ebr-2d-7tZ" id="M5b-LH-bgc">
                                     <behavior key="behavior" lightByBackground="YES" lightByGray="YES"/>
                                     <font key="font" metaFont="menu"/>
@@ -940,7 +950,7 @@
                                 </popUpButtonCell>
                             </popUpButton>
                             <popUpButton verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="W8m-hU-xJd" userLabel="CameraSelection">
-                                <rect key="frame" x="128" y="95" width="315" height="25"/>
+                                <rect key="frame" x="127" y="98" width="317" height="25"/>
                                 <popUpButtonCell key="cell" type="push" title="&lt;No connected devices detected&gt;" bezelStyle="rounded" alignment="left" lineBreakMode="truncatingTail" state="on" borderStyle="borderAndBezel" imageScaling="proportionallyDown" inset="2" selectedItem="xtY-xv-uYs" id="bVL-Xa-w4A">
                                     <behavior key="behavior" lightByBackground="YES" lightByGray="YES"/>
                                     <font key="font" metaFont="menu"/>
@@ -954,7 +964,7 @@
                                 </popUpButtonCell>
                             </popUpButton>
                             <button verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="JEc-yU-mH6" userLabel="Confirm Button">
-                                <rect key="frame" x="196" y="23" width="89" height="32"/>
+                                <rect key="frame" x="199" y="23" width="83" height="32"/>
                                 <buttonCell key="cell" type="push" title="Confirm" bezelStyle="rounded" alignment="center" borderStyle="border" imageScaling="proportionallyDown" inset="2" id="ksL-0E-LGL">
                                     <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
                                     <font key="font" metaFont="system"/>
@@ -998,12 +1008,12 @@
         </scene>
     </scenes>
     <resources>
-        <image name="deviceSelectionButton" width="744" height="744"/>
-        <image name="hangUpButton" width="744" height="744"/>
-        <image name="localVideoMutedBg" width="240" height="180"/>
-        <image name="muteButton" width="744" height="744"/>
-        <image name="screenShareButton" width="744" height="744"/>
-        <image name="videoMuteButton" width="744" height="744"/>
-        <image name="videoMutedIndicator" width="307" height="258"/>
+        <image name="deviceSelectionButton" width="372" height="372"/>
+        <image name="hangUpButton" width="372" height="372"/>
+        <image name="localVideoMutedBg" width="120" height="90"/>
+        <image name="muteButton" width="372" height="372"/>
+        <image name="screenShareButton" width="372" height="372"/>
+        <image name="videoMuteButton" width="372" height="372"/>
+        <image name="videoMutedIndicator" width="153.5" height="129"/>
     </resources>
 </document>

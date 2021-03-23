@@ -34,6 +34,7 @@ namespace DT.Samples.Agora.OneToOne.Mac
             SetupVideo();
             SetupLocalVideo();
             JoinChannel();
+            LoadingIndicator.StartAnimation(this);
         }
 
         public override void ViewDidAppear()
@@ -151,9 +152,21 @@ namespace DT.Samples.Agora.OneToOne.Mac
             localVideoMuteBg.Hidden = true;
         }
 
-        public void JoinChannel()
+        public async Task JoinChannel()
         {
-            _agoraKit.JoinChannelByToken(AgoraTestConstants.Token, Channel, null, 0, (arg1, arg2, arg3) => { });
+            LoadingIndicator.Hidden = false;
+            var token = await AgoraTokenService.GetRtcToken(Channel);
+            if (string.IsNullOrEmpty(token))
+            {
+                LoadingIndicator.Hidden = true;
+            }
+            else
+            {
+                _agoraKit.JoinChannelByToken(token, Channel, null, 0, (arg1, arg2, arg3) =>
+                {
+                    LoadingIndicator.Hidden = true;
+                });
+            }
         }
 
         public void LeaveChannel()
@@ -224,6 +237,15 @@ namespace DT.Samples.Agora.OneToOne.Mac
         {
             remoteVideo.Hidden = muted;
             remoteVideoMutedIndicator.Hidden = !muted;
+        }
+
+        public async Task TokenPrivilegeWillExpire(AgoraRtcEngineKit engine, string token)
+        {
+            var newToken = await AgoraTokenService.GetRtcToken(Channel);
+            if (!string.IsNullOrEmpty(newToken))
+            {
+                _agoraKit.RenewToken(newToken);
+            }
         }
     }
 }

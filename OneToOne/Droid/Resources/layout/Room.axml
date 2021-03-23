@@ -108,4 +108,10 @@
             android:layout_height="wrap_content"
             android:textSize="12sp" />
     </RelativeLayout>
+	<ProgressBar
+        android:id="@+id/progress_bar"
+		android:layout_width="wrap_content"
+		android:layout_height="wrap_content"
+        android:visibility="invisible"
+        android:layout_centerInParent="true"/>
 </RelativeLayout>

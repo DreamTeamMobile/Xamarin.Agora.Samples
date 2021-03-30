@@ -1,0 +1,42 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="122dp"
+    android:layout_height="146dp"
+    android:background="@drawable/rounded_shadow_shape">
+    <FrameLayout
+        android:id="@+id/video_view_container"
+        android:layout_width="match_parent"
+        android:background="@drawable/rounded_video_shape"
+        android:layout_margin="2dp"
+        android:layout_height="match_parent" />
+    <FrameLayout
+            android:id="@+id/audio_overlay"
+            android:visibility="invisible"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:background="@drawable/rounded_video_shape_opaque"
+            android:layout_margin="2dp" />
+    <FrameLayout
+            android:id="@+id/video_overlay"
+            android:visibility="invisible"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:background="@color/material_grey_850"
+            android:layout_margin="2dp" />
+    <ImageView
+        android:id="@+id/audio_muted"
+        android:layout_height="32dp"
+        android:layout_width="32dp"
+        android:visibility="invisible"
+        android:layout_centerInParent="true"
+        android:src="@drawable/ic_mic_muted_call" />
+    <ImageView
+        android:id="@+id/hand_image"
+        android:layout_height="32dp"
+        android:layout_width="32dp"
+        android:layout_alignParentBottom="true"
+        android:layout_alignParentLeft="true"
+        android:visibility="invisible"
+        android:src="@drawable/ic_hand_selected" />
+</RelativeLayout>

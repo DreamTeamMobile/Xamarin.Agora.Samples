@@ -1,0 +1,160 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project DefaultTargets="Build" ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">x86</Platform>
+    <ProjectGuid>{EF336464-B5EF-494E-88AD-751F99E0FB3B}</ProjectGuid>
+    <ProjectTypeGuids>{A3F8F2AB-B479-4A4A-A458-A89E7DC349F1};{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}</ProjectTypeGuids>
+    <OutputType>Exe</OutputType>
+    <RootNamespace>DT.Samples.Agora.OneToOne.Mac</RootNamespace>
+    <AssemblyName>DT.Samples.Agora.OneToOne.Mac</AssemblyName>
+    <TargetFrameworkVersion>v2.0</TargetFrameworkVersion>
+    <TargetFrameworkIdentifier>Xamarin.Mac</TargetFrameworkIdentifier>
+    <MonoMacResourcePrefix>Resources</MonoMacResourcePrefix>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|x86' ">
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>bin\Debug</OutputPath>
+    <DefineConstants>DEBUG;</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+    <EnableCodeSigning>false</EnableCodeSigning>
+    <CodeSigningKey>Mac Developer</CodeSigningKey>
+    <CreatePackage>false</CreatePackage>
+    <EnablePackageSigning>false</EnablePackageSigning>
+    <IncludeMonoRuntime>false</IncludeMonoRuntime>
+    <UseSGen>true</UseSGen>
+    <UseRefCounting>true</UseRefCounting>
+    <PlatformTarget>x86</PlatformTarget>
+    <MonoBundlingExtraArgs>-v</MonoBundlingExtraArgs>
+    <HttpClientHandler>NSUrlSessionHandler</HttpClientHandler>
+    <PackageSigningKey>3rd Party Mac Developer Installer</PackageSigningKey>
+    <AOTMode>None</AOTMode>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|x86' ">
+    <DebugType>pdbonly</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>bin\Release</OutputPath>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+    <EnableCodeSigning>false</EnableCodeSigning>
+    <CreatePackage>true</CreatePackage>
+    <EnablePackageSigning>false</EnablePackageSigning>
+    <IncludeMonoRuntime>true</IncludeMonoRuntime>
+    <UseSGen>true</UseSGen>
+    <UseRefCounting>true</UseRefCounting>
+    <LinkMode>SdkOnly</LinkMode>
+    <PlatformTarget>x86</PlatformTarget>
+    <HttpClientHandler>NSUrlSessionHandler</HttpClientHandler>
+    <AOTMode>None</AOTMode>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="System" />
+    <Reference Include="System.Core" />
+    <Reference Include="Xamarin.Mac" />    
+    <Reference Include="Xamarin.Essentials">
+      <HintPath>..\..\packages\Xamarin.Essentials.1.6.1\lib\xamarinmac20\Xamarin.Essentials.dll</HintPath>
+    </Reference>
+    <Reference Include="OpenTK" />
+    <Reference Include="System.Numerics.Vectors" />
+    <Reference Include="Xamarin.Agora.Full.Mac">
+      <HintPath>..\..\packages\Xamarin.Agora.Full.Mac.3.3.0\lib\Xamarin.Mac20\Xamarin.Agora.Full.Mac.dll</HintPath>
+    </Reference>
+    <Reference Include="Newtonsoft.Json">
+      <HintPath>..\..\packages\Newtonsoft.Json.13.0.1-beta2\lib\netstandard2.0\Newtonsoft.Json.dll</HintPath>
+    </Reference>
+    <Reference Include="Xamarin.Agora.Rtm.Mac">
+      <HintPath>..\packages\Xamarin.Agora.Rtm.Mac.1.4.2\lib\Xamarin.Mac20\Xamarin.Agora.Rtm.Mac.dll</HintPath>
+    </Reference>
+  </ItemGroup>
+  <ItemGroup>
+    <ImageAsset Include="Assets.xcassets\AppIcon.appiconset\Contents.json" />
+    <ImageAsset Include="Assets.xcassets\Contents.json" />
+    <ImageAsset Include="Assets.xcassets\deviceSelectionButton.imageset\Contents.json" />
+    <ImageAsset Include="Assets.xcassets\deviceSelectionButton.imageset\device_selection.png" />
+    <ImageAsset Include="Assets.xcassets\hangUpButton.imageset\Contents.json" />
+    <ImageAsset Include="Assets.xcassets\hangUpButton.imageset\hangup.png" />
+    <ImageAsset Include="Assets.xcassets\localVideoMutedBg.imageset\Contents.json" />
+    <ImageAsset Include="Assets.xcassets\localVideoMutedBg.imageset\cameramutehorizontal.png" />
+    <ImageAsset Include="Assets.xcassets\muteButton.imageset\Contents.json" />
+    <ImageAsset Include="Assets.xcassets\muteButton.imageset\mute.png" />
+    <ImageAsset Include="Assets.xcassets\muteButtonSelected.imageset\Contents.json" />
+    <ImageAsset Include="Assets.xcassets\muteButtonSelected.imageset\unmute.png" />
+    <ImageAsset Include="Assets.xcassets\screenShareButton.imageset\Contents.json" />
+    <ImageAsset Include="Assets.xcassets\screenShareButton.imageset\screen_sharing.png" />
+    <ImageAsset Include="Assets.xcassets\screenShareButtonSelected.imageset\Contents.json" />
+    <ImageAsset Include="Assets.xcassets\screenShareButtonSelected.imageset\unscreen_share.png" />
+    <ImageAsset Include="Assets.xcassets\videoMuteButton.imageset\Contents.json" />
+    <ImageAsset Include="Assets.xcassets\videoMuteButton.imageset\cameraoff.png" />
+    <ImageAsset Include="Assets.xcassets\videoMuteButtonSelected.imageset\Contents.json" />
+    <ImageAsset Include="Assets.xcassets\videoMuteButtonSelected.imageset\cameraon.png" />
+    <ImageAsset Include="Assets.xcassets\videoMutedIndicator.imageset\Contents.json" />
+    <ImageAsset Include="Assets.xcassets\videoMutedIndicator.imageset\cameraoff_mainVideo.png" />
+    <ImageAsset Include="Assets.xcassets\AppIcon.appiconset\16.png" />
+    <ImageAsset Include="Assets.xcassets\AppIcon.appiconset\32.png" />
+    <ImageAsset Include="Assets.xcassets\AppIcon.appiconset\64.png" />
+    <ImageAsset Include="Assets.xcassets\AppIcon.appiconset\128.png" />
+    <ImageAsset Include="Assets.xcassets\AppIcon.appiconset\256.png" />
+    <ImageAsset Include="Assets.xcassets\AppIcon.appiconset\512.png" />
+    <ImageAsset Include="Assets.xcassets\AppIcon.appiconset\1024.png" />
+    <ImageAsset Include="Assets.xcassets\handUp.imageset\Contents.json" />
+    <ImageAsset Include="Assets.xcassets\handUp.imageset\ic_hand.png" />
+    <ImageAsset Include="Assets.xcassets\handUpSelected.imageset\Contents.json" />
+    <ImageAsset Include="Assets.xcassets\handUpSelected.imageset\ic_hand_selected.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Folder Include="Resources\" />
+    <Folder Include="Assets.xcassets\deviceSelectionButton.imageset\" />
+    <Folder Include="Assets.xcassets\hangUpButton.imageset\" />
+    <Folder Include="Assets.xcassets\localVideoMutedBg.imageset\" />
+    <Folder Include="Assets.xcassets\muteButton.imageset\" />
+    <Folder Include="Assets.xcassets\muteButtonSelected.imageset\" />
+    <Folder Include="Assets.xcassets\screenShareButton.imageset\" />
+    <Folder Include="Assets.xcassets\screenShareButtonSelected.imageset\" />
+    <Folder Include="Assets.xcassets\videoMuteButton.imageset\" />
+    <Folder Include="Assets.xcassets\videoMuteButtonSelected.imageset\" />
+    <Folder Include="Assets.xcassets\videoMutedIndicator.imageset\" />
+    <Folder Include="Assets.xcassets\handUp.imageset\" />
+    <Folder Include="Assets.xcassets\handUpSelected.imageset\" />
+    <Folder Include="Delegates\" />
+    <Folder Include="ViewControllers\" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Info.plist" />
+    <None Include="Entitlements.plist" />
+    <None Include="packages.config" />
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="Main.cs" />
+    <Compile Include="RemoteVideosTableDataSource.cs" />
+    <Compile Include="RemoteVideoCell.cs" />
+    <Compile Include="RemoteVideoCell.designer.cs">
+      <DependentUpon>RemoteVideoCell.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Delegates\AppDelegate.cs" />
+    <Compile Include="Delegates\RemoteVideosTableDelegate.cs" />
+    <Compile Include="Delegates\RtcDelegate.cs" />
+    <Compile Include="Delegates\RtmChannelDelegate.cs" />
+    <Compile Include="Delegates\RtmDelegate.cs" />
+    <Compile Include="ViewControllers\DeviceSelectionViewController.cs" />
+    <Compile Include="ViewControllers\DeviceSelectionViewController.designer.cs">
+      <DependentUpon>DeviceSelectionViewController.cs</DependentUpon>
+    </Compile>
+    <Compile Include="ViewControllers\VideoChatViewController.cs" />
+    <Compile Include="ViewControllers\VideoChatViewController.designer.cs">
+      <DependentUpon>VideoChatViewController.cs</DependentUpon>
+    </Compile>
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\..\DT.Samples.Agora.Shared\DT.Samples.Agora.Shared.csproj">
+      <Project>{2DDB7277-5ACB-4DE9-BFC7-29C5DEDA4217}</Project>
+      <Name>DT.Samples.Agora.Shared</Name>
+    </ProjectReference>
+  </ItemGroup>
+  <ItemGroup>
+    <InterfaceDefinition Include="Main.storyboard" />
+  </ItemGroup>
+  <Import Project="$(MSBuildExtensionsPath)\Xamarin\Mac\Xamarin.Mac.CSharp.targets" />
+</Project>

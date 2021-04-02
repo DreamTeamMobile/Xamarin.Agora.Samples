@@ -157,6 +157,7 @@
     <Compile Include="Delegates\ChannelDelegate.cs" />
     <Compile Include="Delegates\RtmDelegate.cs" />
     <Compile Include="Delegates\CallKitDelegate.cs" />
+    <Compile Include="ViewControllers\TableDelegate.cs" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\..\DT.Samples.Agora.Shared\DT.Samples.Agora.Shared.csproj">

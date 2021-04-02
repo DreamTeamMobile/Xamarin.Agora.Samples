@@ -55,6 +55,7 @@
     <Compile Include="EnumExtensions.cs" />
     <Compile Include="VideoProfile.cs" />
     <Compile Include="AgoraTokenService.cs" />
+    <Compile Include="Models\SignalMessage.cs" />
   </ItemGroup>
   <ItemGroup>
     <Reference Include="Plugin.Settings.Abstractions">
@@ -87,6 +88,9 @@
   </ItemGroup>
   <ItemGroup>
     <None Include="packages.config" />
+  </ItemGroup>
+  <ItemGroup>
+    <Folder Include="Models\" />
   </ItemGroup>
   <Import Project="$(MSBuildExtensionsPath32)\Microsoft\Portable\$(TargetFrameworkVersion)\Microsoft.Portable.CSharp.targets" />
 </Project>

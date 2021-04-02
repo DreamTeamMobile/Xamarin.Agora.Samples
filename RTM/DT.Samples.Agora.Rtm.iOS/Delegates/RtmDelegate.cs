@@ -16,5 +16,10 @@ namespace DT.Samples.Agora.Rtm.iOS
         {
             AppendMessage(peerId, message);
         }
+
+        public override void ImageMessageReceived(AgoraRtmKit kit, AgoraRtmImageMessage message, string peerId)
+        {
+            AppendMessage(peerId, message);
+        }
     }
 }

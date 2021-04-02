@@ -15,15 +15,15 @@ namespace DT.Samples.Agora.Rtm.Mac.ViewControllers
         Group = 1
     }
 
-    public class Message
+    public partial class Message
     {
         public string UserId { get; set; }
-        public string Text { get; set; }
+        public AgoraRtmMessage RtmMessage { get; set; }
 
-        public Message(string userId, string text)
+        public Message(string userId, AgoraRtmMessage rtmMessage)
         {
             UserId = userId;
-            Text = text;
+            RtmMessage = rtmMessage;
         }
     }
 
@@ -118,13 +118,14 @@ namespace DT.Samples.Agora.Rtm.Mac.ViewControllers
             if (string.IsNullOrEmpty(text))
                 return false;
 
+            var message = new AgoraRtmMessage(text);
             switch (ChatType)
             {
                 case ChatType.Peer:
-                    SendPeer(name, text);
+                    SendPeer(name, message);
                     break;
                 case ChatType.Group:
-                    SendChannel(name, text);
+                    SendChannel(name, message);
                     break;
             }
 
@@ -139,9 +140,47 @@ namespace DT.Samples.Agora.Rtm.Mac.ViewControllers
             }
         }
 
-        public void SendPeer(string peer, string msg)
+        partial void OnSendImagePressed(NSButton sender)
         {
-            var message = new AgoraRtmMessage(msg);
+            var dlg = NSOpenPanel.OpenPanel;
+            dlg.CanChooseFiles = true;
+            dlg.CanChooseDirectories = false;
+            dlg.AllowedFileTypes = new string[] { "jpg", "png", "jpeg", "bmp" };
+            if(dlg.RunModal() == 1)
+            {
+                var url = dlg.Urls[0];
+                if(url != null)
+                {
+                    var path = url.Path;
+                    var reqId = new Random().Next();
+
+                    AgoraRtm.RtmKit.CreateImageMessageByUploading(path, reqId, (requestId, rtmImageMessage, rtmUploadError) =>
+                    {
+                        InvokeOnMainThread(() =>
+                        {
+                            if (rtmUploadError != AgoraRtmUploadMediaErrorCode.Ok)
+                            {
+                                ShowAlert($"Smth went worng. Code {rtmUploadError}", "Could not send the messgae");
+                                return;
+                            }
+
+                            switch (ChatType)
+                            {
+                                case ChatType.Peer:
+                                    SendPeer(ChannelOrPeerName, rtmImageMessage);
+                                    break;
+                                case ChatType.Group:
+                                    SendChannel(ChannelOrPeerName, rtmImageMessage);
+                                    break;
+                            }
+                        });
+                    });
+                }
+            }
+        }
+
+        public void SendPeer(string peer, AgoraRtmMessage message)
+        {
             var options = new AgoraRtmSendMessageOptions
             {
                 EnableOfflineMessaging = AgoraRtm.OneToOneMessageType == OneToOneMessageType.Offline
@@ -156,13 +195,12 @@ namespace DT.Samples.Agora.Rtm.Mac.ViewControllers
             });
         }
 
-        public void SendChannel(string channel, string msg)
+        public void SendChannel(string channel, AgoraRtmMessage message)
         {
             var rtmChannels = AgoraRtm.RtmKit.Channels;
 
             if (rtmChannels[channel] is AgoraRtmChannel rtmChannel)
             {
-                var message = new AgoraRtmMessage(msg);
                 var options = new AgoraRtmSendMessageOptions
                 {
                     EnableOfflineMessaging = AgoraRtm.OneToOneMessageType == OneToOneMessageType.Offline
@@ -183,7 +221,7 @@ namespace DT.Samples.Agora.Rtm.Mac.ViewControllers
 
         public void AppendMsg(string user, AgoraRtmMessage message)
         {
-            var msg = new Message(user, message.Text);
+            var msg = new Message(user, message);
             _messages.Add(msg);
 
             var end = _messages.Count - 1;

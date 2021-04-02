@@ -1,9 +1,8 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
 using Foundation;
 using AppKit;
 using DT.Samples.Agora.Rtm.Mac.ViewControllers;
+using DT.Xamarin.Agora;
 
 namespace DT.Samples.Agora.Rtm.Mac
 {
@@ -66,6 +65,31 @@ namespace DT.Samples.Agora.Rtm.Mac
                         RightContentLabel.StringValue = value;
                         break;
                 }
+                LeftImageView.Hidden = true;
+                RightImageView.Hidden = true;
+            }
+        }
+
+        private NSImage _image;
+        public NSImage Image
+        {
+            get => _image;
+            set
+            {
+                _image = value;
+                switch (Type)
+                {
+                    case CellType.Left:
+                        LeftImageView.Image = value;
+                        LeftImageView.Hidden = false;
+                        break;
+                    case CellType.Right:
+                        RightImageView.Image = value;
+                        RightImageView.Hidden = false;
+                        break;
+                }
+                LeftContentLabel.StringValue = string.Empty;
+                RightContentLabel.StringValue = string.Empty;
             }
         }
 
@@ -96,7 +120,23 @@ namespace DT.Samples.Agora.Rtm.Mac
         {
             Type = type;
             User = message.UserId;
-            Content = message.Text;
+            switch(message.RtmMessage.Type)
+            {
+                case AgoraRtmMessageType.Text:
+                    Content = message.RtmMessage.Text;
+                    break;
+                case AgoraRtmMessageType.Image:
+                    var imageMessage = message.RtmMessage as AgoraRtmImageMessage;
+                    var imgData = imageMessage.Thumbnail;
+                    var image = new NSImage(imgData);
+                    Image = image;
+                    break;
+                case AgoraRtmMessageType.Raw:
+                    var rawMessage = message.RtmMessage as AgoraRtmRawMessage;
+                    var rawData = rawMessage.RawData;
+                    Content = $"Raw[{rawData.Length}bytes] {rawMessage.Text}";
+                    break;
+            }
         }
     }
 }

@@ -1,0 +1,157 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:orientation="vertical"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="15dp"
+        android:orientation="horizontal">
+        <TextView
+            android:text="@string/settings_usemy"
+            android:textSize="20sp"
+            android:textColor="@color/colorAccent"
+            android:layout_marginLeft="16dp"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content" />
+        <View
+            android:layout_weight="1"
+            android:layout_width="fill_parent"
+            android:layout_height="match_parent" />
+        <android.support.v7.widget.SwitchCompat
+            android:id="@+id/useMySettingsSwitch"
+            android:textSize="20sp"
+            android:textAlignment="viewEnd"
+            android:layout_marginRight="10dp"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content" />
+    </LinearLayout>
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="15dp"
+        android:orientation="horizontal">
+        <TextView
+            android:text="@string/settings_profile"
+            android:textSize="20sp"
+            android:textColor="@color/colorAccent"
+            android:layout_marginLeft="16dp"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content" />
+        <View
+            android:layout_weight="1"
+            android:layout_width="fill_parent"
+            android:layout_height="match_parent" />
+        <Spinner
+            android:id="@+id/profileSpinner"
+            android:textSize="20sp"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:prompt="@string/profile_prompt" />
+    </LinearLayout>
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="15dp"
+        android:orientation="horizontal">
+        <TextView
+            android:text="@string/settings_name"
+            android:textSize="16sp"
+            android:layout_marginLeft="16dp"
+            android:textColor="@color/colorAccent"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content" />
+        <View
+            android:layout_weight="1"
+            android:layout_width="fill_parent"
+            android:layout_height="match_parent" />
+        <TextView
+            android:id="@+id/name_value"
+            android:text=""
+            android:textSize="16sp"
+            android:textStyle="bold"
+            android:layout_marginRight="10dp"
+            android:textColor="@color/textColorPrimary"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content" />
+    </LinearLayout>
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="10dp"
+        android:orientation="horizontal">
+        <TextView
+            android:text="@string/settings_resolution"
+            android:textSize="16sp"
+            android:layout_marginLeft="16dp"
+            android:textColor="@color/colorAccent"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content" />
+        <View
+            android:layout_weight="1"
+            android:layout_width="fill_parent"
+            android:layout_height="match_parent" />
+        <TextView
+            android:id="@+id/resolution_value"
+            android:text=""
+            android:textSize="16sp"
+            android:textStyle="bold"
+            android:layout_marginRight="10dp"
+            android:textColor="@color/textColorPrimary"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content" />
+    </LinearLayout>
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="10dp"
+        android:orientation="horizontal">
+        <TextView
+            android:text="@string/settings_framerate"
+            android:textSize="16sp"
+            android:layout_marginLeft="16dp"
+            android:textColor="@color/colorAccent"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content" />
+        <View
+            android:layout_weight="1"
+            android:layout_width="fill_parent"
+            android:layout_height="match_parent" />
+        <TextView
+            android:id="@+id/framerate_value"
+            android:text=""
+            android:textSize="16sp"
+            android:textStyle="bold"
+            android:layout_marginRight="10dp"
+            android:textColor="@color/textColorPrimary"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content" />
+    </LinearLayout>
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="10dp"
+        android:orientation="horizontal">
+        <TextView
+            android:text="@string/settings_bitrate"
+            android:textSize="16sp"
+            android:layout_marginLeft="16dp"
+            android:textColor="@color/colorAccent"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content" />
+        <View
+            android:layout_weight="1"
+            android:layout_width="fill_parent"
+            android:layout_height="match_parent" />
+        <TextView
+            android:id="@+id/bitrate_value"
+            android:text=""
+            android:textSize="16sp"
+            android:textStyle="bold"
+            android:layout_marginRight="10dp"
+            android:textColor="@color/textColorPrimary"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content" />
+    </LinearLayout>
+</LinearLayout>

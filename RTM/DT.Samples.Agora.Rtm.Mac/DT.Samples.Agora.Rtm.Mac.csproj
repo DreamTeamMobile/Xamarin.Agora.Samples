@@ -44,8 +44,10 @@
     <Reference Include="System" />
     <Reference Include="System.Core" />
     <Reference Include="Xamarin.Mac" />
+    <Reference Include="OpenTK" />
+    <Reference Include="System.Numerics.Vectors" />
     <Reference Include="Xamarin.Agora.Rtm.Mac">
-      <HintPath>..\packages\Xamarin.Agora.Rtm.Mac.1.4.2\lib\Xamarin.Mac20\Xamarin.Agora.Rtm.Mac.dll</HintPath>
+      <HintPath>..\..\..\agora-xamarin-sdk\Nugets\Xamarin.Agora.Rtm.Mac\lib\Xamarin.Mac20\Xamarin.Agora.Rtm.Mac.dll</HintPath>
     </Reference>
     <Reference Include="Newtonsoft.Json">
       <HintPath>..\packages\Newtonsoft.Json.12.0.3\lib\netstandard2.0\Newtonsoft.Json.dll</HintPath>
@@ -75,7 +77,6 @@
   <ItemGroup>
     <None Include="Info.plist" />
     <None Include="Entitlements.plist" />
-    <None Include="packages.config" />
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Main.cs" />

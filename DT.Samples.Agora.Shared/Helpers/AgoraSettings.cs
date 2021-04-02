@@ -45,6 +45,9 @@ namespace DT.Samples.Agora.Shared.Helpers
         private const string EncryptionTypeKey = "encryptionTypeKey_key";
         private static readonly int EncryptionTypeDefault = (int)EncryptionType.xts128;
 
+        private const string RoleKey = "role_key";
+        private static readonly int RoleDefault = (int)AgoraRole.Broadcaster;
+
         #endregion
 
         public int Profile
@@ -108,6 +111,19 @@ namespace DT.Samples.Agora.Shared.Helpers
             set
             {
                 AppSettings.AddOrUpdateValue(EncryptionTypeKey, (int)value);
+                OnPropertyChanged();
+            }
+        }
+
+        public AgoraRole Role
+        {
+            get
+            {
+                return (AgoraRole)AppSettings.GetValueOrDefault(RoleKey, RoleDefault);
+            }
+            set
+            {
+                AppSettings.AddOrUpdateValue(RoleKey, (int)value);
                 OnPropertyChanged();
             }
         }

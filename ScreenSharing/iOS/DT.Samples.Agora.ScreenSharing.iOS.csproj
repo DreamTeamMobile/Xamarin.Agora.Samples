@@ -1,0 +1,355 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Project DefaultTargets="Build" ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">iPhoneSimulator</Platform>
+    <ProjectGuid>{F3414B36-55D4-44E4-B874-C0731A82DF0D}</ProjectGuid>
+    <ProjectTypeGuids>{FEACFBD2-3405-455C-9665-78FE426C6842};{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}</ProjectTypeGuids>
+    <OutputType>Exe</OutputType>
+    <RootNamespace>DT.Samples.Agora.OneToOne.iOS</RootNamespace>
+    <AssemblyName>DT.Samples.Agora.OneToOne.iOS</AssemblyName>
+    <IPhoneResourcePrefix>Resources</IPhoneResourcePrefix>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|iPhoneSimulator' ">
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>bin\iPhoneSimulator\Debug</OutputPath>
+    <DefineConstants>DEBUG;ENABLE_TEST_CLOUD;</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+    <CodesignKey>iPhone Developer</CodesignKey>
+    <DeviceSpecificBuild>true</DeviceSpecificBuild>
+    <MtouchDebug>true</MtouchDebug>
+    <MtouchFastDev>true</MtouchFastDev>
+    <MtouchProfiling>false</MtouchProfiling>
+    <MtouchFloat32>true</MtouchFloat32>
+    <CodesignEntitlements>Entitlements.plist</CodesignEntitlements>
+    <IOSDebuggerPort>43615</IOSDebuggerPort>
+    <MtouchLink>None</MtouchLink>
+    <MtouchArch>x86_64</MtouchArch>
+    <MtouchHttpClientHandler>HttpClientHandler</MtouchHttpClientHandler>
+    <MtouchTlsProvider>Default</MtouchTlsProvider>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|iPhone' ">
+    <DebugType>pdbonly</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>bin\iPhone\Release</OutputPath>
+    <DefineConstants></DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+    <CodesignKey>iPhone Distribution</CodesignKey>
+    <MtouchFloat32>true</MtouchFloat32>
+    <CodesignEntitlements>Entitlements.plist</CodesignEntitlements>
+    <MtouchLink>SdkOnly</MtouchLink>
+    <MtouchArch>ARMv7, ARM64</MtouchArch>
+    <MtouchHttpClientHandler>HttpClientHandler</MtouchHttpClientHandler>
+    <MtouchTlsProvider>Default</MtouchTlsProvider>
+    <CodesignProvision></CodesignProvision>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|iPhoneSimulator' ">
+    <DebugType>pdbonly</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>bin\iPhoneSimulator\Release</OutputPath>
+    <DefineConstants></DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+    <CodesignKey>iPhone Developer</CodesignKey>
+    <MtouchFloat32>true</MtouchFloat32>
+    <CodesignEntitlements>Entitlements.plist</CodesignEntitlements>
+    <MtouchLink>None</MtouchLink>
+    <MtouchArch>x86_64</MtouchArch>
+    <MtouchHttpClientHandler>HttpClientHandler</MtouchHttpClientHandler>
+    <MtouchTlsProvider>Default</MtouchTlsProvider>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|iPhone' ">
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>bin\iPhone\Debug</OutputPath>
+    <DefineConstants>DEBUG;ENABLE_TEST_CLOUD;</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+    <CodesignKey>iPhone Developer</CodesignKey>
+    <DeviceSpecificBuild>false</DeviceSpecificBuild>
+    <MtouchDebug>true</MtouchDebug>
+    <MtouchFastDev>false</MtouchFastDev>
+    <MtouchProfiling>true</MtouchProfiling>
+    <MtouchFloat32>false</MtouchFloat32>
+    <CodesignEntitlements>Entitlements.plist</CodesignEntitlements>
+    <MtouchLink>SdkOnly</MtouchLink>
+    <MtouchArch>ARMv7, ARM64</MtouchArch>
+    <MtouchHttpClientHandler>HttpClientHandler</MtouchHttpClientHandler>
+    <MtouchTlsProvider>Default</MtouchTlsProvider>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Staging|iPhone' ">
+    <DebugType>pdbonly</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>bin\iPhone\Staging</OutputPath>
+    <DefineConstants></DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+    <CodesignKey>iPhone Distribution</CodesignKey>
+    <MtouchFloat32>true</MtouchFloat32>
+    <CodesignEntitlements>Entitlements.plist</CodesignEntitlements>
+    <MtouchLink>SdkOnly</MtouchLink>
+    <MtouchArch>ARMv7, ARM64</MtouchArch>
+    <MtouchHttpClientHandler>HttpClientHandler</MtouchHttpClientHandler>
+    <MtouchTlsProvider>Default</MtouchTlsProvider>
+    <CodesignProvision></CodesignProvision>
+    <MtouchNoSymbolStrip>true</MtouchNoSymbolStrip>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Staging|iPhoneSimulator' ">
+    <DebugType>pdbonly</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>bin\iPhoneSimulator\Staging</OutputPath>
+    <DefineConstants></DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+    <CodesignKey>iPhone Developer</CodesignKey>
+    <MtouchFloat32>true</MtouchFloat32>
+    <CodesignEntitlements>Entitlements.plist</CodesignEntitlements>
+    <MtouchLink>None</MtouchLink>
+    <MtouchArch>x86_64</MtouchArch>
+    <MtouchHttpClientHandler>HttpClientHandler</MtouchHttpClientHandler>
+    <MtouchTlsProvider>Default</MtouchTlsProvider>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Store|iPhone' ">
+    <DebugType>pdbonly</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>bin\iPhone\Store</OutputPath>
+    <DefineConstants></DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+    <CodesignKey>iPhone Distribution: DreamTeam Mobile LLC (XG4TSA83W3)</CodesignKey>
+    <MtouchFloat32>true</MtouchFloat32>
+    <CodesignEntitlements>Entitlements.plist</CodesignEntitlements>
+    <MtouchLink>SdkOnly</MtouchLink>
+    <MtouchArch>ARMv7, ARM64</MtouchArch>
+    <MtouchHttpClientHandler>HttpClientHandler</MtouchHttpClientHandler>
+    <MtouchTlsProvider>Default</MtouchTlsProvider>
+    <CodesignProvision>Agora One To One Adhoc</CodesignProvision>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Store|iPhoneSimulator' ">
+    <DebugType>pdbonly</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>bin\iPhoneSimulator\Store</OutputPath>
+    <DefineConstants></DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+    <CodesignKey>iPhone Developer</CodesignKey>
+    <MtouchFloat32>true</MtouchFloat32>
+    <CodesignEntitlements>Entitlements.plist</CodesignEntitlements>
+    <MtouchLink>None</MtouchLink>
+    <MtouchArch>x86_64</MtouchArch>
+    <MtouchHttpClientHandler>HttpClientHandler</MtouchHttpClientHandler>
+    <MtouchTlsProvider>Default</MtouchTlsProvider>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|Android' ">
+    <DebugSymbols>false</DebugSymbols>
+    <Optimize>false</Optimize>
+    <OutputPath>bin\Android\Debug</OutputPath>
+    <DefineConstants></DefineConstants>
+    <WarningLevel>4</WarningLevel>
+    <CodesignKey>iPhone Developer</CodesignKey>
+    <MtouchDebug>true</MtouchDebug>
+    <MtouchNoSymbolStrip>true</MtouchNoSymbolStrip>
+    <MtouchFastDev>true</MtouchFastDev>
+    <MtouchProfiling>true</MtouchProfiling>
+    <IOSDebuggerPort>37603</IOSDebuggerPort>
+    <MtouchLink>SdkOnly</MtouchLink>
+    <MtouchHttpClientHandler>HttpClientHandler</MtouchHttpClientHandler>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="System" />
+    <Reference Include="System.Xml" />
+    <Reference Include="System.Core" />
+    <Reference Include="Xamarin.iOS" />
+    <Reference Include="Plugin.Settings.Abstractions">
+      <HintPath>..\..\packages\Xam.Plugins.Settings.3.1.1\lib\Xamarin.iOS10\Plugin.Settings.Abstractions.dll</HintPath>
+    </Reference>
+    <Reference Include="Plugin.Settings">
+      <HintPath>..\..\packages\Xam.Plugins.Settings.3.1.1\lib\Xamarin.iOS10\Plugin.Settings.dll</HintPath>
+    </Reference>
+    <Reference Include="Xamarin.Essentials">
+      <HintPath>..\..\packages\Xamarin.Essentials.1.6.1\lib\xamarinios10\Xamarin.Essentials.dll</HintPath>
+    </Reference>
+    <Reference Include="OpenTK-1.0" />
+    <Reference Include="System.Drawing.Common.dll" />
+    <Reference Include="System.Numerics" />
+    <Reference Include="Xamarin.Agora.Full.iOS">
+      <HintPath>..\..\packages\Xamarin.Agora.Full.iOS.3.3.0\lib\Xamarin.iOS10\Xamarin.Agora.Full.iOS.dll</HintPath>
+    </Reference>
+    <Reference Include="Newtonsoft.Json">
+      <HintPath>..\..\packages\Newtonsoft.Json.13.0.1-beta2\lib\netstandard2.0\Newtonsoft.Json.dll</HintPath>
+    </Reference>
+  </ItemGroup>
+  <ItemGroup>
+    <ImageAsset Include="Assets.xcassets\AppIcon.appiconset\Contents.json" />
+    <ImageAsset Include="Assets.xcassets\Contents.json" />
+    <ImageAsset Include="Assets.xcassets\btn_back.imageset\Contents.json" />
+    <ImageAsset Include="Assets.xcassets\btn_back.imageset\btn_back.pdf" />
+    <ImageAsset Include="Assets.xcassets\btn_cutaways.imageset\Contents.json" />
+    <ImageAsset Include="Assets.xcassets\btn_cutaways.imageset\btn_cutaways.pdf" />
+    <ImageAsset Include="Assets.xcassets\btn_endcall.imageset\Contents.json" />
+    <ImageAsset Include="Assets.xcassets\btn_endcall.imageset\btn_endcall.pdf" />
+    <ImageAsset Include="Assets.xcassets\btn_filter_blue.imageset\Contents.json" />
+    <ImageAsset Include="Assets.xcassets\btn_filter_blue.imageset\btn_filter_blue.pdf" />
+    <ImageAsset Include="Assets.xcassets\btn_filter.imageset\Contents.json" />
+    <ImageAsset Include="Assets.xcassets\btn_filter.imageset\btn_filter.pdf" />
+    <ImageAsset Include="Assets.xcassets\btn_keyboard_hide.imageset\Contents.json" />
+    <ImageAsset Include="Assets.xcassets\btn_keyboard_hide.imageset\btn_keyboard_hide.pdf" />
+    <ImageAsset Include="Assets.xcassets\btn_message_blue.imageset\Contents.json" />
+    <ImageAsset Include="Assets.xcassets\btn_message_blue.imageset\btn_message_blue.pdf" />
+    <ImageAsset Include="Assets.xcassets\btn_message.imageset\Contents.json" />
+    <ImageAsset Include="Assets.xcassets\btn_message.imageset\btn_message.pdf" />
+    <ImageAsset Include="Assets.xcassets\btn_mute_blue.imageset\Contents.json" />
+    <ImageAsset Include="Assets.xcassets\btn_mute_blue.imageset\btn_mute_blue.pdf" />
+    <ImageAsset Include="Assets.xcassets\btn_mute.imageset\Contents.json" />
+    <ImageAsset Include="Assets.xcassets\btn_mute.imageset\btn_mute.pdf" />
+    <ImageAsset Include="Assets.xcassets\btn_next_black.imageset\Contents.json" />
+    <ImageAsset Include="Assets.xcassets\btn_next_black.imageset\btn_next_black.pdf" />
+    <ImageAsset Include="Assets.xcassets\btn_setting.imageset\Contents.json" />
+    <ImageAsset Include="Assets.xcassets\btn_setting.imageset\btn_setting.pdf" />
+    <ImageAsset Include="Assets.xcassets\btn_speaker_blue.imageset\Contents.json" />
+    <ImageAsset Include="Assets.xcassets\btn_speaker_blue.imageset\btn_speaker_blue.pdf" />
+    <ImageAsset Include="Assets.xcassets\btn_speaker.imageset\Contents.json" />
+    <ImageAsset Include="Assets.xcassets\btn_speaker.imageset\btn_speaker.pdf" />
+    <ImageAsset Include="Assets.xcassets\btn_video.imageset\Contents.json" />
+    <ImageAsset Include="Assets.xcassets\btn_voice.imageset\Contents.json" />
+    <ImageAsset Include="Assets.xcassets\btn_voice.imageset\btn_voice.pdf" />
+    <ImageAsset Include="Assets.xcassets\btn_video.imageset\btn_video.pdf" />
+    <ImageAsset Include="Assets.xcassets\ic_logo_dt.imageset\Contents.json" />
+    <ImageAsset Include="Assets.xcassets\ic_logo_dt.imageset\icLogoDt.pdf" />
+    <ImageAsset Include="Assets.xcassets\ic_logo_agora.imageset\Contents.json" />
+    <ImageAsset Include="Assets.xcassets\ic_logo_agora.imageset\icLogoAgora.pdf" />
+    <ImageAsset Include="Assets.xcassets\ic_share.imageset\Contents.json" />
+    <ImageAsset Include="Assets.xcassets\ic_settings.imageset\Contents.json" />
+    <ImageAsset Include="Assets.xcassets\btn_join_disabled.imageset\btnJoinDisabled.pdf" />
+    <ImageAsset Include="Assets.xcassets\btn_join_disabled.imageset\Contents.json" />
+    <ImageAsset Include="Assets.xcassets\btn_join_enabled.imageset\btnJoinEnabled.pdf" />
+    <ImageAsset Include="Assets.xcassets\btn_join_enabled.imageset\Contents.json" />
+    <ImageAsset Include="Assets.xcassets\connection_0.imageset\Contents.json" />
+    <ImageAsset Include="Assets.xcassets\connection_0.imageset\icConnection0.pdf" />
+    <ImageAsset Include="Assets.xcassets\connection_1.imageset\Contents.json" />
+    <ImageAsset Include="Assets.xcassets\connection_1.imageset\icConnection1.pdf" />
+    <ImageAsset Include="Assets.xcassets\connection_2.imageset\Contents.json" />
+    <ImageAsset Include="Assets.xcassets\connection_2.imageset\icConnection2.pdf" />
+    <ImageAsset Include="Assets.xcassets\connection_3.imageset\Contents.json" />
+    <ImageAsset Include="Assets.xcassets\connection_3.imageset\icConnection3.pdf" />
+    <ImageAsset Include="Assets.xcassets\connection_4.imageset\Contents.json" />
+    <ImageAsset Include="Assets.xcassets\connection_4.imageset\icConnection4.pdf" />
+    <ImageAsset Include="Assets.xcassets\connection_5.imageset\Contents.json" />
+    <ImageAsset Include="Assets.xcassets\connection_5.imageset\icConnection5.pdf" />
+    <ImageAsset Include="Assets.xcassets\ic_end_call.imageset\Contents.json" />
+    <ImageAsset Include="Assets.xcassets\ic_end_call.imageset\icEndCall.pdf" />
+    <ImageAsset Include="Assets.xcassets\ic_mic_active.imageset\Contents.json" />
+    <ImageAsset Include="Assets.xcassets\ic_mic_active.imageset\icMicActiveCall.pdf" />
+    <ImageAsset Include="Assets.xcassets\ic_mic_inactive.imageset\Contents.json" />
+    <ImageAsset Include="Assets.xcassets\ic_mic_inactive.imageset\icMicInactiveCall.pdf" />
+    <ImageAsset Include="Assets.xcassets\ic_muted.imageset\Contents.json" />
+    <ImageAsset Include="Assets.xcassets\ic_muted.imageset\icMicMuted.pdf" />
+    <ImageAsset Include="Assets.xcassets\ic_cam_active.imageset\Contents.json" />
+    <ImageAsset Include="Assets.xcassets\ic_cam_active.imageset\icCamActiveCall.pdf" />
+    <ImageAsset Include="Assets.xcassets\ic_cam_inactive.imageset\Contents.json" />
+    <ImageAsset Include="Assets.xcassets\ic_cam_inactive.imageset\icCamInactiveCall.pdf" />
+    <ImageAsset Include="Assets.xcassets\ic_menu.imageset\Contents.json" />
+    <ImageAsset Include="Assets.xcassets\ic_menu.imageset\icDotsMenuCall.pdf" />
+    <ImageAsset Include="Assets.xcassets\ic_reverse_cam.imageset\Contents.json" />
+    <ImageAsset Include="Assets.xcassets\ic_reverse_cam.imageset\icReverseCamCall.pdf" />
+    <ImageAsset Include="Assets.xcassets\ic_share.imageset\icShareMain.pdf" />
+    <ImageAsset Include="Assets.xcassets\ic_settings.imageset\icSettMain.pdf" />
+    <ImageAsset Include="Assets.xcassets\AppIcon.appiconset\Icon-App-29x29%401x.png" />
+    <ImageAsset Include="Assets.xcassets\AppIcon.appiconset\Icon-App-29x29%402x.png" />
+    <ImageAsset Include="Assets.xcassets\AppIcon.appiconset\Icon-App-29x29%403x.png" />
+    <ImageAsset Include="Assets.xcassets\AppIcon.appiconset\Icon-App-40x40%402x.png" />
+    <ImageAsset Include="Assets.xcassets\AppIcon.appiconset\Icon-App-40x40%403x.png" />
+    <ImageAsset Include="Assets.xcassets\AppIcon.appiconset\Icon-App-57x57%401x.png" />
+    <ImageAsset Include="Assets.xcassets\AppIcon.appiconset\Icon-App-57x57%402x.png" />
+    <ImageAsset Include="Assets.xcassets\AppIcon.appiconset\Icon-App-60x60%402x.png" />
+    <ImageAsset Include="Assets.xcassets\AppIcon.appiconset\Icon-App-60x60%403x.png" />
+    <ImageAsset Include="Assets.xcassets\AppIcon.appiconset\Icon-App-40x40%401x.png" />
+    <ImageAsset Include="Assets.xcassets\AppIcon.appiconset\Icon-App-72x72%401x.png" />
+    <ImageAsset Include="Assets.xcassets\AppIcon.appiconset\Icon-App-72x72%402x.png" />
+    <ImageAsset Include="Assets.xcassets\AppIcon.appiconset\Icon-App-76x76%401x.png" />
+    <ImageAsset Include="Assets.xcassets\AppIcon.appiconset\Icon-App-76x76%402x.png" />
+    <ImageAsset Include="Assets.xcassets\AppIcon.appiconset\Icon-App-83.5x83.5%402x.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Folder Include="Resources\" />
+    <Folder Include="Assets.xcassets\btn_back.imageset\" />
+    <Folder Include="Assets.xcassets\btn_cutaways.imageset\" />
+    <Folder Include="Assets.xcassets\btn_endcall.imageset\" />
+    <Folder Include="Assets.xcassets\btn_filter_blue.imageset\" />
+    <Folder Include="Assets.xcassets\btn_filter.imageset\" />
+    <Folder Include="Assets.xcassets\btn_keyboard_hide.imageset\" />
+    <Folder Include="Assets.xcassets\btn_message_blue.imageset\" />
+    <Folder Include="Assets.xcassets\btn_message.imageset\" />
+    <Folder Include="Assets.xcassets\btn_mute_blue.imageset\" />
+    <Folder Include="Assets.xcassets\btn_mute.imageset\" />
+    <Folder Include="Assets.xcassets\btn_next_black.imageset\" />
+    <Folder Include="Assets.xcassets\btn_setting.imageset\" />
+    <Folder Include="Assets.xcassets\btn_speaker_blue.imageset\" />
+    <Folder Include="Assets.xcassets\btn_speaker.imageset\" />
+    <Folder Include="Assets.xcassets\btn_video.imageset\" />
+    <Folder Include="Assets.xcassets\btn_voice.imageset\" />
+    <Folder Include="Assets.xcassets\ic_logo_dt.imageset\" />
+    <Folder Include="Assets.xcassets\ic_logo_agora.imageset\" />
+    <Folder Include="Assets.xcassets\ic_share.imageset\" />
+    <Folder Include="Assets.xcassets\ic_settings.imageset\" />
+    <Folder Include="Assets.xcassets\btn_join_disabled.imageset\" />
+    <Folder Include="Assets.xcassets\btn_join_enabled.imageset\" />
+    <Folder Include="Assets.xcassets\connection_0.imageset\" />
+    <Folder Include="Assets.xcassets\connection_1.imageset\" />
+    <Folder Include="Assets.xcassets\connection_2.imageset\" />
+    <Folder Include="Assets.xcassets\connection_3.imageset\" />
+    <Folder Include="Assets.xcassets\connection_4.imageset\" />
+    <Folder Include="Assets.xcassets\connection_5.imageset\" />
+    <Folder Include="Assets.xcassets\ic_end_call.imageset\" />
+    <Folder Include="Assets.xcassets\ic_mic_active.imageset\" />
+    <Folder Include="Assets.xcassets\ic_mic_inactive.imageset\" />
+    <Folder Include="Assets.xcassets\ic_muted.imageset\" />
+    <Folder Include="Assets.xcassets\ic_cam_active.imageset\" />
+    <Folder Include="Assets.xcassets\ic_cam_inactive.imageset\" />
+    <Folder Include="Assets.xcassets\ic_menu.imageset\" />
+    <Folder Include="Assets.xcassets\ic_reverse_cam.imageset\" />
+  </ItemGroup>
+  <ItemGroup>
+    <InterfaceDefinition Include="LaunchScreen.storyboard" />
+    <InterfaceDefinition Include="Main.storyboard" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Info.plist" />
+    <None Include="Entitlements.plist" />
+    <None Include="packages.config" />
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="Main.cs" />
+    <Compile Include="AppDelegate.cs" />
+    <Compile Include="RoomViewController.cs" />
+    <Compile Include="RoomViewController.designer.cs">
+      <DependentUpon>RoomViewController.cs</DependentUpon>
+    </Compile>
+    <Compile Include="AgoraRtcDelegate.cs" />
+    <Compile Include="JoinViewController.cs" />
+    <Compile Include="JoinViewController.designer.cs">
+      <DependentUpon>JoinViewController.cs</DependentUpon>
+    </Compile>
+    <Compile Include="SettingsViewController.cs" />
+    <Compile Include="SettingsViewController.designer.cs">
+      <DependentUpon>SettingsViewController.cs</DependentUpon>
+    </Compile>
+    <Compile Include="CommonExtensions.cs" />
+    <Compile Include="NSDataExtensions.cs" />
+    <Compile Include="Theme.cs" />
+    <Compile Include="PickerModel.cs" />
+    <Compile Include="AgoraRtcQualityDelegate.cs" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\..\DT.Samples.Agora.Shared\DT.Samples.Agora.Shared.csproj">
+      <Project>{2DDB7277-5ACB-4DE9-BFC7-29C5DEDA4217}</Project>
+      <Name>DT.Samples.Agora.Shared</Name>
+    </ProjectReference>
+  </ItemGroup>
+  <Import Project="$(MSBuildExtensionsPath)\Xamarin\iOS\Xamarin.iOS.CSharp.targets" />
+</Project>

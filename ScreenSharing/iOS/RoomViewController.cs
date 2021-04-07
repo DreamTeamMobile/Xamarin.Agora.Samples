@@ -1,9 +1,11 @@
 ﻿using System;
 using System.Threading.Tasks;
+using CoreGraphics;
 using DT.Samples.Agora.Shared;
 using DT.Samples.Agora.Shared.Helpers;
 using DT.Xamarin.Agora;
 using Foundation;
+using ReplayKit;
 using UIKit;
 
 namespace DT.Samples.Agora.ScreenSharing.iOS
@@ -74,12 +76,14 @@ namespace DT.Samples.Agora.ScreenSharing.iOS
             AgoraKit.EnableVideo();
             //var profile = AgoraSettings.Current.UseMySettings ? AgoraSettings.Current.Profile.ToAgoraRtcVideoProfile() : DT.Xamarin.Agora.VideoProfile.Default;
             //AgoraKit.SetVideoProfile(profile, false);
-            AgoraRtcVideoCanvas videoCanvas = new AgoraRtcVideoCanvas();
-            videoCanvas.Uid = 0;
-            videoCanvas.View = LocalView;
-            LocalView.Hidden = false;
-            videoCanvas.RenderMode = VideoRenderMode.Adaptive;
-            AgoraKit.SetupLocalVideo(videoCanvas);
+
+            //AgoraRtcVideoCanvas videoCanvas = new AgoraRtcVideoCanvas();
+            //videoCanvas.Uid = 0;
+            //videoCanvas.View = LocalView;
+            //LocalView.Hidden = false;
+            //videoCanvas.RenderMode = VideoRenderMode.Adaptive;
+            //AgoraKit.SetupLocalVideo(videoCanvas);
+
             if (!string.IsNullOrEmpty(AgoraSettings.Current.EncryptionPhrase))
             {
                 AgoraKit.SetEncryptionMode(AgoraSettings.Current.EncryptionType.GetModeString());
@@ -111,6 +115,32 @@ namespace DT.Samples.Agora.ScreenSharing.iOS
             AgoraKit.SetEnableSpeakerphone(true);
             UIApplication.SharedApplication.IdleTimerDisabled = true;
             RefreshDebug();
+
+            var bundle = NSBundle.MainBundle.GetUrlForResource("DT.Samples.Agora.ScreenSharing.iOS.Extension", "appex", "PlugIns");
+
+            var frame = new CGRect(100, 100, 60, 60);
+            var broadcastPicker = new RPSystemBroadcastPickerView(frame);
+            var bundle2 = new NSBundle(bundle);
+            broadcastPicker.PreferredExtension = bundle2.BundleIdentifier;
+            View.AddSubview(broadcastPicker);
+            Console.WriteLine("Run RPSystemBroadcastPickerView");
+            //RPScreenRecorder.SharedRecorder.StartRecording(false, error =>
+            //{
+            //    if (error != null)
+            //    {
+
+            //    }
+            //});
+            //RPBroadcastActivityViewController.LoadBroadcastActivityViewController(bundle.AbsoluteUrl.ToString(), (controller, error) =>
+            //{
+            //    if(error != null)
+            //    {
+            //        return;
+            //    }
+            //    UIApplication.SharedApplication.KeyWindow.RootViewController.PresentViewController(controller, true, null);
+
+            //    //RPBroadcastActivityViewController = controller;
+            //});
         }
 
         public void FirstRemoteVideoDecodedOfUid(AgoraRtcEngineKit engine, nuint uid, CoreGraphics.CGSize size, nint elapsed)
@@ -157,6 +187,13 @@ namespace DT.Samples.Agora.ScreenSharing.iOS
             AgoraKit.LeaveChannel(null);
             NavigationController.NavigationBarHidden = false;
             NavigationController.PopViewController(true);
+            RPScreenRecorder.SharedRecorder.StopRecording((c, error) =>
+            {
+                if(error != null)
+                {
+
+                }
+            });
         }
 
         partial void EndCallClicked(NSObject sender)

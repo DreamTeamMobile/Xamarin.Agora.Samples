@@ -39,11 +39,6 @@ namespace DT.Samples.Agora.ScreenSharing.Droid
             _context.OnUserMuteVideo(p0, p1);
         }
 
-        public override void OnFirstLocalVideoFrame(int p0, int p1, int p2)
-        {
-            //_context.OnFirstLocalVideoFrame(p0, p1, p2);
-        }
-
         public override void OnTokenPrivilegeWillExpire(string token)
         {
             _context.OnTokenPrivilegeWillExpire(token);

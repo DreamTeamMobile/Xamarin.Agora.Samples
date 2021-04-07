@@ -74,10 +74,6 @@ namespace DT.Samples.Agora.ScreenSharing.Droid
         {
             RunOnUiThread(() => _progressBar.Visibility = ViewStates.Gone);
             _localId = (uint)uid;
-            if (AgoraSettings.Current.Role == AgoraRole.Broadcaster)
-            {
-                BindVideoService();
-            }
             RefreshDebug();
         }
 
@@ -92,12 +88,15 @@ namespace DT.Samples.Agora.ScreenSharing.Droid
         private void InitAgoraEngineAndJoinChannel()
         {
             InitializeAgoraEngine();
+            if (AgoraSettings.Current.Role == AgoraRole.Broadcaster)
+            {
+                BindVideoService();
+            }
             JoinChannel();
         }
 
         protected override void OnDestroy()
         {
-            UnbindVideoService();
             base.OnDestroy();
         }
 
@@ -139,8 +138,11 @@ namespace DT.Samples.Agora.ScreenSharing.Droid
         [Java.Interop.Export("OnEncCallClicked")]
         public void OnEncCallClicked(View view)
         {
+            IO.Agora.Api.Component.Constant.Engine.StopPreview();
+            IO.Agora.Api.Component.Constant.Engine.SetupLocalVideo(null);
             IO.Agora.Api.Component.Constant.Engine.LeaveChannel();
-            RtcEngine.Destroy();
+            IO.Agora.Api.Component.Constant.Engine.Dispose();
+            IO.Agora.Api.Component.Constant.Engine = null;
             Finish();
         }
 
@@ -160,23 +162,13 @@ namespace DT.Samples.Agora.ScreenSharing.Droid
             IO.Agora.Api.Component.Constant.Textureview = new TextureView(this);
         }
 
-        private VideoInputServiceConnection _serviceConnection;
         private void BindVideoService()
         {
             var intent = new Intent();
             intent.SetClass(this.BaseContext, typeof(ExternalVideoInputService));
-            _serviceConnection = new VideoInputServiceConnection(this);
-            _serviceConnection.ServiceConnected += (s) => _service = s;
-            BaseContext.BindService(intent, _serviceConnection, Bind.AutoCreate);
-        }
-
-        private void UnbindVideoService()
-        {
-            if (_serviceConnection != null)
-            {
-                BaseContext.UnbindService(_serviceConnection);
-                _serviceConnection = null;
-            }
+            var serviceConnection = new VideoInputServiceConnection(this);
+            serviceConnection.ServiceConnected += (s) => _service = s;
+            BaseContext.BindService(intent, serviceConnection, Bind.AutoCreate);
         }
 
         private async Task JoinChannel()
@@ -189,6 +181,9 @@ namespace DT.Samples.Agora.ScreenSharing.Droid
             }
             else
             {
+                IO.Agora.Api.Component.Constant.Engine.SetParameters("{\"che.video.mobile_1080p\":true}");
+                IO.Agora.Api.Component.Constant.Engine.SetClientRole(Constants.ClientRoleBroadcaster);
+
                 if (AgoraSettings.Current.Role == AgoraRole.Listener)
                 {
                     IO.Agora.Api.Component.Constant.Engine.SetChannelProfile(Constants.ChannelProfileCommunication);
@@ -196,15 +191,11 @@ namespace DT.Samples.Agora.ScreenSharing.Droid
                 }
                 else
                 {
-                    IO.Agora.Api.Component.Constant.Engine.SetParameters("{\"che.video.mobile_1080p\":true}");
                     IO.Agora.Api.Component.Constant.Engine.SetChannelProfile(Constants.ChannelProfileLiveBroadcasting);
-                    IO.Agora.Api.Component.Constant.Engine.SetClientRole(Constants.ClientRoleBroadcaster);
-                    
+                    IO.Agora.Api.Component.Constant.Engine.SetVideoSource(new AgoraDefaultSource());
                 }
 
                 IO.Agora.Api.Component.Constant.Engine.EnableVideo();
-                IO.Agora.Api.Component.Constant.Engine.SetVideoSource(new AgoraDefaultSource());
-
                 IO.Agora.Api.Component.Constant.Engine.JoinChannel(token, AgoraSettings.Current.RoomName, string.Empty, 0); // if you do not specify the uid, we will generate the uid for you
             }
         }
@@ -295,3 +286,4 @@ namespace DT.Samples.Agora.ScreenSharing.Droid
         }
     }
 }
+

@@ -74,11 +74,10 @@
     <DeviceSpecificBuild>false</DeviceSpecificBuild>
     <MtouchDebug>true</MtouchDebug>
     <MtouchFastDev>false</MtouchFastDev>
-    <MtouchProfiling>true</MtouchProfiling>
     <MtouchFloat32>false</MtouchFloat32>
     <CodesignEntitlements>Entitlements.plist</CodesignEntitlements>
     <MtouchLink>SdkOnly</MtouchLink>
-    <MtouchArch>ARMv7, ARM64</MtouchArch>
+    <MtouchArch>ARM64</MtouchArch>
     <MtouchHttpClientHandler>HttpClientHandler</MtouchHttpClientHandler>
     <MtouchTlsProvider>Default</MtouchTlsProvider>
   </PropertyGroup>
@@ -178,7 +177,7 @@
     <Reference Include="System.Drawing.Common.dll" />
     <Reference Include="System.Numerics" />
     <Reference Include="Xamarin.Agora.Full.iOS">
-      <HintPath>..\..\packages\Xamarin.Agora.Full.iOS.3.3.0\lib\Xamarin.iOS10\Xamarin.Agora.Full.iOS.dll</HintPath>
+      <HintPath>..\packages\Xamarin.Agora.Full.iOS.3.3.2\lib\Xamarin.iOS10\Xamarin.Agora.Full.iOS.dll</HintPath>
     </Reference>
     <Reference Include="Newtonsoft.Json">
       <HintPath>..\..\packages\Newtonsoft.Json.13.0.1-beta2\lib\netstandard2.0\Newtonsoft.Json.dll</HintPath>
@@ -349,6 +348,16 @@
     <ProjectReference Include="..\..\DT.Samples.Agora.Shared\DT.Samples.Agora.Shared.csproj">
       <Project>{2DDB7277-5ACB-4DE9-BFC7-29C5DEDA4217}</Project>
       <Name>DT.Samples.Agora.Shared</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\DT.Samples.Agora.ScreenSharing.iOS.Extension\DT.Samples.Agora.ScreenSharing.iOS.Extension.csproj">
+      <IsAppExtension>true</IsAppExtension>
+      <Project>{8F3BFE7F-E240-4E07-9B80-D7B2E361E6BE}</Project>
+      <Name>DT.Samples.Agora.ScreenSharing.iOS.Extension</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\DT.Samples.Agora.ScreenSharing.iOS.ExtensionUI\DT.Samples.Agora.ScreenSharing.iOS.ExtensionUI.csproj">
+      <IsAppExtension>true</IsAppExtension>
+      <Project>{6218B890-360A-499F-93F7-9C0D45D23545}</Project>
+      <Name>DT.Samples.Agora.ScreenSharing.iOS.ExtensionUI</Name>
     </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildExtensionsPath)\Xamarin\iOS\Xamarin.iOS.CSharp.targets" />

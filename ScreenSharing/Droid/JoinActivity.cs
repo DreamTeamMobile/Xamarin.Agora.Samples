@@ -62,7 +62,7 @@ namespace DT.Samples.Agora.ScreenSharing.Droid
         private void OnRadioButtonClicked(object sender, System.EventArgs e)
         {
             var rb = sender as RadioButton;
-            switch (rb.Id)
+            switch(rb.Id)
             {
                 case Resource.Id.roleListener:
                     AgoraSettings.Current.Role = AgoraRole.Listener;

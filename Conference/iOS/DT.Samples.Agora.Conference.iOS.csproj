@@ -366,7 +366,7 @@
     <Compile Include="Delegates\RtmChannelDelegate.cs" />
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\..\DT.Samples.Agora.Shared\DT.Samples.Agora.Shared.csproj">
+    <ProjectReference Include="..\..\Shared\DT.Samples.Agora.Shared.csproj">
       <Project>{2DDB7277-5ACB-4DE9-BFC7-29C5DEDA4217}</Project>
       <Name>DT.Samples.Agora.Shared</Name>
     </ProjectReference>

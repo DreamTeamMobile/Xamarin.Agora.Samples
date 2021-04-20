@@ -89,7 +89,7 @@
       <Version>13.0.1</Version>
     </PackageReference>
     <PackageReference Include="Xamarin.Agora.Full.Android">
-      <Version>3.3.2</Version>
+      <Version>3.4.0</Version>
     </PackageReference>
   </ItemGroup>
   <ItemGroup>
@@ -225,7 +225,7 @@
     <Folder Include="Resources\menu\" />
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\..\DT.Samples.Agora.Shared\DT.Samples.Agora.Shared.csproj">
+    <ProjectReference Include="..\..\Shared\DT.Samples.Agora.Shared.csproj">
       <Project>{2DDB7277-5ACB-4DE9-BFC7-29C5DEDA4217}</Project>
       <Name>DT.Samples.Agora.Shared</Name>
     </ProjectReference>

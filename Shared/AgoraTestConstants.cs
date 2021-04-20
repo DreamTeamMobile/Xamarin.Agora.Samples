@@ -10,7 +10,7 @@ namespace DT.Samples.Agora.Shared
         {
             get
             {
-                throw new NotImplementedException();
+                return "67c8032f7ad544cca83a431a0b0e4cf3";
             }
         }
 
@@ -29,7 +29,7 @@ namespace DT.Samples.Agora.Shared
         {
             get
             {
-                return null;
+                return "00667c8032f7ad544cca83a431a0b0e4cf3IACoNpGwKpGYkuk5jSuwWQigVv66krxRkB0cTf/D516SG6ADl5IAAAAAEADGTqVpC5GAYAEAAQALkYBg";
             }
         }
 

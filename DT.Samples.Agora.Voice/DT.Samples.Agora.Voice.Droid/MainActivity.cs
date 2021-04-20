@@ -72,7 +72,7 @@ namespace DT.Samples.Agora.Voice.Droid
                 accessToken = null; // default, no token
             }
 
-            _rtcEngine.JoinChannel(accessToken, "voiceDemoChannel1", string.Empty, 0);
+            _rtcEngine.JoinChannel(accessToken, "drmtm.us", string.Empty, 0);
         }
 
         private void LeaveChannel()

@@ -33,6 +33,6 @@ namespace DT.Samples.Agora.Shared
             }
         }
 
-        public const string ShareString = "Hey check out Xamarin Agora sample app at: http://drmtm.us/videosample";
+        public const string ShareString = "Hey check out Xamarin Agora sample app at: https://github.com/DreamTeamMobile";
 	}
 }

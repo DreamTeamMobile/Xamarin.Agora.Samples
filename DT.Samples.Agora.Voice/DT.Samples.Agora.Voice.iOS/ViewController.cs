@@ -29,9 +29,9 @@ namespace DT.Samples.Agora.Voice.iOS
 
         private void JoinChannel()
         {
-            _agoraKit.JoinChannelByToken(AgoraTestConstants.Token, "voiceDemoChannel1", string.Empty, 0, (s, i, k) =>
+            _agoraKit.JoinChannelByToken(AgoraTestConstants.Token, "drmtm.us", string.Empty, 0, (s, i, k) =>
             {
-                // Joined channel "voiceDemoChannel1"
+                // Joined channel "drmtm.us"
                 _agoraKit.SetEnableSpeakerphone(true);
                 UIApplication.SharedApplication.IdleTimerDisabled = true;
             });

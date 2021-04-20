@@ -1,0 +1,59 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<resources>
+	<string
+		name="app_name">ScreenSharing from DT Mobile</string>
+	<string
+		name="splash_greetings">Brought to you by</string>
+	<string
+		name="powered_by">powered by agora</string>
+	<string
+		name="join_description">Enter room name to join</string>
+	<string
+		name="profile_prompt">Choose Video Profile</string>
+	<string
+		name="join_button">JOIN</string>
+	<string
+		name="settings_profile">Video Profile</string>
+	<string
+		name="settings_name">Profile Name</string>
+	<string
+		name="settings_resolution">Resolution</string>
+	<string
+		name="settings_usemy">Use My Settings</string>
+	<string
+		name="settings_framerate">Max Frame Rate</string>
+	<string
+		name="settings_bitrate">Max Bit Rate</string>
+	<string
+		name="permissions_not_granted">Not all permissions granted to the app, please check permissions and try again</string>
+	<string-array
+		name="profile_title_array">
+		<item>160x120 15fps</item>
+		<item>120x120 15fps</item>
+		<item>320x180 15fps</item>
+		<item>180x180 15fps</item>
+		<item>240x180 15fps</item>
+		<item>320x240 15fps</item>
+		<item>240x240 15fps</item>
+		<item>424x240 15fps</item>
+		<item>640x360 15fps</item>
+		<item>360x360 15fps</item>
+		<item>640x360 30fps</item>
+		<item>360x360 30fps</item>
+		<item>480x360 15fps</item>
+		<item>480x360 30fps</item>
+		<item>640x360 15fps</item>
+		<item>640x360 24fps</item>
+		<item>640x360 24fps</item>
+		<item>640x480 15fps</item>
+		<item>480x480 15fps</item>
+		<item>640x480 30fps</item>
+		<item>480x480 30fps</item>
+		<item>848x480 15fps</item>
+		<item>848x480 30fps</item>
+		<item>1280x720 15fps</item>
+		<item>1280x720 30fps</item>
+		<item>960x720 15fps</item>
+		<item>960x720 30fps</item>
+	</string-array>
+</resources>

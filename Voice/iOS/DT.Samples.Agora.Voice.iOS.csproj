@@ -1,0 +1,139 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Project DefaultTargets="Build" ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+    <PropertyGroup>
+        <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+        <Platform Condition=" '$(Platform)' == '' ">iPhoneSimulator</Platform>
+        <ProjectGuid>{1FDB4B53-3B7C-481B-B87E-5302CD95ACE3}</ProjectGuid>
+        <ProjectTypeGuids>{FEACFBD2-3405-455C-9665-78FE426C6842};{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}</ProjectTypeGuids>
+        <TemplateGuid>{edc1b0fa-90cd-4038-8fad-98fe74adb368}</TemplateGuid>
+        <OutputType>Exe</OutputType>
+        <RootNamespace>DT.Samples.Agora.Voice.iOS</RootNamespace>
+        <AssemblyName>DT.Samples.Agora.Voice.iOS</AssemblyName>
+        <IPhoneResourcePrefix>Resources</IPhoneResourcePrefix>
+        <MtouchEnableSGenConc>true</MtouchEnableSGenConc>
+        <MtouchHttpClientHandler>NSUrlSessionHandler</MtouchHttpClientHandler>
+        <RestoreProjectStyle>PackageReference</RestoreProjectStyle>
+        <ProvisioningType>automatic</ProvisioningType>
+    </PropertyGroup>
+    <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|iPhoneSimulator' ">
+        <DebugSymbols>true</DebugSymbols>
+        <DebugType>full</DebugType>
+        <Optimize>false</Optimize>
+        <OutputPath>bin\iPhoneSimulator\Debug</OutputPath>
+        <DefineConstants>DEBUG</DefineConstants>
+        <ErrorReport>prompt</ErrorReport>
+        <WarningLevel>4</WarningLevel>
+        <MtouchArch>x86_64</MtouchArch>
+        <MtouchLink>None</MtouchLink>
+        <MtouchDebug>true</MtouchDebug>
+    </PropertyGroup>
+    <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|iPhoneSimulator' ">
+        <DebugType>none</DebugType>
+        <Optimize>true</Optimize>
+        <OutputPath>bin\iPhoneSimulator\Release</OutputPath>
+        <ErrorReport>prompt</ErrorReport>
+        <WarningLevel>4</WarningLevel>
+        <MtouchLink>None</MtouchLink>
+        <MtouchArch>x86_64</MtouchArch>
+    </PropertyGroup>
+    <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|iPhone' ">
+        <DebugSymbols>true</DebugSymbols>
+        <DebugType>full</DebugType>
+        <Optimize>false</Optimize>
+        <OutputPath>bin\iPhone\Debug</OutputPath>
+        <DefineConstants>DEBUG</DefineConstants>
+        <ErrorReport>prompt</ErrorReport>
+        <WarningLevel>4</WarningLevel>
+        <MtouchArch>ARM64</MtouchArch>
+        <CodesignEntitlements>Entitlements.plist</CodesignEntitlements>
+        <CodesignKey>iPhone Developer</CodesignKey>
+        <MtouchDebug>true</MtouchDebug>
+        <MtouchLink>SdkOnly</MtouchLink>
+    </PropertyGroup>
+    <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|iPhone' ">
+        <DebugType>none</DebugType>
+        <Optimize>true</Optimize>
+        <OutputPath>bin\iPhone\Release</OutputPath>
+        <ErrorReport>prompt</ErrorReport>
+        <WarningLevel>4</WarningLevel>
+        <CodesignEntitlements>Entitlements.plist</CodesignEntitlements>
+        <MtouchArch>ARM64</MtouchArch>
+        <CodesignKey>iPhone Developer</CodesignKey>
+        <MtouchLink>SdkOnly</MtouchLink>
+    </PropertyGroup>
+    <ItemGroup>
+        <Reference Include="System" />
+        <Reference Include="System.Xml" />
+        <Reference Include="System.Core" />
+        <Reference Include="Xamarin.iOS" />
+        <Reference Include="System.Numerics" />
+        <Reference Include="System.Numerics.Vectors" />
+    </ItemGroup>
+    <ItemGroup>
+      <PackageReference Include="Xamarin.Essentials" Version="1.6.1" />
+      <PackageReference Include="Newtonsoft.Json">
+        <Version>13.0.1</Version>
+      </PackageReference>
+      <PackageReference Include="Xamarin.Agora.Voice.iOS">
+        <Version>3.3.2</Version>
+      </PackageReference>
+    </ItemGroup>
+    <ItemGroup>
+        <Folder Include="Resources\" />
+    </ItemGroup>
+    <ItemGroup>
+        <InterfaceDefinition Include="LaunchScreen.storyboard" />
+        <InterfaceDefinition Include="Main.storyboard" />
+    </ItemGroup>
+    <ItemGroup>
+        <None Include="Info.plist" />
+        <None Include="Entitlements.plist" />
+    </ItemGroup>
+    <ItemGroup>
+        <Compile Include="Main.cs" />
+        <Compile Include="AppDelegate.cs" />
+        <Compile Include="SceneDelegate.cs" />
+        <Compile Include="ViewController.cs" />
+        <Compile Include="ViewController.designer.cs">
+            <DependentUpon>ViewController.cs</DependentUpon>
+        </Compile>
+    </ItemGroup>
+    <ItemGroup>
+      <ImageAsset Include="Assets.xcassets\btn_speaker_blue.imageset\btn_speaker_blue.pdf" />
+      <ImageAsset Include="Assets.xcassets\btn_speaker_blue.imageset\Contents.json" />
+      <ImageAsset Include="Assets.xcassets\btn_mute_blue.imageset\btn_mute_blue.pdf" />
+      <ImageAsset Include="Assets.xcassets\btn_mute_blue.imageset\Contents.json" />
+      <ImageAsset Include="Assets.xcassets\AppIcon.appiconset\87x87.png" />
+      <ImageAsset Include="Assets.xcassets\AppIcon.appiconset\1024.png" />
+      <ImageAsset Include="Assets.xcassets\AppIcon.appiconset\180x180.png" />
+      <ImageAsset Include="Assets.xcassets\AppIcon.appiconset\58x58-1.png" />
+      <ImageAsset Include="Assets.xcassets\AppIcon.appiconset\152x152.png" />
+      <ImageAsset Include="Assets.xcassets\AppIcon.appiconset\58x58-2.png" />
+      <ImageAsset Include="Assets.xcassets\AppIcon.appiconset\120x120.png" />
+      <ImageAsset Include="Assets.xcassets\AppIcon.appiconset\512-1.png" />
+      <ImageAsset Include="Assets.xcassets\AppIcon.appiconset\512.png" />
+      <ImageAsset Include="Assets.xcassets\AppIcon.appiconset\1024-1.png" />
+      <ImageAsset Include="Assets.xcassets\AppIcon.appiconset\120x120-1.png" />
+      <ImageAsset Include="Assets.xcassets\AppIcon.appiconset\Contents.json" />
+      <ImageAsset Include="Assets.xcassets\AppIcon.appiconset\167x167.png" />
+      <ImageAsset Include="Assets.xcassets\AppIcon.appiconset\58x58.png" />
+      <ImageAsset Include="Assets.xcassets\AppIcon.appiconset\80x80-1.png" />
+      <ImageAsset Include="Assets.xcassets\AppIcon.appiconset\76x76.png" />
+      <ImageAsset Include="Assets.xcassets\AppIcon.appiconset\87x87-1.png" />
+      <ImageAsset Include="Assets.xcassets\AppIcon.appiconset\29x29.png" />
+      <ImageAsset Include="Assets.xcassets\AppIcon.appiconset\80x80.png" />
+      <ImageAsset Include="Assets.xcassets\btn_speaker.imageset\btn_speaker.pdf" />
+      <ImageAsset Include="Assets.xcassets\btn_speaker.imageset\Contents.json" />
+      <ImageAsset Include="Assets.xcassets\btn_endcall.imageset\btn_endcall.pdf" />
+      <ImageAsset Include="Assets.xcassets\btn_endcall.imageset\Contents.json" />
+      <ImageAsset Include="Assets.xcassets\btn_mute.imageset\btn_mute.pdf" />
+      <ImageAsset Include="Assets.xcassets\btn_mute.imageset\Contents.json" />
+    </ItemGroup>
+    <ItemGroup>
+      <ProjectReference Include="..\..\Shared\DT.Samples.Agora.Shared.csproj">
+        <Project>{2DDB7277-5ACB-4DE9-BFC7-29C5DEDA4217}</Project>
+        <Name>DT.Samples.Agora.Shared</Name>
+      </ProjectReference>
+    </ItemGroup>
+    <Import Project="$(MSBuildExtensionsPath)\Xamarin\iOS\Xamarin.iOS.CSharp.targets" />
+</Project>

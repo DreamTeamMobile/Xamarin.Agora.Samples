@@ -240,6 +240,8 @@ namespace DT.Samples.Agora.OneToOne.Droid
         {
             FrameLayout container = (FrameLayout)FindViewById(Resource.Id.remote_video_view_container);
             SurfaceView surfaceView = (SurfaceView)container.GetChildAt(0);
+            if (surfaceView == null)
+                return;
             var tag = surfaceView.Tag;
             if (tag != null && (int)tag == uid)
             {

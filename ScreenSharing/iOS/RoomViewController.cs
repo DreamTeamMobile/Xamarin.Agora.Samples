@@ -1,0 +1,253 @@
+﻿using System;
+using System.Threading.Tasks;
+using CoreGraphics;
+using DT.Samples.Agora.Shared;
+using DT.Samples.Agora.Shared.Helpers;
+using DT.Xamarin.Agora;
+using Foundation;
+using ReplayKit;
+using UIKit;
+
+namespace DT.Samples.Agora.ScreenSharing.iOS
+{
+    public partial class RoomViewController : UIViewController
+    {
+        public AgoraRtcDelegate AgoraDelegate;
+        public AgoraRtcEngineKit AgoraKit;
+
+        private bool _audioMuted = false;
+        private bool _videoMuted = false;
+
+        uint _localId = 0;
+        uint _remoteId = 0;
+
+        public bool AudioMuted
+        {
+            get
+            {
+                return _audioMuted;
+            }
+            set
+            {
+                _audioMuted = value;
+                if (ToggleAudioButton != null)
+                {
+                    ToggleAudioButton.Selected = value;
+                    AgoraKit.MuteLocalAudioStream(value);
+                    UpdateMutedViewVisibility();
+                }
+            }
+        }
+
+        public bool VideoMuted
+        {
+            get
+            {
+                return _videoMuted;
+            }
+            set
+            {
+                _videoMuted = value;
+                if (ToggleCamButton != null)
+                {
+                    ToggleCamButton.Selected = value;
+                    LocalView.Hidden = value;
+                    SwitchCamButton.Hidden = value;
+                    AgoraKit.MuteLocalVideoStream(value);
+                    UpdateMutedViewVisibility();
+                }
+            }
+        }
+
+        protected RoomViewController(IntPtr handle) : base(handle)
+        {
+            // Note: this .ctor should not contain any initialization logic.
+        }
+
+        public override void ViewDidLoad()
+        {
+            base.ViewDidLoad();
+            NavigationController.NavigationBarHidden = true;
+            RoomNameLabel.Text = AgoraSettings.Current.RoomName;
+            BackgroundTap.ShouldRequireFailureOfGestureRecognizer(BackgroundDoubleTap);
+            AgoraDelegate = new AgoraRtcDelegate(this);
+            AgoraKit = AgoraRtcEngineKit.SharedEngineWithAppIdAndDelegate(AgoraTestConstants.AgoraAPI, AgoraDelegate);
+            AgoraKit.SetChannelProfile(ChannelProfile.Communication);
+            AgoraKit.EnableVideo();
+            //var profile = AgoraSettings.Current.UseMySettings ? AgoraSettings.Current.Profile.ToAgoraRtcVideoProfile() : DT.Xamarin.Agora.VideoProfile.Default;
+            //AgoraKit.SetVideoProfile(profile, false);
+
+            //AgoraRtcVideoCanvas videoCanvas = new AgoraRtcVideoCanvas();
+            //videoCanvas.Uid = 0;
+            //videoCanvas.View = LocalView;
+            //LocalView.Hidden = false;
+            //videoCanvas.RenderMode = VideoRenderMode.Adaptive;
+            //AgoraKit.SetupLocalVideo(videoCanvas);
+
+            if (!string.IsNullOrEmpty(AgoraSettings.Current.EncryptionPhrase))
+            {
+                AgoraKit.SetEncryptionMode(AgoraSettings.Current.EncryptionType.GetModeString());
+                AgoraKit.SetEncryptionSecret(AgoraSettings.Current.EncryptionPhrase);
+            }
+            AgoraKit.StartPreview();
+            Join();
+        }
+
+        private async void Join()
+        {
+            LoadingIndicator.Hidden = false;
+            var token = await AgoraTokenService.GetRtcToken(AgoraSettings.Current.RoomName);
+            if (string.IsNullOrEmpty(token))
+            {
+                //smth went wrong
+                LoadingIndicator.Hidden = true;
+            }
+            else
+            {
+                AgoraKit.JoinChannelByToken(token, AgoraSettings.Current.RoomName, null, 0, JoiningCompleted);
+            }
+        }
+
+        private void JoiningCompleted(Foundation.NSString channel, nuint uid, nint elapsed)
+        {
+            LoadingIndicator.Hidden = true;
+            _localId = (uint)uid;
+            AgoraKit.SetEnableSpeakerphone(true);
+            UIApplication.SharedApplication.IdleTimerDisabled = true;
+            RefreshDebug();
+
+            var bundle = NSBundle.MainBundle.GetUrlForResource("DT.Samples.Agora.ScreenSharing.iOS.Extension", "appex", "PlugIns");
+
+            var frame = new CGRect(100, 100, 60, 60);
+            var broadcastPicker = new RPSystemBroadcastPickerView(frame);
+            var bundle2 = new NSBundle(bundle);
+            broadcastPicker.PreferredExtension = bundle2.BundleIdentifier;
+            View.AddSubview(broadcastPicker);
+            Console.WriteLine("Run RPSystemBroadcastPickerView");
+            //RPScreenRecorder.SharedRecorder.StartRecording(false, error =>
+            //{
+            //    if (error != null)
+            //    {
+
+            //    }
+            //});
+            //RPBroadcastActivityViewController.LoadBroadcastActivityViewController(bundle.AbsoluteUrl.ToString(), (controller, error) =>
+            //{
+            //    if(error != null)
+            //    {
+            //        return;
+            //    }
+            //    UIApplication.SharedApplication.KeyWindow.RootViewController.PresentViewController(controller, true, null);
+
+            //    //RPBroadcastActivityViewController = controller;
+            //});
+        }
+
+        public void FirstRemoteVideoDecodedOfUid(AgoraRtcEngineKit engine, nuint uid, CoreGraphics.CGSize size, nint elapsed)
+        {
+            _remoteId = (uint)uid;
+            if (ContainerView.Hidden)
+            {
+                ContainerView.Hidden = false;
+            }
+            AgoraRtcVideoCanvas videoCanvas = new AgoraRtcVideoCanvas();
+            videoCanvas.Uid = uid;
+            videoCanvas.View = ContainerView;
+            videoCanvas.RenderMode = VideoRenderMode.Adaptive;
+            AgoraKit.SetupRemoteVideo(videoCanvas);
+            if (ContainerView.Hidden)
+            {
+                ContainerView.Hidden = false;
+            }
+            RefreshDebug();
+        }
+
+        private void RefreshDebug()
+        {
+            DebugData.Text = $"local: {_localId}\nremote: {_remoteId}";
+        }
+
+        partial void ToggleAudioButtonClicked(NSObject sender)
+        {
+            AudioMuted = !AudioMuted;
+        }
+
+        partial void ToggleCamClicked(NSObject sender)
+        {
+            VideoMuted = !VideoMuted;
+        }
+
+        partial void SwitchCamClicked(NSObject sender)
+        {
+            AgoraKit.SwitchCamera();
+        }
+
+        public void LeaveChannel()
+        {
+            AgoraKit.LeaveChannel(null);
+            NavigationController.NavigationBarHidden = false;
+            NavigationController.PopViewController(true);
+            RPScreenRecorder.SharedRecorder.StopRecording((c, error) =>
+            {
+                if(error != null)
+                {
+
+                }
+            });
+        }
+
+        partial void EndCallClicked(NSObject sender)
+        {
+            LeaveChannel();
+        }
+
+        public void DidOfflineOfUid(AgoraRtcEngineKit engine, nuint uid, UserOfflineReason reason)
+        {
+            ContainerView.Hidden = true;
+        }
+
+        public void DidVideoMuted(AgoraRtcEngineKit engine, bool muted, nuint uid)
+        {
+            ContainerView.Hidden = muted;
+        }
+
+        public void FirstLocalVideoFrameWithSize(AgoraRtcEngineKit engine, CoreGraphics.CGSize size, nint elapsed)
+        {
+            var fixedSize = size.FixedSize(ContainerView.Bounds.Size);
+            nfloat ratio;
+            if (fixedSize.Width > 0 && fixedSize.Height > 0)
+            {
+                ratio = fixedSize.Width / fixedSize.Height;
+            }
+            else
+            {
+                ratio = ContainerView.Bounds.Width / ContainerView.Bounds.Height;
+            }
+            var viewWidth = NSLayoutConstraint.Create(LocalView, NSLayoutAttribute.Width, NSLayoutRelation.Equal, ContainerView, NSLayoutAttribute.Width, 0.249999f, 0f);
+            var viewRatio = NSLayoutConstraint.Create(LocalView, NSLayoutAttribute.Width, NSLayoutRelation.Equal, LocalView, NSLayoutAttribute.Height, ratio, 0f);
+            NSLayoutConstraint.DeactivateConstraints(new NSLayoutConstraint[] { LocalVideoWidth, LocalVideoHeight });
+            NSLayoutConstraint.ActivateConstraints(new NSLayoutConstraint[] { viewWidth, viewRatio });
+        }
+
+        private void UpdateMutedViewVisibility()
+        {
+            if (!VideoMuted && AudioMuted)
+            {
+                MutedView.Hidden = false;
+            }
+            else
+            {
+                MutedView.Hidden = true;
+            }
+        }
+
+        public async Task TokenPrivilegeWillExpire(AgoraRtcEngineKit engine, string token)
+        {
+            var newToken = await AgoraTokenService.GetRtcToken(AgoraSettings.Current.RoomName);
+            if (!string.IsNullOrEmpty(newToken))
+            {
+                AgoraKit.RenewToken(newToken);
+            }
+        }
+    }
+}

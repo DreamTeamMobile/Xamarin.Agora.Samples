@@ -1,0 +1,78 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout
+	xmlns:android="http://schemas.android.com/apk/res/android"
+	android:id="@+id/activity_video_chat_view"
+	android:layout_width="match_parent"
+	android:layout_height="match_parent">
+	<FrameLayout
+		android:id="@+id/remote_video_view_container"
+		android:layout_width="match_parent"
+		android:layout_height="match_parent" />
+	<FrameLayout
+		android:layout_width="match_parent"
+		android:layout_height="match_parent"
+		android:background="@android:color/transparent" />
+	<RelativeLayout
+		android:layout_width="match_parent"
+		android:layout_height="128dp"
+		android:layout_alignParentBottom="true"
+		android:orientation="horizontal">
+		<TextView
+			android:id="@+id/room_name"
+			android:layout_width="wrap_content"
+			android:layout_height="wrap_content"
+			android:textSize="12sp"
+			android:textColor="@color/textColorPrimary"
+			android:layout_centerHorizontal="true"
+			android:layout_alignParentTop="true" />
+		<ImageView
+			android:id="@+id/mute_video_button"
+			android:layout_width="56dp"
+			android:layout_height="56dp"
+			android:layout_marginTop="40dp"
+			android:layout_alignParentTop="true"
+			android:scaleType="centerInside"
+			android:onClick="OnLocalVideoMuteClicked"
+			android:layout_marginLeft="32dp"
+			android:src="@drawable/ic_cam_active_call" />
+		<ImageView
+			android:id="@+id/mute_audio_button"
+			android:layout_width="56dp"
+			android:layout_height="56dp"
+			android:layout_marginTop="40dp"
+			android:onClick="OnLocalAudioMuteClicked"
+			android:scaleType="centerInside"
+			android:layout_centerHorizontal="true"
+			android:layout_alignParentTop="true"
+			android:src="@drawable/ic_mic_active_call" />
+		<ImageView
+			android:id="@+id/end_call_button"
+			android:layout_width="56dp"
+			android:layout_height="56dp"
+			android:layout_marginTop="40dp"
+			android:onClick="OnEncCallClicked"
+			android:layout_alignParentRight="true"
+			android:layout_alignParentTop="true"
+			android:layout_marginRight="32dp"
+			android:scaleType="centerInside"
+			android:src="@drawable/ic_end_call" />
+	</RelativeLayout>
+	<RelativeLayout
+		android:background="@android:color/white"
+		android:layout_width="wrap_content"
+		android:layout_height="wrap_content"
+		android:layout_alignParentLeft="true"
+		android:layout_alignParentBottom="true">
+		<TextView
+			android:id="@+id/debug_data"
+			android:layout_width="wrap_content"
+			android:layout_height="wrap_content"
+			android:textSize="12sp" />
+	</RelativeLayout>
+	<ProgressBar
+		android:id="@+id/progress_bar"
+		android:layout_width="wrap_content"
+		android:layout_height="wrap_content"
+		android:visibility="invisible"
+		android:layout_centerInParent="true"/>
+</RelativeLayout>

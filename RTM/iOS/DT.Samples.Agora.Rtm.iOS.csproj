@@ -76,7 +76,7 @@
     <OptimizePNGs>false</OptimizePNGs>
     <MtouchNoSymbolStrip>true</MtouchNoSymbolStrip>
     <MtouchFloat32>true</MtouchFloat32>
-<RunCodeAnalysis>true</RunCodeAnalysis>  <CodesignProvision>iOS Team Provisioning Profile: *</CodesignProvision>
+<RunCodeAnalysis>true</RunCodeAnalysis>  <CodesignProvision>DRMTM Wildcard Dev Profile</CodesignProvision>
 </PropertyGroup>
   <ItemGroup>
     <Reference Include="System" />
@@ -84,18 +84,19 @@
     <Reference Include="System.Core" />
     <Reference Include="Xamarin.iOS" />
     <Reference Include="BTProgressHUD">
-      <HintPath>..\packages\BTProgressHUD.1.2.0.6\lib\Xamarin.iOS10\BTProgressHUD.dll</HintPath>
+      <HintPath>..\packages\BTProgressHUD.1.3.1\lib\xamarinios10\BTProgressHUD.dll</HintPath>
     </Reference>
     <Reference Include="Acr.UserDialogs">
-      <HintPath>..\packages\Acr.UserDialogs.7.0.4\lib\xamarinios10\Acr.UserDialogs.dll</HintPath>
+      <HintPath>..\packages\Acr.UserDialogs.7.1.0.483\lib\xamarinios10\Acr.UserDialogs.dll</HintPath>
     </Reference>
     <Reference Include="OpenTK-1.0" />
     <Reference Include="Xamarin.Agora.Rtm.iOS">
       <HintPath>..\packages\Xamarin.Agora.Rtm.iOS.1.4.2\lib\Xamarin.iOS10\Xamarin.Agora.Rtm.iOS.dll</HintPath>
     </Reference>
     <Reference Include="Newtonsoft.Json">
-      <HintPath>..\packages\Newtonsoft.Json.12.0.3\lib\netstandard2.0\Newtonsoft.Json.dll</HintPath>
+      <HintPath>..\packages\Newtonsoft.Json.13.0.1\lib\netstandard2.0\Newtonsoft.Json.dll</HintPath>
     </Reference>
+    <Reference Include="System.Drawing.Common.dll" />
   </ItemGroup>
   <ItemGroup>
     <ImageAsset Include="Assets.xcassets\AppIcon.appiconset\Contents.json" />

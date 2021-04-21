@@ -186,9 +186,6 @@
     <Reference Include="Acr.UserDialogs">
       <HintPath>..\packages\Acr.UserDialogs.7.0.4\lib\monoandroid90\Acr.UserDialogs.dll</HintPath>
     </Reference>
-    <Reference Include="Xamarin.Agora.Rtm.Android">
-      <HintPath>..\packages\Xamarin.Agora.Rtm.Android.1.4.2\lib\MonoAndroid\Xamarin.Agora.Rtm.Android.dll</HintPath>
-    </Reference>
     <Reference Include="Xamarin.Android.Support.v4">
       <HintPath>..\packages\Xamarin.Android.Support.v4.28.0.0.3\lib\monoandroid90\Xamarin.Android.Support.v4.dll</HintPath>
     </Reference>
@@ -198,6 +195,9 @@
     </Reference>
     <Reference Include="Xamarin.Android.Support.Exif">
       <HintPath>..\packages\Xamarin.Android.Support.Exif.28.0.0.3\lib\monoandroid90\Xamarin.Android.Support.Exif.dll</HintPath>
+    </Reference>
+    <Reference Include="Xamarin.Agora.Rtm.Android">
+      <HintPath>..\packages\Xamarin.Agora.Rtm.Android.1.4.2-beta1\lib\MonoAndroid\Xamarin.Agora.Rtm.Android.dll</HintPath>
     </Reference>
   </ItemGroup>
   <ItemGroup>

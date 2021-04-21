@@ -9,10 +9,11 @@ namespace DT.Samples.Agora.Conference.Droid
     public class AgoraRtmChannelListener : Java.Lang.Object, IRtmChannelListener
     {
         private RoomActivity _context;
+        public Action<SignalMessage> OnSignalReceived;
 
-        public AgoraRtmChannelListener(RoomActivity activity)
+        public AgoraRtmChannelListener()
         {
-            _context = activity;
+
         }
 
         public void OnAttributesUpdated(IList<RtmChannelAttribute> p0)
@@ -38,7 +39,17 @@ namespace DT.Samples.Agora.Conference.Droid
         public void OnMessageReceived(RtmMessage message, RtmChannelMember p1)
         {
             var signalData = JsonConvert.DeserializeObject<SignalMessage>(message.Text);
-            _context.OnSignalReceived(signalData);
+            OnSignalReceived?.Invoke(signalData);
+        }
+
+        public void OnFileMessageReceived(RtmFileMessage p0, RtmChannelMember p1)
+        {
+            // not supported yet
+        }
+
+        public void OnImageMessageReceived(RtmImageMessage p0, RtmChannelMember p1)
+        {
+            // not supported yet
         }
     }
 }

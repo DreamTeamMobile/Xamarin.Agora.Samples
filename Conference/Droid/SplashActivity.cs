@@ -11,7 +11,7 @@ namespace DT.Samples.Agora.Conference.Droid
         protected override void OnResume()
         {
             base.OnResume();
-            StartActivity(new Intent(Application.Context, typeof(JoinActivity)));
+            StartActivity(new Intent(Application.Context, typeof(LoginActivity)));
         }
 
         public override void OnBackPressed() { }

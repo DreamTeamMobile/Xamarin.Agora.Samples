@@ -7,4 +7,5 @@
 	<color name="windowBackground">#3a4fb7</color>
 	<color name="navigationBarColor">#2e42a5</color>
 	<color name="textColorPrimary">#ffffff</color>
+	<color name="textColorDialog">#000000</color>
 </resources>

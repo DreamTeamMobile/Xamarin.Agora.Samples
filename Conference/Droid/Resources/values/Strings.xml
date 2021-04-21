@@ -7,11 +7,29 @@
 	<string
 		name="powered_by">powered by agora</string>
 	<string
+		name="invalid_user_name">Enter a valid User name</string>
+	<string
+		name="rtm_connect_error">Could not RTM login</string>
+	<string
+		name="login_description">Enter user name to login</string>
+	<string
 		name="join_description">Enter room name to join</string>
 	<string
 		name="profile_prompt">Choose Video Profile</string>
 	<string
+		name="login_button">LOGIN</string>
+	<string
+		name="loading_button">LOADING...</string>
+	<string
 		name="join_button">JOIN</string>
+	<string
+		name="accept_button">Accept</string>
+	<string
+		name="invite_button">Invite</string>
+	<string
+		name="invite_dialog_title">Invite people</string>
+	<string
+		name="invite_user_hint">User name</string>
 	<string
 		name="settings_profile">Video Profile</string>
 	<string
@@ -24,6 +42,8 @@
 		name="settings_framerate">Max Frame Rate</string>
 	<string
 		name="settings_bitrate">Max Bit Rate</string>
+	<string
+		name="invite_message_mask">You got invite to [{0}] room</string>
 	<string
 		name="permissions_not_granted">Not all permissions granted to the app, please check permissions and try again</string>
 	<string-array

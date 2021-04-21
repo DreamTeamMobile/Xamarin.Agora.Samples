@@ -59,9 +59,6 @@
     <Compile Include="AgoraRole.cs" />
   </ItemGroup>
   <ItemGroup>
-    <Reference Include="Plugin.Settings">
-      <HintPath>..\OneToOne\packages\Xam.Plugins.Settings.4.1.0-beta\lib\netstandard1.0\Plugin.Settings.dll</HintPath>
-    </Reference>
     <Reference Include="System.Numerics.Vectors">
       <HintPath>..\packages\System.Numerics.Vectors.4.5.0\lib\portable-net45+win8+wp8+wpa81\System.Numerics.Vectors.dll</HintPath>
     </Reference>
@@ -80,8 +77,14 @@
     <Reference Include="System.ComponentModel.TypeConverter">
       <HintPath>..\packages\System.ComponentModel.TypeConverter.4.3.0\lib\netstandard1.0\System.ComponentModel.TypeConverter.dll</HintPath>
     </Reference>
+    <Reference Include="Plugin.Settings">
+      <HintPath>..\packages\Xam.Plugins.Settings.3.1.1\lib\Xamarin.iOS10\Plugin.Settings.dll</HintPath>
+    </Reference>
+    <Reference Include="Plugin.Settings.Abstractions">
+      <HintPath>..\packages\Xam.Plugins.Settings.3.1.1\lib\Xamarin.iOS10\Plugin.Settings.Abstractions.dll</HintPath>
+    </Reference>
     <Reference Include="Newtonsoft.Json">
-      <HintPath>..\OneToOne\packages\Newtonsoft.Json.13.0.1\lib\netstandard1.0\Newtonsoft.Json.dll</HintPath>
+      <HintPath>..\Conference\packages\Newtonsoft.Json.13.0.1\lib\netstandard1.0\Newtonsoft.Json.dll</HintPath>
     </Reference>
   </ItemGroup>
   <ItemGroup>

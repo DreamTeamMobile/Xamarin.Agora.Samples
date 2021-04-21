@@ -21,6 +21,16 @@
 				android:color="#2b95a4" />
 		</shape>
 	</item>
+	<item
+		android:state_enabled="false">
+		<shape
+			android:shape="rectangle">
+			<corners
+				android:radius="25dip" />
+			<solid
+				android:color="#2b95a4" />
+		</shape>
+	</item>
 	<item>
 		<shape
 			android:shape="rectangle">

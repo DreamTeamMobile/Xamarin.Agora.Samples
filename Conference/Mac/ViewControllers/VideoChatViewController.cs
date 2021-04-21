@@ -151,7 +151,7 @@ namespace DT.Samples.Agora.Conference.iOS
             var signalMessage = new SignalMessage
             {
                 Action = _handUp ? SignalActionTypes.HandUp : SignalActionTypes.HandDown,
-                PeerId = _localId
+                RtcPeerId = _localId
             };
             var text = JsonConvert.SerializeObject(signalMessage);
             var rtmMessage = new AgoraRtmMessage(text);
@@ -255,7 +255,7 @@ namespace DT.Samples.Agora.Conference.iOS
         {
             var text = message.Text;
             var signal = JsonConvert.DeserializeObject<SignalMessage>(text);
-            var userItemIndex = _users.IndexOf(_users.First(i => i.Uid == signal.PeerId));
+            var userItemIndex = _users.IndexOf(_users.First(i => i.Uid == signal.RtcPeerId));
             switch (signal.Action)
             {
                 case SignalActionTypes.HandDown:

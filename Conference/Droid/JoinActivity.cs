@@ -8,18 +8,18 @@ using Android.OS;
 using Android.Support.Design.Widget;
 using Android.Support.V4.App;
 using Android.Support.V4.Content;
-using Android.Support.V7.App;
 using Android.Views;
 using Android.Views.InputMethods;
 using Android.Widget;
 using DT.Samples.Agora.Shared;
 using DT.Samples.Agora.Shared.Helpers;
 using DT.Xamarin.Agora;
+using Newtonsoft.Json;
 
 namespace DT.Samples.Agora.Conference.Droid
 {
     [Activity(Label = "@string/app_name", ScreenOrientation = ScreenOrientation.Portrait)]
-    public class JoinActivity : AppCompatActivity
+    public class JoinActivity : BaseActivity
     {
         protected const int REQUEST_ID = 0;
         protected string[] REQUEST_PERMISSIONS = new string[] {
@@ -50,6 +50,18 @@ namespace DT.Samples.Agora.Conference.Droid
             AgoraEngine.EnableWebSdkInteroperability(true);
             AgoraEngine.EnableLastmileTest();
             FindViewById<TextView>(Resource.Id.agora_version_text).Text = string.Format(VersionFormat, RtcEngine.SdkVersion);
+        }
+
+        protected override void OnResume()
+        {
+            base.OnResume();
+            RtmService.Instance.OnSignalReceived += OnSignalReceived;
+        }
+
+        protected override void OnPause()
+        {
+            base.OnPause();
+            RtmService.Instance.OnSignalReceived -= OnSignalReceived;
         }
 
         protected async Task<bool> CheckPermissions(bool requestPermissions = true)
@@ -163,6 +175,7 @@ namespace DT.Samples.Agora.Conference.Droid
 
         protected override void OnDestroy()
         {
+            AgoraEngine.DisableLastmileTest();
             if (AgoraHandler != null)
             {
                 AgoraHandler.Dispose();
@@ -173,6 +186,8 @@ namespace DT.Samples.Agora.Conference.Droid
                 AgoraEngine.Dispose();
                 AgoraEngine = null;
             }
+            RtcEngine.Destroy();
+            RtmService.Instance.Logout();
             base.OnDestroy();
         }
 
@@ -185,5 +200,32 @@ namespace DT.Samples.Agora.Conference.Droid
             }
             return base.OnTouchEvent(e);
         }
+
+        private void OnSignalReceived(SignalMessage signal)
+        {
+            if (signal.Action == SignalActionTypes.IncomingCall)
+            {
+                RunOnUiThread(() =>
+                {
+                    ShowAlertDialog(string.Format(GetString(Resource.String.invite_message_mask), signal.Data), GetString(Resource.String.accept_button),
+                        () =>
+                        {
+                            AgoraSettings.Current.RoomName = signal.Data;
+                            CheckPermissionsAndStartCall();
+                        },
+                        () =>
+                        {
+                            var answerSignal = new SignalMessage
+                            {
+                                Action = SignalActionTypes.RejectCall,
+                                RtmUserName = RtmService.Instance.UserName
+                            };
+                            RtmService.Instance.SendPeerMessage(signal.RtmUserName, JsonConvert.SerializeObject(answerSignal));
+                        }
+                    );
+                });
+            }
+        }
+
     }
 }

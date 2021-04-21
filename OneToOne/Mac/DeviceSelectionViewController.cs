@@ -47,7 +47,7 @@ namespace DT.Samples.Agora.OneToOne.Mac
         internal void SetAgoraKit(AgoraRtcEngineKit agoraKit)
         {
             _agoraKit = agoraKit;
-            _agoraKit.StateChanged += OnAgoraDeviceTypeStateChanged;
+            _agoraKit.MediaDeviceStateChanged += OnAgoraDeviceTypeStateChanged;
             LoadDevicesInPopUpButtons();
         }
 
@@ -72,7 +72,7 @@ namespace DT.Samples.Agora.OneToOne.Mac
             DismissViewController(this);
         }
 
-        private void OnAgoraDeviceTypeStateChanged(object sender, StateChangedEventArgs e)
+        private void OnAgoraDeviceTypeStateChanged(object sender, MediaDeviceStateChangedEventArgs e)
         {
             BeginInvokeOnMainThread(LoadDevicesInPopUpButtons);
         }

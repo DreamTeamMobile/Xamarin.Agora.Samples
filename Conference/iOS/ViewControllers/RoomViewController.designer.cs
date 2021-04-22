@@ -72,6 +72,9 @@ namespace DT.Samples.Agora.Conference.iOS
 		[Action ("EndCallClicked:")]
 		partial void EndCallClicked (Foundation.NSObject sender);
 
+		[Action ("InviteUserButtonClicked:")]
+		partial void InviteUserButtonClicked (UIKit.UIButton sender);
+
 		[Action ("OnHandUpButtonClicked:")]
 		partial void OnHandUpButtonClicked (UIKit.UIButton sender);
 
@@ -96,11 +99,6 @@ namespace DT.Samples.Agora.Conference.iOS
 				BackgroundTap = null;
 			}
 
-			if (HandUpButton != null) {
-				HandUpButton.Dispose ();
-				HandUpButton = null;
-			}
-
 			if (ContainerView != null) {
 				ContainerView.Dispose ();
 				ContainerView = null;
@@ -114,6 +112,11 @@ namespace DT.Samples.Agora.Conference.iOS
 			if (EndCallButton != null) {
 				EndCallButton.Dispose ();
 				EndCallButton = null;
+			}
+
+			if (HandUpButton != null) {
+				HandUpButton.Dispose ();
+				HandUpButton = null;
 			}
 
 			if (LoadingIndicator != null) {

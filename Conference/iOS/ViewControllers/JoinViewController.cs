@@ -4,6 +4,7 @@ using UIKit;
 using Foundation;
 using DT.Xamarin.Agora;
 using DT.Samples.Agora.Shared;
+using Newtonsoft.Json;
 
 namespace DT.Samples.Agora.Conference.iOS
 {
@@ -77,10 +78,17 @@ namespace DT.Samples.Agora.Conference.iOS
             textField.Layer.BorderWidth = 2;
         }
 
+        public override void ViewDidAppear(bool animated)
+        {
+            base.ViewDidAppear(animated);
+            RtmService.Instance.OnSignalReceived += OnSignalReceived;
+        }
+
         public override void ViewDidDisappear(bool animated)
         {
             AgoraSettings.Current.RoomName = ChannelNameEdit.Text;
             AgoraSettings.Current.EncryptionPhrase = EncryptionKeyEdit.Text;
+            RtmService.Instance.OnSignalReceived -= OnSignalReceived;
             base.ViewDidDisappear(animated);
         }
 
@@ -137,6 +145,34 @@ namespace DT.Samples.Agora.Conference.iOS
                     break;
             }
             ConnectingLabel.Text = string.Format(QualityFormat, quality);
+        }
+
+        private void OnSignalReceived(SignalMessage signal)
+        {
+            if(signal.Action == SignalActionTypes.IncomingCall)
+            {
+                var alertView = new UIAlertView("Invite", $"You got invite to [{signal.Data}] room", null, "Cancel", "Join");
+                alertView.Show();
+
+                alertView.Clicked += (s, e) =>
+                {
+                    switch(e.ButtonIndex)
+                    {
+                        case 0:
+                            var answerSignal = new SignalMessage
+                            {
+                                Action = SignalActionTypes.RejectCall,
+                                RtmUserName = RtmService.Instance.UserName
+                            };
+                            RtmService.Instance.SendPeerMessage(signal.RtmUserName, JsonConvert.SerializeObject(answerSignal));
+                            break;
+                        case 1:
+                            ChannelNameEdit.Text = signal.Data;
+                            PerformSegue("ShowRoomViewController", this);
+                            break;
+                    }
+                };
+            }
         }
     }
 }

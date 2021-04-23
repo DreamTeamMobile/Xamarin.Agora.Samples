@@ -25,6 +25,9 @@ namespace DT.Samples.Agora.Conference.iOS
 		AppKit.NSButton hungUpButton { get; set; }
 
 		[Outlet]
+		AppKit.NSButton inviteButton { get; set; }
+
+		[Outlet]
 		AppKit.NSProgressIndicator LoadingIndicator { get; set; }
 
 		[Outlet]
@@ -63,6 +66,11 @@ namespace DT.Samples.Agora.Conference.iOS
 				deviceSelectionButton = null;
 			}
 
+			if (handUpButton != null) {
+				handUpButton.Dispose ();
+				handUpButton = null;
+			}
+
 			if (hungUpButton != null) {
 				hungUpButton.Dispose ();
 				hungUpButton = null;
@@ -71,11 +79,6 @@ namespace DT.Samples.Agora.Conference.iOS
 			if (LoadingIndicator != null) {
 				LoadingIndicator.Dispose ();
 				LoadingIndicator = null;
-			}
-
-			if (handUpButton != null) {
-				handUpButton.Dispose ();
-				handUpButton = null;
 			}
 
 			if (localVideo != null) {
@@ -111,6 +114,11 @@ namespace DT.Samples.Agora.Conference.iOS
 			if (videoMuteButton != null) {
 				videoMuteButton.Dispose ();
 				videoMuteButton = null;
+			}
+
+			if (inviteButton != null) {
+				inviteButton.Dispose ();
+				inviteButton = null;
 			}
 		}
 	}

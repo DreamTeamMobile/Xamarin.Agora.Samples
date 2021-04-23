@@ -702,10 +702,10 @@
                                 <rect key="frame" x="84" y="30" width="675" height="66"/>
                                 <subviews>
                                     <customView hidden="YES" translatesAutoresizingMaskIntoConstraints="NO" id="AV2-7N-CR0" userLabel="controlButtonSpacer">
-                                        <rect key="frame" x="0.0" y="0.0" width="45" height="66"/>
+                                        <rect key="frame" x="0.0" y="0.0" width="32" height="66"/>
                                     </customView>
                                     <button verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="Hs0-Bt-t6t" userLabel="deviceSelectionButton">
-                                        <rect key="frame" x="150" y="3" width="60" height="60"/>
+                                        <rect key="frame" x="216" y="3" width="60" height="60"/>
                                         <constraints>
                                             <constraint firstAttribute="width" constant="60" id="4MV-cK-WhG"/>
                                             <constraint firstAttribute="height" constant="60" id="umf-zl-kRf"/>
@@ -715,8 +715,8 @@
                                             <font key="font" metaFont="system"/>
                                         </buttonCell>
                                     </button>
-                                    <button verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="Cyk-LF-xHB" userLabel="deviceSelectionButton">
-                                        <rect key="frame" x="45" y="3" width="60" height="60"/>
+                                    <button verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="Cyk-LF-xHB" userLabel="handUpButton">
+                                        <rect key="frame" x="124" y="3" width="60" height="60"/>
                                         <constraints>
                                             <constraint firstAttribute="height" constant="60" id="NFz-nM-dai"/>
                                             <constraint firstAttribute="width" constant="60" id="yPU-ha-3vE"/>
@@ -727,10 +727,10 @@
                                         </buttonCell>
                                     </button>
                                     <customView hidden="YES" translatesAutoresizingMaskIntoConstraints="NO" id="VgQ-2N-of6" userLabel="controlButtonSpacer">
-                                        <rect key="frame" x="210" y="0.0" width="45" height="66"/>
+                                        <rect key="frame" x="276" y="0.0" width="32" height="66"/>
                                     </customView>
                                     <button verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="iVX-ag-y8T" userLabel="videoMuteButton">
-                                        <rect key="frame" x="255" y="3" width="60" height="60"/>
+                                        <rect key="frame" x="308" y="3" width="60" height="60"/>
                                         <constraints>
                                             <constraint firstAttribute="width" constant="60" id="1vF-oq-jwT"/>
                                             <constraint firstAttribute="height" constant="60" id="iso-ym-86g"/>
@@ -741,10 +741,10 @@
                                         </buttonCell>
                                     </button>
                                     <customView hidden="YES" translatesAutoresizingMaskIntoConstraints="NO" id="aWQ-Ga-OKf" userLabel="controlButtonSpacer">
-                                        <rect key="frame" x="315" y="0.0" width="45" height="66"/>
+                                        <rect key="frame" x="368" y="0.0" width="31" height="66"/>
                                     </customView>
                                     <button verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="s5p-X5-KrJ" userLabel="muteButton">
-                                        <rect key="frame" x="360" y="3" width="60" height="60"/>
+                                        <rect key="frame" x="399" y="3" width="60" height="60"/>
                                         <constraints>
                                             <constraint firstAttribute="height" constant="60" id="SrW-NY-2u5"/>
                                             <constraint firstAttribute="width" constant="60" id="osd-IP-nPt"/>
@@ -755,10 +755,10 @@
                                         </buttonCell>
                                     </button>
                                     <customView hidden="YES" translatesAutoresizingMaskIntoConstraints="NO" id="cHp-Re-s25" userLabel="controlButtonSpacer">
-                                        <rect key="frame" x="420" y="0.0" width="45" height="66"/>
+                                        <rect key="frame" x="459" y="0.0" width="32" height="66"/>
                                     </customView>
                                     <button verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="oWU-JE-XTo" userLabel="screenShareButton">
-                                        <rect key="frame" x="465" y="3" width="60" height="60"/>
+                                        <rect key="frame" x="491" y="3" width="60" height="60"/>
                                         <constraints>
                                             <constraint firstAttribute="width" constant="60" id="SVX-vD-ERi"/>
                                             <constraint firstAttribute="height" constant="60" id="qve-yC-QQ4"/>
@@ -769,10 +769,10 @@
                                         </buttonCell>
                                     </button>
                                     <customView hidden="YES" translatesAutoresizingMaskIntoConstraints="NO" id="XXF-7L-j3W" userLabel="controlButtonSpacer">
-                                        <rect key="frame" x="525" y="0.0" width="45" height="66"/>
+                                        <rect key="frame" x="551" y="0.0" width="32" height="66"/>
                                     </customView>
                                     <button verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="5eX-b2-8eW" userLabel="hangUpButton">
-                                        <rect key="frame" x="570" y="3" width="60" height="60"/>
+                                        <rect key="frame" x="583" y="3" width="60" height="60"/>
                                         <constraints>
                                             <constraint firstAttribute="height" constant="60" id="dlu-0p-xLv"/>
                                             <constraint firstAttribute="width" constant="60" id="wkW-zM-cRi"/>
@@ -783,10 +783,23 @@
                                         </buttonCell>
                                     </button>
                                     <customView hidden="YES" translatesAutoresizingMaskIntoConstraints="NO" id="VLy-kE-w9f" userLabel="controlButtonSpacer">
-                                        <rect key="frame" x="630" y="0.0" width="45" height="66"/>
+                                        <rect key="frame" x="643" y="0.0" width="32" height="66"/>
                                     </customView>
                                     <customView hidden="YES" translatesAutoresizingMaskIntoConstraints="NO" id="Weq-qN-hOb" userLabel="controlButtonSpacer">
-                                        <rect key="frame" x="105" y="0.0" width="45" height="66"/>
+                                        <rect key="frame" x="184" y="0.0" width="32" height="66"/>
+                                    </customView>
+                                    <button verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="bkB-W6-yOR" userLabel="inviteButton">
+                                        <rect key="frame" x="32" y="3" width="60" height="60"/>
+                                        <constraints>
+                                            <constraint firstAttribute="width" constant="60" id="Sk1-sV-vqe"/>
+                                        </constraints>
+                                        <buttonCell key="cell" type="square" bezelStyle="shadowlessSquare" image="addUser" imagePosition="overlaps" alignment="center" imageScaling="proportionallyDown" inset="2" id="7nE-mC-GCf">
+                                            <behavior key="behavior" lightByContents="YES"/>
+                                            <font key="font" metaFont="system"/>
+                                        </buttonCell>
+                                    </button>
+                                    <customView hidden="YES" translatesAutoresizingMaskIntoConstraints="NO" id="r6s-1u-wgS" userLabel="controlButtonSpacer">
+                                        <rect key="frame" x="92" y="0.0" width="32" height="66"/>
                                     </customView>
                                 </subviews>
                                 <constraints>
@@ -797,34 +810,40 @@
                                     <constraint firstItem="cHp-Re-s25" firstAttribute="centerY" secondItem="whz-E3-nqj" secondAttribute="centerY" id="4ZZ-FP-ydA"/>
                                     <constraint firstItem="VLy-kE-w9f" firstAttribute="leading" secondItem="5eX-b2-8eW" secondAttribute="trailing" id="4d2-H9-U0d"/>
                                     <constraint firstItem="Hs0-Bt-t6t" firstAttribute="leading" secondItem="Weq-qN-hOb" secondAttribute="trailing" id="8qw-LG-SI9"/>
+                                    <constraint firstItem="r6s-1u-wgS" firstAttribute="width" secondItem="AV2-7N-CR0" secondAttribute="width" id="8v2-WA-kBa"/>
+                                    <constraint firstItem="bkB-W6-yOR" firstAttribute="leading" secondItem="AV2-7N-CR0" secondAttribute="trailing" id="9bs-NY-cVM"/>
                                     <constraint firstItem="aWQ-Ga-OKf" firstAttribute="centerY" secondItem="whz-E3-nqj" secondAttribute="centerY" id="Dm3-RS-poh"/>
                                     <constraint firstItem="XXF-7L-j3W" firstAttribute="centerY" secondItem="whz-E3-nqj" secondAttribute="centerY" id="FgU-Ne-Oeu"/>
                                     <constraint firstItem="VLy-kE-w9f" firstAttribute="centerY" secondItem="whz-E3-nqj" secondAttribute="centerY" id="GsU-9c-2Ed"/>
                                     <constraint firstItem="Hs0-Bt-t6t" firstAttribute="leading" secondItem="Weq-qN-hOb" secondAttribute="trailing" id="MRl-B7-S9T"/>
-                                    <constraint firstItem="Cyk-LF-xHB" firstAttribute="leading" secondItem="AV2-7N-CR0" secondAttribute="trailing" id="NFQ-zN-Qfe"/>
                                     <constraint firstItem="AV2-7N-CR0" firstAttribute="centerY" secondItem="whz-E3-nqj" secondAttribute="centerY" id="ODT-7b-zur"/>
                                     <constraint firstItem="AV2-7N-CR0" firstAttribute="width" secondItem="VLy-kE-w9f" secondAttribute="width" id="OZS-BR-52i"/>
                                     <constraint firstItem="AV2-7N-CR0" firstAttribute="height" secondItem="whz-E3-nqj" secondAttribute="height" id="OvM-nu-AcM"/>
+                                    <constraint firstItem="r6s-1u-wgS" firstAttribute="height" secondItem="Weq-qN-hOb" secondAttribute="height" id="QC5-Eg-MJE"/>
                                     <constraint firstItem="5eX-b2-8eW" firstAttribute="leading" secondItem="XXF-7L-j3W" secondAttribute="trailing" id="Qid-OV-g97"/>
                                     <constraint firstItem="s5p-X5-KrJ" firstAttribute="leading" secondItem="aWQ-Ga-OKf" secondAttribute="trailing" id="QxN-Ff-trQ"/>
+                                    <constraint firstItem="r6s-1u-wgS" firstAttribute="centerY" secondItem="whz-E3-nqj" secondAttribute="centerY" id="R40-xO-lCi"/>
+                                    <constraint firstItem="bkB-W6-yOR" firstAttribute="height" secondItem="whz-E3-nqj" secondAttribute="height" multiplier="0.909091" id="Rb5-ZS-q1s"/>
                                     <constraint firstItem="Cyk-LF-xHB" firstAttribute="centerY" secondItem="whz-E3-nqj" secondAttribute="centerY" id="S2s-nf-O7Z"/>
+                                    <constraint firstItem="r6s-1u-wgS" firstAttribute="leading" secondItem="bkB-W6-yOR" secondAttribute="trailing" id="Sso-59-BKk"/>
                                     <constraint firstItem="oWU-JE-XTo" firstAttribute="centerY" secondItem="whz-E3-nqj" secondAttribute="centerY" id="WK5-2d-HES"/>
                                     <constraint firstItem="Hs0-Bt-t6t" firstAttribute="centerY" secondItem="whz-E3-nqj" secondAttribute="centerY" id="WW0-R1-Twc"/>
                                     <constraint firstItem="iVX-ag-y8T" firstAttribute="leading" secondItem="VgQ-2N-of6" secondAttribute="trailing" id="XDy-Ox-ddS"/>
                                     <constraint firstItem="Weq-qN-hOb" firstAttribute="width" secondItem="AV2-7N-CR0" secondAttribute="width" id="YMh-HU-xY9"/>
                                     <constraint firstAttribute="height" constant="66" id="bzD-LK-3EC"/>
                                     <constraint firstAttribute="trailing" secondItem="VLy-kE-w9f" secondAttribute="trailing" id="cdd-0W-kDI"/>
+                                    <constraint firstItem="bkB-W6-yOR" firstAttribute="centerY" secondItem="whz-E3-nqj" secondAttribute="centerY" id="e76-Y5-yQh"/>
+                                    <constraint firstItem="AV2-7N-CR0" firstAttribute="leading" secondItem="whz-E3-nqj" secondAttribute="leading" id="eYC-CI-5nU"/>
                                     <constraint firstItem="VgQ-2N-of6" firstAttribute="centerY" secondItem="whz-E3-nqj" secondAttribute="centerY" id="exl-j6-5yZ"/>
                                     <constraint firstItem="VgQ-2N-of6" firstAttribute="height" secondItem="Weq-qN-hOb" secondAttribute="height" id="gMf-Wo-bxF"/>
                                     <constraint firstItem="AV2-7N-CR0" firstAttribute="width" secondItem="VgQ-2N-of6" secondAttribute="width" id="gfE-a1-Rlc"/>
                                     <constraint firstItem="aWQ-Ga-OKf" firstAttribute="leading" secondItem="iVX-ag-y8T" secondAttribute="trailing" id="grM-D2-Z7d"/>
-                                    <constraint firstItem="Cyk-LF-xHB" firstAttribute="leading" secondItem="AV2-7N-CR0" secondAttribute="trailing" id="hem-Ct-TyR"/>
                                     <constraint firstItem="AV2-7N-CR0" firstAttribute="width" secondItem="aWQ-Ga-OKf" secondAttribute="width" id="idj-qn-QGU"/>
-                                    <constraint firstItem="AV2-7N-CR0" firstAttribute="leading" secondItem="whz-E3-nqj" secondAttribute="leading" id="ixl-Bp-0mZ"/>
                                     <constraint firstItem="VgQ-2N-of6" firstAttribute="height" secondItem="whz-E3-nqj" secondAttribute="height" id="kbE-Kg-zvB"/>
                                     <constraint firstItem="cHp-Re-s25" firstAttribute="leading" secondItem="s5p-X5-KrJ" secondAttribute="trailing" id="m8z-Cy-zT6"/>
                                     <constraint firstItem="cHp-Re-s25" firstAttribute="height" secondItem="whz-E3-nqj" secondAttribute="height" id="mKU-Ml-PnF"/>
                                     <constraint firstItem="VLy-kE-w9f" firstAttribute="height" secondItem="whz-E3-nqj" secondAttribute="height" id="mLd-Eh-Zfk"/>
+                                    <constraint firstItem="Cyk-LF-xHB" firstAttribute="leading" secondItem="r6s-1u-wgS" secondAttribute="trailing" id="mgR-zx-EJT"/>
                                     <constraint firstItem="Weq-qN-hOb" firstAttribute="leading" secondItem="Cyk-LF-xHB" secondAttribute="trailing" id="myI-He-dp7"/>
                                     <constraint firstItem="s5p-X5-KrJ" firstAttribute="centerY" secondItem="whz-E3-nqj" secondAttribute="centerY" id="nsn-wg-cLt"/>
                                     <constraint firstItem="AV2-7N-CR0" firstAttribute="width" secondItem="XXF-7L-j3W" secondAttribute="width" id="o7B-7n-HTo"/>
@@ -939,6 +958,7 @@
                         <outlet property="deviceSelectionButton" destination="Hs0-Bt-t6t" id="0kD-Rg-ZMJ"/>
                         <outlet property="handUpButton" destination="Cyk-LF-xHB" id="r0c-LD-8fW"/>
                         <outlet property="hungUpButton" destination="5eX-b2-8eW" id="dTu-8i-eNg"/>
+                        <outlet property="inviteButton" destination="bkB-W6-yOR" id="YUK-o5-bST"/>
                         <outlet property="localVideo" destination="0Fp-dV-y3H" id="Tbq-57-Usv"/>
                         <outlet property="localVideoMuteBg" destination="d58-P3-pIG" id="j9O-P3-hEh"/>
                         <outlet property="localVideoMutedIndicator" destination="K12-17-oL6" id="b2K-rv-oQE"/>
@@ -1090,6 +1110,7 @@
         </scene>
     </scenes>
     <resources>
+        <image name="addUser" width="96" height="96"/>
         <image name="deviceSelectionButton" width="372" height="372"/>
         <image name="handUp" width="96" height="96"/>
         <image name="handUpSelected" width="192" height="192"/>

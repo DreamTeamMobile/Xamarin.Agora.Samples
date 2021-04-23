@@ -47,32 +47,32 @@ namespace DT.Samples.Agora.Conference.iOS
         internal void SetAgoraKit(AgoraRtcEngineKit agoraKit)
         {
             _agoraKit = agoraKit;
-            _agoraKit.StateChanged += OnAgoraDeviceTypeStateChanged;
+            _agoraKit.MediaDeviceStateChanged += OnAgoraDeviceTypeStateChanged;
             LoadDevicesInPopUpButtons();
         }
 
         partial void didClickConfirmButton(Foundation.NSObject sender)
         {
             var recordingDevice = connectedRecordingDevices[(int)microphoneSelection.IndexOfSelectedItem]?.DeviceId;
-            if (!String.IsNullOrEmpty(recordingDevice))
+            if (!string.IsNullOrEmpty(recordingDevice))
             {
                 _agoraKit.SetDevice(MediaDeviceType.AudioRecording, recordingDevice);
             }
 
             var playbackDevice = connectedPlaybackDevices[(int)speakerSelection.IndexOfSelectedItem]?.DeviceId;
-            if (!String.IsNullOrEmpty(playbackDevice))
+            if (!string.IsNullOrEmpty(playbackDevice))
             {
                 _agoraKit.SetDevice(MediaDeviceType.AudioPlayout, playbackDevice);
             }
             var videoDevice = connectedVideoCaptureDevices[(int)cameraSelection.IndexOfSelectedItem]?.DeviceId;
-            if (!String.IsNullOrEmpty(videoDevice))
+            if (!string.IsNullOrEmpty(videoDevice))
             {
                 _agoraKit.SetDevice(MediaDeviceType.VideoCapture, recordingDevice);
             }
             DismissViewController(this);
         }
 
-        private void OnAgoraDeviceTypeStateChanged(object sender, StateChangedEventArgs e)
+        private void OnAgoraDeviceTypeStateChanged(object sender, MediaDeviceStateChangedEventArgs e)
         {
             BeginInvokeOnMainThread(LoadDevicesInPopUpButtons);
         }

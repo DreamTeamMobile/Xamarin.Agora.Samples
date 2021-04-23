@@ -6,11 +6,11 @@
     <ProjectGuid>{EF336464-B5EF-494E-88AD-751F99E0FB3B}</ProjectGuid>
     <ProjectTypeGuids>{A3F8F2AB-B479-4A4A-A458-A89E7DC349F1};{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}</ProjectTypeGuids>
     <OutputType>Exe</OutputType>
-    <RootNamespace>DT.Samples.Agora.OneToOne.Mac</RootNamespace>
-    <AssemblyName>DT.Samples.Agora.OneToOne.Mac</AssemblyName>
+    <RootNamespace>DT.Samples.Agora.Conference.Mac</RootNamespace>
+    <AssemblyName>DT.Samples.Agora.Conference.Mac</AssemblyName>
+    <MonoMacResourcePrefix>Resources</MonoMacResourcePrefix>
     <TargetFrameworkVersion>v2.0</TargetFrameworkVersion>
     <TargetFrameworkIdentifier>Xamarin.Mac</TargetFrameworkIdentifier>
-    <MonoMacResourcePrefix>Resources</MonoMacResourcePrefix>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|x86' ">
     <DebugSymbols>true</DebugSymbols>
@@ -60,10 +60,10 @@
     <Reference Include="OpenTK" />
     <Reference Include="System.Numerics.Vectors" />
     <Reference Include="Xamarin.Agora.Full.Mac">
-      <HintPath>..\..\packages\Xamarin.Agora.Full.Mac.3.3.0\lib\Xamarin.Mac20\Xamarin.Agora.Full.Mac.dll</HintPath>
+      <HintPath>..\packages\Xamarin.Agora.Full.Mac.3.4.1\lib\Xamarin.Mac20\Xamarin.Agora.Full.Mac.dll</HintPath>
     </Reference>
     <Reference Include="Newtonsoft.Json">
-      <HintPath>..\..\packages\Newtonsoft.Json.13.0.1-beta2\lib\netstandard2.0\Newtonsoft.Json.dll</HintPath>
+      <HintPath>..\packages\Newtonsoft.Json.13.0.1\lib\netstandard2.0\Newtonsoft.Json.dll</HintPath>
     </Reference>
     <Reference Include="Xamarin.Agora.Rtm.Mac">
       <HintPath>..\packages\Xamarin.Agora.Rtm.Mac.1.4.2\lib\Xamarin.Mac20\Xamarin.Agora.Rtm.Mac.dll</HintPath>
@@ -103,6 +103,8 @@
     <ImageAsset Include="Assets.xcassets\handUp.imageset\ic_hand.png" />
     <ImageAsset Include="Assets.xcassets\handUpSelected.imageset\Contents.json" />
     <ImageAsset Include="Assets.xcassets\handUpSelected.imageset\ic_hand_selected.png" />
+    <ImageAsset Include="Assets.xcassets\addUser.imageset\Contents.json" />
+    <ImageAsset Include="Assets.xcassets\addUser.imageset\ic_user_add.png" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="Resources\" />
@@ -120,6 +122,7 @@
     <Folder Include="Assets.xcassets\handUpSelected.imageset\" />
     <Folder Include="Delegates\" />
     <Folder Include="ViewControllers\" />
+    <Folder Include="Assets.xcassets\addUser.imageset\" />
   </ItemGroup>
   <ItemGroup>
     <None Include="Info.plist" />
@@ -146,6 +149,7 @@
     <Compile Include="ViewControllers\VideoChatViewController.designer.cs">
       <DependentUpon>VideoChatViewController.cs</DependentUpon>
     </Compile>
+    <Compile Include="RtmService.cs" />
   </ItemGroup>
   <ItemGroup>
     <InterfaceDefinition Include="Main.storyboard" />

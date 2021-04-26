@@ -23,12 +23,12 @@ Running samples
 Quick Start
 -----------
 
-1. Run [AgoraTokenServer](AgoraTokenServer) and get server URL
+1. Run [AgoraTokenServer](../AgoraTokenServer) and get server URL
 
 1. Replace the following empty string with the corresponding server URL:
 
 *
-    [DT.Samples.Agora.Shared/TokenServerBaseUrl.cs](DT.Samples.Agora.Shared/TokenServerBaseUrl.cs)
+    [Shared/TokenServerBaseUrl.cs](../Shared/AgoraTokenService.cs)
 ```
         public static string TokenServerBaseUrl
 ```

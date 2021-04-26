@@ -5,12 +5,13 @@ Sample solution shows how you can use Agora RTC for many-to-many connection. It 
 ## RTM part
 This solutions shows how you can use RTM with RTC. "HandUp" button was added for signaling and RTM is used for sending and receiving signal messages.
 
-## Quick start
-1. Prepare Agora App ID, you can follow [Obtaining an App ID instructions](https://docs.agora.io/en/2.1.1/product/Video/Agora%20Basics/key_web#app-id-web) to get your App ID.
-2. Run [AgoraTokenServer](../AgoraTokenServer) for getting agora tokens.
-3. Replace the following empty strings with the corresponding values:
-[DT.Samples.Agora.Shared/AgoraTestConstants.cs](DT.Samples.Agora.Shared/AgoraTestConstants.cs)
+Quick Start
+-----------
+
+1. Run [AgoraTokenServer](../AgoraTokenServer) and get server URL
+1. Replace the following empty string with the corresponding server URL:
+*
+    [Shared/TokenServerBaseUrl.cs](../Shared/AgoraTokenService.cs)
 ```
-public static string AgoraAPI
-public static string TokenServerBaseUrl
+        public static string TokenServerBaseUrl
 ```

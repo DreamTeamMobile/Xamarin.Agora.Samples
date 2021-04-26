@@ -107,7 +107,7 @@ namespace DT.Samples.Agora.Rtm.iOS
 
                 try
                 {
-                    new AgoraMediaUploader().UploadMediaByPath(AgoraRtm.RtmKit, path, 1, (reqId, rtmImageMessage, rtmUploadError) =>
+                    AgoraRtm.RtmKit.CreateImageMessageByUploading(path, 1, (reqId, rtmImageMessage, rtmUploadError) =>
                     {
                         if (rtmUploadError != AgoraRtmUploadMediaErrorCode.Ok)
                         {

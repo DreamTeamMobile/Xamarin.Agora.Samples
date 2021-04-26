@@ -64,7 +64,7 @@
     <Reference Include="System.Numerics.Vectors" />
     <Reference Include="Mono.Android.Export" />
     <Reference Include="AndHUD">
-      <HintPath>..\packages\AndHUD.1.4.1\lib\MonoAndroid81\AndHUD.dll</HintPath>
+      <HintPath>..\packages\AndHUD.1.4.2\lib\MonoAndroid81\AndHUD.dll</HintPath>
     </Reference>
     <Reference Include="Xamarin.Android.Arch.Core.Runtime">
       <HintPath>..\packages\Xamarin.Android.Arch.Core.Runtime.1.1.1.3\lib\monoandroid90\Xamarin.Android.Arch.Core.Runtime.dll</HintPath>
@@ -126,11 +126,8 @@
     <Reference Include="Xamarin.Android.Support.ViewPager">
       <HintPath>..\packages\Xamarin.Android.Support.ViewPager.28.0.0.3\lib\monoandroid90\Xamarin.Android.Support.ViewPager.dll</HintPath>
     </Reference>
-    <Reference Include="Plugin.Settings.Abstractions">
-      <HintPath>..\packages\Xam.Plugins.Settings.3.1.1\lib\MonoAndroid10\Plugin.Settings.Abstractions.dll</HintPath>
-    </Reference>
     <Reference Include="Plugin.Settings">
-      <HintPath>..\packages\Xam.Plugins.Settings.3.1.1\lib\MonoAndroid10\Plugin.Settings.dll</HintPath>
+      <HintPath>..\packages\Xam.Plugins.Settings.4.1.0-beta\lib\monoandroid44\Plugin.Settings.dll</HintPath>
     </Reference>
     <Reference Include="Xamarin.Android.Arch.Core.Common">
       <HintPath>..\packages\Xamarin.Android.Arch.Core.Common.1.1.1.3\lib\monoandroid90\Xamarin.Android.Arch.Core.Common.dll</HintPath>
@@ -184,7 +181,7 @@
       <HintPath>..\packages\Xamarin.Essentials.1.6.1\lib\monoandroid90\Xamarin.Essentials.dll</HintPath>
     </Reference>
     <Reference Include="Acr.UserDialogs">
-      <HintPath>..\packages\Acr.UserDialogs.7.0.4\lib\monoandroid90\Acr.UserDialogs.dll</HintPath>
+      <HintPath>..\packages\Acr.UserDialogs.7.1.0.483\lib\monoandroid90\Acr.UserDialogs.dll</HintPath>
     </Reference>
     <Reference Include="Xamarin.Android.Support.v4">
       <HintPath>..\packages\Xamarin.Android.Support.v4.28.0.0.3\lib\monoandroid90\Xamarin.Android.Support.v4.dll</HintPath>
@@ -216,7 +213,6 @@
     <Compile Include="Utils\MessageUtil.cs" />
     <Compile Include="ViewHolder\MyViewHolder.cs" />
     <Compile Include="MainApplication.cs" />
-    <Compile Include="Helpers\Settings.cs" />
     <Compile Include="Utils\ImageUtil.cs" />
     <Compile Include="RtmMessagePool.cs" />
   </ItemGroup>

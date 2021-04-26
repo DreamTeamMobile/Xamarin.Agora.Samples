@@ -75,7 +75,7 @@
         <Version>13.0.1</Version>
       </PackageReference>
       <PackageReference Include="Xamarin.Agora.Voice.iOS">
-        <Version>3.3.2</Version>
+        <Version>3.4.0</Version>
       </PackageReference>
     </ItemGroup>
     <ItemGroup>

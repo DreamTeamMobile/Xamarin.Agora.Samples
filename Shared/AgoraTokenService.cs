@@ -43,7 +43,7 @@ namespace DT.Samples.Agora.Shared
                 var tokenResponse = JsonConvert.DeserializeObject<AgoraTokenResponse>(result);
                 return tokenResponse.Key;
             }
-            catch(Exception)
+            catch(Exception e)
             {
                 //ignore
             }

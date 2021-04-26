@@ -93,4 +93,4 @@ Xamarin.Forms MacOS
 
 RTM example for Android, iOS and Mac
 
-* **Xamarin Android, iOS and MacOS** apps in one solution [RTM/DT.Samples.Agora.Rtm.sln](RTM/DT.Samples.Agora.Rtm.sln)
+* **Xamarin Android, iOS and MacOS** apps in one solution [RTM](RTM)

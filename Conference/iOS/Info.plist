@@ -36,7 +36,7 @@
 	<key>NSMicrophoneUsageDescription</key>
 	<string>use microphone to start video call</string>
 	<key>CFBundleName</key>
-	<string>Video calls from DT Mobile</string>
+	<string>Conference calls from DT Mobile</string>
 	<key>UIStatusBarStyle</key>
 	<string>UIStatusBarStyleLightContent</string>
 	<key>UIViewControllerBasedStatusBarAppearance</key>
@@ -44,6 +44,6 @@
 	<key>UIRequiresFullScreen</key>
 	<true/>
 	<key>CFBundleDisplayName</key>
-	<string>Video calls from DT Mobile</string>
+	<string>Conference calls from DT Mobile</string>
 </dict>
 </plist>

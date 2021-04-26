@@ -166,7 +166,7 @@
     <Reference Include="System.Core" />
     <Reference Include="Xamarin.iOS" />
     <Reference Include="Plugin.Settings">
-      <HintPath>..\packages\Xam.Plugins.Settings.4.1.0-beta\lib\xamarinios10\Plugin.Settings.dll</HintPath>
+      <HintPath>..\packages\Xam.Plugins.Settings.3.1.1\lib\Xamarin.iOS10\Plugin.Settings.dll</HintPath>
     </Reference>
     <Reference Include="Xamarin.Essentials">
       <HintPath>..\..\packages\Xamarin.Essentials.1.6.1\lib\xamarinios10\Xamarin.Essentials.dll</HintPath>
@@ -175,10 +175,13 @@
     <Reference Include="System.Drawing.Common.dll" />
     <Reference Include="System.Numerics" />
     <Reference Include="Xamarin.Agora.Full.iOS">
-      <HintPath>..\packages\Xamarin.Agora.Full.iOS.3.3.2\lib\Xamarin.iOS10\Xamarin.Agora.Full.iOS.dll</HintPath>
+      <HintPath>..\packages\Xamarin.Agora.Full.iOS.3.4.1\lib\Xamarin.iOS10\Xamarin.Agora.Full.iOS.dll</HintPath>
     </Reference>
     <Reference Include="Newtonsoft.Json">
       <HintPath>..\packages\Newtonsoft.Json.13.0.1\lib\netstandard2.0\Newtonsoft.Json.dll</HintPath>
+    </Reference>
+    <Reference Include="Plugin.Settings.Abstractions">
+      <HintPath>..\packages\Xam.Plugins.Settings.3.1.1\lib\Xamarin.iOS10\Plugin.Settings.Abstractions.dll</HintPath>
     </Reference>
   </ItemGroup>
   <ItemGroup>

@@ -363,23 +363,23 @@ namespace DT.Samples.Agora.Rtm.Droid
                         {
                             RunOnUiThread(() =>
                             {
-                                //var rtmImageMessage = message as RtmImageMessage;
-                                //var messageBean = new MessageBean(_userId, rtmImageMessage, true)
-                                //{
-                                //    CacheFile = path
-                                //};
-                                //_messageBeanList.Add(messageBean);
-                                //_messageAdapter.NotifyItemRangeChanged(_messageBeanList.Count, 1);
-                                //_recyclerView.ScrollToPosition(_messageBeanList.Count - 1);
+                                var rtmImageMessage = message as RtmImageMessage;
+                                var messageBean = new MessageBean(_userId, rtmImageMessage, true)
+                                {
+                                    CacheFile = path
+                                };
+                                _messageBeanList.Add(messageBean);
+                                _messageAdapter.NotifyItemRangeChanged(_messageBeanList.Count, 1);
+                                _recyclerView.ScrollToPosition(_messageBeanList.Count - 1);
 
-                                //if(_isPeerToPeerMode)
-                                //{
-                                //    SendPeerMessage(rtmImageMessage);
-                                //}
-                                //else
-                                //{
-                                //    SendChannelMessage(rtmImageMessage);
-                                //}
+                                if (_isPeerToPeerMode)
+                                {
+                                    SendPeerMessage(rtmImageMessage);
+                                }
+                                else
+                                {
+                                    SendChannelMessage(rtmImageMessage);
+                                }
                             });
                         };
                         resultCallback.OnFailureAction += (err) =>

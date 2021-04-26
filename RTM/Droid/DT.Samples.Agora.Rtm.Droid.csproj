@@ -197,7 +197,7 @@
       <HintPath>..\packages\Xamarin.Android.Support.Exif.28.0.0.3\lib\monoandroid90\Xamarin.Android.Support.Exif.dll</HintPath>
     </Reference>
     <Reference Include="Xamarin.Agora.Rtm.Android">
-      <HintPath>..\packages\Xamarin.Agora.Rtm.Android.1.4.2-beta1\lib\MonoAndroid\Xamarin.Agora.Rtm.Android.dll</HintPath>
+      <HintPath>..\packages\Xamarin.Agora.Rtm.Android.1.4.2\lib\MonoAndroid\Xamarin.Agora.Rtm.Android.dll</HintPath>
     </Reference>
   </ItemGroup>
   <ItemGroup>

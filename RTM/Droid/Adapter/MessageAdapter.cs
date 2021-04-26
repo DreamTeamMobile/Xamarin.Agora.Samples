@@ -47,70 +47,70 @@ namespace DT.Samples.Agora.Rtm.Droid
             {
                 holder.TextViewOtherName.Text = bean.Account;
             }
-            //switch (message.MessageType)
-            //{
-            //    case RtmMessageType.Text:
-            //        if (bean.BeSelf)
-            //        {
-            //            holder.TextViewSelfMsg.Visibility = ViewStates.Visible;
-            //            holder.TextViewSelfMsg.Text = message.Text;
-            //        }
-            //        else
-            //        {
-            //            holder.TextViewOtherMsg.Visibility = ViewStates.Visible;
-            //            holder.TextViewOtherMsg.Text = message.Text;
-            //            if (bean.Background != 0)
-            //            {
-            //                holder.TextViewOtherName.SetBackgroundResource(bean.Background);
-            //            }
-            //        }
+            switch (message.MessageType)
+            {
+                case RtmMessageType.Text:
+                    if (bean.BeSelf)
+                    {
+                        holder.TextViewSelfMsg.Visibility = ViewStates.Visible;
+                        holder.TextViewSelfMsg.Text = message.Text;
+                    }
+                    else
+                    {
+                        holder.TextViewOtherMsg.Visibility = ViewStates.Visible;
+                        holder.TextViewOtherMsg.Text = message.Text;
+                        if (bean.Background != 0)
+                        {
+                            holder.TextViewOtherName.SetBackgroundResource(bean.Background);
+                        }
+                    }
 
-            //        holder.ImageViewSelfImg.Visibility = ViewStates.Gone;
-            //        holder.ImageViewOtherImg.Visibility = ViewStates.Gone;
-            //        break;
-            //    case RtmMessageType.Image:
-            //        var imageMessage = message as RtmImageMessage;
-            //        var bmp = BitmapFactory.DecodeByteArray(imageMessage.GetThumbnail(), 0, imageMessage.GetThumbnail().Length);
-            //        if (bean.BeSelf)
-            //        {
-            //            holder.ImageViewSelfImg.Visibility = ViewStates.Visible;
-            //            holder.ImageViewSelfImg.LayoutParameters.Width = imageMessage.ThumbnailWidth;
-            //            holder.ImageViewSelfImg.LayoutParameters.Height = imageMessage.ThumbnailHeight;
-            //            holder.ImageViewSelfImg.SetImageBitmap(bmp);
-            //        }
-            //        else
-            //        {
-            //            holder.ImageViewOtherImg.Visibility = ViewStates.Visible;
-            //            holder.ImageViewOtherImg.LayoutParameters.Width = imageMessage.ThumbnailWidth;
-            //            holder.ImageViewOtherImg.LayoutParameters.Height = imageMessage.ThumbnailHeight;
-            //            holder.ImageViewOtherImg.SetImageBitmap(bmp);
-            //        }
+                    holder.ImageViewSelfImg.Visibility = ViewStates.Gone;
+                    holder.ImageViewOtherImg.Visibility = ViewStates.Gone;
+                    break;
+                case RtmMessageType.Image:
+                    var imageMessage = message as RtmImageMessage;
+                    var bmp = BitmapFactory.DecodeByteArray(imageMessage.GetThumbnail(), 0, imageMessage.GetThumbnail().Length);
+                    if (bean.BeSelf)
+                    {
+                        holder.ImageViewSelfImg.Visibility = ViewStates.Visible;
+                        holder.ImageViewSelfImg.LayoutParameters.Width = imageMessage.ThumbnailWidth;
+                        holder.ImageViewSelfImg.LayoutParameters.Height = imageMessage.ThumbnailHeight;
+                        holder.ImageViewSelfImg.SetImageBitmap(bmp);
+                    }
+                    else
+                    {
+                        holder.ImageViewOtherImg.Visibility = ViewStates.Visible;
+                        holder.ImageViewOtherImg.LayoutParameters.Width = imageMessage.ThumbnailWidth;
+                        holder.ImageViewOtherImg.LayoutParameters.Height = imageMessage.ThumbnailHeight;
+                        holder.ImageViewOtherImg.SetImageBitmap(bmp);
+                    }
 
-            //        holder.TextViewSelfMsg.Visibility = ViewStates.Gone;
-            //        holder.TextViewOtherMsg.Visibility = ViewStates.Gone;
-            //        break;
-            //    case RtmMessageType.Raw:
-            //        var raw = message.GetRawMessage();
-            //        if (bean.BeSelf)
-            //        {
-            //            holder.TextViewSelfMsg.Visibility = ViewStates.Visible;
-            //            holder.TextViewSelfMsg.Text = $"Raw[{raw.Length}bytes] {message.Text}";
-            //        }
-            //        else
-            //        {
-            //            holder.TextViewOtherMsg.Visibility = ViewStates.Visible;
-            //            holder.TextViewOtherMsg.Text = $"Raw[{raw.Length}bytes] {message.Text}";
-            //            if (bean.Background != 0)
-            //            {
-            //                holder.TextViewOtherName.SetBackgroundResource(bean.Background);
-            //            }
-            //        }
+                    holder.TextViewSelfMsg.Visibility = ViewStates.Gone;
+                    holder.TextViewOtherMsg.Visibility = ViewStates.Gone;
+                    break;
+                case RtmMessageType.Raw:
+                    var raw = message.GetRawMessage();
+                    if (bean.BeSelf)
+                    {
+                        holder.TextViewSelfMsg.Visibility = ViewStates.Visible;
+                        holder.TextViewSelfMsg.Text = $"Raw[{raw.Length}bytes] {message.Text}";
+                    }
+                    else
+                    {
+                        holder.TextViewOtherMsg.Visibility = ViewStates.Visible;
+                        holder.TextViewOtherMsg.Text = $"Raw[{raw.Length}bytes] {message.Text}";
+                        if (bean.Background != 0)
+                        {
+                            holder.TextViewOtherName.SetBackgroundResource(bean.Background);
+                        }
+                    }
 
-            //        holder.ImageViewSelfImg.Visibility = ViewStates.Gone;
-            //        holder.ImageViewOtherImg.Visibility = ViewStates.Gone;
-            //        break;
-            //}
-            
+                    holder.ImageViewSelfImg.Visibility = ViewStates.Gone;
+                    holder.ImageViewOtherImg.Visibility = ViewStates.Gone;
+                    break;
+            }
+
             holder.LayoutRight.Visibility = bean.BeSelf ? ViewStates.Visible : ViewStates.Gone;
             holder.LayoutLeft.Visibility = bean.BeSelf ? ViewStates.Gone : ViewStates.Visible;
         }

@@ -28,7 +28,7 @@ Quick Start
 1. Replace the following empty string with the corresponding server URL:
 
 *
-    [Shared/TokenServerBaseUrl.cs](../Shared/AgoraTokenService.cs)
+    [Shared/AgoraTestConstants.cs](../Shared/AgoraTestConstants.cs)
 ```
         public static string TokenServerBaseUrl
 ```

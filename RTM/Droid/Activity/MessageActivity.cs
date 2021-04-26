@@ -372,7 +372,7 @@ namespace DT.Samples.Agora.Rtm.Droid
                                 _messageAdapter.NotifyItemRangeChanged(_messageBeanList.Count, 1);
                                 _recyclerView.ScrollToPosition(_messageBeanList.Count - 1);
 
-                                if(_isPeerToPeerMode)
+                                if (_isPeerToPeerMode)
                                 {
                                     SendPeerMessage(rtmImageMessage);
                                 }

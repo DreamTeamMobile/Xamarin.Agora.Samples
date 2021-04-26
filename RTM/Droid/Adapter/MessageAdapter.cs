@@ -110,7 +110,7 @@ namespace DT.Samples.Agora.Rtm.Droid
                     holder.ImageViewOtherImg.Visibility = ViewStates.Gone;
                     break;
             }
-            
+
             holder.LayoutRight.Visibility = bean.BeSelf ? ViewStates.Visible : ViewStates.Gone;
             holder.LayoutLeft.Visibility = bean.BeSelf ? ViewStates.Gone : ViewStates.Visible;
         }

@@ -6,8 +6,8 @@
     <ProjectGuid>{F3414B36-55D4-44E4-B874-C0731A82DF0D}</ProjectGuid>
     <ProjectTypeGuids>{FEACFBD2-3405-455C-9665-78FE426C6842};{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}</ProjectTypeGuids>
     <OutputType>Exe</OutputType>
-    <RootNamespace>DT.Samples.Agora.OneToOne.iOS</RootNamespace>
-    <AssemblyName>DT.Samples.Agora.OneToOne.iOS</AssemblyName>
+    <RootNamespace>DT.Samples.Agora.Conference.iOS</RootNamespace>
+    <AssemblyName>DT.Samples.Agora.Conference.iOS</AssemblyName>
     <IPhoneResourcePrefix>Resources</IPhoneResourcePrefix>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|iPhoneSimulator' ">
@@ -46,7 +46,6 @@
     <MtouchHttpClientHandler>HttpClientHandler</MtouchHttpClientHandler>
     <MtouchTlsProvider>Default</MtouchTlsProvider>
     <CodesignProvision></CodesignProvision>
-    <AssemblyName>DT.Samples.Agora.Conference.iOS</AssemblyName>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|iPhoneSimulator' ">
     <DebugType>pdbonly</DebugType>
@@ -81,7 +80,6 @@
     <MtouchArch>ARMv7, ARM64</MtouchArch>
     <MtouchHttpClientHandler>HttpClientHandler</MtouchHttpClientHandler>
     <MtouchTlsProvider>Default</MtouchTlsProvider>
-    <AssemblyName>DT.Samples.Agora.Conference.iOS</AssemblyName>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Staging|iPhone' ">
     <DebugType>pdbonly</DebugType>
@@ -99,7 +97,6 @@
     <MtouchTlsProvider>Default</MtouchTlsProvider>
     <CodesignProvision></CodesignProvision>
     <MtouchNoSymbolStrip>true</MtouchNoSymbolStrip>
-    <AssemblyName>DT.Samples.Agora.Conference.iOS</AssemblyName>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Staging|iPhoneSimulator' ">
     <DebugType>pdbonly</DebugType>
@@ -131,7 +128,6 @@
     <MtouchHttpClientHandler>HttpClientHandler</MtouchHttpClientHandler>
     <MtouchTlsProvider>Default</MtouchTlsProvider>
     <CodesignProvision>Agora One To One Adhoc</CodesignProvision>
-    <AssemblyName>DT.Samples.Agora.Conference.iOS</AssemblyName>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Store|iPhoneSimulator' ">
     <DebugType>pdbonly</DebugType>
@@ -180,14 +176,14 @@
     <Reference Include="OpenTK-1.0" />
     <Reference Include="System.Drawing.Common.dll" />
     <Reference Include="System.Numerics" />
-    <Reference Include="Xamarin.Agora.Full.iOS">
-      <HintPath>..\..\packages\Xamarin.Agora.Full.iOS.3.3.0\lib\Xamarin.iOS10\Xamarin.Agora.Full.iOS.dll</HintPath>
-    </Reference>
     <Reference Include="Newtonsoft.Json">
-      <HintPath>..\..\packages\Newtonsoft.Json.13.0.1-beta2\lib\netstandard2.0\Newtonsoft.Json.dll</HintPath>
+      <HintPath>..\packages\Newtonsoft.Json.13.0.1\lib\netstandard2.0\Newtonsoft.Json.dll</HintPath>
+    </Reference>
+    <Reference Include="Xamarin.Agora.Full.iOS">
+      <HintPath>..\packages\Xamarin.Agora.Full.iOS.3.4.1\lib\Xamarin.iOS10\Xamarin.Agora.Full.iOS.dll</HintPath>
     </Reference>
     <Reference Include="Xamarin.Agora.Rtm.iOS">
-      <HintPath>..\packages\Xamarin.Agora.Rtm.iOS.1.1.0\lib\Xamarin.iOS10\Xamarin.Agora.Rtm.iOS.dll</HintPath>
+      <HintPath>..\packages\Xamarin.Agora.Rtm.iOS.1.4.2\lib\Xamarin.iOS10\Xamarin.Agora.Rtm.iOS.dll</HintPath>
     </Reference>
   </ItemGroup>
   <ItemGroup>
@@ -284,6 +280,8 @@
     <ImageAsset Include="Assets.xcassets\ic_hand_up_selected.imageset\ic_hand_selected.png" />
     <ImageAsset Include="Assets.xcassets\ic_hand_up.imageset\Contents.json" />
     <ImageAsset Include="Assets.xcassets\ic_hand_up.imageset\ic_hand.png" />
+    <ImageAsset Include="Assets.xcassets\ic_add_user.imageset\Contents.json" />
+    <ImageAsset Include="Assets.xcassets\ic_add_user.imageset\ic_user_add.png" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="Resources\" />
@@ -327,6 +325,7 @@
     <Folder Include="Assets.xcassets\ic_hand_up.imageset\" />
     <Folder Include="ViewControllers\" />
     <Folder Include="Delegates\" />
+    <Folder Include="Assets.xcassets\ic_add_user.imageset\" />
   </ItemGroup>
   <ItemGroup>
     <InterfaceDefinition Include="LaunchScreen.storyboard" />
@@ -364,6 +363,11 @@
     <Compile Include="Delegates\AppDelegate.cs" />
     <Compile Include="Delegates\RtmDelegate.cs" />
     <Compile Include="Delegates\RtmChannelDelegate.cs" />
+    <Compile Include="ViewControllers\LoginViewController.cs" />
+    <Compile Include="ViewControllers\LoginViewController.designer.cs">
+      <DependentUpon>LoginViewController.cs</DependentUpon>
+    </Compile>
+    <Compile Include="RtmService.cs" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\..\Shared\DT.Samples.Agora.Shared.csproj">

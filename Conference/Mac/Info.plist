@@ -29,7 +29,7 @@
 	<key>Custom Property</key>
 	<string></string>
 	<key>CFBundleName</key>
-	<string>Agora Xamarin Mac sample</string>
+	<string>Conference calls from DT Mobile</string>
 	<key>NSCameraUsageDescription</key>
 	<string>The app is using camera for Agora Demo</string>
 	<key>NSMicrophoneUsageDescription</key>

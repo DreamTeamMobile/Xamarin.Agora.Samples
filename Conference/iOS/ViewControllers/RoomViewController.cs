@@ -15,9 +15,7 @@ namespace DT.Samples.Agora.Conference.iOS
     {
         public AgoraRtcDelegate AgoraDelegate;
         private AgoraRtcEngineKit _agoraKit;
-        private AgoraRtmChannel _rtmChannel;
-        private AgoraRtmKit _rtmKit = new AgoraRtmKit(AgoraTestConstants.AgoraAPI, null);
-
+        
         private bool _audioMuted = false;
         private bool _videoMuted = false;
         private List<RemoteVideInfo> _userList = new List<RemoteVideInfo>();
@@ -36,7 +34,7 @@ namespace DT.Samples.Agora.Conference.iOS
                 if (ToggleAudioButton != null)
                 {
                     ToggleAudioButton.Selected = value;
-                    _agoraKit.MuteLocalAudioStream(value);
+                    _agoraKit?.MuteLocalAudioStream(value);
                     UpdateMutedViewVisibility();
                 }
             }
@@ -56,7 +54,7 @@ namespace DT.Samples.Agora.Conference.iOS
                     ToggleCamButton.Selected = value;
                     LocalView.Hidden = value;
                     SwitchCamButton.Hidden = value;
-                    _agoraKit.MuteLocalVideoStream(value);
+                    _agoraKit?.MuteLocalVideoStream(value);
                     UpdateMutedViewVisibility();
                 }
             }
@@ -73,6 +71,25 @@ namespace DT.Samples.Agora.Conference.iOS
             NavigationController.NavigationBarHidden = true;
             RoomNameLabel.Text = AgoraSettings.Current.RoomName;
             BackgroundTap.ShouldRequireFailureOfGestureRecognizer(BackgroundDoubleTap);
+
+            RtmService.Instance.OnSignalReceived += OnSignalReceived;
+            RtmService.Instance.OnJoinChannel += OnJoinChannel;
+
+            InitAgoraRtc();
+            JoinRtc();
+            JoinRtm();
+        }
+
+        public override void ViewDidDisappear(bool animated)
+        {
+            base.ViewDidDisappear(animated);
+            RtmService.Instance.OnSignalReceived -= OnSignalReceived;
+            RtmService.Instance.OnJoinChannel -= OnJoinChannel;
+        }
+
+        private void InitAgoraRtc()
+        {
+            AudioMuted = VideoMuted = false;
             AgoraDelegate = new AgoraRtcDelegate(this);
             _agoraKit = AgoraRtcEngineKit.SharedEngineWithAppIdAndDelegate(AgoraTestConstants.AgoraAPI, AgoraDelegate);
             _agoraKit.SetChannelProfile(ChannelProfile.Communication);
@@ -92,10 +109,9 @@ namespace DT.Samples.Agora.Conference.iOS
                 _agoraKit.SetEncryptionSecret(AgoraSettings.Current.EncryptionPhrase);
             }
             _agoraKit.StartPreview();
-            Join();
         }
 
-        private async void Join()
+        private async void JoinRtc()
         {
             LoadingIndicator.Hidden = false;
             var token = await AgoraTokenService.GetRtcToken(AgoraSettings.Current.RoomName);
@@ -117,67 +133,39 @@ namespace DT.Samples.Agora.Conference.iOS
             _agoraKit.SetEnableSpeakerphone(true);
             UIApplication.SharedApplication.IdleTimerDisabled = true;
             RefreshDebug();
-            JoinRtm();
         }
 
-        private async Task JoinRtm()
+        private void JoinRtm()
         {
-            var account = _localId.ToString();
-            var token = await AgoraTokenService.GetRtmToken(account);
-            _rtmKit.LoginByToken(token, account, (status) =>
-            {
-                if (status == AgoraRtmLoginErrorCode.Ok)
-                {
-                    InvokeOnMainThread(() =>
-                    {
-                        var rtmDelegate = new RtmDelegate();
-                        rtmDelegate.OnMessageReceived += OmMessageReceived;
-                        _rtmKit.AgoraRtmDelegate = rtmDelegate;
-
-                        var channelDelegate = new RtmChannelDelegate();
-                        channelDelegate.OnMessageReceived += OmMessageReceived;
-                        channelDelegate.ShowAlert += (user, msg) => Console.WriteLine($"RTM alert. {user}: {msg}"); ;
-
-                        _rtmChannel = _rtmKit.CreateChannelWithId(AgoraSettings.Current.RoomName, channelDelegate);
-
-                        if (_rtmChannel == null)
-                            return;
-
-                        _rtmChannel.JoinWithCompletion(JoinChannelBlock);
-                    });
-                }
-            });
+            RtmService.Instance.JoinChannel(AgoraSettings.Current.RoomName);
         }
 
-        private void JoinChannelBlock(AgoraRtmJoinChannelErrorCode errorCode)
+        private void RefreshDebug()
         {
-            if (errorCode == AgoraRtmJoinChannelErrorCode.Ok)
+            DebugData.Text = $"local: {_localId}";
+        }     
+
+        private void LeaveChannel()
+        {
+            _agoraKit.LeaveChannel(null);
+            AgoraRtcEngineKit.Destroy();
+            RtmService.Instance.LeaveChannel();
+            _userList.Clear();
+        }
+
+        private void UpdateMutedViewVisibility()
+        {
+            if (!VideoMuted && AudioMuted)
             {
-                Console.WriteLine($"RTM join channel successsful");
-                HandUpButton.Hidden = false;
+                MutedView.Hidden = false;
             }
             else
             {
-                Console.WriteLine($"RTM join channel error: {errorCode}");
+                MutedView.Hidden = true;
             }
         }
 
-        private void OmMessageReceived(string peerId, AgoraRtmMessage message)
-        {
-            var text = message.Text;
-            var signal = JsonConvert.DeserializeObject<SignalMessage>(text);
-            var userItemIndex = _userList.IndexOf(_userList.First(i => i.Uid == signal.PeerId));
-            switch(signal.Action)
-            {
-                case SignalActionTypes.HandDown:
-                    _userList[userItemIndex].IsHandUp = false;
-                    break;
-                case SignalActionTypes.HandUp:
-                    _userList[userItemIndex].IsHandUp = true;
-                    break;
-            }
-            RemoteVideosContainer.ReloadRows(new [] { NSIndexPath.FromRowSection(userItemIndex, 0)}, UITableViewRowAnimation.Automatic);
-        }
+        #region UI events
 
         partial void OnHandUpButtonClicked(UIButton sender)
         {
@@ -185,34 +173,37 @@ namespace DT.Samples.Agora.Conference.iOS
             var signalMessage = new SignalMessage
             {
                 Action = sender.Selected ? SignalActionTypes.HandUp : SignalActionTypes.HandDown,
-                PeerId = _localId
+                RtcPeerId = _localId
             };
             var text = JsonConvert.SerializeObject(signalMessage);
-            var rtmMessage = new AgoraRtmMessage(text);
-            _rtmChannel.SendMessage(rtmMessage, (state) =>
-            {
-                Console.WriteLine($"RTM send channel msg state: {state}");
-            });
+            RtmService.Instance.SendChannelMessage(text);
         }
 
-        public void FirstRemoteVideoDecodedOfUid(AgoraRtcEngineKit engine, nuint uid, CoreGraphics.CGSize size, nint elapsed)
+        partial void InviteUserButtonClicked(UIKit.UIButton sender)
         {
-            if (_userList.Any(u => u.Uid == uid))
-                return;
+            var alertView = new UIAlertView("Invite people", "Enter user name", null, "Cancel", "Invite");
+            alertView.AlertViewStyle = UIAlertViewStyle.PlainTextInput;
+            alertView.Show();
 
-            var remoteId = (uint)uid;
-            _userList.Add(new RemoteVideInfo { Uid = remoteId });
-            RemoteVideosContainer.ReloadData();
-            if (ContainerView.Hidden)
+            alertView.Clicked += (s, e) =>
             {
-                ContainerView.Hidden = false;
-            }
-            RefreshDebug();
-        }
+                if (e.ButtonIndex == 1)
+                {
+                    var userName = alertView.GetTextField(0).Text;
+                    if (string.IsNullOrEmpty(userName))
+                        return;
 
-        private void RefreshDebug()
-        {
-            DebugData.Text = $"local: {_localId}";
+                    var signal = new SignalMessage
+                    {
+                        RtcPeerId = _localId,
+                        RtmUserName = RtmService.Instance.UserName,
+                        Action = SignalActionTypes.IncomingCall,
+                        Data = AgoraSettings.Current.RoomName
+                    };
+                    var sugnalText = JsonConvert.SerializeObject(signal);
+                    RtmService.Instance.SendPeerMessage(userName, sugnalText);
+                }
+            };
         }
 
         partial void ToggleAudioButtonClicked(NSObject sender)
@@ -230,16 +221,30 @@ namespace DT.Samples.Agora.Conference.iOS
             _agoraKit.SwitchCamera();
         }
 
-        public void LeaveChannel()
+        partial void EndCallClicked(NSObject sender)
         {
-            _agoraKit.LeaveChannel(null);
+            LeaveChannel();
             NavigationController.NavigationBarHidden = false;
             NavigationController.PopViewController(true);
         }
 
-        partial void EndCallClicked(NSObject sender)
+        #endregion
+
+        #region RTC events
+
+        public void FirstRemoteVideoDecodedOfUid(AgoraRtcEngineKit engine, nuint uid, CoreGraphics.CGSize size, nint elapsed)
         {
-            LeaveChannel();
+            if (_userList.Any(u => u.Uid == uid))
+                return;
+
+            var remoteId = (uint)uid;
+            _userList.Add(new RemoteVideInfo { Uid = remoteId });
+            RemoteVideosContainer.ReloadData();
+            if (ContainerView.Hidden)
+            {
+                ContainerView.Hidden = false;
+            }
+            RefreshDebug();
         }
 
         public void DidOfflineOfUid(AgoraRtcEngineKit engine, nuint uid, UserOfflineReason reason)
@@ -281,18 +286,6 @@ namespace DT.Samples.Agora.Conference.iOS
             NSLayoutConstraint.ActivateConstraints(new NSLayoutConstraint[] { viewWidth, viewRatio });
         }
 
-        private void UpdateMutedViewVisibility()
-        {
-            if (!VideoMuted && AudioMuted)
-            {
-                MutedView.Hidden = false;
-            }
-            else
-            {
-                MutedView.Hidden = true;
-            }
-        }
-
         public async Task TokenPrivilegeWillExpire(AgoraRtcEngineKit engine, string token)
         {
             var newToken = await AgoraTokenService.GetRtcToken(AgoraSettings.Current.RoomName);
@@ -301,5 +294,44 @@ namespace DT.Samples.Agora.Conference.iOS
                 _agoraKit.RenewToken(newToken);
             }
         }
+
+        #endregion
+
+        #region RTM events
+
+        private void OnSignalReceived(SignalMessage signal)
+        {
+            switch (signal.Action)
+            {
+                case SignalActionTypes.HandDown:
+                case SignalActionTypes.HandUp:
+                    var userItemIndex = _userList.IndexOf(_userList.First(i => i.Uid == signal.RtcPeerId));
+                    _userList[userItemIndex].IsHandUp = signal.Action == SignalActionTypes.HandUp;
+                    RemoteVideosContainer.ReloadRows(new[] { NSIndexPath.FromRowSection(userItemIndex, 0) }, UITableViewRowAnimation.Automatic);
+                    break;
+                case SignalActionTypes.IncomingCall:
+                    var alertView = new UIAlertView("Invite", $"You got invite to [{signal.Data}] room", null, "Cancel", "Join");
+                    alertView.Show();
+
+                    alertView.Clicked += (s, e) =>
+                    {
+                        if (e.ButtonIndex == 1)
+                        {
+                            LeaveChannel();
+                            InitAgoraRtc();
+                            JoinRtc();
+                            JoinRtm();
+                        }
+                    };
+                    break;
+            }
+        }
+
+        private void OnJoinChannel(bool success)
+        {
+            HandUpButton.Hidden = !success;
+        }
+
+        #endregion
     }
 }

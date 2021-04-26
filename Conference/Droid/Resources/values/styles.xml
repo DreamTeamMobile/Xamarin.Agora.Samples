@@ -60,4 +60,9 @@
 		<item
 			name="android:windowDrawsSystemBarBackgrounds">true</item>
 	</style>
+	<style
+		name  ="DT.Theme.AlertDialog"
+		parent="Theme.AppCompat.Light.Dialog.Alert">
+        <item name="android:textColor">@color/textColorDialog</item>
+    </style>
 </resources>

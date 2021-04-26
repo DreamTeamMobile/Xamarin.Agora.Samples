@@ -9,27 +9,68 @@ using Android.Widget;
 using DT.Samples.Agora.Shared;
 using DT.Samples.Agora.Shared.Helpers;
 using DT.Xamarin.Agora;
-using DT.Xamarin.Agora.Rtm;
 using DT.Xamarin.Agora.Video;
 using Newtonsoft.Json;
 
 namespace DT.Samples.Agora.Conference.Droid
 {
     [Activity(Label = "Room", ScreenOrientation = ScreenOrientation.Portrait, Theme = "@style/DT.Theme.Room")]
-    public class RoomActivity : Activity
+    public class RoomActivity : BaseActivity
     {
         private const int MaxLocalVideoDimension = 150;
         private RtcEngine _agoraEngine;
-        private RtmClient _rtmClient;
-        private RtmChannel _rtmChannel;
-        private AgoraRtmChannelListener _channelListener;
         private AgoraRtcHandler _agoraRtcHandler;
-        private AgoraRtmHandler _agoraRtmHandler;
+
         private bool _isVideoEnabled = true;
+        private bool IsVideoEnabled
+        {
+            get => _isVideoEnabled;
+            set
+            {
+                _isVideoEnabled = value;
+                var iv = FindViewById<ImageView>(Resource.Id.mute_video_button);
+                if (IsVideoEnabled)
+                {
+                    iv.SetImageResource(Resource.Drawable.ic_cam_active_call);
+                }
+                else
+                {
+                    iv.SetImageResource(Resource.Drawable.ic_cam_disabled_call);
+                }
+                _agoraEngine?.MuteLocalVideoStream(!IsVideoEnabled);
+                FindViewById(Resource.Id.local_video_container).Visibility = IsVideoEnabled ? ViewStates.Visible : ViewStates.Gone;
+                if(_localVideoView != null)
+                    _localVideoView.Visibility = IsVideoEnabled ? ViewStates.Visible : ViewStates.Gone;
+            }
+        }
+
+        private bool _isAudioEnabled = true;
+        private bool IsAudioEnabled
+        {
+            get => _isAudioEnabled;
+            set
+            {
+                _isAudioEnabled = value;
+                var iv = FindViewById<ImageView>(Resource.Id.mute_audio_button);
+                if (_isAudioEnabled)
+                {
+                    iv.SetImageResource(Resource.Drawable.ic_mic_active_call);
+                }
+                else
+                {
+                    iv.SetImageResource(Resource.Drawable.ic_mic_inactive_call);
+                }
+                _agoraEngine?.MuteLocalAudioStream(!IsAudioEnabled);
+                var visibleMutedLayers = !IsAudioEnabled ? ViewStates.Visible : ViewStates.Invisible;
+                FindViewById(Resource.Id.local_video_overlay).Visibility = visibleMutedLayers;
+                FindViewById(Resource.Id.local_video_muted).Visibility = visibleMutedLayers;
+            }
+        }
+
         private SurfaceView _localVideoView;
         private uint _localId = 0;
         private ProgressBar _progressBar;
-        private ResultCallback _sendMessageChannelCallback;
+        
 
         protected override void OnCreate(Bundle savedInstanceState)
         {
@@ -50,6 +91,8 @@ namespace DT.Samples.Agora.Conference.Droid
 
         private void InitializeAgoraEngine()
         {
+            IsVideoEnabled = true;
+            IsAudioEnabled = true;
             _agoraRtcHandler = new AgoraRtcHandler(this);
             _agoraEngine = RtcEngine.Create(BaseContext, AgoraTestConstants.AgoraAPI, _agoraRtcHandler);
         }
@@ -97,46 +140,6 @@ namespace DT.Samples.Agora.Conference.Droid
             });
         }
 
-        private async Task InitAndRunRTM()
-        {
-            _agoraRtmHandler = new AgoraRtmHandler(this);
-            _rtmClient = RtmClient.CreateInstance(this, AgoraTestConstants.AgoraAPI, _agoraRtmHandler);
-
-            _sendMessageChannelCallback = new ResultCallback();
-
-            _channelListener = new AgoraRtmChannelListener(this);
-            _rtmChannel = _rtmClient.CreateChannel(AgoraSettings.Current.RoomName, _channelListener);
-
-            var channelJoinCallBack = new ResultCallback();
-            channelJoinCallBack.OnSuccessAction += (obj) =>
-            {
-                if (_rtmChannel == null)
-                    return;
-                RunOnUiThread(() => FindViewById<ImageView>(Resource.Id.hand_up_button).Visibility = ViewStates.Visible);
-            };
-            channelJoinCallBack.OnFailureAction += (err) =>
-            {
-                if (_rtmChannel == null)
-                    return;
-                Toast.MakeText(this, "Could not join to rtm channel", ToastLength.Short).Show();
-            };
-
-            var userId = _localId.ToString();
-            var rtmToken = await AgoraTokenService.GetRtmToken(userId);
-            var loginCallback = new ResultCallback();
-            loginCallback.OnSuccessAction += (obj) =>
-            {
-                _rtmChannel?.Join(channelJoinCallBack);
-            };
-            loginCallback.OnFailureAction += (err) =>
-            {
-                if (_rtmChannel == null)
-                    return;
-                RunOnUiThread(() => Toast.MakeText(this, "Could not RTM login", ToastLength.Short).Show());
-            };
-            _rtmClient.Login(rtmToken, userId, loginCallback);
-        }
-
         private void SetupRemoteVideo(int uid)
         {
             var container = (LinearLayout)FindViewById(Resource.Id.remote_videos_container);
@@ -182,7 +185,7 @@ namespace DT.Samples.Agora.Conference.Droid
             for (int i = 0; i < container.ChildCount; i++)
             {
                 var child = container.GetChildAt(i) as RemoteVideoView;
-                if ((int)child.Tag == uid)
+                if ((int)child.Tag == (int)uid)
                 {
                     return child;
                 }
@@ -193,13 +196,15 @@ namespace DT.Samples.Agora.Conference.Droid
         private void LeaveChannel()
         {
             Console.WriteLine("LeaveChannel");
+            var localContainer = (FrameLayout)FindViewById(Resource.Id.local_video_view_container);
+            localContainer.RemoveAllViews();
+            var remoteContainer = (LinearLayout)FindViewById(Resource.Id.remote_videos_container);
+            remoteContainer.RemoveAllViews();
+
             _agoraEngine.LeaveChannel();
-            if (_rtmChannel != null)
-            {
-                _rtmChannel.Leave(null);
-                _rtmChannel.Release();
-                _rtmChannel = null;
-            }
+            RtmService.Instance.OnJoinChannel -= DidJionChannel;
+            RtmService.Instance.OnSignalReceived -= OnSignalReceived;
+            RtmService.Instance.LeaveChannel();
             RtcEngine.Destroy();
         }
 
@@ -214,41 +219,13 @@ namespace DT.Samples.Agora.Conference.Droid
         [Java.Interop.Export("OnLocalVideoMuteClicked")]
         public void OnLocalVideoMuteClicked(View view)
         {
-            ImageView iv = (ImageView)view;
-            if (iv.Selected)
-            {
-                iv.Selected = false;
-                iv.SetImageResource(Resource.Drawable.ic_cam_active_call);
-            }
-            else
-            {
-                iv.Selected = true;
-                iv.SetImageResource(Resource.Drawable.ic_cam_disabled_call);
-            }
-            _agoraEngine.MuteLocalVideoStream(iv.Selected);
-            _isVideoEnabled = !iv.Selected;
-            FindViewById(Resource.Id.local_video_container).Visibility = _isVideoEnabled ? ViewStates.Visible : ViewStates.Gone;
-            _localVideoView.Visibility = _isVideoEnabled ? ViewStates.Visible : ViewStates.Gone;
+            IsVideoEnabled = !IsVideoEnabled;
         }
 
         [Java.Interop.Export("OnLocalAudioMuteClicked")]
         public void OnLocalAudioMuteClicked(View view)
         {
-            ImageView iv = (ImageView)view;
-            if (iv.Selected)
-            {
-                iv.Selected = false;
-                iv.SetImageResource(Resource.Drawable.ic_mic_active_call);
-            }
-            else
-            {
-                iv.Selected = true;
-                iv.SetImageResource(Resource.Drawable.ic_mic_inactive_call);
-            }
-            _agoraEngine.MuteLocalAudioStream(iv.Selected);
-            var visibleMutedLayers = iv.Selected ? ViewStates.Visible : ViewStates.Invisible;
-            FindViewById(Resource.Id.local_video_overlay).Visibility = visibleMutedLayers;
-            FindViewById(Resource.Id.local_video_muted).Visibility = visibleMutedLayers;
+            IsAudioEnabled = !IsAudioEnabled;
         }
 
         [Java.Interop.Export("OnHanUpClicked")]
@@ -267,13 +244,12 @@ namespace DT.Samples.Agora.Conference.Droid
             }
             var signal = new SignalMessage
             {
-                PeerId = _localId,
+                RtcPeerId = _localId,
                 Action = iv.Selected ? SignalActionTypes.HandUp : SignalActionTypes.HandDown
             };
 
-            var message = _rtmClient.CreateMessage();
-            message.Text = JsonConvert.SerializeObject(signal);
-            _rtmChannel.SendMessage(message, _sendMessageChannelCallback);
+            var text = JsonConvert.SerializeObject(signal);
+            RtmService.Instance.SendChannelMessage(text);
         }
 
         [Java.Interop.Export("OnSwitchCameraClicked")]
@@ -282,10 +258,29 @@ namespace DT.Samples.Agora.Conference.Droid
             _agoraEngine.SwitchCamera();
         }
 
+        [Java.Interop.Export("OnAddUserClicked")]
+        public void OnAddUserClicked(View view)
+        {
+            ShowEntryAlertDialog(GetString(Resource.String.invite_dialog_title), GetString(Resource.String.invite_user_hint), GetString(Resource.String.invite_button),
+                (text) =>
+                {
+                    var userName = text;
+                    var signal = new SignalMessage
+                    {
+                        RtcPeerId = _localId,
+                        RtmUserName = RtmService.Instance.UserName,
+                        Action = SignalActionTypes.IncomingCall,
+                        Data = AgoraSettings.Current.RoomName
+                    };
+                    var sugnalText = JsonConvert.SerializeObject(signal);
+                    RtmService.Instance.SendPeerMessage(userName, sugnalText);
+                },
+                null);
+        }
+
         [Java.Interop.Export("OnEncCallClicked")]
         public void OnEncCallClicked(View view)
         {
-            LeaveChannel();
             Finish();
         }
 
@@ -297,18 +292,35 @@ namespace DT.Samples.Agora.Conference.Droid
         {
             RunOnUiThread(() =>
             {
-                var view = FindRemoteVideoView(message.PeerId);
-                if (view != null)
+                switch (message.Action)
                 {
-                    switch (message.Action)
-                    {
-                        case SignalActionTypes.HandUp:
-                            view.IsHandUp = true;
-                            break;
-                        case SignalActionTypes.HandDown:
-                            view.IsHandUp = false;
-                            break;
-                    }
+                    case SignalActionTypes.HandUp:
+                    case SignalActionTypes.HandDown:
+                        var view = FindRemoteVideoView(message.RtcPeerId);
+                        if (view != null)
+                        {
+                            view.IsHandUp = message.Action == SignalActionTypes.HandUp;
+                        }
+                        break;
+                    case SignalActionTypes.IncomingCall:
+                        ShowAlertDialog(string.Format(GetString(Resource.String.invite_message_mask), message.Data), GetString(Resource.String.accept_button),
+                            () =>
+                            {
+                                AgoraSettings.Current.RoomName = message.Data;
+                                LeaveChannel();
+                                InitAgoraEngineAndJoinChannel();
+                            },
+                            () =>
+                            {
+                                var answerSignal = new SignalMessage
+                                {
+                                    Action = SignalActionTypes.RejectCall,
+                                    RtmUserName = RtmService.Instance.UserName
+                                };
+                                RtmService.Instance.SendPeerMessage(message.RtmUserName, JsonConvert.SerializeObject(answerSignal));
+                            }
+                        );
+                        break;
                 }
             });
         }
@@ -377,7 +389,7 @@ namespace DT.Samples.Agora.Conference.Droid
                 parameters.Height = (int)TypedValue.ApplyDimension(ComplexUnitType.Dip, containerHeight, Resources.DisplayMetrics);
                 parameters.Width = (int)TypedValue.ApplyDimension(ComplexUnitType.Dip, containerWidth, Resources.DisplayMetrics);
                 videoContainer.LayoutParameters = parameters;
-                FindViewById(Resource.Id.local_video_container).Visibility = _isVideoEnabled ? ViewStates.Visible : ViewStates.Invisible;
+                FindViewById(Resource.Id.local_video_container).Visibility = IsVideoEnabled ? ViewStates.Visible : ViewStates.Invisible;
             });
         }
 
@@ -385,8 +397,18 @@ namespace DT.Samples.Agora.Conference.Droid
         {
             RunOnUiThread(() => _progressBar.Visibility = ViewStates.Gone);
             _localId = (uint)uid;
-            InitAndRunRTM();
+            RtmService.Instance.OnJoinChannel += DidJionChannel;
+            RtmService.Instance.OnSignalReceived += OnSignalReceived;
+            RtmService.Instance.JoinChannel(channel); 
             RefreshDebug();
+        }
+
+        private void DidJionChannel(bool success)
+        {
+            if (success)
+            {
+                RunOnUiThread(() => FindViewById<ImageView>(Resource.Id.hand_up_button).Visibility = ViewStates.Visible);
+            }
         }
 
         #endregion

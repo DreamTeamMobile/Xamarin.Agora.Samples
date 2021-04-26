@@ -60,41 +60,41 @@ namespace DT.Samples.Agora.Rtm.Droid.Utils
 
         public static void UploadImage(Context context, RtmClient rtmClient, string file, ResultCallback resultCallback)
         {
-            var createResultCallback = new ResultCallback();
-            createResultCallback.OnSuccessAction += (data) =>
-            {
-                Log.Debug(LogTag, $"UploadImage File: ${file}");
-                var rtmImageMessage = data as RtmImageMessage;
-                Log.Debug(LogTag, $"UploadImage MediaId: ${rtmImageMessage.MediaId}");
-                var width = rtmImageMessage.Width / 5;
-                var height = rtmImageMessage.Height / 5;
-                rtmImageMessage.SetThumbnail(PreloadImage(context, file, width, height));
-                rtmImageMessage.ThumbnailWidth = width;
-                rtmImageMessage.ThumbnailHeight = height;
+            //var createResultCallback = new ResultCallback();
+            //createResultCallback.OnSuccessAction += (data) =>
+            //{
+            //    Log.Debug(LogTag, $"UploadImage File: ${file}");
+            //    var rtmImageMessage = data as RtmImageMessage;
+            //    Log.Debug(LogTag, $"UploadImage MediaId: ${rtmImageMessage.MediaId}");
+            //    var width = rtmImageMessage.Width / 5;
+            //    var height = rtmImageMessage.Height / 5;
+            //    rtmImageMessage.SetThumbnail(PreloadImage(context, file, width, height));
+            //    rtmImageMessage.ThumbnailWidth = width;
+            //    rtmImageMessage.ThumbnailHeight = height;
 
-                resultCallback.OnSuccess(rtmImageMessage);
-            };
-            createResultCallback.OnFailureAction += (err) => resultCallback.OnFailureAction(err);
-            rtmClient.CreateImageMessageByUploading(file, new RtmRequestId(), createResultCallback);
+            //    resultCallback.OnSuccess(rtmImageMessage);
+            //};
+            //createResultCallback.OnFailureAction += (err) => resultCallback.OnFailureAction(err);
+            //rtmClient.CreateImageMessageByUploading(file, new RtmRequestId(), createResultCallback);
         }
 
-        public static void CacheImage(Context context, RtmClient rtmClient, RtmImageMessage rtmImageMessage, ResultCallback resultCallback)
-        {
-            var cacheFile = GetCacheFile(context, rtmImageMessage.MediaId);
-            if(new File(cacheFile).Exists())
-            {
-                resultCallback.OnSuccess(cacheFile);
-            }
-            else
-            {
-                var downloadResultCallback = new ResultCallback();
-                downloadResultCallback.OnSuccessAction += (obj) => resultCallback.OnSuccess(cacheFile);
-                downloadResultCallback.OnFailureAction += (err) => resultCallback.OnFailureAction(err);
-                rtmClient.DownloadMediaToFile(rtmImageMessage.MediaId,
-                    cacheFile,
-                    new RtmRequestId(),
-                    downloadResultCallback);
-            }
-        }
+        //public static void CacheImage(Context context, RtmClient rtmClient, RtmImageMessage rtmImageMessage, ResultCallback resultCallback)
+        //{
+        //    var cacheFile = GetCacheFile(context, rtmImageMessage.MediaId);
+        //    if(new File(cacheFile).Exists())
+        //    {
+        //        resultCallback.OnSuccess(cacheFile);
+        //    }
+        //    else
+        //    {
+        //        var downloadResultCallback = new ResultCallback();
+        //        downloadResultCallback.OnSuccessAction += (obj) => resultCallback.OnSuccess(cacheFile);
+        //        downloadResultCallback.OnFailureAction += (err) => resultCallback.OnFailureAction(err);
+        //        rtmClient.DownloadMediaToFile(rtmImageMessage.MediaId,
+        //            cacheFile,
+        //            new RtmRequestId(),
+        //            downloadResultCallback);
+        //    }
+        //}
     }
 }

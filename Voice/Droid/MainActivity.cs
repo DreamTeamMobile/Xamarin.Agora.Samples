@@ -13,7 +13,7 @@ using DT.Xamarin.Agora;
 
 namespace DT.Samples.Agora.Voice.Droid
 {
-    [Activity(Label = "@string/app_name", Theme = "@style/AppTheme.NoActionBar", MainLauncher = true)]
+    [Activity(Label = "@string/app_name", Theme = "@style/AppTheme.NoActionBar")]
     public class MainActivity : AppCompatActivity
     {
         private const int PERMISSION_REQ_ID_RECORD_AUDIO = 22;

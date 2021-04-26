@@ -13,4 +13,12 @@
         <item name="windowNoTitle">true</item>
     </style>
 
+    <style name  ="DT.Theme.Splash" parent="Theme.AppCompat.Light.NoActionBar">
+		<item name="android:windowBackground">@drawable/splash_screen</item>
+		<item name="android:windowNoTitle">true</item>
+		<item name="android:windowContentOverlay">@null</item>
+		<item name="android:windowFullscreen">true</item>
+		<item name="android:windowActionBar">true</item>
+	</style>
+
 </resources>

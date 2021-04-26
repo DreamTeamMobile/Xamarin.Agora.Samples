@@ -22,7 +22,7 @@ Use one of the following approaches:
 1. Constants
 1.1 Prepare Agora App ID, you can follow [Obtaining an App ID instructions](https://docs.agora.io/en/2.1.1/product/Video/Agora%20Basics/key_web#app-id-web) to get your App ID.
 1.2 Generate temp Agora token using [Console](https://console.agora.io/)
-1.3 Replace the following empty string with the corresponding App ID and TOken:
+1.3 Replace the following empty string with the corresponding App ID and Token:
     [DT.Samples.Agora.Shared/AgoraTestConstants.cs](../Shared/AgoraTestConstants.cs)
 ```
         public static string AgoraAPI
@@ -30,9 +30,12 @@ Use one of the following approaches:
         public static string Token
 ```
 2. Local service
-2.1 Run [AgoraTokenServer](../AgoraTokenServer) and get server URL
-2.2 Replace the following empty string with the corresponding URL:
-    [DT.Samples.Agora.Shared/TokenServerBaseUrl.cs](../Shared/TokenServerBaseUrl.cs)
+2.1 Prepare Agora App ID, you can follow [Obtaining an App ID instructions](https://docs.agora.io/en/2.1.1/product/Video/Agora%20Basics/key_web#app-id-web) to get your App ID.
+2.2 Run [AgoraTokenServer](../AgoraTokenServer) and get server URL
+2.3 Replace the following empty string with the corresponding App ID and URL:
+    [Shared/AgoraTestConstants.cs](../Shared/AgoraTestConstants.cs)
 ```
+		public static string AgoraAPI
+		...
         public static string TokenServerBaseUrl
 ```

@@ -8,10 +8,12 @@ This solutions shows how you can use RTM with RTC. "HandUp" button was added for
 Quick Start
 -----------
 
+1. Prepare Agora App ID, you can follow [Obtaining an App ID instructions](https://docs.agora.io/en/2.1.1/product/Video/Agora%20Basics/key_web#app-id-web) to get your App ID.
 1. Run [AgoraTokenServer](../AgoraTokenServer) and get server URL
-1. Replace the following empty string with the corresponding server URL:
-*
+1. Replace the following empty string with the corresponding App ID and URL:
     [Shared/AgoraTestConstants.cs](../Shared/AgoraTestConstants.cs)
 ```
+		public static string AgoraAPI
+		...
         public static string TokenServerBaseUrl
 ```

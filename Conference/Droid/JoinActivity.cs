@@ -45,6 +45,7 @@ namespace DT.Samples.Agora.Conference.Droid
             CheckPermissions();
             FindViewById<EditText>(Resource.Id.channelName).Text = AgoraSettings.Current.RoomName;
             FindViewById<EditText>(Resource.Id.encryptionKey).Text = AgoraSettings.Current.EncryptionPhrase;
+            FindViewById<TextView>(Resource.Id.userName).Text = RtmService.Instance.UserName;
             AgoraHandler = new AgoraQualityHandler(this);
             AgoraEngine = RtcEngine.Create(BaseContext, AgoraTestConstants.AgoraAPI, AgoraHandler);
             AgoraEngine.EnableWebSdkInteroperability(true);

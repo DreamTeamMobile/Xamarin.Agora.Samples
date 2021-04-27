@@ -1,6 +1,6 @@
 // WARNING
 //
-// This file has been generated automatically by Xamarin Studio to store outlets and
+// This file has been generated automatically by Visual Studio to store outlets and
 // actions made in the UI designer. If it is removed, they will be lost.
 // Manual changes to this file may not be handled correctly.
 //
@@ -29,9 +29,17 @@ namespace DT.Samples.Agora.Conference.iOS
 
 		[Outlet]
 		UIKit.UIButton JoinButton { get; set; }
+
+		[Outlet]
+		UIKit.UILabel UserNameLabel { get; set; }
 		
 		void ReleaseDesignerOutlets ()
 		{
+			if (AgoraVersionLabel != null) {
+				AgoraVersionLabel.Dispose ();
+				AgoraVersionLabel = null;
+			}
+
 			if (ChannelNameEdit != null) {
 				ChannelNameEdit.Dispose ();
 				ChannelNameEdit = null;
@@ -42,9 +50,9 @@ namespace DT.Samples.Agora.Conference.iOS
 				ConnectingLabel = null;
 			}
 
-			if (AgoraVersionLabel != null) {
-				AgoraVersionLabel.Dispose ();
-				AgoraVersionLabel = null;
+			if (ConnectionImage != null) {
+				ConnectionImage.Dispose ();
+				ConnectionImage = null;
 			}
 
 			if (EncryptionKeyEdit != null) {
@@ -57,9 +65,9 @@ namespace DT.Samples.Agora.Conference.iOS
 				JoinButton = null;
 			}
 
-			if (ConnectionImage != null) {
-				ConnectionImage.Dispose ();
-				ConnectionImage = null;
+			if (UserNameLabel != null) {
+				UserNameLabel.Dispose ();
+				UserNameLabel = null;
 			}
 		}
 	}

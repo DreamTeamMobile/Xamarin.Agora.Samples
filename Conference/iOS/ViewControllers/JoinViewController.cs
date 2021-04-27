@@ -34,6 +34,7 @@ namespace DT.Samples.Agora.Conference.iOS
             ChannelNameEdit.EditingDidBegin += TextField_EditingDidBegin;
             ChannelNameEdit.EditingDidEnd += TextField_EditingDidEnd;
             EncryptionKeyEdit.Text = AgoraSettings.Current.EncryptionPhrase;
+            UserNameLabel.Text = RtmService.Instance.UserName;
             MakeTextFieldRounded(ChannelNameEdit);
             AgoraVersionLabel.Text = string.Format(AgoraVersion, AgoraRtcEngineKit.SdkVersion);
             NavigationItem.LeftBarButtonItem = new UIBarButtonItem(UIImage.FromBundle("ic_share"), UIBarButtonItemStyle.Plain, ShareButtonCliked);

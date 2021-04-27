@@ -4541,34 +4541,40 @@ namespace DT.Samples.Agora.Conference.Droid
 			public const int profile_prompt = 2131689538;
 			
 			// aapt resource value: 0x7F0F0043
-			public const int rtm_connect_error = 2131689539;
+			public const int room_name_hint = 2131689539;
 			
 			// aapt resource value: 0x7F0F0044
-			public const int search_menu_title = 2131689540;
+			public const int rtm_connect_error = 2131689540;
 			
 			// aapt resource value: 0x7F0F0045
-			public const int settings_bitrate = 2131689541;
+			public const int search_menu_title = 2131689541;
 			
 			// aapt resource value: 0x7F0F0046
-			public const int settings_framerate = 2131689542;
+			public const int settings_bitrate = 2131689542;
 			
 			// aapt resource value: 0x7F0F0047
-			public const int settings_name = 2131689543;
+			public const int settings_framerate = 2131689543;
 			
 			// aapt resource value: 0x7F0F0048
-			public const int settings_profile = 2131689544;
+			public const int settings_name = 2131689544;
 			
 			// aapt resource value: 0x7F0F0049
-			public const int settings_resolution = 2131689545;
+			public const int settings_profile = 2131689545;
 			
 			// aapt resource value: 0x7F0F004A
-			public const int settings_usemy = 2131689546;
+			public const int settings_resolution = 2131689546;
 			
 			// aapt resource value: 0x7F0F004B
-			public const int splash_greetings = 2131689547;
+			public const int settings_usemy = 2131689547;
 			
 			// aapt resource value: 0x7F0F004C
-			public const int status_bar_notification_info_overflow = 2131689548;
+			public const int splash_greetings = 2131689548;
+			
+			// aapt resource value: 0x7F0F004D
+			public const int status_bar_notification_info_overflow = 2131689549;
+			
+			// aapt resource value: 0x7F0F004E
+			public const int user_name_hint = 2131689550;
 			
 			static String()
 			{

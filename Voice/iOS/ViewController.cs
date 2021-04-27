@@ -1,6 +1,7 @@
 ﻿using DT.Samples.Agora.Shared;
 using DT.Xamarin.Agora;
 using System;
+using System.Threading.Tasks;
 using UIKit;
 
 namespace DT.Samples.Agora.Voice.iOS
@@ -8,6 +9,7 @@ namespace DT.Samples.Agora.Voice.iOS
     public partial class ViewController : UIViewController
     {
         private AgoraRtcEngineKit _agoraKit;
+        private const string ChannelName = "drmtm.us";
 
         public ViewController(IntPtr handle) : base(handle)
         {
@@ -17,8 +19,19 @@ namespace DT.Samples.Agora.Voice.iOS
         {
             base.ViewDidLoad();
 
+            JoinButton.TouchUpInside += OnJoinClicked;
+            JoinButton.Hidden = true;
+
             InitializeAgoraEngine();
             JoinChannel();
+        }
+
+        private void OnJoinClicked(object sender, EventArgs e)
+        {
+            InitializeAgoraEngine();
+            JoinChannel();
+            ControlButtonsView.Hidden = false;
+            JoinButton.Hidden = true;
         }
 
         private void InitializeAgoraEngine()
@@ -27,11 +40,11 @@ namespace DT.Samples.Agora.Voice.iOS
             _agoraKit = AgoraRtcEngineKit.SharedEngineWithAppIdAndDelegate(AgoraTestConstants.AgoraAPI, null);
         }
 
-        private void JoinChannel()
+        private async Task JoinChannel()
         {
-            _agoraKit.JoinChannelByToken(AgoraTestConstants.Token, "drmtm.us", string.Empty, 0, (s, i, k) =>
+            var token = await AgoraTokenService.GetRtcToken(ChannelName);
+            _agoraKit.JoinChannelByToken(token, ChannelName, string.Empty, 0, (s, i, k) =>
             {
-                // Joined channel "drmtm.us"
                 _agoraKit.SetEnableSpeakerphone(true);
                 UIApplication.SharedApplication.IdleTimerDisabled = true;
             });
@@ -45,13 +58,9 @@ namespace DT.Samples.Agora.Voice.iOS
         private void LeaveChannel()
         {
             _agoraKit.LeaveChannel(null);
-            HideControlButtons();
-            UIApplication.SharedApplication.IdleTimerDisabled = false;
-        }
-
-        private void HideControlButtons()
-        {
             ControlButtonsView.Hidden = true;
+            UIApplication.SharedApplication.IdleTimerDisabled = false;
+            JoinButton.Hidden = false;
         }
 
         partial void DidClickMuteButton(UIButton sender)

@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Threading.Tasks;
 using Android;
 using Android.App;
 using Android.Graphics;
@@ -13,10 +14,11 @@ using DT.Xamarin.Agora;
 
 namespace DT.Samples.Agora.Voice.Droid
 {
-    [Activity(Label = "@string/app_name", Theme = "@style/AppTheme.NoActionBar", MainLauncher = true)]
+    [Activity(Label = "@string/app_name", Theme = "@style/AppTheme.NoActionBar")]
     public class MainActivity : AppCompatActivity
     {
         private const int PERMISSION_REQ_ID_RECORD_AUDIO = 22;
+        private const string ChannelName = "drmtm.us";
 
         private RtcEngine _rtcEngine;
 
@@ -64,15 +66,10 @@ namespace DT.Samples.Agora.Voice.Droid
             }
         }
 
-        private void JoinChannel()
+        private async Task JoinChannel()
         {
-            var accessToken = AgoraTestConstants.Token;
-            if (string.IsNullOrEmpty(accessToken))
-            {
-                accessToken = null; // default, no token
-            }
-
-            _rtcEngine.JoinChannel(accessToken, "drmtm.us", string.Empty, 0);
+            var accessToken = await AgoraTokenService.GetRtcToken(ChannelName);
+            _rtcEngine.JoinChannel(accessToken, ChannelName, string.Empty, 0);
         }
 
         private void LeaveChannel()

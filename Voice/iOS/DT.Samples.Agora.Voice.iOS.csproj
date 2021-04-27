@@ -80,10 +80,11 @@
     </ItemGroup>
     <ItemGroup>
         <Folder Include="Resources\" />
+        <Folder Include="Assets.xcassets\ic_logo_dt.imageset\" />
     </ItemGroup>
     <ItemGroup>
-        <InterfaceDefinition Include="LaunchScreen.storyboard" />
         <InterfaceDefinition Include="Main.storyboard" />
+        <InterfaceDefinition Include="LaunchScreen.storyboard" />
     </ItemGroup>
     <ItemGroup>
         <None Include="Info.plist" />
@@ -128,6 +129,8 @@
       <ImageAsset Include="Assets.xcassets\btn_endcall.imageset\Contents.json" />
       <ImageAsset Include="Assets.xcassets\btn_mute.imageset\btn_mute.pdf" />
       <ImageAsset Include="Assets.xcassets\btn_mute.imageset\Contents.json" />
+      <ImageAsset Include="Assets.xcassets\ic_logo_dt.imageset\Contents.json" />
+      <ImageAsset Include="Assets.xcassets\ic_logo_dt.imageset\icLogoDt.pdf" />
     </ItemGroup>
     <ItemGroup>
       <ProjectReference Include="..\..\Shared\DT.Samples.Agora.Shared.csproj">

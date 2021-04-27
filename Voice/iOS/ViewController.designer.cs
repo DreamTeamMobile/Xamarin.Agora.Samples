@@ -15,6 +15,9 @@ namespace DT.Samples.Agora.Voice.iOS
 		[Outlet]
 		UIKit.UIView ControlButtonsView { get; set; }
 
+		[Outlet]
+		UIKit.UIButton JoinButton { get; set; }
+
 		[Action ("DidClickHangUpButton:")]
 		partial void DidClickHangUpButton (UIKit.UIButton sender);
 
@@ -29,6 +32,11 @@ namespace DT.Samples.Agora.Voice.iOS
 			if (ControlButtonsView != null) {
 				ControlButtonsView.Dispose ();
 				ControlButtonsView = null;
+			}
+
+			if (JoinButton != null) {
+				JoinButton.Dispose ();
+				JoinButton = null;
 			}
 		}
 	}

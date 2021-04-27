@@ -54,7 +54,7 @@
     <Reference Include="System.Core" />
     <Reference Include="Xamarin.Mac" />
     <Reference Include="Xamarin.Agora.Voice.Mac">
-      <HintPath>..\packages\Xamarin.Agora.Voice.Mac.3.4.1\lib\Xamarin.Mac20\Xamarin.Agora.Voice.Mac.dll</HintPath>
+      <HintPath>..\..\packages\Xamarin.Agora.Voice.Mac.3.4.1\lib\Xamarin.Mac20\Xamarin.Agora.Voice.Mac.dll</HintPath>
     </Reference>
   </ItemGroup>
   <ItemGroup>

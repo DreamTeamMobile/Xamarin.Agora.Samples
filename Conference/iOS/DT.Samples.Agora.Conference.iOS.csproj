@@ -227,7 +227,6 @@
     <ImageAsset Include="Assets.xcassets\ic_logo_agora.imageset\icLogoAgora.pdf" />
     <ImageAsset Include="Assets.xcassets\ic_share.imageset\Contents.json" />
     <ImageAsset Include="Assets.xcassets\ic_settings.imageset\Contents.json" />
-    <ImageAsset Include="Assets.xcassets\btn_join_disabled.imageset\btnJoinDisabled.pdf" />
     <ImageAsset Include="Assets.xcassets\btn_join_disabled.imageset\Contents.json" />
     <ImageAsset Include="Assets.xcassets\btn_join_enabled.imageset\btnJoinEnabled.pdf" />
     <ImageAsset Include="Assets.xcassets\btn_join_enabled.imageset\Contents.json" />
@@ -282,6 +281,7 @@
     <ImageAsset Include="Assets.xcassets\ic_hand_up.imageset\ic_hand.png" />
     <ImageAsset Include="Assets.xcassets\ic_add_user.imageset\Contents.json" />
     <ImageAsset Include="Assets.xcassets\ic_add_user.imageset\ic_user_add.png" />
+    <ImageAsset Include="Assets.xcassets\btn_join_disabled.imageset\btnJoinDisabled.png" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="Resources\" />

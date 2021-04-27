@@ -12,26 +12,28 @@
         android:layout_gravity="center_horizontal"
         android:layout_width="220sp"
         android:layout_height="wrap_content" />
-    <EditText
-        android:id="@+id/channelName"
-        android:hint="Room Name"
-        android:textSize="16sp"
-        android:layout_marginLeft="10dp"
-        android:layout_marginRight="10dp"
-        android:layout_marginTop="45dp"
-        android:layout_width="fill_parent"
-        android:layout_height="wrap_content" />
-    <EditText
-        android:visibility="gone"
-        android:id="@+id/encryptionKey"
-        android:textSize="16sp"
-        android:hint="Encryption Key"
-        android:layout_marginLeft="10dp"
-        android:layout_marginRight="10dp"
-        android:layout_marginTop="15dp"
-        android:layout_gravity="center_horizontal"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content" />
+	<EditText
+		android:id="@+id/channelName"
+		android:hint="@string/room_name_hint"
+		android:textSize="16sp"
+		android:layout_marginLeft="10dp"
+		android:layout_marginRight="10dp"
+		android:layout_marginTop="45dp"
+		android:layout_width="fill_parent"
+		android:layout_height="wrap_content"
+		android:inputType="text" />
+	<EditText
+		android:visibility="gone"
+		android:id="@+id/encryptionKey"
+		android:textSize="16sp"
+		android:hint="Encryption Key"
+		android:layout_marginLeft="10dp"
+		android:layout_marginRight="10dp"
+		android:layout_marginTop="15dp"
+		android:layout_gravity="center_horizontal"
+		android:layout_width="wrap_content"
+		android:layout_height="wrap_content"
+		android:inputType="text" />
     <Button
         android:text="@string/join_button"
         android:textSize="20sp"

@@ -9,7 +9,7 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DT.Samples.Agora.Shared", "
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DT.Samples.Agora.Voice.iOS", "iOS\DT.Samples.Agora.Voice.iOS.csproj", "{1FDB4B53-3B7C-481B-B87E-5302CD95ACE3}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DT.Samples.Agora.Voice.Mac", "DT.Samples.Agora.Voice.Mac\DT.Samples.Agora.Voice.Mac.csproj", "{D9258CAA-21CE-47A3-93B7-AFA6E7C5246A}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DT.Samples.Agora.Voice.Mac", "Mac\DT.Samples.Agora.Voice.Mac.csproj", "{D9258CAA-21CE-47A3-93B7-AFA6E7C5246A}"
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Solution Items", "Solution Items", "{935ED749-5BBE-44C2-B30A-32ACDE7AA9CB}"
 	ProjectSection(SolutionItems) = preProject

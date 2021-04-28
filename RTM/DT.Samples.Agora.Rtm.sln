@@ -7,7 +7,7 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DT.Samples.Agora.Rtm.Droid"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DT.Samples.Agora.Shared", "..\Shared\DT.Samples.Agora.Shared.csproj", "{2DDB7277-5ACB-4DE9-BFC7-29C5DEDA4217}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DT.Samples.Agora.Rtm.Mac", "Mac.Mac\DT.Samples.Agora.Rtm.Mac.csproj", "{5B071126-AF02-4A15-8198-896428978760}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DT.Samples.Agora.Rtm.Mac", "Mac\DT.Samples.Agora.Rtm.Mac.csproj", "{5B071126-AF02-4A15-8198-896428978760}"
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Solution Items", "Solution Items", "{B4EAA3FD-2AB1-4B54-A5FD-733B0597807E}"
 	ProjectSection(SolutionItems) = preProject

@@ -48,8 +48,6 @@ namespace DT.Samples.Agora.Conference.Droid
             };
             loginCallback.OnFailureAction += (err) =>
             {
-                if (_rtmChannel == null)
-                    return;
                 OnLogin?.Invoke(false);
                 Log("Login Fail");
             };

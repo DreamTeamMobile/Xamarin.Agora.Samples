@@ -27,6 +27,7 @@ Quick Start
         public static string AgoraAPI
 ```
 Then Use one of the following approaches:
+
 **Constants**
 - Generate temp Agora token using [Console](https://console.agora.io/)
 - Replace the following empty string with the corresponding Token:

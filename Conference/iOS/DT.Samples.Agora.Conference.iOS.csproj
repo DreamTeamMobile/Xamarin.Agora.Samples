@@ -326,6 +326,7 @@
     <Folder Include="ViewControllers\" />
     <Folder Include="Delegates\" />
     <Folder Include="Assets.xcassets\ic_add_user.imageset\" />
+    <Folder Include="Helpers\" />
   </ItemGroup>
   <ItemGroup>
     <InterfaceDefinition Include="LaunchScreen.storyboard" />
@@ -368,6 +369,7 @@
       <DependentUpon>LoginViewController.cs</DependentUpon>
     </Compile>
     <Compile Include="RtmService.cs" />
+    <Compile Include="Helpers\UIExtensions.cs" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\..\Shared\DT.Samples.Agora.Shared.csproj">

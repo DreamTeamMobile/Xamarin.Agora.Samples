@@ -344,6 +344,7 @@
     <Compile Include="Theme.cs" />
     <Compile Include="PickerModel.cs" />
     <Compile Include="AgoraRtcQualityDelegate.cs" />
+    <Compile Include="Helpers\UIExtensions.cs" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\..\Shared\DT.Samples.Agora.Shared.csproj">

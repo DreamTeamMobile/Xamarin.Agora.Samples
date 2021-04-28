@@ -343,6 +343,7 @@
     <Compile Include="Theme.cs" />
     <Compile Include="PickerModel.cs" />
     <Compile Include="AgoraRtcQualityDelegate.cs" />
+    <Compile Include="Helpers\UIExtensions.cs" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\DT.Samples.Agora.ScreenSharing.iOS.Extension\DT.Samples.Agora.ScreenSharing.iOS.Extension.csproj">

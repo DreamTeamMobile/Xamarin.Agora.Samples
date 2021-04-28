@@ -16,8 +16,8 @@ namespace DT.Samples.Agora.Shared
     {
         public static async Task<string> GetRtcToken(string channelName)
         {
-            if (!string.IsNullOrEmpty(AgoraTestConstants.Token))
-                return AgoraTestConstants.Token;
+            if (!string.IsNullOrEmpty(AgoraTestConstants.RtcToken))
+                return AgoraTestConstants.RtcToken;
 
             var request = WebRequest.Create($"{AgoraTestConstants.TokenServerBaseUrl}/rtcToken?channelName={channelName}");
             return await GetStringResponse(request);
@@ -25,6 +25,9 @@ namespace DT.Samples.Agora.Shared
 
         public static async Task<string> GetRtmToken(string userName)
         {
+            if (!string.IsNullOrEmpty(AgoraTestConstants.RtmToken))
+                return AgoraTestConstants.RtmToken;
+
             var request = WebRequest.Create($"{AgoraTestConstants.TokenServerBaseUrl}/rtmToken?account={userName}");
             return await GetStringResponse(request);
         }

@@ -4,7 +4,9 @@ Agora.io Voice samples
 This repository contains samples of using Xamarin Agora.io Voice SDK Nuget packages.
 
 [Xamarin.Agora.Voice.Android](https://www.nuget.org/packages/Xamarin.Agora.Voice.Android/) [![NuGet Badge](https://buildstats.info/nuget/Xamarin.Agora.Voice.Android)](https://www.nuget.org/packages/Xamarin.Agora.Voice.Android/)
+
 [Xamarin.Agora.Voice.iOS](https://www.nuget.org/packages/Xamarin.Agora.Voice.iOS/) [![NuGet Badge](https://buildstats.info/nuget/Xamarin.Agora.Voice.iOS)](https://www.nuget.org/packages/Xamarin.Agora.Voice.iOS/)
+
 [Xamarin.Agora.Voice.Mac](https://www.nuget.org/packages/Xamarin.Agora.Voice.Mac/) [![NuGet Badge](https://buildstats.info/nuget/Xamarin.Agora.Voice.Mac)](https://www.nuget.org/packages/Xamarin.Agora.Voice.Mac/)
 
 
@@ -24,5 +26,5 @@ Quick Start
 ```
         public static string AgoraAPI
         ...
-        public static string Token
+        public static string RtcToken
 ```

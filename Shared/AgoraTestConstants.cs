@@ -26,7 +26,15 @@ namespace DT.Samples.Agora.Shared
         /// <summary>
         /// Temp token generated in https://dashboard.agora.io/ or Token from your API
         /// </summary>
-        public static string Token
+        public static string RtcToken
+        {
+            get
+            {
+                return null;
+            }
+        }
+
+        public static string RtmToken
         {
             get
             {

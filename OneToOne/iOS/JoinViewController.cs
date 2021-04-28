@@ -33,19 +33,12 @@ namespace DT.Samples.Agora.OneToOne.iOS
             ChannelNameEdit.EditingDidBegin += TextField_EditingDidBegin;
             ChannelNameEdit.EditingDidEnd += TextField_EditingDidEnd;
             EncryptionKeyEdit.Text = AgoraSettings.Current.EncryptionPhrase;
-            MakeTextFieldRounded(ChannelNameEdit);
+            ChannelNameEdit.SetRoundCorners();
+            ChannelNameEdit.SetAttributedPlaceholder("Room Name");
             AgoraVersionLabel.Text = string.Format(AgoraVersion, AgoraRtcEngineKit.SdkVersion);
             NavigationItem.LeftBarButtonItem = new UIBarButtonItem(UIImage.FromBundle("ic_share"), UIBarButtonItemStyle.Plain, ShareButtonCliked);
             NavigationItem.RightBarButtonItem = new UIBarButtonItem(UIImage.FromBundle("ic_settings"), UIBarButtonItemStyle.Plain, SettingsButtonCliked);
-            SetupKeyboardHiding();
-        }
-
-        private void SetupKeyboardHiding()
-        {
-            UITapGestureRecognizer singleTapRecognizer = new UITapGestureRecognizer(() => { ChannelNameEdit.ResignFirstResponder(); });
-            singleTapRecognizer.NumberOfTouchesRequired = 1;
-            singleTapRecognizer.CancelsTouchesInView = false;
-            View.AddGestureRecognizer(singleTapRecognizer);
+            View.SetupKeyboardHiding(ChannelNameEdit);
         }
 
         public override void ViewWillAppear(bool animated)

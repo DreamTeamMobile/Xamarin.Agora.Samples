@@ -27,7 +27,6 @@ namespace DT.Samples.Agora.Conference.iOS
         private bool _handUp = false;
         private uint _localId;
         private List<RemoteVideoInfo> _users = new List<RemoteVideoInfo>();
-        private AgoraRtmKit _rtmKit = new AgoraRtmKit(AgoraTestConstants.AgoraAPI, null);
         private AgoraRtmChannel _rtmChannel;
 
         public VideoChatViewController(IntPtr handle) : base(handle)
@@ -61,6 +60,7 @@ namespace DT.Samples.Agora.Conference.iOS
         {
             if(success)
             {
+                userNameLabel.StringValue = $"User name: {Username}";
                 RtmService.Instance.JoinChannel(Channel);
             }
         }
@@ -266,6 +266,7 @@ namespace DT.Samples.Agora.Conference.iOS
                 {
                     LoadingIndicator.Hidden = true;
                     _localId = (uint)arg2;
+                    roomNameLabel.StringValue = $"Room name: {Channel}";
                 });
             }
         }
@@ -309,37 +310,7 @@ namespace DT.Samples.Agora.Conference.iOS
             AgoraRtcEngineKit.Destroy();
             RtmService.Instance.LeaveChannel();
             _users.Clear();
-            //RemoteUsersTableView.RemoveFromSuperview();
-            //localVideo.RemoveFromSuperview();
-            //delegate?.VideoChatNeedClose(self);
             _agoraKit = null;
-        }
-
-        public override void MouseMoved(NSEvent theEvent)
-        {
-            base.MouseMoved(theEvent);
-            if (controlButtons.Hidden)
-            {
-                controlButtons.Hidden = false;
-                //perform(#selector(hideControlButtons), with:nil, afterDelay:3)
-            }
-        }
-
-        public override void MouseEntered(NSEvent theEvent)
-        {
-            base.MouseEntered(theEvent);
-            //VideoChatViewController.cancelPreviousPerformRequests(withTarget: self)
-        }
-
-        public override void MouseExited(NSEvent theEvent)
-        {
-            base.MouseExited(theEvent);
-            //perform(#selector(hideControlButtons), with:nil, afterDelay:3)
-        }
-
-        public void HideCOntrolButtons()
-        {
-            controlButtons.Hidden = true;
         }
 
         public void HideVideoMuted()

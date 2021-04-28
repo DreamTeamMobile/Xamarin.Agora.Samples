@@ -60,19 +60,19 @@
     <Reference Include="OpenTK" />
     <Reference Include="System.Numerics.Vectors" />
     <Reference Include="Xamarin.Agora.Full.Mac">
-      <HintPath>..\packages\Xamarin.Agora.Full.Mac.3.4.1\lib\Xamarin.Mac20\Xamarin.Agora.Full.Mac.dll</HintPath>
-    </Reference>
-    <Reference Include="Newtonsoft.Json">
-      <HintPath>..\packages\Newtonsoft.Json.13.0.1\lib\netstandard2.0\Newtonsoft.Json.dll</HintPath>
+      <HintPath>..\..\packages\Xamarin.Agora.Full.Mac.3.4.1\lib\Xamarin.Mac20\Xamarin.Agora.Full.Mac.dll</HintPath>
     </Reference>
     <Reference Include="Xamarin.Agora.Rtm.Mac">
-      <HintPath>..\packages\Xamarin.Agora.Rtm.Mac.1.4.2\lib\Xamarin.Mac20\Xamarin.Agora.Rtm.Mac.dll</HintPath>
+      <HintPath>..\..\packages\Xamarin.Agora.Rtm.Mac.1.4.2\lib\Xamarin.Mac20\Xamarin.Agora.Rtm.Mac.dll</HintPath>
     </Reference>
     <Reference Include="Plugin.Settings.Abstractions">
-      <HintPath>..\packages\Xam.Plugins.Settings.3.1.1\lib\Xamarin.Mac20\Plugin.Settings.Abstractions.dll</HintPath>
+      <HintPath>..\..\packages\Xam.Plugins.Settings.3.1.1\lib\Xamarin.Mac20\Plugin.Settings.Abstractions.dll</HintPath>
     </Reference>
     <Reference Include="Plugin.Settings">
-      <HintPath>..\packages\Xam.Plugins.Settings.3.1.1\lib\Xamarin.Mac20\Plugin.Settings.dll</HintPath>
+      <HintPath>..\..\packages\Xam.Plugins.Settings.3.1.1\lib\Xamarin.Mac20\Plugin.Settings.dll</HintPath>
+    </Reference>
+    <Reference Include="Newtonsoft.Json">
+      <HintPath>..\..\packages\Newtonsoft.Json.13.0.1\lib\netstandard2.0\Newtonsoft.Json.dll</HintPath>
     </Reference>
   </ItemGroup>
   <ItemGroup>

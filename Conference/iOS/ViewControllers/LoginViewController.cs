@@ -14,7 +14,10 @@ namespace DT.Samples.Agora.Conference.iOS
         {
             base.ViewDidLoad();
             LoginButton.TouchUpInside += async (s, e) => await Login();
+            UserNameEdit.SetRoundCorners();
+            UserNameEdit.SetAttributedPlaceholder("User Name");
             RtmService.Instance.OnLogin += OnLogin;
+            View.SetupKeyboardHiding(UserNameEdit);
         }
 
         public override void ViewDidDisappear(bool animated)

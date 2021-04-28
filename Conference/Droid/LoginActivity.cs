@@ -60,11 +60,11 @@ namespace DT.Samples.Agora.Conference.Droid
         {
             RunOnUiThread(() =>
             {
-                FindViewById<Button>(Resource.Id.loginButton).Enabled = true;
-                FindViewById<Button>(Resource.Id.loginButton).Text = GetString(Resource.String.login_button);
                 if (success)
                 {
                     StartActivity(typeof(JoinActivity));
+                    FindViewById<Button>(Resource.Id.loginButton).Enabled = true;
+                    FindViewById<Button>(Resource.Id.loginButton).Text = GetString(Resource.String.login_button);
                 }
                 else
                 {

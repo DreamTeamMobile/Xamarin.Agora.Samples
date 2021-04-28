@@ -928,9 +928,27 @@
                                     <autoresizingMask key="autoresizingMask"/>
                                 </scroller>
                             </scrollView>
+                            <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="xn5-og-0We">
+                                <rect key="frame" x="18" y="424" width="4" height="16"/>
+                                <textFieldCell key="cell" lineBreakMode="clipping" id="Gex-Yu-A4j">
+                                    <font key="font" metaFont="system"/>
+                                    <color key="textColor" name="labelColor" catalog="System" colorSpace="catalog"/>
+                                    <color key="backgroundColor" name="textBackgroundColor" catalog="System" colorSpace="catalog"/>
+                                </textFieldCell>
+                            </textField>
+                            <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="9ka-E4-LsJ">
+                                <rect key="frame" x="18" y="403" width="4" height="16"/>
+                                <textFieldCell key="cell" lineBreakMode="clipping" id="ag9-vJ-5T0">
+                                    <font key="font" metaFont="system"/>
+                                    <color key="textColor" name="labelColor" catalog="System" colorSpace="catalog"/>
+                                    <color key="backgroundColor" name="textBackgroundColor" catalog="System" colorSpace="catalog"/>
+                                </textFieldCell>
+                            </textField>
                         </subviews>
                         <constraints>
                             <constraint firstItem="whz-E3-nqj" firstAttribute="top" secondItem="sqm-HM-T5i" secondAttribute="bottom" constant="20" id="1Uv-Ad-XUK"/>
+                            <constraint firstItem="xn5-og-0We" firstAttribute="leading" secondItem="d58-P3-pIG" secondAttribute="leading" id="1xb-nl-MBW"/>
+                            <constraint firstItem="xn5-og-0We" firstAttribute="top" secondItem="0Fp-dV-y3H" secondAttribute="bottom" constant="20" id="5TF-Ni-ryq"/>
                             <constraint firstItem="sqm-HM-T5i" firstAttribute="top" secondItem="Jvj-ux-bod" secondAttribute="top" constant="20" id="7dZ-h6-SIU"/>
                             <constraint firstItem="0Fp-dV-y3H" firstAttribute="leading" secondItem="Jvj-ux-bod" secondAttribute="leading" constant="20" id="8co-Hc-FJq"/>
                             <constraint firstItem="K12-17-oL6" firstAttribute="width" secondItem="0Fp-dV-y3H" secondAttribute="width" multiplier="0.3" id="BRW-d3-9nh"/>
@@ -939,6 +957,7 @@
                             <constraint firstItem="whz-E3-nqj" firstAttribute="width" secondItem="Jvj-ux-bod" secondAttribute="width" multiplier="0.8" id="Oh1-EM-7Va"/>
                             <constraint firstItem="K12-17-oL6" firstAttribute="centerY" secondItem="0Fp-dV-y3H" secondAttribute="centerY" id="QZF-r3-cUM"/>
                             <constraint firstItem="d58-P3-pIG" firstAttribute="height" secondItem="0Fp-dV-y3H" secondAttribute="height" id="Qlh-jW-gDd"/>
+                            <constraint firstItem="9ka-E4-LsJ" firstAttribute="top" secondItem="xn5-og-0We" secondAttribute="bottom" constant="5" id="T2P-qR-sai"/>
                             <constraint firstItem="K12-17-oL6" firstAttribute="centerX" secondItem="0Fp-dV-y3H" secondAttribute="centerX" id="apW-Bj-8MN"/>
                             <constraint firstItem="whz-E3-nqj" firstAttribute="centerX" secondItem="Jvj-ux-bod" secondAttribute="centerX" id="e1s-K3-CT8"/>
                             <constraint firstItem="d58-P3-pIG" firstAttribute="centerX" secondItem="0Fp-dV-y3H" secondAttribute="centerX" id="kwo-tF-eR1"/>
@@ -949,6 +968,7 @@
                             <constraint firstItem="d58-P3-pIG" firstAttribute="centerY" secondItem="0Fp-dV-y3H" secondAttribute="centerY" id="tco-6A-zyf"/>
                             <constraint firstItem="0Fp-dV-y3H" firstAttribute="top" secondItem="Jvj-ux-bod" secondAttribute="top" constant="20" id="vgb-Z4-lCJ"/>
                             <constraint firstItem="0Fp-dV-y3H" firstAttribute="height" secondItem="Jvj-ux-bod" secondAttribute="height" multiplier="0.2" id="wTa-mt-NOj"/>
+                            <constraint firstItem="9ka-E4-LsJ" firstAttribute="leading" secondItem="xn5-og-0We" secondAttribute="leading" id="xKg-2X-q3E"/>
                         </constraints>
                     </view>
                     <connections>
@@ -963,7 +983,9 @@
                         <outlet property="localVideoMuteBg" destination="d58-P3-pIG" id="j9O-P3-hEh"/>
                         <outlet property="localVideoMutedIndicator" destination="K12-17-oL6" id="b2K-rv-oQE"/>
                         <outlet property="muteButton" destination="s5p-X5-KrJ" id="MAc-5o-D1z"/>
+                        <outlet property="roomNameLabel" destination="9ka-E4-LsJ" id="3iH-cT-04J"/>
                         <outlet property="screenShareButton" destination="oWU-JE-XTo" id="g5M-bB-Fsx"/>
+                        <outlet property="userNameLabel" destination="xn5-og-0We" id="5Kk-mk-MQN"/>
                         <outlet property="videoMuteButton" destination="iVX-ag-y8T" id="D4p-Ov-qKS"/>
                     </connections>
                 </viewController>

@@ -228,44 +228,50 @@ namespace DT.Samples.Agora.Conference.iOS
             NavigationController.PopViewController(true);
         }
 
+        private RemoteVideInfo GetOrCreateUser(nuint uid)
+        {
+            if (!_userList.Any(u => u.Uid == uid))
+            {
+                _userList.Add(new RemoteVideInfo { Uid = (uint)uid });
+                RemoteVideosContainer.ReloadData();
+                if (ContainerView.Hidden)
+                {
+                    ContainerView.Hidden = false;
+                }
+                RefreshDebug();
+            }
+
+            return _userList.First(i => i.Uid == uid);
+        }
+
         #endregion
 
-        #region RTC events
+        #region RTC
 
         public void FirstRemoteVideoDecodedOfUid(AgoraRtcEngineKit engine, nuint uid, CoreGraphics.CGSize size, nint elapsed)
         {
-            if (_userList.Any(u => u.Uid == uid))
-                return;
-
-            var remoteId = (uint)uid;
-            _userList.Add(new RemoteVideInfo { Uid = remoteId });
-            RemoteVideosContainer.ReloadData();
-            if (ContainerView.Hidden)
-            {
-                ContainerView.Hidden = false;
-            }
-            RefreshDebug();
+            GetOrCreateUser(uid);
         }
 
         public void DidOfflineOfUid(AgoraRtcEngineKit engine, nuint uid, UserOfflineReason reason)
         {
-            _userList.Remove(_userList.First(i => i.Uid == (uint)uid));
+            _userList.Remove(GetOrCreateUser(uid));
             RemoteVideosContainer.ReloadData();
             ContainerView.Hidden = true;
         }
 
         public void DidVideoMuted(AgoraRtcEngineKit engine, bool muted, nuint uid)
         {
-            var userIndex = _userList.IndexOf(_userList.First(i => i.Uid == uid));
-            _userList[userIndex].IsVideoMuted = muted;
-            RemoteVideosContainer.ReloadRows(new[] { NSIndexPath.FromRowSection(userIndex, 0) }, UITableViewRowAnimation.Automatic);
+            var user = GetOrCreateUser(uid);
+            user.IsVideoMuted = muted;
+            RemoteVideosContainer.ReloadRows(new[] { NSIndexPath.FromRowSection(_userList.IndexOf(user), 0) }, UITableViewRowAnimation.Automatic);
         }
 
         public void DidAudioMuted(AgoraRtcEngineKit engine, bool muted, nuint uid)
         {
-            var userIndex = _userList.IndexOf(_userList.First(i => i.Uid == uid));
-            _userList[userIndex].IsAudioMuted = muted;
-            RemoteVideosContainer.ReloadRows(new[] { NSIndexPath.FromRowSection(userIndex, 0) }, UITableViewRowAnimation.Automatic);
+            var user = GetOrCreateUser(uid);
+            user.IsAudioMuted = muted;
+            RemoteVideosContainer.ReloadRows(new[] { NSIndexPath.FromRowSection(_userList.IndexOf(user), 0) }, UITableViewRowAnimation.Automatic);
         }
 
         public void FirstLocalVideoFrameWithSize(AgoraRtcEngineKit engine, CoreGraphics.CGSize size, nint elapsed)
@@ -305,9 +311,9 @@ namespace DT.Samples.Agora.Conference.iOS
             {
                 case SignalActionTypes.HandDown:
                 case SignalActionTypes.HandUp:
-                    var userItemIndex = _userList.IndexOf(_userList.First(i => i.Uid == signal.RtcPeerId));
-                    _userList[userItemIndex].IsHandUp = signal.Action == SignalActionTypes.HandUp;
-                    RemoteVideosContainer.ReloadRows(new[] { NSIndexPath.FromRowSection(userItemIndex, 0) }, UITableViewRowAnimation.Automatic);
+                    var user = GetOrCreateUser(signal.RtcPeerId);
+                    user.IsHandUp = signal.Action == SignalActionTypes.HandUp;
+                    RemoteVideosContainer.ReloadRows(new[] { NSIndexPath.FromRowSection(_userList.IndexOf(user), 0) }, UITableViewRowAnimation.Automatic);
                     break;
                 case SignalActionTypes.IncomingCall:
                     var alertView = new UIAlertView("Invite", $"You got invite to [{signal.Data}] room", null, "Cancel", "Join");

@@ -164,26 +164,26 @@
     <Reference Include="System.Xml" />
     <Reference Include="System.Core" />
     <Reference Include="Xamarin.iOS" />
-    <Reference Include="Xamarin.Essentials">
-      <HintPath>..\..\packages\Xamarin.Essentials.1.6.1\lib\xamarinios10\Xamarin.Essentials.dll</HintPath>
-    </Reference>
     <Reference Include="OpenTK-1.0" />
     <Reference Include="System.Drawing.Common.dll" />
     <Reference Include="System.Numerics" />
-    <Reference Include="Newtonsoft.Json">
-      <HintPath>..\packages\Newtonsoft.Json.13.0.1\lib\netstandard2.0\Newtonsoft.Json.dll</HintPath>
-    </Reference>
     <Reference Include="Xamarin.Agora.Full.iOS">
-      <HintPath>..\packages\Xamarin.Agora.Full.iOS.3.4.1\lib\Xamarin.iOS10\Xamarin.Agora.Full.iOS.dll</HintPath>
+      <HintPath>..\..\packages\Xamarin.Agora.Full.iOS.3.4.1\lib\Xamarin.iOS10\Xamarin.Agora.Full.iOS.dll</HintPath>
     </Reference>
     <Reference Include="Xamarin.Agora.Rtm.iOS">
-      <HintPath>..\packages\Xamarin.Agora.Rtm.iOS.1.4.2\lib\Xamarin.iOS10\Xamarin.Agora.Rtm.iOS.dll</HintPath>
+      <HintPath>..\..\packages\Xamarin.Agora.Rtm.iOS.1.4.2\lib\Xamarin.iOS10\Xamarin.Agora.Rtm.iOS.dll</HintPath>
+    </Reference>
+    <Reference Include="Xamarin.Essentials">
+      <HintPath>..\..\packages\Xamarin.Essentials.1.6.1\lib\xamarinios10\Xamarin.Essentials.dll</HintPath>
     </Reference>
     <Reference Include="Plugin.Settings.Abstractions">
-      <HintPath>..\packages\Xam.Plugins.Settings.3.1.1\lib\Xamarin.iOS10\Plugin.Settings.Abstractions.dll</HintPath>
+      <HintPath>..\..\packages\Xam.Plugins.Settings.3.1.1\lib\Xamarin.iOS10\Plugin.Settings.Abstractions.dll</HintPath>
     </Reference>
     <Reference Include="Plugin.Settings">
-      <HintPath>..\packages\Xam.Plugins.Settings.3.1.1\lib\Xamarin.iOS10\Plugin.Settings.dll</HintPath>
+      <HintPath>..\..\packages\Xam.Plugins.Settings.3.1.1\lib\Xamarin.iOS10\Plugin.Settings.dll</HintPath>
+    </Reference>
+    <Reference Include="Newtonsoft.Json">
+      <HintPath>..\..\packages\Newtonsoft.Json.13.0.1\lib\netstandard2.0\Newtonsoft.Json.dll</HintPath>
     </Reference>
   </ItemGroup>
   <ItemGroup>
@@ -227,7 +227,6 @@
     <ImageAsset Include="Assets.xcassets\ic_logo_agora.imageset\icLogoAgora.pdf" />
     <ImageAsset Include="Assets.xcassets\ic_share.imageset\Contents.json" />
     <ImageAsset Include="Assets.xcassets\ic_settings.imageset\Contents.json" />
-    <ImageAsset Include="Assets.xcassets\btn_join_disabled.imageset\btnJoinDisabled.pdf" />
     <ImageAsset Include="Assets.xcassets\btn_join_disabled.imageset\Contents.json" />
     <ImageAsset Include="Assets.xcassets\btn_join_enabled.imageset\btnJoinEnabled.pdf" />
     <ImageAsset Include="Assets.xcassets\btn_join_enabled.imageset\Contents.json" />
@@ -282,6 +281,7 @@
     <ImageAsset Include="Assets.xcassets\ic_hand_up.imageset\ic_hand.png" />
     <ImageAsset Include="Assets.xcassets\ic_add_user.imageset\Contents.json" />
     <ImageAsset Include="Assets.xcassets\ic_add_user.imageset\ic_user_add.png" />
+    <ImageAsset Include="Assets.xcassets\btn_join_disabled.imageset\btnJoinDisabled.png" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="Resources\" />
@@ -326,6 +326,7 @@
     <Folder Include="ViewControllers\" />
     <Folder Include="Delegates\" />
     <Folder Include="Assets.xcassets\ic_add_user.imageset\" />
+    <Folder Include="Helpers\" />
   </ItemGroup>
   <ItemGroup>
     <InterfaceDefinition Include="LaunchScreen.storyboard" />
@@ -368,7 +369,7 @@
       <DependentUpon>LoginViewController.cs</DependentUpon>
     </Compile>
     <Compile Include="RtmService.cs" />
-    <Compile Include="Helpers\Settings.cs" />
+    <Compile Include="Helpers\UIExtensions.cs" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\..\Shared\DT.Samples.Agora.Shared.csproj">

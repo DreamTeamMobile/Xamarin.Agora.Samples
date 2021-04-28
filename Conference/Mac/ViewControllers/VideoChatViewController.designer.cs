@@ -46,7 +46,13 @@ namespace DT.Samples.Agora.Conference.iOS
 		AppKit.NSTableView RemoteUsersTableView { get; set; }
 
 		[Outlet]
+		AppKit.NSTextField roomNameLabel { get; set; }
+
+		[Outlet]
 		AppKit.NSButton screenShareButton { get; set; }
+
+		[Outlet]
+		AppKit.NSTextField userNameLabel { get; set; }
 
 		[Outlet]
 		AppKit.NSButton videoMuteButton { get; set; }
@@ -74,6 +80,11 @@ namespace DT.Samples.Agora.Conference.iOS
 			if (hungUpButton != null) {
 				hungUpButton.Dispose ();
 				hungUpButton = null;
+			}
+
+			if (inviteButton != null) {
+				inviteButton.Dispose ();
+				inviteButton = null;
 			}
 
 			if (LoadingIndicator != null) {
@@ -116,9 +127,14 @@ namespace DT.Samples.Agora.Conference.iOS
 				videoMuteButton = null;
 			}
 
-			if (inviteButton != null) {
-				inviteButton.Dispose ();
-				inviteButton = null;
+			if (userNameLabel != null) {
+				userNameLabel.Dispose ();
+				userNameLabel = null;
+			}
+
+			if (roomNameLabel != null) {
+				roomNameLabel.Dispose ();
+				roomNameLabel = null;
 			}
 		}
 	}

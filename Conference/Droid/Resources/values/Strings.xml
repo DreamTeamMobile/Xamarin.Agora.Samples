@@ -13,7 +13,11 @@
 	<string
 		name="login_description">Enter user name to login</string>
 	<string
+		name="user_name_hint">User Name</string>
+	<string
 		name="join_description">Enter room name to join</string>
+	<string
+		name="room_name_hint">Room Name</string>
 	<string
 		name="profile_prompt">Choose Video Profile</string>
 	<string

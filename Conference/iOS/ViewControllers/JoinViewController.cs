@@ -31,22 +31,14 @@ namespace DT.Samples.Agora.Conference.iOS
             AgoraKit = AgoraRtcEngineKit.SharedEngineWithAppIdAndDelegate(AgoraTestConstants.AgoraAPI, AgoraDelegate);
             AgoraKit.EnableWebSdkInteroperability(true);
             ChannelNameEdit.Text = AgoraSettings.Current.RoomName;
-            ChannelNameEdit.EditingDidBegin += TextField_EditingDidBegin;
-            ChannelNameEdit.EditingDidEnd += TextField_EditingDidEnd;
             EncryptionKeyEdit.Text = AgoraSettings.Current.EncryptionPhrase;
-            MakeTextFieldRounded(ChannelNameEdit);
+            UserNameLabel.Text = RtmService.Instance.UserName;
+            ChannelNameEdit.SetRoundCorners();
+            ChannelNameEdit.SetAttributedPlaceholder("Room Name");
             AgoraVersionLabel.Text = string.Format(AgoraVersion, AgoraRtcEngineKit.SdkVersion);
             NavigationItem.LeftBarButtonItem = new UIBarButtonItem(UIImage.FromBundle("ic_share"), UIBarButtonItemStyle.Plain, ShareButtonCliked);
             NavigationItem.RightBarButtonItem = new UIBarButtonItem(UIImage.FromBundle("ic_settings"), UIBarButtonItemStyle.Plain, SettingsButtonCliked);
-            SetupKeyboardHiding();
-        }
-
-        private void SetupKeyboardHiding()
-        {
-            UITapGestureRecognizer singleTapRecognizer = new UITapGestureRecognizer(() => { ChannelNameEdit.ResignFirstResponder(); });
-            singleTapRecognizer.NumberOfTouchesRequired = 1;
-            singleTapRecognizer.CancelsTouchesInView = false;
-            View.AddGestureRecognizer(singleTapRecognizer);
+            View.SetupKeyboardHiding(ChannelNameEdit);
         }
 
         public override void ViewWillAppear(bool animated)
@@ -59,23 +51,6 @@ namespace DT.Samples.Agora.Conference.iOS
         {
             AgoraKit.DisableLastmileTest();
             base.ViewWillDisappear(animated);
-        }
-
-        void TextField_EditingDidBegin(object sender, EventArgs e)
-        {
-            ChannelNameEdit.Layer.BorderColor = Theme.TintColor.CGColor;
-        }
-
-        void TextField_EditingDidEnd(object sender, EventArgs e)
-        {
-            ChannelNameEdit.Layer.BorderColor = Theme.TitleTextColor.CGColor;
-        }
-
-        protected void MakeTextFieldRounded(UITextField textField)
-        {
-            textField.Layer.CornerRadius = 28;
-            textField.Layer.BorderColor = Theme.TitleTextColor.CGColor;
-            textField.Layer.BorderWidth = 2;
         }
 
         public override void ViewDidAppear(bool animated)

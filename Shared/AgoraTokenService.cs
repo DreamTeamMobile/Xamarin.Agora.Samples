@@ -3,6 +3,7 @@ using System.IO;
 using System.Net;
 using System.Threading.Tasks;
 using Newtonsoft.Json;
+using AgoraIO.Rtm;
 
 namespace DT.Samples.Agora.Shared
 {
@@ -27,6 +28,12 @@ namespace DT.Samples.Agora.Shared
         {
             if (!string.IsNullOrEmpty(AgoraTestConstants.RtmToken))
                 return AgoraTestConstants.RtmToken;
+
+            if(!string.IsNullOrEmpty(AgoraTestConstants.Certificate))
+            {
+                var token = RtmTokenBuilder.BuildToken(AgoraTestConstants.AgoraAPI, AgoraTestConstants.Certificate, userName, 10000);
+                return token;
+            }
 
             var request = WebRequest.Create($"{AgoraTestConstants.TokenServerBaseUrl}/rtmToken?account={userName}");
             return await GetStringResponse(request);

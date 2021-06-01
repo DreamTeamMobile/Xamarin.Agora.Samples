@@ -87,6 +87,9 @@
     <PackageReference Include="Xamarin.Agora.Rtm.Android">
       <Version>1.4.2</Version>
     </PackageReference>
+    <PackageReference Include="Crc32.NET">
+      <Version>1.2.0</Version>
+    </PackageReference>
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Resources\Resource.designer.cs" />

@@ -32,6 +32,8 @@
     <HttpClientHandler>NSUrlSessionHandler</HttpClientHandler>
     <PackageSigningKey>3rd Party Mac Developer Installer</PackageSigningKey>
     <AOTMode>None</AOTMode>
+    <LinkMode>None</LinkMode>
+    <XamMacArch>x86_64</XamMacArch>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|x86' ">
     <DebugType>pdbonly</DebugType>
@@ -64,6 +66,15 @@
     </Reference>
     <Reference Include="Xamarin.Agora.Full.Mac">
       <HintPath>..\..\packages\Xamarin.Agora.Full.Mac.3.4.1\lib\Xamarin.Mac20\Xamarin.Agora.Full.Mac.dll</HintPath>
+    </Reference>
+    <Reference Include="Plugin.Settings.Abstractions">
+      <HintPath>..\..\packages\Xam.Plugins.Settings.3.1.1\lib\Xamarin.Mac20\Plugin.Settings.Abstractions.dll</HintPath>
+    </Reference>
+    <Reference Include="Plugin.Settings">
+      <HintPath>..\..\packages\Xam.Plugins.Settings.3.1.1\lib\Xamarin.Mac20\Plugin.Settings.dll</HintPath>
+    </Reference>
+    <Reference Include="Crc32.NET">
+      <HintPath>..\..\packages\Crc32.NET.1.2.0\lib\netstandard2.0\Crc32.NET.dll</HintPath>
     </Reference>
   </ItemGroup>
   <ItemGroup>
@@ -138,4 +149,5 @@
     </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildExtensionsPath)\Xamarin\Mac\Xamarin.Mac.CSharp.targets" />
+  <Import Project="..\..\packages\NETStandard.Library.2.0.0\build\netstandard2.0\NETStandard.Library.targets" Condition="Exists('..\..\packages\NETStandard.Library.2.0.0\build\netstandard2.0\NETStandard.Library.targets')" />
 </Project>

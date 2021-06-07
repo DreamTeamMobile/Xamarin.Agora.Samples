@@ -27,7 +27,6 @@ namespace DT.Samples.Agora.Conference.iOS
         private bool _handUp = false;
         private uint _localId;
         private List<RemoteVideoInfo> _users = new List<RemoteVideoInfo>();
-        private AgoraRtmChannel _rtmChannel;
 
         public VideoChatViewController(IntPtr handle) : base(handle)
         {
@@ -211,11 +210,7 @@ namespace DT.Samples.Agora.Conference.iOS
                 RtcPeerId = _localId
             };
             var text = JsonConvert.SerializeObject(signalMessage);
-            var rtmMessage = new AgoraRtmMessage(text);
-            _rtmChannel.SendMessage(rtmMessage, (state) =>
-            {
-                Console.WriteLine($"RTM send channel msg state: {state}");
-            });
+            RtmService.Instance.SendChannelMessage(text);
         }
 
         public override void ViewWillAppear()

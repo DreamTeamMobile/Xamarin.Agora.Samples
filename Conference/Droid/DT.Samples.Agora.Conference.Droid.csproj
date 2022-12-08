@@ -82,7 +82,7 @@
       <Version>3.4.1</Version>
     </PackageReference>
     <PackageReference Include="Newtonsoft.Json">
-      <Version>13.0.1</Version>
+      <Version>13.0.2</Version>
     </PackageReference>
     <PackageReference Include="Xamarin.Agora.Rtm.Android">
       <Version>1.4.2</Version>
